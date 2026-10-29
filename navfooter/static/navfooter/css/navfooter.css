@@ -43,12 +43,11 @@
   overflow: visible !important;
   box-sizing: border-box !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease !important;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+
 }
 
 .finance-navbar-wrapper.scrolled .finance-navbar-container {
   transform: scale(0.985);
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.35));
 }
 
 .finance-navbar-wrapper.scrolled .finance-pill {
