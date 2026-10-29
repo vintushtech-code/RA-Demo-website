@@ -652,7 +652,7 @@ class AcademyView(TemplateView):
                 "category": "Forensic Accounting",
                 "read_time": "7 min read",
                 "author": "M Kalpesh, Lead Analyst",
-                "image": "photos/market_intel_equity.jpg",
+                "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "A company can report surging Net Profit while hurtling towards insolvency. Learn how comparing Operating Cash Flow (CFO) to EBITDA reveals channel stuffing and uncollectible receivables.",
                 "content": """
 <h3>The Illusion of Accrual Accounting</h3>
@@ -675,7 +675,7 @@ class AcademyView(TemplateView):
                 "category": "Quality Investing",
                 "read_time": "5 min read",
                 "author": "Vikramaditya Verma, Fundamental Lead",
-                "image": "photos/wealth_arch_allocation.jpg",
+                "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "Return on Equity (ROE) can be artificially inflated with dangerous financial leverage. Return on Capital Employed (ROCE) cuts through the debt fog to reveal true business quality.",
                 "content": """
 <h3>Why High ROE Can Be a Dangerous Mirage</h3>
@@ -693,7 +693,7 @@ class AcademyView(TemplateView):
                 "category": "Exam Blueprint",
                 "read_time": "6 min read",
                 "author": "Kalphora Faculty Desk",
-                "image": "photos/wealth_arch_discovery.jpg",
+                "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "A high-yield 30-day study roadmap focusing on key chapter weightages, numerical questions, and the high-scoring regulatory sections of the NISM XV certification.",
                 "content": """
 <h3>Exam Structure & Passing Criteria</h3>
@@ -714,7 +714,7 @@ class AcademyView(TemplateView):
                 "category": "Technical Discipline",
                 "read_time": "4 min read",
                 "author": "Pooja Sundaram, Momentum Strategist",
-                "image": "photos/wealth_arch_execution.jpg",
+                "image": "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "You do not need an 80% win rate to generate extraordinary equity returns. Discover how strict stop-losses and mathematically positive expectancy protect trading capital.",
                 "content": """
 <h3>The Win-Rate Fallacy</h3>
@@ -737,7 +737,7 @@ class AcademyView(TemplateView):
                 "category": "Governance & Forensics",
                 "read_time": "8 min read",
                 "author": "Anand K. Deshmukh, Senior Analyst",
-                "image": "photos/about_best_fit_advisors.png",
+                "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "How to spot promoter tunneling, related-party remuneration games, and auditor qualification red flags before committing institutional capital.",
                 "content": """
 <h3>Evaluating the People Behind the Balance Sheet</h3>
@@ -760,7 +760,7 @@ class AcademyView(TemplateView):
                 "category": "Alpha Discovery",
                 "read_time": "5 min read",
                 "author": "M Kalpesh, Lead Analyst",
-                "image": "photos/market_intel_treasury.jpg",
+                "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
                 "excerpt": "Screening Indian equities with low institutional ownership, debt-to-equity below 0.5, and 3-year compound sales growth above 15%.",
                 "content": """
 <h3>Screening Without Emotional Bias</h3>
