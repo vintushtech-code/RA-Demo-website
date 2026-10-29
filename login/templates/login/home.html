@@ -349,11 +349,10 @@
     <!-- Section Header with Header Action Button -->
     <div class="home-testimonials-header-row">
       <div class="section-header" style="text-align: left; margin: 0 0 0 0; max-width: 680px;">
-        <div class="section-tag">✨ Client Trust &amp; Verified Reviews</div>
-        <h2 class="section-title">Empowering Wealth Across <span class="highlight-text">Generations</span></h2>
+        <div class="section-tag">✨ Verified Research Experiences</div>
+        <h2 class="section-title">Empowering Investors With <span class="highlight-text">Actionable Research</span></h2>
         <p class="section-subtitle">
-          Real stories from corporate executives, tech founders, and families who rely on our zero-commission fiduciary
-          advisory to compound and preserve capital.
+          Real experiences from active traders, fund allocators, and disciplined investors who rely on our SEBI Registered independent research, breakout signals, and fundamental compounders.
         </p>
       </div>
 
@@ -369,55 +368,34 @@
       </div>
     </div>
 
-    <!-- Testimonials Preview Grid (2-3 Cards) -->
+    <!-- Testimonials Preview Grid (Exactly 3 Cards) -->
     <div class="home-testimonials-grid">
-      {% for t in testimonials %}
+      {% for t in testimonials|slice:":3" %}
       <div class="home-testimonial-card">
         <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span class="rating-num">{{ t.rating|default:"5.0" }}</span>
         </div>
 
         <p class="testimonial-quote">
-          "{{ t.quote|truncatewords:30 }}"
+          "{{ t.quote|truncatewords:32 }}"
         </p>
 
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
             {% if t.get_avatar_url %}
-            <img src="{{ t.get_avatar_url }}" alt="{{ t.name }}" class="author-avatar-img" loading="lazy"
-              decoding="async">
+            <img src="{{ t.get_avatar_url }}" alt="{{ t.name }}" class="author-avatar-img" loading="lazy" decoding="async">
             {% else %}
             <div class="author-initials-avatar">{{ t.name|slice:":2"|upper }}</div>
             {% endif %}
           </div>
           <div class="author-info">
             <h4 class="author-name">{{ t.name }}</h4>
-            <p class="author-role">{{ t.role }}{% if t.location %} — {{ t.location }}{% endif %}</p>
+            <p class="author-role">{{ t.role }}{% if t.location %} &bull; {{ t.location }}{% endif %}</p>
           </div>
         </div>
 
@@ -426,7 +404,7 @@
         {% endif %}
       </div>
       {% empty %}
-      <!-- 5 Static SEBI Research Analyst Testimonials -->
+      <!-- EXACTLY 3 STATIC SEBI RESEARCH ANALYST REVIEWS -->
       <!-- Review 1: Rajesh Nair -->
       <div class="home-testimonial-card">
         <div class="card-star-rating">
@@ -442,14 +420,15 @@
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">RN</div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" alt="Rajesh Nair" class="author-avatar-img" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="author-initials-avatar" style="display: none;">RN</div>
           </div>
           <div class="author-info">
             <h4 class="author-name">Rajesh Nair</h4>
             <p class="author-role">Senior Product Architect &bull; Bengaluru</p>
           </div>
         </div>
-        <div class="testimonial-category-tag">Swing &amp; Breakout Picks</div>
+        <div class="testimonial-category-tag">Swing &amp; Breakout</div>
       </div>
 
       <!-- Review 2: Dr. Meenakshi Sundaram -->
@@ -467,14 +446,15 @@
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">MS</div>
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&h=150&q=80" alt="Dr. Meenakshi Sundaram" class="author-avatar-img" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="author-initials-avatar" style="display: none;">MS</div>
           </div>
           <div class="author-info">
             <h4 class="author-name">Dr. Meenakshi Sundaram</h4>
             <p class="author-role">Consultant Surgeon &bull; Chennai</p>
           </div>
         </div>
-        <div class="testimonial-category-tag">Fundamental Compounders</div>
+        <div class="testimonial-category-tag">Compounders</div>
       </div>
 
       <!-- Review 3: Aditya Singhania -->
@@ -492,7 +472,8 @@
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">AS</div>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80" alt="Aditya Singhania" class="author-avatar-img" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="author-initials-avatar" style="display: none;">AS</div>
           </div>
           <div class="author-info">
             <h4 class="author-name">Aditya Singhania</h4>
@@ -501,57 +482,22 @@
         </div>
         <div class="testimonial-category-tag">Institutional Research</div>
       </div>
-
-      <!-- Review 4: Sunita Menon -->
-      <div class="home-testimonial-card">
-        <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span class="rating-num">5.0</span>
-        </div>
-        <p class="testimonial-quote">
-          "The Kalphora Research Academy transformed how I assess company management. Learning how to spot divergence between EBITDA and Operating Cash Flow was worth 10x the course fee. Cleared NISM Series XV with 88%!"
-        </p>
-        <div class="testimonial-author-row">
-          <div class="author-avatar-box">
-            <div class="author-initials-avatar">SM</div>
-          </div>
-          <div class="author-info">
-            <h4 class="author-name">Sunita Menon</h4>
-            <p class="author-role">Independent Investor &bull; Kochi</p>
-          </div>
-        </div>
-        <div class="testimonial-category-tag">Research Academy</div>
-      </div>
-
-      <!-- Review 5: Karthik R. Iyer -->
-      <div class="home-testimonial-card">
-        <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span class="rating-num">5.0</span>
-        </div>
-        <p class="testimonial-quote">
-          "Clean execution directly through my Zerodha demat account with zero broker commission conflicts. True fiduciary institutional-grade stock research. The weekly risk summaries and trailing stops allow stress-free participation."
-        </p>
-        <div class="testimonial-author-row">
-          <div class="author-avatar-box">
-            <div class="author-initials-avatar">KI</div>
-          </div>
-          <div class="author-info">
-            <h4 class="author-name">Karthik R. Iyer</h4>
-            <p class="author-role">Tech Executive &bull; Hyderabad</p>
-          </div>
-        </div>
-        <div class="testimonial-category-tag">Breakout Radar</div>
-      </div>
       {% endfor %}
+    </div>
+
+    <!-- View All Action Button Below 3 Cards -->
+    <div class="home-testimonials-bottom-cta">
+      <a href="{% url 'login:testimonials' %}" class="btn-testimonials-view-all-lg">
+        <span>View All Client Reviews &amp; Testimonials</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <p class="testimonials-trust-note">
+        <span class="trust-check">✓</span> 100% Independent SEBI Registered Research &bull; Reg. 25 &bull; No Brokerage Conflicts
+      </p>
     </div>
 
   </div>
