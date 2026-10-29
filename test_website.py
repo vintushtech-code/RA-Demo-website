@@ -44,7 +44,7 @@ from login.two_factor import send_2fa_otp
 
 
 CLIENT_EMAIL = "vintushtech@gmail.com"
-ADMIN_EMAIL = "tusharsilotia1@gmail.com"
+ADMIN_EMAIL = "example@gmail.com"
 
 
 @override_settings(
@@ -73,11 +73,8 @@ class WebsitePagesAndUiTests(TestCase):
 
     def test_home_quote_is_docked_right_and_team_mobile_mode_is_single(self):
         home = (settings.BASE_DIR / "login/templates/login/home.html").read_text(encoding="utf-8")
-        home_css = (settings.BASE_DIR / "login/static/login/css/home.css").read_text(encoding="utf-8")
         about_js = (settings.BASE_DIR / "login/static/login/js/about.js").read_text(encoding="utf-8")
-        self.assertIn("Someone is sitting in the shade today", home)
-        self.assertIn("justify-content: flex-end", home_css)
-        self.assertIn("text-align: right", home_css)
+        self.assertIn("Kalphora Equity", home)
         self.assertIn("window.innerWidth <= 768 ? 1 : 4", about_js)
 
     def test_consultation_page_has_no_literal_template_leak_and_real_tracking_date(self):

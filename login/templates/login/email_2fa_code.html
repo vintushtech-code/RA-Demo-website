@@ -1,6 +1,6 @@
 {% extends 'emails/base_email.html' %}
 
-{% block email_title %}[{{ code }}] Admin 2FA Verification Code — Sabin Balan Finance{% endblock %}
+{% block email_title %}[{{ code }}] Admin 2FA Verification Code — Kalphora Equity{% endblock %}
 
 {% block doc_badge %}ADMIN 2-FACTOR AUTHENTICATION (ADMIN ONLY){% endblock %}
 
@@ -10,7 +10,7 @@
   Hello <strong>{{ user.get_display_name }}</strong>,
 </p>
 <p>
-  A high-privilege login request to the <strong>Sabin Balan Finance Administrator Dashboard</strong> was initiated for your account. Please enter the 6-digit one-time authorization code below:
+  A high-privilege login request to the <strong>Kalphora Equity Administrator Dashboard</strong> was initiated for your account. Please enter the 6-digit one-time authorization code below:
 </p>
 
 <!-- Large Stylized OTP Container -->
@@ -27,7 +27,7 @@
   <strong>🔒 Fiduciary Security Notice:</strong>
   <ul>
     <li>This 2FA code is strictly for authorized <strong>Administrator</strong> sessions.</li>
-    <li>Never share this code with anyone. Sabin Balan Finance staff will never ask for your 2FA OTP.</li>
+    <li>Never share this code with anyone. Kalphora Equity staff will never ask for your 2FA OTP.</li>
     <li>If you did not initiate this administrator login, please change your password immediately.</li>
   </ul>
 </div>

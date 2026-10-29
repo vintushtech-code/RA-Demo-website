@@ -2,7 +2,7 @@
 **Subject:** Technical Architecture, Feature Effort Analysis & Terms of Transfer — Kalphora Equity Platform  
 **Date:** October 28, 2026  
 **From:** Tushar Kumar & Solutions Engineering Team, Vintush Tech / KP RegTech  
-**To:** M Kalpesh (kalpeshsancheti333@gmail.com | +91-9941817896)  
+**To:** M Kalpesh (example@gmail.com | +91 XXXXXXXXXX)  
 
 ---
 
@@ -111,4 +111,4 @@ Warm regards,
 *Solutions Engineering & Technical Lead*  
 Vintush Tech / KP RegTech  
 Web: [vintushtech.cloud](https://vintushtech.cloud) | [kpregtech.com](https://kpregtech.com)  
-Contact: +91-9941817896
+Contact: +91 XXXXXXXXXX

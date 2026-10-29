@@ -21,17 +21,17 @@
                         style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
                         <div class="logo-svg-wrapper">
                             {% if navbar_settings.get_logo_url %}
-                            <img src="{{ navbar_settings.get_logo_url }}" alt="GuardianTree FP Logo"
+                            <img src="{{ navbar_settings.get_logo_url }}" alt="Kalphora Equity Logo"
                                 style="width: 50px; height: auto; filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.4));" onerror="this.onerror=null; this.src='{% static 'navfooter/images/shield_emblem_nobg.png' %}';">
                             {% else %}
                             <img src="{% static 'navfooter/images/shield_emblem_nobg.png' %}"
-                                alt="GuardianTree FP Logo"
+                                alt="Kalphora Equity Logo"
                                 style="width: 80px; height: auto; filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.4));">
                             {% endif %}
                         </div>
                         <div class="brand-text">
-                            <h2 class="brand-title" style="font-size: 25px;">GUARDIANTREE FP</h2>
-                            <p class="brand-subtitle">BUILDING YOUR FUTURE</p>
+                            <h2 class="brand-title" style="font-size: 25px;">KALPHORA EQUITY</h2>
+                            <p class="brand-subtitle">SEBI REGISTERED RESEARCH ANALYST</p>
                         </div>
                     </a>
                 </div>
@@ -69,12 +69,12 @@
             <div class="footer-col links-col">
                 <h3 class="col-title"><i class="fa-solid fa-hand-holding-dollar"></i> OUR SERVICES</h3>
                 <ul>
-                    <li><a href="{% url 'login:services' %}#services-explore">Financial Architecture</a></li>
-                    <li><a href="{% url 'login:services' %}#services-explore">Active Wealth Cultivation</a></li>
-                    <li><a href="{% url 'login:services' %}#services-explore">Retirement Trajectories</a></li>
-                    <li><a href="{% url 'login:services' %}#services-explore">Tax & Estate Shielding</a></li>
-                    <li><a href="{% url 'login:services' %}#services-explore">Corporate & Legacy Counsel</a></li>
-                    <li><a href="{% url 'login:services' %}#services-explore">Private Equity & Alternatives</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">Swing & Breakout Research</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">Fundamental Compounders</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">Sectoral & Thematic Reports</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">Model Research Portfolios</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">Kalphora Learning Hub</a></li>
+                    <li><a href="{% url 'login:services' %}#services-explore">SEBI Reg. 25 Disclosures</a></li>
                 </ul>
             </div>
 
@@ -86,7 +86,7 @@
                     <li><a href="{% url 'login:home' %}">Home</a></li>
                     <li><a href="{% url 'login:about' %}">About Us</a></li>
                     <li><a href="{% url 'login:services' %}">Our Services</a></li>
-                    <li><a href="{% url 'login:consultation' %}">Book Consultation</a></li>
+                    <li><a href="{% url 'login:consultation' %}">Research Orientation</a></li>
                     <li><a href="{% url 'login:testimonials' %}">Client Reviews</a></li>
                     <li><a href="{% url 'contactform:contact' %}">Contact Us</a></li>
                 </ul>
@@ -100,8 +100,8 @@
                     <li><a href="{% url 'login:terms_conditions' %}">Terms & Conditions</a></li>
                     <li><a href="{% url 'login:cookie_policy' %}">Cookie Policy</a></li>
                     <li><a href="{% url 'login:aml_kyc' %}">AML / KYC Policy</a></li>
-                    <li><a href="{% url 'login:disclaimer' %}">Regulatory Disclaimer</a></li>
-                    <li><a href="{% url 'login:consultation_track' %}">Track Consultation</a></li>
+                    <li><a href="{% url 'login:disclaimer' %}">SEBI RA Disclosures & Charter</a></li>
+                    <li><a href="{% url 'login:consultation_track' %}">Track Orientation Request</a></li>
                 </ul>
             </div>
 
@@ -133,8 +133,8 @@
                     <i class="fa-solid fa-arrow-trend-up"></i>
                 </div>
                 <div class="text-wrapper">
-                    <h4>EXPERT ADVICE</h4>
-                    <p>Get guidance from<br>financial experts</p>
+                    <h4>OBJECTIVE RESEARCH</h4>
+                    <p>Data-driven stock picks<br>with zero broker bias</p>
                 </div>
             </div>
             <div class="value-prop-item">
@@ -142,8 +142,8 @@
                     <i class="fa-regular fa-user"></i>
                 </div>
                 <div class="text-wrapper">
-                    <h4>CUSTOMIZED SOLUTIONS</h4>
-                    <p>Tailored strategies for<br>your goals</p>
+                    <h4>PROVEN METHODOLOGY</h4>
+                    <p>4-Pillar forensic &<br>technical screening</p>
                 </div>
             </div>
             <div class="value-prop-item">
@@ -151,8 +151,8 @@
                     <i class="fa-regular fa-gem"></i>
                 </div>
                 <div class="text-wrapper">
-                    <h4>TRANSPARENT FEES</h4>
-                    <p>Clear pricing with<br>no hidden charges</p>
+                    <h4>SEBI COMPLIANT</h4>
+                    <p>Full adherence to<br>RA Regulations, 2014</p>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@
         <!-- BOTTOM SECTION -->
         <div class="footer-bottom">
             <div class="copyright">
-                © 2026 GuardianTree FP. All Rights Reserved.
+                © 2026 Kalphora Equity. All Rights Reserved.
             </div>
             <div class="legal-links">
                 <a href="{% url 'login:privacy_policy' %}"><i class="fa-solid fa-lock"></i> Privacy Policy</a>
@@ -180,7 +180,7 @@
 
         <!-- FINANCIAL DISCLAIMER -->
         <div class="financial-disclaimer" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; color: #888; text-align: justify; line-height: 1.5;">
-            <strong>Mandatory Legal & Risk Warning:</strong> GuardianTree FP is a registered financial advisory firm. All investments involve risk, including the possible loss of principal. Past performance of any security, portfolio, or investment strategy does not guarantee future results or success. The information provided on this website does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the website's content as such. Please conduct your own due diligence and consult your financial advisor before making any investment decisions. GuardianTree FP is registered with the Securities and Exchange Board of India (SEBI).
+            <strong>Mandatory SEBI Research Analyst Regulatory & Risk Warning:</strong> Kalphora Equity is an independent equity research practice operating under the SEBI (Research Analysts) Regulations, 2014 (Registration Number: INH0000XXXXX - Application in Process / Provisional). Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary or provide any assurance of returns to investors. Investment in securities market are subject to market risks. Read all related documents carefully before investing. Research reports, stock recommendations, and model portfolios are independent and non-personalized, and do not constitute individual financial, portfolio management, or investment advisory services. Past performance of any recommendation is not indicative of future results. For grievances, contact our Compliance Officer at <a href="mailto:example@gmail.com" style="color: #D4AF37;">example@gmail.com</a>, or lodge on SEBI SCORES portal (scores.sebi.gov.in) and SMART ODR portal (smartodr.in).
         </div>
     </div>
 </footer>

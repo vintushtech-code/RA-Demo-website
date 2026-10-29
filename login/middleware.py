@@ -77,7 +77,7 @@ class AdminSaaSGuardMiddleware:
                     SaaSRequestLog.objects.create(
                         plan_code=plan_code,
                         plan_name=plan_info['name'],
-                        client_email='sabin@guardiantreefp.com',
+                        client_email='example@gmail.com',
                         status='pending'
                     )
 

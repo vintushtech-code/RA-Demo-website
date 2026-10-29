@@ -635,7 +635,7 @@ class AdminSaaSSubscription(models.Model):
 
     service_name = models.CharField(_('Service Name'), max_length=200, default='GuardianTree FP Executive Admin Panel')
     client_name = models.CharField(_('Client Name & Title'), max_length=200, default='Sabin Balan (Founder, GuardianTree FP)')
-    client_email = models.EmailField(_('Client Billing Email'), default='sabin@guardiantreefp.com')
+    client_email = models.EmailField(_('Client Billing Email'), default='example@gmail.com')
     provider_credits = models.CharField(_('Provider Credits'), max_length=255, default='VintushTech & KPRegTech')
     
     is_free_trial = models.BooleanField(_('Is Free Trial Active'), default=True)
@@ -689,7 +689,7 @@ class SaaSInvoice(models.Model):
     """
     invoice_number = models.CharField(_('Invoice Number'), max_length=100, unique=True)
     client_name = models.CharField(_('Client Name'), max_length=200, default='Sabin Balan (Founder, GuardianTree FP)')
-    client_email = models.EmailField(_('Client Email'), default='sabin@guardiantreefp.com')
+    client_email = models.EmailField(_('Client Email'), default='example@gmail.com')
     provider_name = models.CharField(_('Provider Name'), max_length=200, default='KPRegTech & VintushTech')
     plan_code = models.CharField(_('Plan Code'), max_length=50)
     plan_name = models.CharField(_('Plan Name'), max_length=200)
@@ -717,7 +717,7 @@ class SaaSRequestLog(models.Model):
     """
     plan_code = models.CharField(_('Requested Plan Code'), max_length=50)
     plan_name = models.CharField(_('Requested Plan Name'), max_length=200)
-    client_email = models.EmailField(_('Client Email'), default='sabin@guardiantreefp.com')
+    client_email = models.EmailField(_('Client Email'), default='example@gmail.com')
     status = models.CharField(_('Request Status'), max_length=50, default='pending', choices=[('pending', 'Pending KPRegTech Review'), ('approved', 'Key Issued & Approved'), ('rejected', 'Rejected')])
     requested_at = models.DateTimeField(auto_now_add=True)
     issued_invoice = models.ForeignKey(SaaSInvoice, on_delete=models.SET_NULL, null=True, blank=True)

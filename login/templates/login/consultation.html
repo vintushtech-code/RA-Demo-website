@@ -1,7 +1,7 @@
 {% extends 'theme_config/base.html' %}
 {% load static %}
 
-{% block title %}Book Your Consultation — Private Wealth Advisory | GuardianTree FP{% endblock %}
+{% block title %}Schedule Research Orientation — Kalphora Equity | SEBI Registered Research Analyst{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'login/css/consultation.css' %}?v=1.3">
@@ -19,15 +19,15 @@
       <!-- Left: High-End Luxury Editorial Finance Visual -->
       <div class="consult-intro-visual-col">
         <div class="consult-intro-image-frame">
-          <img src="{% static 'sabin_balan_3.png' %}" alt="Sabin Balan — Founder & Fiduciary Wealth Advisor, GuardianTree FP"
+          <img src="{% static 'sabin_balan_3.png' %}" alt="M Kalpesh — SEBI Registered Research Analyst, Kalphora Equity"
             class="consult-intro-img" loading="lazy" decoding="async">
           <div class="consult-intro-floating-badge">
             <div class="consult-badge-icon-gold">
               <i class="fa-solid fa-scale-balanced"></i>
             </div>
             <div>
-              <div class="consult-badge-title">PRIVATE WEALTH BOARDROOM</div>
-              <div class="consult-badge-sub">1-on-1 Fiduciary Advisory &amp; Family Office</div>
+              <div class="consult-badge-title">RESEARCH ORIENTATION DESK</div>
+              <div class="consult-badge-sub">1-on-1 Research Methodology &amp; Platform Onboarding</div>
             </div>
           </div>
         </div>
@@ -37,24 +37,22 @@
       <div class="consult-intro-text-col">
         <div class="consult-eyebrow-pill">
           <span class="consult-eyebrow-dot"></span>
-          PRIVATE FINANCIAL CONSULTATION
+          RESEARCH BRIEFING &amp; ORIENTATION
         </div>
 
         <h1 class="consult-main-headline">
-          Plan With Purpose.<br>
-          <span class="headline-gold">Move Forward With Confidence.</span>
+          Invest With Insight.<br>
+          <span class="headline-gold">Backed by Rigorous Research.</span>
         </h1>
 
         <p class="consult-intro-paragraph">
-          A focused, institutional-grade consultation designed around your financial goals, capital preservation
-          priorities, and long-term generational wealth vision. Experience fee-only advisory without third-party
-          commission conflicts.
+          A focused 1-on-1 orientation session with our research team to walk you through our stock selection criteria, risk-reward ratios, how to interpret target/stop-loss signals, and how to execute calls seamlessly on your personal demat account.
         </p>
 
         <div class="consult-trust-pills-row">
           <div class="consult-trust-pill-item">
             <i class="fa-solid fa-shield-halved"></i>
-            <span>SEBI-Registered Fiduciary Standard</span>
+            <span>SEBI-Registered Research Analyst (INH0000XXXXX)</span>
           </div>
           <div class="consult-trust-pill-item">
             <i class="fa-solid fa-handshake-angle"></i>
@@ -65,11 +63,11 @@
         <div class="consult-intro-actions">
           <a href="#booking-hub" class="btn-consult-primary">
             <i class="fa-regular fa-calendar-check"></i>
-            <span>Schedule Consultation</span>
+            <span>Schedule Orientation</span>
           </a>
           <a href="#track-section" class="btn-consult-secondary">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <span>Track Existing Reference Key</span>
+            <span>Track Orientation Request</span>
           </a>
         </div>
       </div>
@@ -85,12 +83,11 @@
         <div class="consult-hub-header">
           <div class="consult-eyebrow-pill" style="margin-bottom: 0.85rem;">
             <i class="fa-solid fa-clock-rotate-left"></i>
-            RESERVE YOUR ADVISORY SESSION
+            RESERVE YOUR RESEARCH ONBOARDING SESSION
           </div>
-          <h2 class="section-title">Private Wealth <span class="highlight-text"> Consultation Scheduling</span></h2>
+          <h2 class="section-title">Research Orientation <span class="highlight-text">Session Scheduling</span></h2>
           <p class="consult-hub-subtitle">
-            Select your preferred consultation duration, choose an available business date on our interactive calendar,
-            pick a dynamic time slot, and submit your briefing requirements.
+            Choose an available business date on our interactive calendar, pick a dynamic time slot, and tell us your primary research focus (Swing or Long-Term).
           </p>
         </div>
 
@@ -639,7 +636,7 @@
       <!-- Top Brand & Header Section -->
       <div class="receipt-header">
         <div class="receipt-brand-block">
-          <img src="{% static 'logo.png' %}" alt="Sabin Balan Finance Logo" class="receipt-firm-logo"
+          <img src="{% static 'logo.png' %}" alt="Kalphora Equity Logo" class="receipt-firm-logo"
             data-fallback="{% static 'navfooter/images/shield_emblem_nobg.png' %}"
             onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');">
           <div class="receipt-firm-info">
@@ -680,11 +677,11 @@
           </div>
           <div class="receipt-info-row">
             <span class="receipt-info-label">Contact Email:</span>
-            <span class="receipt-info-value" id="rcpt-client-email">{% firstof tracked_booking.email "client@advisory.guardiantreefp.com" %}</span>
+            <span class="receipt-info-value" id="rcpt-client-email">{% firstof tracked_booking.email "example@gmail.com" %}</span>
           </div>
           <div class="receipt-info-row">
             <span class="receipt-info-label">Contact Phone:</span>
-            <span class="receipt-info-value" id="rcpt-client-phone">{% firstof tracked_booking.phone "+91 98765 43210" %}</span>
+            <span class="receipt-info-value" id="rcpt-client-phone">{% firstof tracked_booking.phone "+91 XXXXXXXXXX" %}</span>
           </div>
           <div class="receipt-info-row">
             <span class="receipt-info-label">Account Privilege:</span>
@@ -792,7 +789,7 @@
           <div class="fiduciary-seal-text">
             <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b;">OFFICIALLY VERIFIED &amp; REGISTERED
             </div>
-            <div style="font-size: 0.72rem; color: #64748b;">Sabin Balan Finance Global Fiduciary Governance Desk</div>
+            <div style="font-size: 0.72rem; color: #64748b;">Kalphora Equity Global Fiduciary Governance Desk</div>
           </div>
         </div>
 

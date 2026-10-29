@@ -96,7 +96,7 @@ class LoginConfig(AppConfig):
                         ) VALUES (
                             'GuardianTree FP Executive Admin Panel',
                             'Sabin Balan (Founder, GuardianTree FP)',
-                            'sabin@guardiantreefp.com',
+                            'example@gmail.com',
                             'VintushTech & KPRegTech',
                             1, ?, 90, ?,
                             'active_trial', 'trial_3_months', ?, 'KP-VINTUSH-3M-TRIAL-ACTIVE', 0,

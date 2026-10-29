@@ -6,7 +6,7 @@
   style="position: fixed !important; left: 0 !important; right: 0 !important; z-index: 999999 !important; width: 100% !important; pointer-events: none !important;">
 
   <!-- Accessible & test compatibility metadata -->
-  <span style="display: none;">{{ brand_name|default:"GuardianTree FP" }}</span>
+  <span style="display: none;">{{ brand_name|default:"Kalphora Equity" }}</span>
   <span style="display: none;">Dashboard</span>
 
   <div class="finance-navbar-container" style="pointer-events: auto !important;">
@@ -14,7 +14,7 @@
     <!-- Far Left: Savings & Growth 3D Gold Badge -->
     <div class="finance-left-badge-group">
       <a href="{% url 'login:home' %}" class="finance-circle-badge"
-        aria-label="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'GreenTree FP' }}{% endif %}">
+        aria-label="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'Kalphora Equity' }}{% endif %}">
         <div class="finance-circle-inner">
           {% if navbar_settings and navbar_settings.get_logo_url %}
           <img src="{{ navbar_settings.get_logo_url }}"
@@ -53,7 +53,7 @@
         {% if navbar_settings and navbar_settings.brand_text %}
         {{ navbar_settings.brand_text|safe }}
         {% else %}
-        GuardianTree<br />FP
+        Kalphora<br />Equity
         {% endif %}
       </span>
     </div>
@@ -120,40 +120,40 @@
             <div class="finance-active-indicator"></div>
           </a>
 
-          <!-- SERVICES MEGA MENU -->
+          <!-- RESEARCH OFFERINGS MEGA MENU -->
           <div class="finance-nav-item mega-menu-trigger {% if 'services' in request.path %}active{% endif %}">
             <svg class="finance-icon" viewBox="0 0 24 24">
               <path
                 d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
             </svg>
-            <span class="finance-label">SERVICES ▾</span>
+            <span class="finance-label">RESEARCH OFFERINGS ▾</span>
             <div class="finance-active-indicator"></div>
 
             <div class="mega-menu-dropdown">
               <div>
-                <div class="mega-col-title">Wealth Management</div>
+                <div class="mega-col-title">Active Equity Research</div>
                 <a href="{% url 'login:services' %}?service=portfolio-strategy" class="mega-link service-menu-link"
                   data-service-key="portfolio-strategy">
-                  <strong>Portfolio Strategy</strong>
-                  <span>Multi-asset allocation & risk parity</span>
+                  <strong>Swing & Breakout Picks</strong>
+                  <span>Technical momentum & breakout setups</span>
                 </a>
                 <a href="{% url 'login:services' %}?service=retirement-planning" class="mega-link service-menu-link"
                   data-service-key="retirement-planning">
-                  <strong>Retirement Planning</strong>
-                  <span>Tax-advantaged legacy building</span>
+                  <strong>Fundamental Compounders</strong>
+                  <span>Moat-driven high ROCE long-term wealth</span>
                 </a>
               </div>
               <div>
-                <div class="mega-col-title">Corporate Advisory</div>
+                <div class="mega-col-title">Specialized Research</div>
                 <a href="{% url 'login:services' %}?service=institutional-treasury" class="mega-link service-menu-link"
                   data-service-key="institutional-treasury">
-                  <strong>Institutional Treasury</strong>
-                  <span>Liquidity and cash management</span>
+                  <strong>Sectoral & Thematic Dives</strong>
+                  <span>Macro themes & quarterly earnings trends</span>
                 </a>
                 <a href="{% url 'login:services' %}?service=fiduciary-services" class="mega-link service-menu-link"
                   data-service-key="fiduciary-services">
-                  <strong>Fiduciary Services</strong>
-                  <span>Trust structuring and compliance</span>
+                  <strong>Kalphora Academy / Hub</strong>
+                  <span>Basics-to-advanced market education</span>
                 </a>
               </div>
             </div>
@@ -312,7 +312,7 @@
               </button>
 
               <a href="{% url 'login:book_consultation' %}" class="dropdown-item"
-                style="color: var(--color-gold, #C5A059); font-weight: 700;">📅 Book Consultation</a>
+                style="color: var(--color-gold, #C5A059); font-weight: 700;">📊 Research Orientation Call</a>
 
               {% if user.is_authenticated and user.is_staff %}
               <div class="dropdown-divider"></div>
@@ -362,7 +362,7 @@
   <!-- Off-Canvas Mobile Drawer Navigation -->
   <div class="finance-mobile-drawer" id="finance-mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
     <div class="finance-mobile-drawer-header">
-      <span class="finance-mobile-brand-title">GreenTree FP</span>
+      <span class="finance-mobile-brand-title">Kalphora Equity</span>
       <button class="finance-mobile-close-btn" onclick="toggleMobileDrawer(event)"
         aria-label="Close menu">&times;</button>
     </div>
@@ -407,7 +407,7 @@
 
       <a href="{% url 'login:book_consultation' %}" class="mobile-nav-link mobile-btn-highlight"
         onclick="closeMobileDrawer()">
-        <span class="mobile-nav-icon">📅</span> Book Consultation
+        <span class="mobile-nav-icon">📅</span> Research Orientation
       </a>
 
       {% if user.is_authenticated and user.is_staff %}

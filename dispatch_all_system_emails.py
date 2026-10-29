@@ -1,7 +1,7 @@
 """
 dispatch_all_system_emails.py — Live System-Wide Email Dispatch Test Suite
 Dispatches every possible email notification across the platform to:
-- Admin Email:  tusharsilotia1@gmail.com
+- Admin Email:  example@gmail.com
 - Client Email: vintushtech@gmail.com
 """
 import os
@@ -125,7 +125,7 @@ def run_all_dispatches():
             'provider_email': ADMIN_EMAIL,
             'days_remaining': 365,
             'expires_at': timezone.now() + datetime.timedelta(days=365),
-            'support_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'advisory@guardiantreefp.com'),
+            'support_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'example@gmail.com'),
         },
         recipient_list=[CLIENT_EMAIL],
         sync=True

@@ -47,19 +47,19 @@ class Command(BaseCommand):
             sub.save()
             status = get_saas_status()
             send_saas_warning_7days_email(status)
-            self.stdout.write(self.style.SUCCESS("[SIMULATED] Expiration set to 7 days. 7-Day warning email sent to sabin@guardiantreefp.com and info@kpregtech.com."))
+            self.stdout.write(self.style.SUCCESS("[SIMULATED] Expiration set to 7 days. 7-Day warning email sent to example@gmail.com and info@kpregtech.com."))
             return
 
         if options['notify_warning']:
             status = get_saas_status()
             send_saas_warning_7days_email(status)
-            self.stdout.write(self.style.SUCCESS("[EMAIL DISPATCH] 7-Day Warning email sent to sabin@guardiantreefp.com and info@kpregtech.com."))
+            self.stdout.write(self.style.SUCCESS("[EMAIL DISPATCH] 7-Day Warning email sent to example@gmail.com and info@kpregtech.com."))
             return
 
         if options['notify_lock']:
             status = get_saas_status()
             send_saas_locked_alert_email(status)
-            self.stdout.write(self.style.SUCCESS("[EMAIL DISPATCH] SaaS Locked alert email sent to sabin@guardiantreefp.com and info@kpregtech.com."))
+            self.stdout.write(self.style.SUCCESS("[EMAIL DISPATCH] SaaS Locked alert email sent to example@gmail.com and info@kpregtech.com."))
             return
 
         if options['reset_trial']:
@@ -82,7 +82,7 @@ class Command(BaseCommand):
             sub.save()
             status = get_saas_status()
             send_saas_locked_alert_email(status)
-            self.stdout.write(self.style.WARNING("[LOCKED] Admin Panel has been locked successfully. Lockout alert email sent to sabin@guardiantreefp.com and info@kpregtech.com."))
+            self.stdout.write(self.style.WARNING("[LOCKED] Admin Panel has been locked successfully. Lockout alert email sent to example@gmail.com and info@kpregtech.com."))
             return
 
         if options['unlock']:

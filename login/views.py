@@ -1388,7 +1388,7 @@ def saas_unlock_view(request):
                 SaaSRequestLog.objects.create(
                     plan_code=plan_code,
                     plan_name=plan_info['name'],
-                    client_email='sabin@guardiantreefp.com',
+                    client_email='example@gmail.com',
                     status='pending'
                 )
 
@@ -1397,7 +1397,7 @@ def saas_unlock_view(request):
                 messages.success(
                     request,
                     f"📩 Purchase Request Email Sent to info@kpregtech.com! Thank you for ordering {plan_info['name']} ({price_str}). "
-                    f"An automated confirmation has been sent to sabin@guardiantreefp.com. KPRegTech will dispatch your Master License Key & Tax Invoice within 24 hours."
+                    f"An automated confirmation has been sent to example@gmail.com. KPRegTech will dispatch your Master License Key & Tax Invoice within 24 hours."
                 )
                 return redirect('login:saas_lock_page')
 
@@ -1685,7 +1685,7 @@ def kpregtech_saas_control_view(request):
                 duration = plan_info['duration_days']
 
             # Generate Cryptographic Unique Master Key
-            key = generate_license_key(plan_code if plan_code != 'custom' else '1_year', 'sabin@guardiantreefp.com', unique=True)
+            key = generate_license_key(plan_code if plan_code != 'custom' else '1_year', 'example@gmail.com', unique=True)
             expiry = timezone.now() + datetime.timedelta(days=duration)
 
             # Create Official SaaS Tax Invoice & Master Key Audit Log
@@ -1712,7 +1712,7 @@ def kpregtech_saas_control_view(request):
 
             messages.success(
                 request,
-                f"🔑 Master License Key Generated: {key}. Invoice #{invoice.invoice_number} emailed to sabin@guardiantreefp.com. "
+                f"🔑 Master License Key Generated: {key}. Invoice #{invoice.invoice_number} emailed to example@gmail.com. "
                 f"Admin panel is LOCKED until Sabin enters this key at the lock screen."
             )
 
@@ -1826,7 +1826,7 @@ def kpregtech_saas_control_view(request):
             plan_name = request.POST.get('plan_name', 'KPRegTech SaaS Master Enterprise')
             expiry = timezone.now() + datetime.timedelta(days=365)
             send_saas_master_key_email(key, plan_name, expiry)
-            messages.success(request, f"📧 Master Key Email for key '{key}' resent to sabin@guardiantreefp.com.")
+            messages.success(request, f"📧 Master Key Email for key '{key}' resent to example@gmail.com.")
 
         return redirect('login:kpregtech_saas_control')
 

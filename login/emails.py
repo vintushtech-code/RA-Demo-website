@@ -1,5 +1,5 @@
 """
-Sabin Balan Finance — Centralized Luxury Email & Terminal Dispatch Service.
+Kalphora Equity — Centralized Luxury Email & Terminal Dispatch Service.
 Handles HTML email rendering, fallback generation, context injection, and console/SMTP routing.
 
 To switch from Terminal (Console) Mode to Real SMTP:
@@ -45,20 +45,20 @@ def send_luxury_email(subject, template_name, context, recipient_list, from_emai
 
     # Default branding context
     default_context = {
-        'site_name': getattr(settings, 'SITE_NAME', 'GuardianTree FP'),
+        'site_name': getattr(settings, 'SITE_NAME', 'Kalphora Equity'),
         'site_url': getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000'),
-        'contact_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'advisory@guardiantreefp.com'),
+        'contact_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'example@gmail.com'),
     }
     merged_context = {**default_context, **context}
 
-    sender = from_email or getattr(settings, 'DEFAULT_FROM_EMAIL', 'advisory@guardiantreefp.com')
+    sender = from_email or getattr(settings, 'DEFAULT_FROM_EMAIL', 'example@gmail.com')
 
     try:
         html_message = render_to_string(template_name, merged_context)
         plain_message = strip_tags(html_message).strip()
     except Exception as e:
         logger.error("[Email Engine] Error rendering email template %s: %s", template_name, e)
-        plain_message = f"GuardianTree FP Notification: {subject}"
+        plain_message = f"Kalphora Equity Notification: {subject}"
         html_message = None
 
     recipients_str = ", ".join(recipient_list)
@@ -111,7 +111,7 @@ def send_consultation_booking_email(booking, **kwargs):
     """
     Sends consultation booking confirmation to client and admin notification.
     """
-    subject = f"Consultation Confirmed: #{booking.reference_key} — GuardianTree FP"
+    subject = f"Research Orientation Confirmed: #{booking.reference_key} — Kalphora Equity"
     context = {
         'booking': booking,
     }
@@ -125,7 +125,7 @@ def send_consultation_booking_email(booking, **kwargs):
     )
 
     # 2. Send notification to Admin Desk
-    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'tusharsilotia1@gmail.com')
+    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'example@gmail.com')
     if admin_email and admin_email != booking.email:
         admin_subject = f"[New Booking] #{booking.reference_key} — {booking.client_name} ({booking.duration_minutes}m - {booking.fee_amount_display})"
         send_luxury_email(
@@ -168,7 +168,7 @@ def send_contact_form_emails(submission, **kwargs):
     Sends client acknowledgement and admin alert on contact form submissions.
     """
     # 1. Confirmation to Client
-    client_subject = f"Inquiry Received: {submission.subject} — GuardianTree FP"
+    client_subject = f"Inquiry Received: {submission.subject} — Kalphora Equity"
     send_luxury_email(
         subject=client_subject,
         template_name='emails/contact_confirmation_email.html',
@@ -178,7 +178,7 @@ def send_contact_form_emails(submission, **kwargs):
     )
 
     # 2. Alert to Admin
-    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', getattr(settings, 'CONTACT_FORM_EMAIL_RECIPIENT', 'tusharsilotia1@gmail.com'))
+    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', getattr(settings, 'CONTACT_FORM_EMAIL_RECIPIENT', 'example@gmail.com'))
     admin_subject = f"🚨 New Client Inquiry: {submission.subject} from {submission.name}"
     send_luxury_email(
         subject=admin_subject,
@@ -196,7 +196,7 @@ def send_testimonial_email(testimonial, **kwargs):
     """
     # 1. User Acknowledgement
     if testimonial.email:
-        user_subject = f"[Review Received] Thank You for Submitting Your Review — GuardianTree FP"
+        user_subject = f"[Review Received] Thank You for Submitting Your Review — Kalphora Equity"
         send_luxury_email(
             subject=user_subject,
             template_name='emails/testimonial_received_email.html',
@@ -206,7 +206,7 @@ def send_testimonial_email(testimonial, **kwargs):
         )
 
     # 2. Admin Alert
-    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'tusharsilotia1@gmail.com')
+    admin_email = getattr(settings, 'ADMIN_NOTIFICATION_EMAIL', 'example@gmail.com')
     admin_subject = f"⭐ New Client Review Submitted by {testimonial.name} ({testimonial.rating} Stars)"
     return send_luxury_email(
         subject=admin_subject,
@@ -225,7 +225,7 @@ def send_testimonial_published_email(testimonial, **kwargs):
         logger.warning("[Email Engine] No email associated with testimonial #%s", testimonial.pk)
         return False
 
-    subject = f"🎉 Congratulations! Your Review is Now Live & Verified — GuardianTree FP"
+    subject = f"🎉 Congratulations! Your Review is Now Live & Verified — Kalphora Equity"
     context = {
         'testimonial': testimonial,
     }
@@ -245,7 +245,7 @@ def send_saas_warning_7days_email(saas_status, **kwargs):
     sabin_email = getattr(settings, 'SABIN_CLIENT_EMAIL', 'vintushtech@gmail.com')
     provider_email = getattr(settings, 'PROVIDER_EMAIL', 'info@kpregtech.com')
     recipients = [sabin_email, provider_email]
-    subject = "⚠️ Action Required: 7 Days Remaining on GuardianTree FP Admin SaaS Subscription"
+    subject = "⚠️ Action Required: 7 Days Remaining on Kalphora Equity Admin SaaS Subscription"
     context = {
         'saas_status': saas_status,
         'days_remaining': saas_status.get('days_remaining', 7),
@@ -269,7 +269,7 @@ def send_saas_locked_alert_email(saas_status, **kwargs):
     sabin_email = getattr(settings, 'SABIN_CLIENT_EMAIL', 'vintushtech@gmail.com')
     provider_email = getattr(settings, 'PROVIDER_EMAIL', 'info@kpregtech.com')
     recipients = [sabin_email, provider_email]
-    subject = "🔒 Alert: GuardianTree FP Admin Panel Has Been Locked (Subscription Expired)"
+    subject = "🔒 Alert: Kalphora Equity Admin Panel Has Been Locked (Subscription Expired)"
     context = {
         'saas_status': saas_status,
         'expires_at': saas_status.get('expires_at'),
@@ -292,7 +292,7 @@ def send_saas_master_key_email(license_key, plan_name, expires_at, **kwargs):
     sabin_email = getattr(settings, 'SABIN_CLIENT_EMAIL', 'vintushtech@gmail.com')
     provider_email = getattr(settings, 'PROVIDER_EMAIL', 'info@kpregtech.com')
     recipients = [sabin_email, provider_email]
-    subject = "🎉 Congratulations! Here is Your Master License Key — GuardianTree FP"
+    subject = "🎉 Congratulations! Here is Your Master License Key — Kalphora Equity"
     context = {
         'license_key': license_key,
         'plan_name': plan_name,
@@ -319,9 +319,9 @@ def send_saas_purchase_request_emails(plan_code, plan_name, price_info, **kwargs
     provider_email = getattr(settings, 'PROVIDER_EMAIL', 'info@kpregtech.com')
 
     # 1. Dispatch Request Email to Provider (KPRegTech)
-    subject_provider = f"🛒 [PURCHASE REQUEST] SaaS Order: {plan_name} — Sabin Balan (GuardianTree FP)"
+    subject_provider = f"🛒 [PURCHASE REQUEST] SaaS Order: {plan_name} — Sabin Balan (Kalphora Equity)"
     context_provider = {
-        'client_name': 'Sabin Balan (Founder, GuardianTree FP)',
+        'client_name': 'Sabin Balan (Founder, Kalphora Equity)',
         'client_email': sabin_email,
         'plan_name': plan_name,
         'price_info': price_info,
@@ -343,7 +343,7 @@ def send_saas_purchase_request_emails(plan_code, plan_name, price_info, **kwargs
         'plan_name': plan_name,
         'price_info': price_info,
         'provider_email': provider_email,
-        'support_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'advisory@guardiantreefp.com'),
+        'support_email': getattr(settings, 'DEFAULT_FROM_EMAIL', 'example@gmail.com'),
     }
     send_luxury_email(
         subject=subject_client,

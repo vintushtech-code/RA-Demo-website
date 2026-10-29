@@ -86,7 +86,7 @@ SUBSCRIPTION_PLANS = {
 }
 
 
-def generate_license_key(plan_code, client_email="sabin@guardiantreefp.com", unique=True):
+def generate_license_key(plan_code, client_email="example@gmail.com", unique=True):
     """
     Generates a secure verifiable license key for a given plan and client.
     Format: KP-VINTUSH-XXXX-YYYY-ZZZZ
@@ -114,7 +114,7 @@ def generate_license_key(plan_code, client_email="sabin@guardiantreefp.com", uni
     return key
 
 
-def create_saas_invoice(plan_code, license_key, client_name="Sabin Balan (Founder, GuardianTree FP)", client_email="sabin@guardiantreefp.com", valid_until=None):
+def create_saas_invoice(plan_code, license_key, client_name="Sabin Balan (Founder, GuardianTree FP)", client_email="example@gmail.com", valid_until=None):
     """
     Generates an official SaaS Invoice record for KPRegTech & Sabin Balan billing history.
     """
@@ -156,7 +156,7 @@ def create_saas_invoice(plan_code, license_key, client_name="Sabin Balan (Founde
     return invoice
 
 
-def validate_license_key(license_key, client_email="sabin@guardiantreefp.com"):
+def validate_license_key(license_key, client_email="example@gmail.com"):
     """
     Validates whether a submitted license key matches any valid plan, issued invoice, or developer bypass master keys.
     Returns: (is_valid: bool, matched_plan_code: str or None, message: str)
@@ -199,7 +199,7 @@ def get_or_create_saas_subscription():
         sub = AdminSaaSSubscription.objects.create(
             service_name="GuardianTree FP Executive Admin Panel",
             client_name="Sabin Balan (Founder, GuardianTree FP)",
-            client_email="sabin@guardiantreefp.com",
+            client_email="example@gmail.com",
             provider_credits="VintushTech & KPRegTech",
             is_free_trial=False,
             trial_start_date=now,

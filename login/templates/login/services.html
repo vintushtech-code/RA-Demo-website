@@ -1,7 +1,7 @@
 {% extends 'theme_config/base.html' %}
 {% load static %}
 
-{% block title %}GreenTree FP — Wealth & Institutional Advisory Services{% endblock %}
+{% block title %}Kalphora Equity — SEBI Registered Research Analyst Offerings{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'login/css/services.css' %}?v=1.1">
@@ -17,25 +17,23 @@
         <!-- Left Aligned Hero Structure -->
         <div class="hero-left-section">
             <div class="hero-pill-badge">
-                <span>✨ BESPOKE WEALTH & INSTITUTIONAL ADVISORY</span>
+                <span>✨ INDEPENDENT SEBI REGISTERED RESEARCH PACKAGES</span>
             </div>
 
             <h1 class="hero-image-styled-title">
-                Architecting<br>
-                generational prosperity<br>
-                <span class="highlight-text">& capital resilience</span>
+                Institutional-Grade<br>
+                Equity Research Packages<br>
+                <span class="highlight-text">& Stock Recommendations</span>
             </h1>
 
             <p class="hero-image-styled-subtitle">
-                Elevate your financial trajectory with bespoke advisory services engineered for ultra-high-net-worth
-                individuals, family offices, and corporations. We construct resilient, forward-looking strategies that
-                preserve and multiply your legacy.
+                Access high-conviction, data-driven stock picks designed for capital appreciation. From tactical swing trades to multi-year compounders, our research packages deliver actionable entries, defined targets, and disciplined stop-losses.
             </p>
 
             <form class="hero-pill-bar" action="{% url 'login:consultation' %}" method="get">
                 <div class="pill-left-content">
                     <span class="pill-icon">💼</span>
-                    <span class="pill-store-name">GuardianTree FP</span>
+                    <span class="pill-store-name">Kalphora Equity</span>
                     <span class="pill-divider">|</span>
                     <input type="text" name="message" class="pill-input"
                         placeholder="Enter your financial goal or query" required>
@@ -53,20 +51,20 @@
         <!-- Live Financial Market Metrics Ticker -->
         <div class="metrics-ticker-wrapper">
             <div class="metric-item">
-                <div class="metric-value">$4.8B+</div>
-                <div class="metric-label">Assets Under Advisory</div>
+                <div class="metric-value">CFA & NISM</div>
+                <div class="metric-label">Certified Analyst</div>
             </div>
             <div class="metric-item">
                 <div class="metric-value">99.4%</div>
                 <div class="metric-label">Client Retention Rate</div>
             </div>
             <div class="metric-item">
-                <div class="metric-value">25+ Yrs</div>
-                <div class="metric-label">Fiduciary Excellence</div>
+                <div class="metric-value">2-3 Calls/Wk</div>
+                <div class="metric-label">Active Stock Picks</div>
             </div>
             <div class="metric-item">
                 <div class="metric-value">100%</div>
-                <div class="metric-label">Independent Counsel</div>
+                <div class="metric-label">Independent Research</div>
             </div>
         </div>
 
@@ -116,14 +114,14 @@
             <div class="showcase-stage">
                 <article class="showcase-panel active" data-service-key="portfolio-strategy" style="--service-image: url('{% static 'login/images/service_portfolio.jpg' %}'); --mask-shape: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);">
                     <div class="showcase-copy">
-                        <div class="showcase-kicker">Wealth Management</div>
-                        <h3>Portfolio <span class="highlight-text">Strategy</span></h3>
-                        <p>Capital allocation built for resilience, compounding, and institutional-grade discipline across public and private markets.</p>
+                        <div class="showcase-kicker">Technical Momentum</div>
+                        <h3>Swing & <span class="highlight-text">Breakout Picks</span></h3>
+                        <p>Tactical swing opportunities (1–4 weeks) combining volume breakouts, relative strength index (RSI), and chart pattern triggers with strict 1:3 risk-to-reward ratios.</p>
                         <ul class="showcase-list">
-                            <li>Strategic asset allocation</li>
-                            <li>Risk-balanced positioning</li>
-                            <li>Private market access</li>
-                            <li>Governance-led oversight</li>
+                            <li>High-volume breakout detection</li>
+                            <li>Defined entry, target & stop-loss</li>
+                            <li>1–4 weeks holding horizon</li>
+                            <li>Real-time entry & exit alerts</li>
                         </ul>
                     </div>
                     <div class="showcase-visual">
@@ -136,14 +134,14 @@
 
                 <article class="showcase-panel" data-service-key="retirement-planning" style="--service-image: url('{% static 'login/images/service_retirement.jpg' %}'); --mask-shape: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 18%);">
                     <div class="showcase-copy">
-                        <div class="showcase-kicker">Retirement Advisory</div>
-                        <h3>Retirement <span class="highlight-text">Planning</span></h3>
-                        <p>Tax-aware retirement frameworks that protect lifestyle, optimize drawdown, and preserve wealth beyond your working years.</p>
+                        <div class="showcase-kicker">Fundamental Investing</div>
+                        <h3>Long-Term <span class="highlight-text">Compounders</span></h3>
+                        <p>In-depth research on market leaders with economic moats, clean corporate governance, ROCE > 18%, and multi-year runway for compounded capital growth.</p>
                         <ul class="showcase-list">
-                            <li>Income sustainability</li>
-                            <li>Tax-efficient withdrawals</li>
-                            <li>Healthcare contingency</li>
-                            <li>Legacy continuity</li>
+                            <li>Forensic accounting balance sheet filter</li>
+                            <li>High ROCE & reinvestment rate</li>
+                            <li>1–3 years investment horizon</li>
+                            <li>Quarterly earnings review & model updates</li>
                         </ul>
                     </div>
                     <div class="showcase-visual">
@@ -156,14 +154,14 @@
 
                 <article class="showcase-panel" data-service-key="institutional-treasury" style="--service-image: url('{% static 'login/images/service_treasury.png' %}'); --mask-shape: polygon(22% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 34%);">
                     <div class="showcase-copy">
-                        <div class="showcase-kicker">Corporate Advisory</div>
-                        <h3>Institutional <span class="highlight-text">Treasury</span></h3>
-                        <p>Liquidity strategies and cash management frameworks that strengthen certainty, improve working capital, and support growth.</p>
+                        <div class="showcase-kicker">Thematic Analysis</div>
+                        <h3>Sectoral & <span class="highlight-text">Macro Dives</span></h3>
+                        <p>Macroeconomic and sector-specific deep dives into high-growth Indian sectors like Capital Goods, Defense, Specialty Chemicals, EMS, and Green Energy.</p>
                         <ul class="showcase-list">
-                            <li>Liquidity forecasting</li>
-                            <li>Debt and capital structure</li>
-                            <li>Cash optimization</li>
-                            <li>Execution discipline</li>
+                            <li>Sector tailwind identification</li>
+                            <li>Value chain & competitive positioning</li>
+                            <li>Quarterly financial scoreboard</li>
+                            <li>Actionable stock basket ideas</li>
                         </ul>
                     </div>
                     <div class="showcase-visual">
@@ -176,14 +174,14 @@
 
                 <article class="showcase-panel" data-service-key="fiduciary-services" style="--service-image: url('{% static 'login/images/service_fiduciary.jpg' %}'); --mask-shape: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 22%);">
                     <div class="showcase-copy">
-                        <div class="showcase-kicker">Fiduciary Governance</div>
-                        <h3>Fiduciary <span class="highlight-text">Services</span></h3>
-                        <p>Trust architecture, governance, and compliance support that keeps complex wealth structures protected and aligned with intent.</p>
+                        <div class="showcase-kicker">Market Education</div>
+                        <h3>Kalphora <span class="highlight-text">Academy</span></h3>
+                        <p>Comprehensive stock market learning programs from basics to advanced charting, risk management frameworks, and financial statement analysis.</p>
                         <ul class="showcase-list">
-                            <li>Trust structuring</li>
-                            <li>Compliance oversight</li>
-                            <li>Asset protection</li>
-                            <li>Governance clarity</li>
+                            <li>100 hours structured curriculum</li>
+                            <li>Technical & chart reading mastery</li>
+                            <li>Risk & position sizing frameworks</li>
+                            <li>Interactive live Q&A webinars</li>
                         </ul>
                     </div>
                     <div class="showcase-visual">
@@ -210,12 +208,11 @@
 <section class="services-section" id="services-explore">
     <div class="container">
         <header class="section-header">
-            <span class="subtitle">COMPREHENSIVE ADVISORY MATRIX</span>
-            <h2>Bespoke <span class="highlight-text">Financial Services</span></h2>
+            <span class="subtitle">RESEARCH OFFERING SUITE</span>
+            <h2>Curated <span class="highlight-text">Research Packages</span></h2>
 
             <div class="divider"></div>
-            <p class="header-description">Explore our specialized financial divisions engineered to protect capital,
-                optimize tax obligations, and generate sustainable multi-generational growth.</p>
+            <p class="header-description">Choose from our specialized stock research feeds and educational masterclasses designed to elevate your trading and long-term investing.</p>
         </header>
 
         <!-- Category Filter & Search Bar Box -->
@@ -426,7 +423,7 @@
             <article class="service-card" data-category="advisory">
                 <div class="compare-checkbox-wrapper" title="Select to compare">
                     <input type="checkbox" class="compare-select" data-service-id="advisory"
-                        data-service-name="Strategic Corporate Advisory" onclick="handleCompareSelect(this, event)">
+                        data-service-name="Strategic Thematic Analysis" onclick="handleCompareSelect(this, event)">
                 </div>
                 <div class="card-image">
                     <img src="{% static 'login/images/anti_poverty.jpg' %}" alt="Corporate Finance Advisory" loading="lazy" decoding="async">
@@ -434,7 +431,7 @@
                     <span class="card-badge">FINANCE ADVISORY</span>
                 </div>
                 <div class="card-content">
-                    <h3>Strategic Corporate Advisory</h3>
+                    <h3>Strategic Thematic Analysis</h3>
                     <p>Specialized strategic advisory services for corporate restructuring, mergers and acquisitions,
                         capital raising, and complex financial optimization.</p>
                     <ul class="features-list">

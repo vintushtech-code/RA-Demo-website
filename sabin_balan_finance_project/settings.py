@@ -285,20 +285,20 @@ CONN_MAX_AGE = 60
 
 DEFAULT_FROM_EMAIL = os.environ.get(
     'DEFAULT_FROM_EMAIL',
-    f'GuardianTree FP <{EMAIL_HOST_USER}>' if EMAIL_HOST_USER else 'GuardianTree FP <advisory@guardiantreefp.com>'
+    f'Kalphora Equity <{EMAIL_HOST_USER}>' if EMAIL_HOST_USER else 'Kalphora Equity <example@gmail.com>'
 )
-ADMIN_NOTIFICATION_EMAIL = os.environ.get('ADMIN_NOTIFICATION_EMAIL', 'tusharsilotia1@gmail.com')
+ADMIN_NOTIFICATION_EMAIL = os.environ.get('ADMIN_NOTIFICATION_EMAIL', 'example@gmail.com')
 CONTACT_FORM_EMAIL_RECIPIENT = ADMIN_NOTIFICATION_EMAIL
-SABIN_CLIENT_EMAIL = os.environ.get('SABIN_CLIENT_EMAIL', 'vintushtech@gmail.com')
-PROVIDER_EMAIL = os.environ.get('PROVIDER_EMAIL', 'tusharsilotia1@gmail.com')
-SITE_NAME = os.environ.get('SITE_NAME', 'GuardianTree FP')
+CLIENT_ADMIN_EMAIL = os.environ.get('CLIENT_ADMIN_EMAIL', 'vintushtech@gmail.com')
+PROVIDER_EMAIL = os.environ.get('PROVIDER_EMAIL', 'example@gmail.com')
+SITE_NAME = os.environ.get('SITE_NAME', 'Kalphora Equity')
 SITE_URL = os.environ.get('SITE_URL', 'http://127.0.0.1:8000')
 
 # ================================================================
 # 2-Factor Authentication (2FA) & SaaS Settings
 # ================================================================
 ADMIN_2FA_ENABLED = os.environ.get('ADMIN_2FA_ENABLED', 'True').lower() in ('true', '1', 't')
-ADMIN_2FA_EMAIL = os.environ.get('ADMIN_2FA_EMAIL', 'tusharsilotia1@gmail.com')
+ADMIN_2FA_EMAIL = os.environ.get('ADMIN_2FA_EMAIL', 'example@gmail.com')
 ADMIN_2FA_CODE_EXPIRY_SECONDS = int(os.environ.get('ADMIN_2FA_CODE_EXPIRY_SECONDS', '300'))
 SAAS_SECRET_KEY = os.environ.get('SAAS_SECRET_KEY', 'vintushtech-kpregtech-saas-master-key')
 

@@ -912,8 +912,8 @@ function openReceiptModal(customData) {
   // Extract fallback values from DOM or state
   const refKey = data.reference_key || document.getElementById('display-reference-key')?.textContent.trim() || document.getElementById('track-reference-key-input')?.value.trim() || 'GT7K4M9P2X';
   const clientName = data.client_name || document.getElementById('conf-client-name')?.textContent.trim() || document.getElementById('id_client_name')?.value.trim() || 'Eleanor Vance';
-  const email = data.email || document.getElementById('id_email')?.value.trim() || 'client@advisory.guardiantreefp.com';
-  const phone = data.phone || document.getElementById('id_phone')?.value.trim() || '+91 98765 43210';
+  const email = data.email || document.getElementById('id_email')?.value.trim() || 'example@gmail.com';
+  const phone = data.phone || document.getElementById('id_phone')?.value.trim() || '+91 XXXXXXXXXX';
   const service = data.service || document.getElementById('conf-service')?.textContent.trim() || document.getElementById('id_service')?.selectedOptions?.[0]?.text || 'Investment & Multi-Asset Portfolio Strategy';
   const datetime = (data.consultation_date && data.consultation_time) ? `${data.consultation_date} at ${data.consultation_time}` : (document.getElementById('conf-datetime')?.textContent.trim() || 'Tuesday, 18 August 2026 at 10:00 AM');
   
