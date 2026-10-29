@@ -1,0 +1,56 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}Inquiry Received — Sabin Balan Finance{% endblock %}
+
+{% block doc_badge %}CLIENT INQUIRY ACKNOWLEDGEMENT{% endblock %}
+
+{% block email_content %}
+<h2>Dear {{ submission.name }},</h2>
+<p>
+  Thank you for reaching out to <strong>Sabin Balan Finance</strong>. We have securely received your inquiry regarding
+  <strong>"{{ submission.subject }}"</strong>.
+</p>
+
+<p>
+  Our senior fiduciary advisory team reviews all institutional and private client communications with highest priority.
+  A dedicated wealth strategist will review your requirements and respond within <strong>4 business hours</strong>.
+</p>
+
+<div class="details-card">
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Client Name:</td>
+      <td class="details-value">{{ submission.name }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Registered Email:</td>
+      <td class="details-value">{{ submission.email }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Subject:</td>
+      <td class="details-value highlight">{{ submission.subject }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Received Timestamp:</td>
+      <td class="details-value">{% now "F j, Y, g:i A" %} UTC</td>
+    </tr>
+  </table>
+</div>
+
+<div style="background: rgba(255, 255, 255, 0.04); border-radius: 8px; padding: 16px; margin: 18px 0;">
+  <strong style="color: #94A3B8; font-size: 12px; text-transform: uppercase;">Your Message Summary:</strong>
+  <p style="color: #E2E8F0; font-size: 13px; margin: 8px 0 0; font-style: italic;">
+    "{{ submission.message }}"
+  </p>
+</div>
+
+<div style="text-align: center; margin: 24px 0 10px;">
+  <a href="{{ site_url }}/services/" class="btn-action">
+    Explore Private Wealth Services
+  </a>
+</div>
+
+<p style="font-size: 13px; color: #94A3B8; text-align: center;">
+  Direct Telephone Desk: <strong style="color: #FFFFFF;">8779649031</strong> (Mon–Fri, 9am–6pm EST)
+</p>
+{% endblock %}

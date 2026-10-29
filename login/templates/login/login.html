@@ -1,0 +1,162 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Sign In — GuardianTree FP Client Portal{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/login.css' %}?v=1.3">
+{% endblock %}
+
+{% block content %}
+  <div class="auth-split-wrapper-fullscreen login-portal-bg">
+
+    <!-- Full-screen unified glass overlay to prevent any seams -->
+    <div class="login-portal-glass-overlay"></div>
+
+    <!-- Left Side: Admin Portal Branding & Banner -->
+    <div class="auth-split-image-fullscreen" style="flex: 0 0 50% !important; width: 50% !important; max-width: 50% !important; background: transparent !important; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 3rem 2.5rem; overflow: hidden; z-index: 10;">
+      
+      <!-- Decorative Glow behind the card -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 70%; background: radial-gradient(circle, rgba(197,160,89,0.2) 0%, transparent 60%); z-index: 2; pointer-events: none;"></div>
+
+      <!-- Top Left Badge -->
+      <div style="position: relative; z-index: 10; align-self: flex-start; margin-bottom: 2rem;">
+        <span class="auth-image-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: rgba(10, 20, 15, 0.65); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 30px; color: #E5C158; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 0L0 3.11111V7.77778C0 11.6667 3.01 15.2222 7 16C10.99 15.2222 14 11.6667 14 7.77778V3.11111L7 0ZM7 3.55556C8.54 3.55556 9.8 4.81556 9.8 6.35556C9.8 7.89556 8.54 9.15556 7 9.15556C5.46 9.15556 4.2 7.89556 4.2 6.35556C4.2 4.81556 5.46 3.55556 7 3.55556ZM7 12.8889C5.32 12.8889 3.85 11.8889 3.15 10.4267C3.15 9.15556 5.74 8.44444 7 8.44444C8.26 8.44444 10.85 9.15556 10.85 10.4267C10.15 11.8889 8.68 12.8889 7 12.8889Z" fill="#E5C158"/></svg>
+          Enterprise Grade Security
+        </span>
+      </div>
+
+      <!-- Center Banner -->
+      <div style="position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; width: 100%; flex: 1;">
+        <div style="padding: 2px; background: linear-gradient(135deg, rgba(229,193,88,0.5) 0%, rgba(229,193,88,0.05) 50%, rgba(229,193,88,0.5) 100%); border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 35px rgba(197,160,89,0.15); display: inline-block;">
+          <img src="{% static 'admin_portal_banner.jpg' %}" alt="Admin Portal Configuration" style="width: 100%; max-width: 580px; height: auto; object-fit: contain; border-radius: 10px; display: block; border: 2px solid #050B08;">
+        </div>
+      </div>
+
+      <!-- Bottom Description Text -->
+      <div style="position: relative; z-index: 10; max-width: 520px; margin: 2rem auto 0 auto; text-align: center; background: rgba(10, 20, 15, 0.45); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+        <h3 style="color: #ffffff; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.02em;">Secure Executive Operations</h3>
+        <p style="color: #A0B0A8; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+          Authenticate to access institutional analytics, manage wealth portfolios, and oversee system configurations securely.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Side: Login Form Column -->
+    <div class="auth-split-form-fullscreen" style="flex: 0 0 50% !important; width: 50% !important; max-width: 50% !important; background: transparent !important; position: relative; z-index: 10;">
+    <div class="auth-header" style="text-align: left; margin-bottom: 2rem;">
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--color-gold); font-size: 1.3rem; margin-bottom: 1rem;">
+        🔐
+      </div>
+      <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Admin Portal <span class="highlight-text">Sign In</span></h1>
+      <p class="subtitle" style="font-size: 0.95rem;">Enter your executive credentials to access the portal</p>
+    </div>
+
+    {% if form.non_field_errors %}
+    <div class="alert alert-error">
+      {% for error in form.non_field_errors %}
+      <div>{{ error }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Login Form -->
+    <form method="post" action="{% url 'login:login' %}" class="auth-form" novalidate>
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="{{ form.login_identity.id_for_label }}" class="form-label">Username or Registered Email</label>
+        {{ form.login_identity }}
+        {% if form.login_identity.errors %}
+        <div class="field-error">{{ form.login_identity.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.password.id_for_label }}" class="form-label">Account Password</label>
+        <div class="password-field-wrapper">
+          {{ form.password }}
+          <button type="button" class="password-toggle-btn"
+            onclick="togglePasswordVisibility('{{ form.password.id_for_label }}', this)">
+            Show
+          </button>
+        </div>
+        {% if form.password.errors %}
+        <div class="field-error">{{ form.password.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-options">
+        <label class="remember-label">
+          {{ form.remember_me }}
+          <span>Keep me signed in</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">
+        Sign In to Portal &rarr;
+      </button>
+    </form>
+
+    <!-- Developer & Technical Support Card (Replaces Forgot Password) -->
+    <div style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: rgba(10, 20, 15, 0.55); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 12px; font-size: 0.85rem; color: #A0B0A8;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--color-gold); margin-bottom: 0.35rem;">
+        <span>🔒</span> Forgot your password?
+      </div>
+      <p style="margin: 0 0 0.5rem 0; font-size: 0.83rem; line-height: 1.5;">
+        If you do not remember your password, please contact the developer team:
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+        <a href="mailto:info@kpregtech.com" style="color: var(--color-gold); text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+          ✉️ <span style="text-decoration: underline;">info@kpregtech.com</span>
+        </a>
+        <a href="mailto:vintushtech@gmail.com" style="color: var(--color-gold); text-decoration: none; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+          ✉️ <span style="text-decoration: underline;">vintushtech@gmail.com</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="auth-divider">
+      <span>Or sign in with</span>
+    </div>
+
+    <!-- Social Authentication Providers -->
+    <div class="social-buttons">
+      <a href="{% url 'login:social_init' 'google' %}" class="btn-social">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path fill="#EA4335"
+            d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.7 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.9 5 12 5z" />
+          <path fill="#4285F4"
+            d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" />
+          <path fill="#FBBC05"
+            d="M5.3 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.6 7.4C.6 9.4 0 11.6 0 14s.6 4.6 1.6 6.6l3.7-2.9c-.2-.7-.4-1.5-.4-2.9z" />
+          <path fill="#34A853"
+            d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.3-6.7-5.3L1.6 16C3.5 19.8 7.4 23 12 23z" />
+        </svg>
+        Google Corporate SSO
+      </a>
+
+      <a href="{% url 'login:social_init' 'github' %}" class="btn-social">
+        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        GitHub SSO
+      </a>
+    </div>
+
+    <div class="auth-footer" style="text-align: left; margin-top: 1.5rem;">
+      Don't have a private account? <a href="{% url 'login:signup' %}">Create client account</a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'login/js/auth.js' %}"></script>
+{% endblock %}

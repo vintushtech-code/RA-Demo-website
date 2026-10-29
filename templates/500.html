@@ -1,0 +1,123 @@
+{% extends "theme_config/base.html" %}
+{% load static %}
+
+{% block title %}500 — System Maintenance | GuardianTree FP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'theme_config/css/error_pages.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="error-section-wrapper">
+  <div class="error-ambient-glow warning-glow"></div>
+  
+  <div class="glass-card error-card">
+    
+    <!-- 500 Emblem & Hero Code -->
+    <div class="error-hero-graphic">
+      <div class="error-illustration-wrapper">
+        <img src="{% static 'navfooter/images/shield_emblem_nobg.png' %}" alt="GuardianTree FP Crest" class="error-emblem-img" />
+      </div>
+
+      <div class="error-code-text text-warning-code" data-text="500">500</div>
+    </div>
+
+    <!-- Error Badge Pill -->
+    <div class="error-pill-badge badge-warning">
+      <span class="badge-dot-pulsing warning-dot"></span>
+      <span>ERROR 500 &bull; INTERNAL ENGINE ANOMALY</span>
+    </div>
+
+    <!-- Error Headline & Description -->
+    <h1 class="error-title">System Infrastructure <span class="highlight-text">Maintenance</span></h1>
+    <p class="error-description">
+      Our quantitative advisory server encountered an unexpected internal processing anomaly.
+      Our automated self-healing protocols have been engaged and our engineers alerted.
+    </p>
+
+    <!-- Diagnostics Health Panel -->
+    <div class="system-health-status-box">
+      <div class="health-item">
+        <span class="health-indicator active-beacon"></span>
+        <span class="health-label">Recovery Protocols:</span>
+        <span class="health-value text-success">Engaged & Auto-Healing</span>
+      </div>
+      <div class="health-item">
+        <span class="health-indicator active-beacon"></span>
+        <span class="health-label">Data Integrity:</span>
+        <span class="health-value text-success">100% Encrypted & Safe</span>
+      </div>
+      <div class="health-item">
+        <span class="health-indicator pulse-amber"></span>
+        <span class="health-label">Expected Resolution:</span>
+        <span class="health-value text-amber">Immediate Reload Ready</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="error-actions-group">
+      <button type="button" onclick="window.location.reload()" class="btn btn-gold-lg-glow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        <span>Reload & Retry</span>
+      </button>
+
+      <a href="{% url 'login:home' %}" class="btn btn-secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Return to Safety</span>
+      </a>
+
+      <a href="{% url 'contactform:contact' %}" class="btn btn-outline-gold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Report Anomaly</span>
+      </a>
+    </div>
+
+    <!-- Quick Navigation Shortcuts Bar -->
+    <div class="error-shortcuts-card">
+      <div class="shortcuts-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        <span>Institutional Quick Destinations</span>
+      </div>
+      <div class="shortcuts-grid">
+        <a href="{% url 'login:home' %}" class="shortcut-item">
+          <span class="shortcut-icon">🏠</span>
+          <span class="shortcut-title">Main Portal</span>
+        </a>
+        <a href="{% url 'login:services' %}" class="shortcut-item">
+          <span class="shortcut-icon">💼</span>
+          <span class="shortcut-title">Wealth Advisory</span>
+        </a>
+        <a href="{% url 'login:about' %}" class="shortcut-item">
+          <span class="shortcut-icon">ℹ️</span>
+          <span class="shortcut-title">About GTFP</span>
+        </a>
+        <a href="{% url 'login:book_consultation' %}" class="shortcut-item">
+          <span class="shortcut-icon">📅</span>
+          <span class="shortcut-title">Consultation</span>
+        </a>
+        <a href="{% url 'login:testimonials' %}" class="shortcut-item">
+          <span class="shortcut-icon">⭐</span>
+          <span class="shortcut-title">Track Record</span>
+        </a>
+        <a href="{% url 'contactform:contact' %}" class="shortcut-item">
+          <span class="shortcut-icon">📞</span>
+          <span class="shortcut-title">Support Desk</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

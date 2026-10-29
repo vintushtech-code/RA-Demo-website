@@ -1,0 +1,60 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SaaS Expiration Warning</title>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b130f; color: #e2e8f0; margin: 0; padding: 30px;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #121c17; border: 1px solid #d4af37; border-radius: 16px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        
+        <!-- Header -->
+        <div style="text-align: center; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 20px; margin-bottom: 25px;">
+            <h2 style="color: #FFD700; margin: 0 0 5px 0; font-size: 24px;">GuardianTree FP Executive Portal</h2>
+            <span style="color: #00E676; font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Provided by VintushTech &amp; KPRegTech</span>
+        </div>
+
+        <!-- Warning Pill -->
+        <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #fbbf24; padding: 12px 20px; border-radius: 50px; text-align: center; font-weight: bold; font-size: 15px; margin-bottom: 25px;">
+            ⚠️ Notice: Only {{ days_remaining|default:7 }} Days Remaining on SaaS Subscription
+        </div>
+
+        <p style="font-size: 16px; line-height: 1.6; color: #cbd5e1;">Dear <strong>Sabin Balan</strong> &amp; <strong>KPRegTech Technical Desk</strong>,</p>
+
+        <p style="font-size: 15px; line-height: 1.6; color: #94a3b8;">
+            This is an automated system notification regarding the GuardianTree FP Admin SaaS Subscription. Your current active plan (<strong>{{ plan_name|default:"3 Months Free Trial" }}</strong>) is scheduled to expire in <strong>{{ days_remaining|default:7 }} days</strong> on <strong>{{ expires_at|date:"F j, Y" }}</strong>.
+        </p>
+
+        <!-- Status Card -->
+        <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 20px; margin: 25px 0;">
+            <table style="width: 100%; border-collapse: collapse; color: #e2e8f0; font-size: 14px;">
+                <tr>
+                    <td style="padding: 6px 0; color: #94a3b8;">Client:</td>
+                    <td style="padding: 6px 0; font-weight: bold; color: #FFD700;">Sabin Balan (GuardianTree FP)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 0; color: #94a3b8;">Provider Desk:</td>
+                    <td style="padding: 6px 0; font-weight: bold; color: #00E676;">KPRegTech (info@kpregtech.com) &amp; VintushTech</td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 0; color: #94a3b8;">Expiration Date:</td>
+                    <td style="padding: 6px 0; font-weight: bold; color: #fbbf24;">{{ expires_at|date:"Y-m-d H:i UTC" }}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 0; color: #94a3b8;">Data Status:</td>
+                    <td style="padding: 6px 0; font-weight: bold; color: #34d399;">100% Preserved in Master-Slave Vault</td>
+                </tr>
+            </table>
+        </div>
+
+        <p style="font-size: 14px; line-height: 1.6; color: #cbd5e1;">
+            To ensure zero disruption to your administrative operations, please contact KPRegTech at <a href="mailto:info@kpregtech.com" style="color: #FFD700;">info@kpregtech.com</a> or renew your plan before the expiration date.
+        </p>
+
+        <!-- Footer -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 30px; padding-top: 20px; font-size: 12px; color: #64748b; text-align: center;">
+            Official SaaS Licensing System • Managed by KPRegTech (info@kpregtech.com) &amp; VintushTech
+        </div>
+    </div>
+</body>
+</html>

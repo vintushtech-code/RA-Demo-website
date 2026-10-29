@@ -1,0 +1,58 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}🎉 Review Published &amp; Verified — Sabin Balan Finance{% endblock %}
+
+{% block doc_badge %}TESTIMONIAL VERIFIED &amp; PUBLISHED{% endblock %}
+
+{% block email_content %}
+<h2>🎉 Congratulations, {{ testimonial.name }}!</h2>
+<p>
+  We are delighted to inform you that your testimonial review for <strong>Sabin Balan Finance</strong> has been verified by our compliance desk and is now <strong>published live</strong> on our global platform!
+</p>
+
+<div class="details-card">
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Reviewer Name:</td>
+      <td class="details-value highlight">{{ testimonial.name }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Designation &amp; Role:</td>
+      <td class="details-value">{{ testimonial.role }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Location / Region:</td>
+      <td class="details-value">{{ testimonial.location }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Star Rating:</td>
+      <td class="details-value highlight">⭐ {{ testimonial.rating }} / 5 Stars</td>
+    </tr>
+    <tr>
+      <td class="details-label">Status:</td>
+      <td class="details-value">
+        <span class="status-badge status-active">
+          LIVE &amp; PUBLISHED
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div style="background: rgba(0, 230, 118, 0.08); border-left: 3px solid #00E676; border-radius: 0 8px 8px 0; padding: 16px; margin: 18px 0;">
+  <strong style="color: #00E676; font-size: 12px; text-transform: uppercase;">Published Testimonial:</strong>
+  <p style="color: #F8FAFC; font-size: 14px; margin: 8px 0 0; font-style: italic;">
+    "{{ testimonial.quote }}"
+  </p>
+</div>
+
+<p style="font-size: 13px; color: #94A3B8; text-align: center; margin-top: 20px;">
+  Thank you for placing your trust in Sabin Balan Finance. For any assistance or wealth management consultation, contact our direct line at <a href="tel:+918779649031" style="color: #FFD700; text-decoration: underline;">+91 8779649031</a> (8779649031).
+</p>
+
+<div style="text-align: center; margin: 24px 0 10px;">
+  <a href="{{ site_url }}/testimonials/" class="btn-action">
+    View Live Testimonial on Website &rarr;
+  </a>
+</div>
+{% endblock %}

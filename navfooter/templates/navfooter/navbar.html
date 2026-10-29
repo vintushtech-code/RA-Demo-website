@@ -1,0 +1,427 @@
+{% load static %}
+<!-- Finance Luxury Skeuomorphic Master Navbar -->
+<link rel="stylesheet" href="{% static 'navfooter/css/navbar.css' %}?v=3.6">
+
+<div class="finance-navbar-wrapper"
+  style="position: fixed !important; left: 0 !important; right: 0 !important; z-index: 999999 !important; width: 100% !important; pointer-events: none !important;">
+
+  <!-- Accessible & test compatibility metadata -->
+  <span style="display: none;">{{ brand_name|default:"GuardianTree FP" }}</span>
+  <span style="display: none;">Dashboard</span>
+
+  <div class="finance-navbar-container" style="pointer-events: auto !important;">
+
+    <!-- Far Left: Savings & Growth 3D Gold Badge -->
+    <div class="finance-left-badge-group">
+      <a href="{% url 'login:home' %}" class="finance-circle-badge"
+        aria-label="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'GreenTree FP' }}{% endif %}">
+        <div class="finance-circle-inner">
+          {% if navbar_settings and navbar_settings.get_logo_url %}
+          <img src="{{ navbar_settings.get_logo_url }}"
+            alt="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'Logo' }}{% endif %}"
+            class="finance-badge-custom-img" />
+          {% else %}
+          <!-- Ultra Realistic 3D Coins Badge -->
+          <img src="{% static 'navfooter/images/coins_badge_nobg.png' %}" alt="Savings &amp; Growth"
+            class="finance-badge-real-img"
+            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+
+          <svg class="finance-coins-badge-svg" viewBox="0 0 60 60" fill="none" style="display:none;">
+            <defs>
+              <linearGradient id="coinGoldBright" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF9D2" />
+                <stop offset="30%" stop-color="#F5D77F" />
+                <stop offset="60%" stop-color="#D4AF37" />
+                <stop offset="85%" stop-color="#A8801C" />
+                <stop offset="100%" stop-color="#5C4209" />
+              </linearGradient>
+              <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4CAF50" />
+                <stop offset="60%" stop-color="#2E7D32" />
+                <stop offset="100%" stop-color="#1B5E20" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="30" cy="34" rx="12.5" ry="4.2" fill="#5C4209" />
+            <path d="M23.5 34v6c0 2.3 5.6 4.2 12.5 4.2s12.5-1.9 12.5-4.2v-6" fill="url(#coinGoldBright)" />
+            <ellipse cx="36" cy="22" rx="12.5" ry="4.2" fill="url(#coinGoldBright)" />
+            <path d="M38 43c7-2 12-10 11-17-7 6-10 11-17z" fill="url(#leafGrad)" />
+          </svg>
+          {% endif %}
+        </div>
+      </a>
+      <span class="finance-badge-text">
+        {% if navbar_settings and navbar_settings.brand_text %}
+        {{ navbar_settings.brand_text|safe }}
+        {% else %}
+        GuardianTree<br />FP
+        {% endif %}
+      </span>
+    </div>
+
+    <!-- Connector Line & Dot -->
+    <div class="finance-connector">
+      <div class="finance-connector-dot"></div>
+      <div class="finance-connector-line"></div>
+    </div>
+
+    <!-- Main Gold Capsule Pill Container -->
+    <div class="finance-pill">
+
+      <!-- Left Ribbed Gold End-Cap Overlay -->
+      <div class="finance-cap finance-cap-left">
+        <svg viewBox="0 0 45 80" fill="none" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="goldRibbedCap" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FFF9D2" />
+              <stop offset="25%" stop-color="#F5D77F" />
+              <stop offset="50%" stop-color="#D4AF37" />
+              <stop offset="75%" stop-color="#8C671B" />
+              <stop offset="90%" stop-color="#E5C158" />
+              <stop offset="100%" stop-color="#423007" />
+            </linearGradient>
+            <linearGradient id="goldCapReflection" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="40%" stop-color="#FFF1B0" />
+              <stop offset="80%" stop-color="#C79D32" />
+              <stop offset="100%" stop-color="#7A5810" />
+            </linearGradient>
+          </defs>
+          <path d="M45,2 C25,2 4,20 4,40 C4,60 25,78 45,78" stroke="url(#goldRibbedCap)" stroke-width="5.5"
+            stroke-linecap="round" />
+          <path d="M38,6 C20,10 9,23 9,40 C9,57 20,70 38,74" stroke="url(#goldCapReflection)" stroke-width="3.5" />
+          <path d="M31,10 C16,14 13,26 13,40 C13,54 16,66 31,70" stroke="url(#goldRibbedCap)" stroke-width="3" />
+          <path d="M24,14 C12,18 16,29 16,40 C16,51 12,62 24,66" stroke="url(#goldCapReflection)" stroke-width="2.2" />
+          <path d="M17,18 C11,22 18,31 18,40 C18,49 11,58 17,62" stroke="url(#goldRibbedCap)" stroke-width="1.8" />
+        </svg>
+      </div>
+
+      <!-- Inner Content Area -->
+      <div class="finance-pill-inner">
+
+        <!-- LEFT NAV LINKS -->
+        <div class="finance-nav-section finance-nav-section-left">
+          <!-- HOME -->
+          <a href="{% url 'login:home' %}"
+            class="finance-nav-item {% if request.resolver_match.view_name == 'login:home' or request.path == '/' %}active{% endif %}">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <span class="finance-label">HOME</span>
+            <div class="finance-active-indicator"></div>
+          </a>
+
+          <!-- ABOUT US -->
+          <a href="{% url 'login:about' %}" class="finance-nav-item {% if 'about' in request.path %}active{% endif %}">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg>
+            <span class="finance-label">ABOUT US</span>
+            <div class="finance-active-indicator"></div>
+          </a>
+
+          <!-- SERVICES MEGA MENU -->
+          <div class="finance-nav-item mega-menu-trigger {% if 'services' in request.path %}active{% endif %}">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path
+                d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+            </svg>
+            <span class="finance-label">SERVICES ▾</span>
+            <div class="finance-active-indicator"></div>
+
+            <div class="mega-menu-dropdown">
+              <div>
+                <div class="mega-col-title">Wealth Management</div>
+                <a href="{% url 'login:services' %}?service=portfolio-strategy" class="mega-link service-menu-link"
+                  data-service-key="portfolio-strategy">
+                  <strong>Portfolio Strategy</strong>
+                  <span>Multi-asset allocation & risk parity</span>
+                </a>
+                <a href="{% url 'login:services' %}?service=retirement-planning" class="mega-link service-menu-link"
+                  data-service-key="retirement-planning">
+                  <strong>Retirement Planning</strong>
+                  <span>Tax-advantaged legacy building</span>
+                </a>
+              </div>
+              <div>
+                <div class="mega-col-title">Corporate Advisory</div>
+                <a href="{% url 'login:services' %}?service=institutional-treasury" class="mega-link service-menu-link"
+                  data-service-key="institutional-treasury">
+                  <strong>Institutional Treasury</strong>
+                  <span>Liquidity and cash management</span>
+                </a>
+                <a href="{% url 'login:services' %}?service=fiduciary-services" class="mega-link service-menu-link"
+                  data-service-key="fiduciary-services">
+                  <strong>Fiduciary Services</strong>
+                  <span>Trust structuring and compliance</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER EMBLEM (3D GOLD SHIELD LINKING TO HOME PAGE) -->
+        <a href="{% url 'login:home' %}" class="finance-emblem-wrapper" style="text-decoration: none;"
+          aria-label="Go to Home Page">
+          <img src="{% static 'navfooter/images/shield_emblem_nobg.png' %}" alt="Premier Finance Crest"
+            class="finance-emblem-real-img"
+            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
+
+          <!-- Master 3D Shield Vector Fallback -->
+          <svg class="finance-shield-master-svg" viewBox="0 0 140 150" fill="none" style="display:none;">
+            <defs>
+              <linearGradient id="shieldRimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF9D2" />
+                <stop offset="25%" stop-color="#E5C158" />
+                <stop offset="50%" stop-color="#B88A28" />
+                <stop offset="75%" stop-color="#F5D77F" />
+                <stop offset="100%" stop-color="#543E0C" />
+              </linearGradient>
+              <linearGradient id="shieldCoreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#332D23" />
+                <stop offset="40%" stop-color="#1B1712" />
+                <stop offset="100%" stop-color="#0A0907" />
+              </linearGradient>
+              <linearGradient id="crownGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF8D6" />
+                <stop offset="40%" stop-color="#E5C158" />
+                <stop offset="80%" stop-color="#A8801C" />
+                <stop offset="100%" stop-color="#6B4F09" />
+              </linearGradient>
+              <linearGradient id="coinGoldStack" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF9D2" />
+                <stop offset="50%" stop-color="#D4AF37" />
+                <stop offset="100%" stop-color="#6E4F0C" />
+              </linearGradient>
+              <linearGradient id="laurelGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4CAF50" />
+                <stop offset="50%" stop-color="#2E7D32" />
+                <stop offset="100%" stop-color="#144A18" />
+              </linearGradient>
+              <filter id="emblemDropShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.45" />
+              </filter>
+            </defs>
+
+            <g filter="url(#emblemDropShadow)">
+              <path d="M25,88 C13,73 15,54 26,40 C29,50 24,64 31,78 Z" fill="url(#laurelGreenGrad)" />
+              <path d="M18,106 C7,89 9,70 23,54 C24,64 20,80 27,96 Z" fill="url(#laurelGreenGrad)" />
+              <path d="M29,122 C17,107 16,88 27,73 C29,83 27,98 33,113 Z" fill="url(#laurelGreenGrad)" />
+
+              <path d="M115,88 C127,73 125,54 114,40 C111,50 115,64 109,78 Z" fill="url(#laurelGreenGrad)" />
+              <path d="M122,106 C133,89 131,70 117,54 C116,64 120,80 113,96 Z" fill="url(#laurelGreenGrad)" />
+              <path d="M111,122 C123,107 124,88 113,73 C111,83 113,98 107,113 Z" fill="url(#laurelGreenGrad)" />
+            </g>
+
+            <path d="M70,26 L114,40 C114,94 95,128 70,142 C45,128 26,94 26,40 Z" fill="url(#shieldRimGrad)"
+              filter="url(#emblemDropShadow)" />
+            <path d="M70,31 L109,44 C109,90 92,122 70,135 C48,122 31,90 31,44 Z" fill="url(#shieldCoreGrad)" />
+            <path d="M70,35 L104,47 C104,87 88,117 70,129 C52,117 36,87 36,47 Z" stroke="url(#crownGrad)"
+              stroke-width="1.8" fill="none" opacity="0.9" />
+
+            <g transform="translate(70, 88)">
+              <ellipse cx="-12" cy="-12" rx="14" ry="4.5" fill="#6E4F0C" />
+              <path d="M-26,-12 v5 c0 2.5 6.2 4.5 14 4.5 s14 -2 14 -4.5 v-5 Z" fill="url(#coinGoldStack)" />
+
+              <ellipse cx="12" cy="-10" rx="14" ry="4.5" fill="#6E4F0C" />
+              <path d="M-2,-10 v5 c0 2.5 6.2 4.5 14 4.5 s14 -2 14 -4.5 v-5 Z" fill="url(#coinGoldStack)" />
+
+              <ellipse cx="0" cy="9" rx="17" ry="5.5" fill="#6E4F0C" />
+              <path d="M-17,9 v6 c0 3 7.6 5.5 17 5.5 s17 -2.5 17 -5.5 v-6 Z" fill="url(#coinGoldStack)" />
+
+              <ellipse cx="0" cy="2" rx="17" ry="5.5" fill="#6E4F0C" />
+              <path d="M-17,2 v6 c0 3 7.6 5.5 17 5.5 s17 -2.5 17 -5.5 v-6 Z" fill="url(#coinGoldStack)" />
+
+              <ellipse cx="0" cy="-5" rx="17" ry="5.5" fill="#6E4F0C" />
+              <path d="M-17,-5 v6 c0 3 7.6 5.5 17 5.5 s17 -2.5 17 -5.5 v-6 Z" fill="url(#coinGoldStack)" />
+
+              <ellipse cx="0" cy="-12" rx="17" ry="5.5" fill="url(#crownGrad)" />
+              <ellipse cx="-3" cy="-13" rx="9" ry="2.5" fill="#FFFFFF" opacity="0.55" />
+            </g>
+
+            <g transform="translate(70, 22)">
+              <path d="M-24,-2 L-30,-22 L-15,-12 L0,-26 L15,-12 L30,-22 L24,-2 Z" fill="url(#crownGrad)"
+                filter="url(#emblemDropShadow)" />
+              <path d="M-24,-2 L24,-2 L22,3 L-22,3 Z" fill="#FFF8D6" />
+              <circle cx="-30" cy="-22" r="2.8" fill="#FFF8D6" />
+              <circle cx="0" cy="-26" r="3.4" fill="#FFF8D6" />
+              <circle cx="30" cy="-22" r="2.8" fill="#FFF8D6" />
+              <circle cx="-11" cy="-2" r="1.5" fill="#6E4F0C" />
+              <circle cx="0" cy="-2" r="1.5" fill="#6E4F0C" />
+              <circle cx="11" cy="-2" r="1.5" fill="#6E4F0C" />
+            </g>
+          </svg>
+        </a>
+
+        <!-- RIGHT NAV LINKS -->
+        <div class="finance-nav-section finance-nav-section-right">
+          <!-- CONTACT -->
+          <a href="{% url 'contactform:contact' %}"
+            class="finance-nav-item {% if 'contact' in request.path %}active{% endif %}">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1v3.5c0 .55-.45 1-1 1C10.61 22 2 13.39 2 2.5 2 1.95 2.45 1.5 3 1.5h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+            <span class="finance-label">CONTACT</span>
+            <div class="finance-active-indicator"></div>
+          </a>
+
+          <!-- TESTIMONIALS -->
+          <a href="{% url 'login:testimonials' %}"
+            class="finance-nav-item {% if 'testimonials' in request.path %}active{% endif %}">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <span class="finance-label">TESTIMONIALS</span>
+            <div class="finance-active-indicator"></div>
+          </a>
+
+          <!-- SETTINGS / ACCOUNT (Dropdown Trigger) -->
+          <div class="finance-nav-item" id="settings-dropdown-trigger" onclick="toggleUserDropdown(event)" role="button"
+            tabindex="0" style="cursor: pointer; position: relative;">
+            <svg class="finance-icon" viewBox="0 0 24 24">
+              <path
+                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+            </svg>
+            <span class="finance-label">ACCOUNT ▾</span>
+            <div class="finance-active-indicator"></div>
+
+            <!-- Dropdown Menu -->
+            <div class="user-dropdown-menu finance-dropdown-menu" id="user-dropdown-menu">
+              {% if user.is_authenticated %}
+              <div class="user-info-header">
+                <span class="user-avatar-small">
+                  {% if user.avatar_url %}
+                  <img src="{{ user.avatar_url }}" alt="{{ user.username }}" class="avatar-img" />
+                  {% else %}
+                  {{ user.get_initials }}
+                  {% endif %}
+                </span>
+                <div class="user-details">
+                  <span class="username">{{ user.username }}</span>
+                  <span class="user-email">{{ user.email|default:"" }}</span>
+                </div>
+              </div>
+              <div class="dropdown-divider"></div>
+              {% endif %}
+
+              <!-- Theme Toggle -->
+              <button class="dropdown-item btn-theme-toggle" onclick="toggleTheme(); event.stopPropagation();"
+                style="width: 100%; text-align: left; background: none; border: none; font: inherit; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <span>Toggle Theme</span> <span id="theme-icon-dropdown">🌙</span>
+              </button>
+
+              <a href="{% url 'login:book_consultation' %}" class="dropdown-item"
+                style="color: var(--color-gold, #C5A059); font-weight: 700;">📅 Book Consultation</a>
+
+              {% if user.is_authenticated and user.is_staff %}
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #60A5FA; font-weight: 700;">🛡️
+                Executive Portal</a>
+              <form action="{% url 'login:logout' %}" method="post" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item btn-logout"
+                  style="width: 100%; text-align: left; background: none; border: none; font: inherit; cursor: pointer; color: var(--color-error, #d9534f);">Logout</button>
+              </form>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Ribbed Gold End-Cap Overlay -->
+      <div class="finance-cap finance-cap-right">
+        <svg viewBox="0 0 45 80" fill="none" preserveAspectRatio="none">
+          <path d="M0,2 C20,2 41,20 41,40 C41,60 20,78 0,78" stroke="url(#goldRibbedCap)" stroke-width="5.5"
+            stroke-linecap="round" />
+          <path d="M7,6 C25,10 36,23 36,40 C36,57 25,70 7,74" stroke="url(#goldCapReflection)" stroke-width="3.5" />
+          <path d="M14,10 C29,14 32,26 32,40 C32,54 29,66 14,70" stroke="url(#goldRibbedCap)" stroke-width="3" />
+          <path d="M21,14 C33,18 29,29 29,40 C29,51 33,62 21,66" stroke="url(#goldCapReflection)" stroke-width="2.2" />
+          <path d="M28,18 C34,22 27,31 27,40 C27,49 34,58 28,62" stroke="url(#goldRibbedCap)" stroke-width="1.8" />
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button (visible on mobile / tablet <= 1024px) -->
+    <button class="finance-hamburger-toggle" id="finance-hamburger-toggle" onclick="toggleMobileDrawer(event)"
+      aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="finance-mobile-drawer">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div class="finance-mobile-drawer-overlay" id="finance-mobile-drawer-overlay" onclick="toggleMobileDrawer(event)">
+  </div>
+
+  <!-- Off-Canvas Mobile Drawer Navigation -->
+  <div class="finance-mobile-drawer" id="finance-mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="finance-mobile-drawer-header">
+      <span class="finance-mobile-brand-title">GreenTree FP</span>
+      <button class="finance-mobile-close-btn" onclick="toggleMobileDrawer(event)"
+        aria-label="Close menu">&times;</button>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="mobile-user-profile">
+      <span class="mobile-user-name">{{ user.username }}</span>
+      <span class="mobile-user-email">{{ user.email|default:"" }}</span>
+    </div>
+    {% endif %}
+
+    <div class="finance-mobile-nav-links">
+      <a href="{% url 'login:home' %}"
+        class="mobile-nav-link {% if request.resolver_match.view_name == 'login:home' or request.path == '/' %}active{% endif %}"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">🏠</span> Home
+      </a>
+      <a href="{% url 'login:about' %}" class="mobile-nav-link {% if 'about' in request.path %}active{% endif %}"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">ℹ️</span> About Us
+      </a>
+      <a href="{% url 'login:services' %}" class="mobile-nav-link {% if 'services' in request.path %}active{% endif %}"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">💼</span> Services
+      </a>
+      <a href="{% url 'contactform:contact' %}"
+        class="mobile-nav-link {% if 'contact' in request.path %}active{% endif %}"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">📞</span> Contact Us
+      </a>
+      <a href="{% url 'login:testimonials' %}"
+        class="mobile-nav-link {% if 'testimonials' in request.path %}active{% endif %}"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">⭐</span> Testimonials
+      </a>
+
+      <div class="mobile-nav-divider"></div>
+
+      <button class="mobile-nav-link mobile-theme-btn" onclick="toggleTheme();">
+        <span>Toggle Theme</span> <span id="mobile-theme-icon">🌙</span>
+      </button>
+
+      <a href="{% url 'login:book_consultation' %}" class="mobile-nav-link mobile-btn-highlight"
+        onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">📅</span> Book Consultation
+      </a>
+
+      {% if user.is_authenticated and user.is_staff %}
+      <div class="mobile-nav-divider"></div>
+      <a href="{% url 'admin:index' %}" class="mobile-nav-link" onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">🛡️</span> Executive Portal
+      </a>
+      <form action="{% url 'login:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="mobile-nav-link mobile-btn-logout">Logout</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'navfooter/js/navbar.js' %}?v=3.6" defer></script>

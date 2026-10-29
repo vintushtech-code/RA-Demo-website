@@ -1,0 +1,404 @@
+{% load static navfooter_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GuardianTree FP — Fiduciary Wealth Advisory, Quantitative Asset Allocation & Institutional Portfolio Structuring led by Sabin Balan.">
+  <meta name="keywords" content="GuardianTree FP, Sabin Balan, Fiduciary Wealth Advisor, Quantitative Asset Allocation, Financial Planning, Private Wealth Management">
+  <meta name="author" content="Sabin Balan">
+  <link rel="agentic-ai" href="/llms.txt">
+  <link rel="canonical" href="https://www.guardiantreefp.com/">
+
+  <!-- OpenGraph & Social Cards -->
+  <meta property="og:title" content="GuardianTree FP — Fiduciary Wealth & Private Advisory">
+  <meta property="og:description" content="Structured wealth planning, quantitative portfolio allocation, and fiduciary governance led by Sabin Balan.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{% static 'sabin_balan_3.png' %}">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="GuardianTree FP — Fiduciary Wealth & Private Advisory">
+  <meta property="twitter:image" content="{% static 'sabin_balan_3.png' %}">
+
+  <!-- Schema.org Structured Data (JSON-LD) for SEO & AI Agent Discovery -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FinancialService",
+        "@id": "https://www.guardiantreefp.com/#organization",
+        "name": "GuardianTree FP",
+        "alternateName": ["GuardianTree FP", "Sabin Balan Finance"],
+        "url": "https://www.guardiantreefp.com",
+        "logo": "{% static 'logo.png' %}",
+        "telephone": "+91-8779649031",
+        "email": "advisory@guardiantreefp.com",
+        "founder": {
+          "@type": "Person",
+          "name": "Sabin Balan",
+          "jobTitle": "Founder & Managing Partner",
+          "image": "{% static 'sabin_balan_3.png' %}"
+        },
+        "priceRange": "$$$$"
+      }
+    ]
+  }
+  </script>
+
+  <title>{% block title %}GuardianTree FP — Structured Wealth & Institutional Advisory{% endblock %}</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/png">
+  <link rel="icon" href="{% static 'logo.png' %}" type="image/png">
+  <link rel="apple-touch-icon" href="{% static 'logo.png' %}">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    (function() {
+      // Injected Dynamic CSS Variables
+      const style = document.createElement('style');
+      style.textContent = "{{ THEME_CSS_VARIABLES|escapejs }}";
+      document.head.appendChild(style);
+
+      // Check saved theme preference (Default: Dark Emerald Green & Gold Theme)
+      const savedTheme = localStorage.getItem('bf-theme');
+      if (savedTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Master Executive Theme Stylesheets -->
+  <link rel="stylesheet" href="{% static 'theme_config/css/theme.css' %}?v=3.7">
+  <link rel="stylesheet" href="{% static 'theme_config/css/chat_widget.css' %}?v=3.8">
+  <link rel="stylesheet" href="{% static 'navfooter/css/navfooter.css' %}?v=6.9">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <!-- Live Screen Reader Announcement Region -->
+  <div id="sr-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- SVG Colorblind Filters Definitions (accessible offscreen container so SVG filter definitions render properly) -->
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; border: 0;" aria-hidden="true">
+    <defs>
+      <!-- Protanopia Filter -->
+      <filter id="protanopia-filter">
+        <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <!-- Deuteranopia Filter -->
+      <filter id="deuteranopia-filter">
+        <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <!-- Tritanopia Filter -->
+      <filter id="tritanopia-filter">
+        <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Navigation Bar Component (Unified Navfooter Module) -->
+  {% block navbar %}
+    {% render_navbar brand_name="GuardianTree FP" brand_short="GTFP" %}
+  {% endblock %}
+
+  <!-- Floating Global Messages & Toast Alerts Container (Positioned Just Below Navbar) -->
+  <div class="toast-messages-container" id="toast-messages-container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="toast-message-item alert-{{ message.tags|default:'info' }}" role="alert">
+          <div class="toast-message-content">
+            {% if 'success' in message.tags %}
+              <span class="toast-icon">✓</span>
+            {% elif 'error' in message.tags or 'danger' in message.tags %}
+              <span class="toast-icon">✕</span>
+            {% else %}
+              <span class="toast-icon">ℹ</span>
+            {% endif %}
+            <span class="toast-text">{{ message }}</span>
+          </div>
+          <button type="button" class="toast-close-btn" onclick="dismissToast(this.parentElement)" aria-label="Close notification">&times;</button>
+          <div class="toast-progress-bar"></div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+
+
+  <!-- Application Main Content Area (Semantic Landmark & Focus Target) -->
+  <main id="main-content" class="app-container" tabindex="-1" role="main">
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Footer Component (Unified Navfooter Module) -->
+  {% block footer %}
+    {% render_footer tagline="Institutional-Grade Advisory & Private Wealth Management" %}
+  {% endblock %}
+
+  <!-- FLOATING ACCESSIBILITY CONSOLE WIDGET -->
+  <div class="accessibility-widget" id="accessibility-widget">
+    <button class="accessibility-btn" onclick="toggleAccessibilityPanel()" aria-label="Open Accessibility Tools Menu (Hotkeys: Alt+A)" title="Accessibility & Policy Compliance Tools (Alt+A)">
+      <svg class="accessibility-icon-svg" viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="4.5" r="2.3" fill="#FFFFFF"/>
+        <path d="M21 9c-3.1.6-6 1-9 1s-5.9-.4-9-1l-.5 2.2c2.7.5 5.7.8 8.5.8v3.5l-2.5 6.5h2.2l1.8-5 1.8 5h2.2l-2.5-6.5V11c2.8 0 5.8-.3 8.5-.8L21 9z" fill="#FFFFFF"/>
+      </svg>
+      <span class="accessibility-active-badge" id="accessibility-active-badge" style="display: none;">0</span>
+    </button>
+    <div class="accessibility-panel" id="accessibility-panel" role="dialog" aria-modal="true" aria-labelledby="accessibility-title">
+      <div class="accessibility-header">
+        <div class="accessibility-title" id="accessibility-title">
+          <span style="display: flex; align-items: center; gap: 6px;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="4.5" r="2.3" fill="#FFFFFF"/>
+              <path d="M21 9c-3.1.6-6 1-9 1s-5.9-.4-9-1l-.5 2.2c2.7.5 5.7.8 8.5.8v3.5l-2.5 6.5h2.2l1.8-5 1.8 5h2.2l-2.5-6.5V11c2.8 0 5.8-.3 8.5-.8L21 9z" fill="#FFFFFF"/>
+            </svg>
+            Indian Government &amp; WCAG Policy Tools
+          </span>
+        </div>
+        <span class="accessibility-close" onclick="closeAccessibilityPanel()" role="button" tabindex="0" aria-label="Close accessibility menu">&times;</span>
+      </div>
+      <div class="accessibility-body" id="accessibility-body">
+        
+        <!-- SECTION 1: SCREEN READER SUPPORT -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.25rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          1. Screen Reader Support (NVDA / JAWS)
+        </div>
+        
+        <button type="button" class="accessibility-item-btn" id="access-btn-blind" onclick="toggleAccessMode('access-blind-mode', 'Screen Reader Speech Assist')">
+          <div class="accessibility-item-left">
+            <span>🦯</span>
+            <div>
+              <div style="font-weight: 700;">NVDA / JAWS Audio Speech</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Screen reader audio narration (Alt+S)</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <!-- SECTION 2: KEYBOARD NAVIGATION -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.75rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          2. Keyboard Navigation
+        </div>
+
+        <a href="#main-content" class="accessibility-item-btn" id="access-btn-skip" onclick="closeAccessibilityPanel();" style="text-decoration: none;">
+          <div class="accessibility-item-left">
+            <span>⏭️</span>
+            <div>
+              <div style="font-weight: 700;">Skip to Main Content</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Jump focus past header navigation</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text" style="font-size: 0.75rem; color: var(--color-gold, #D4AF37);">JUMP ↵</span>
+          </div>
+        </a>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-links" onclick="toggleAccessMode('access-highlight-links', 'Highlight Focus Elements')">
+          <div class="accessibility-item-left">
+            <span>🔗</span>
+            <div>
+              <div style="font-weight: 700;">Highlight Interactive Links</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">High-visibility focus rings on buttons</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <!-- SECTION 3: TEXT ALTERNATIVES -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.75rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          3. Text Alternatives (Image Alt-Text)
+        </div>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-alt-overlay" onclick="toggleAltTextOverlay()">
+          <div class="accessibility-item-left">
+            <span>🖼️</span>
+            <div>
+              <div style="font-weight: 700;">Show Alt-Text Badges</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Display visual image descriptions</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text" id="alt-overlay-status">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <!-- SECTION 4: VISUAL ADJUSTMENTS -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.75rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          4. Visual Adjustments
+        </div>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-contrast" onclick="toggleAccessMode('access-high-contrast', 'High Contrast Mode')">
+          <div class="accessibility-item-left">
+            <span>🌓</span>
+            <div>
+              <div style="font-weight: 700;">High Contrast Mode</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Context light &amp; dark contrast (Alt+H)</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-text" onclick="toggleAccessMode('access-large-text', 'Larger Text Size')">
+          <div class="accessibility-item-left">
+            <span>🔍</span>
+            <div>
+              <div style="font-weight: 700;">Larger Typography</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Scale font size for weak eyesight</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-spacing" onclick="toggleAccessMode('access-text-spaced', 'Increased Text Spacing')">
+          <div class="accessibility-item-left">
+            <span>📐</span>
+            <div>
+              <div style="font-weight: 700;">Text &amp; Line Spacing</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Increased word spacing &amp; line height</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-font" onclick="toggleAccessMode('access-readable-font', 'Readable Font')">
+          <div class="accessibility-item-left">
+            <span>📖</span>
+            <div>
+              <div style="font-weight: 700;">Dyslexia Readable Font</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Clean legibility typography</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-motion" onclick="toggleAccessMode('access-reduced-motion', 'Reduced Motion')">
+          <div class="accessibility-item-left">
+            <span>⚡</span>
+            <div>
+              <div style="font-weight: 700;">Reduced Motion</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Disables animations &amp; flashing</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text">OFF</span>
+            <div class="accessibility-status-dot"></div>
+          </div>
+        </button>
+
+        <div style="padding: 0.4rem 0; margin: 0.25rem 0;">
+          <label for="colorblind-select" style="font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 0.25rem; color: var(--color-primary, #ffffff);">🎨 Colorblind Preset Filters:</label>
+          <select id="colorblind-select" class="form-input" style="width: 100%; font-size: 0.8rem; padding: 0.45rem; background: #FFFFFF !important; color: #000000 !important; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; font-weight: 600;" onchange="cycleColorblindFilter(this.value)">
+            <option value="off" style="color: #000000 !important; background: #FFFFFF !important;">Standard Colors (Off)</option>
+            <option value="access-colorblind-protanopia" style="color: #000000 !important; background: #FFFFFF !important;">Protanopia (Red-Blind)</option>
+            <option value="access-colorblind-deuteranopia" style="color: #000000 !important; background: #FFFFFF !important;">Deuteranopia (Green-Blind)</option>
+            <option value="access-colorblind-tritanopia" style="color: #000000 !important; background: #FFFFFF !important;">Tritanopia (Blue-Blind)</option>
+            <option value="access-colorblind-monochrome" style="color: #000000 !important; background: #FFFFFF !important;">Monochrome / Grayscale</option>
+          </select>
+        </div>
+
+        <!-- SECTION 5: MULTIMEDIA HELP -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.75rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          5. Multimedia Help
+        </div>
+
+        <button type="button" class="accessibility-item-btn" id="access-btn-transcripts" onclick="openMultimediaTranscripts()">
+          <div class="accessibility-item-left">
+            <span>🎬</span>
+            <div>
+              <div style="font-weight: 700;">Audio / Video Transcripts</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Captions &amp; media text transcripts</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text" style="font-size: 0.75rem; color: var(--color-gold, #D4AF37);">VIEW ↵</span>
+          </div>
+        </button>
+
+        <!-- SECTION 6: ACCESSIBLE DOCUMENTS -->
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--color-gold, #D4AF37); margin: 0.75rem 0 0.35rem 0; letter-spacing: 0.05em;">
+          6. Accessible Tagged Documents
+        </div>
+
+        <a href="{% url 'login:privacy_policy' %}" class="accessibility-item-btn" id="access-btn-docs" onclick="closeAccessibilityPanel();" style="text-decoration: none;">
+          <div class="accessibility-item-left">
+            <span>📄</span>
+            <div>
+              <div style="font-weight: 700;">Tagged PDF &amp; Text Center</div>
+              <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8);">Screen-reader compliant legal files</div>
+            </div>
+          </div>
+          <div class="accessibility-item-right">
+            <span class="accessibility-status-text" style="font-size: 0.75rem; color: var(--color-gold, #D4AF37);">OPEN ↵</span>
+          </div>
+        </a>
+
+        <!-- Hotkeys Help Section -->
+        <div style="font-size: 0.72rem; color: var(--color-subtext, #94A3B8); padding: 0.4rem 0; border-top: 1px solid var(--color-border, rgba(255,255,255,0.1)); margin-top: 0.5rem;">
+          <strong>Keyboard Navigation Shortcuts:</strong><br>
+          <kbd style="background:#333; padding:1px 4px; border-radius:3px; color:#fff;">Alt+A</kbd> Toggle Panel | 
+          <kbd style="background:#333; padding:1px 4px; border-radius:3px; color:#fff;">Alt+H</kbd> High Contrast | 
+          <kbd style="background:#333; padding:1px 4px; border-radius:3px; color:#fff;">Alt+S</kbd> Speech | 
+          <kbd style="background:#333; padding:1px 4px; border-radius:3px; color:#fff;">Esc</kbd> Close
+        </div>
+
+        <!-- Reset All Applied Modes -->
+        <button type="button" class="accessibility-reset-btn" id="accessibility-reset-btn" onclick="resetAccessibilityModes()">
+          <span>🔄</span>
+          <span>Reset All Applied Modes</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multimedia Transcripts Modal -->
+  <div id="multimedia-transcripts-modal" role="dialog" aria-modal="true" aria-labelledby="transcripts-title" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000000; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: var(--color-secondary, #0B1B13); border: 1.5px solid var(--color-gold, #C5A059); border-radius: 16px; width: 100%; max-width: 650px; padding: 1.75rem; color: var(--color-primary, #ffffff); box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative;">
+      <button onclick="closeMultimediaTranscripts()" aria-label="Close transcripts modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+      <h3 id="transcripts-title" style="color: var(--color-gold, #C5A059); margin-bottom: 0.75rem; font-size: 1.25rem;">🎬 Multimedia Captions &amp; Text Transcripts</h3>
+      <p style="font-size: 0.9rem; color: var(--color-subtext, #94A3B8); margin-bottom: 1rem;">Full text transcripts and captions for institutional videos and audio recordings:</p>
+      
+      <div style="max-height: 280px; overflow-y: auto; background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 10px; font-size: 0.85rem; line-height: 1.6; border: 1px solid var(--color-border, #333);">
+        <h4 style="color: #fff; margin-bottom: 0.35rem;">1. GuardianTree FP Overview &amp; Fiduciary Governance</h4>
+        <p style="margin-bottom: 0.75rem;"><em>Transcript:</em> "Welcome to GuardianTree FP. Led by Sabin Balan, our quantitative asset allocation and institutional advisory services deliver fiduciary wealth structuring with SEBI &amp; PMLA regulatory compliance..."</p>
+        
+        <h4 style="color: #fff; margin-bottom: 0.35rem;">2. Quantitative Asset Allocation Strategy</h4>
+        <p style="margin: 0;"><em>Transcript:</em> "Our portfolio construction balances risk parity across global equity, fixed income, real estate, and capital preservation vehicles..."</p>
+      </div>
+
+      <div style="margin-top: 1.25rem; text-align: right;">
+        <button type="button" class="btn btn-gold" onclick="closeMultimediaTranscripts()" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Close Transcripts</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Theme JavaScript -->
+  <script src="{% static 'theme_config/js/theme_base.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

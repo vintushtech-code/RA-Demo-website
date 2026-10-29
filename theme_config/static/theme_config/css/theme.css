@@ -1,0 +1,1322 @@
+/* 
+  Sabin Balan Finance — Executive Master Theme Stylesheet
+  Inspired by Jio BlackRock (https://www.jioblackrock.com/) UI/UX design language.
+  Vanilla CSS — Zero External Framework Dependencies.
+  Leverages dynamic CSS variables from theme_config/colors.py.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --radius-xl: 24px;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --radius-pill: 9999px;
+
+  --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-gold-glow: 0 0 35px rgba(22, 50, 74, 0.2);
+  --shadow-blue-glow: 0 0 35px rgba(37, 99, 235, 0.25);
+  --shadow-cyan-glow: 0 0 35px rgba(37, 99, 235, 0.2);
+
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  overflow-x: hidden;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  background: var(--color-bg, #F8FAFC);
+  color: var(--color-primary, #0F172A);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Headings & Typography — Executive Black & Slate Grey Palette */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: #0A0D14;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.highlight-text,
+span.highlight-text {
+  color: #64748B !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: #64748B !important;
+  display: inline;
+  font-weight: inherit;
+}
+
+p {
+  color: var(--color-subtext);
+}
+
+a {
+  color: var(--color-blue, #16324A);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-blue-accent, #2563EB);
+  opacity: 1;
+}
+
+/* Global Invisible Scrollbar (Hide scrollbar, allow scrolling) */
+html, body, * {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Application Main Section Container */
+.app-container {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+/* Global Floating Toast Alert System */
+.toast-messages-container {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 580px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast-message-item {
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  padding: 0.9rem 1.25rem;
+  border-radius: 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  color: #0f172a;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: toastSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-message-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.toast-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.alert-success .toast-icon {
+  background: rgba(34, 197, 94, 0.18);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.alert-error .toast-icon,
+.alert-danger .toast-icon {
+  background: rgba(239, 68, 68, 0.18);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.alert-info .toast-icon,
+.alert-warning .toast-icon {
+  background: rgba(212, 175, 55, 0.18);
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.toast-text {
+  line-height: 1.45;
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-subtext, rgba(255, 255, 255, 0.6));
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  color: var(--color-gold, #D4AF37);
+}
+
+.toast-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #FFD700, #F59E0B);
+  animation: toastProgress 3s linear forwards;
+}
+
+@keyframes toastSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* General Layout & Page Structure Utilities */
+.hero-content-wrapper,
+.about-hero-content-wrapper,
+.section-container,
+.page-container,
+.main-container {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+.hero-banner,
+.about-hero-banner {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  box-sizing: border-box !important;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 5rem 2rem;
+}
+
+@media (max-width: 992px) {
+  .hero-banner,
+  .about-hero-banner,
+  .section-container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-banner,
+  .about-hero-banner,
+  .section-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-subtext);
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Card Container (Auth & Forms) */
+.card-container {
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 2.75rem 2.5rem;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  margin: 7.5rem auto 3rem;
+}
+
+.card-container:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Buttons Component System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   TESTIMONIALS-STYLE EXECUTIVE BUTTON SYSTEM (Black Gradient & White Pills)
+   ========================================================================== */
+.btn-gold,
+.btn-primary,
+.btn-black-pill,
+.btn-gold-lg-glow,
+.btn-advisor-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.65rem !important;
+  padding: 0.85rem 2rem !important;
+  background: linear-gradient(135deg, #27272A 0%, #141416 50%, #09090B 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 9999px !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap !important;
+}
+
+.btn-gold:hover,
+.btn-primary:hover,
+.btn-black-pill:hover,
+.btn-gold-lg-glow:hover,
+.btn-advisor-primary:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  background: linear-gradient(135deg, #3F3F46 0%, #202024 50%, #000000 100%) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-gold:active,
+.btn-primary:active,
+.btn-black-pill:active,
+.btn-gold-lg-glow:active,
+.btn-advisor-primary:active {
+  transform: translateY(0) scale(0.99) !important;
+}
+
+/* Secondary Button — Crisp Clean White Pill with Thin Dark Border */
+.btn-secondary,
+.btn-white-pill,
+.btn-testimonial-secondary,
+.btn-outline-gold,
+.btn-advisor-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.65rem !important;
+  padding: 0.85rem 2rem !important;
+  background: #FFFFFF !important;
+  color: #0A0D14 !important;
+  border: 1.5px solid #18181B !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap !important;
+}
+
+.btn-secondary:hover,
+.btn-white-pill:hover,
+.btn-testimonial-secondary:hover,
+.btn-outline-gold:hover,
+.btn-advisor-secondary:hover {
+  background: #F4F4F5 !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn-secondary:active,
+.btn-white-pill:active,
+.btn-testimonial-secondary:active,
+.btn-outline-gold:active,
+.btn-advisor-secondary:active {
+  transform: translateY(0) scale(0.99) !important;
+}
+
+/* ==========================================================================
+   PAGE STARTING HEADERS (VintushTech Reference — Image 3 Specification)
+   ========================================================================== */
+.page-intro-header {
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.page-pill-badge-black {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 1.35rem;
+  background: #16324A;
+  color: #FFFFFF;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px rgba(22, 50, 74, 0.2);
+}
+
+.page-heading-twotone {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2.15rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.15rem;
+  letter-spacing: -0.025em;
+}
+
+.heading-subdued {
+  color: #71717A;
+  font-weight: 700;
+}
+
+.heading-prominent {
+  color: #16324A;
+  font-weight: 900;
+}
+
+.page-intro-desc {
+  font-size: 1.08rem;
+  color: #52525B;
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto 2rem auto;
+}
+
+/* Form Fields & Controls */
+.auth-form, .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  position: relative;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: 0.2px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--color-primary);
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+  border-color: var(--color-gold);
+  background-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.form-input::placeholder {
+  color: var(--color-subtext);
+  opacity: 0.65;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field-error {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* ==========================================================================
+   MASTER RESPONSIVE SYSTEM & CSS MEDIA QUERIES FRAMEWORK
+   Covers: Ultrawide, Desktops, Laptops, Tablets, Phablets, Compact Phones
+   ========================================================================== */
+
+/* 1. Fluid Media & Resets */
+img, video, iframe, embed, object, svg {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* 2. Fluid Full-Bleed Edge-to-Edge Layout Containers */
+.container,
+.section-container,
+.hero-banner,
+.hero-content-wrapper,
+.app-container,
+.lead-gen-container,
+.simulator-layout,
+.wealth-simulator-wrapper,
+.contact-preview-wrapper,
+.contact-preview-card,
+.calculator-container,
+.about-hero-container,
+.contact-layout-grid,
+.services-hero-banner,
+.services-grid,
+.services-cards-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   BREAKPOINT 1: Ultrawide & Super Ultrawide Monitors (34" - 49"+ | 1921px+)
+   Resolutions: 3440x1440, 5120x2160, 5120x2880
+   ========================================================================== */
+@media (min-width: 1921px) {
+  .container,
+  .section-container,
+  .hero-content-wrapper,
+  .app-container,
+  .lead-gen-container,
+  .simulator-layout,
+  .contact-preview-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .section-container {
+    padding: 6.5rem 5%;
+  }
+
+  .section-title {
+    font-size: clamp(2.75rem, 3.5vw, 4.5rem);
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 2: Standard Desktop Monitors (19" - 32" | 1441px to 1920px)
+   Resolutions: 1920x1080, 2560x1440, 3840x2160
+   ========================================================================== */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .section-container {
+    padding: 5.5rem 2.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2.5rem, 3.2vw, 3.5rem);
+  }
+
+  .grid-3col {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .grid-4col {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 3: Compact & Standard Laptops (11.0" - 17.3" | 1025px to 1440px)
+   Resolutions: 1366x768, 1920x1080 (scaled), 2560x1600, 2560x1440
+   ========================================================================== */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .section-container {
+    padding: 4.5rem 2rem;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 3vw, 3rem);
+  }
+
+  .grid-2col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  .grid-3col {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .grid-4col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 4: Standard & Large Tablets (9.7" - 12.9" | 769px to 1024px)
+   Resolutions: 1536x2048, 1600x2560, 2048x2732
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .section-container {
+    padding: 3.75rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
+  }
+
+  /* Adapt Grids on Tablets: Multi-column layouts stack to 2 columns */
+  .grid-2col,
+  .grid-3col,
+  .grid-4col,
+  .services-grid,
+  .services-cards-grid,
+  .team-grid,
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  .lead-gen-container,
+  .simulator-layout,
+  .contact-preview-card,
+  .calculator-container,
+  .about-hero-container,
+  .contact-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.25rem !important;
+  }
+
+  .flex-row-responsive {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .card-container {
+    max-width: 92%;
+    margin-top: 6rem;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 5: Small Tablets & Large Phones / Phablets (5.5" - 9.0" | 577px to 768px)
+   Resolutions: 800x1280, 1200x1920, 1080x2400, 1170x2532
+   ========================================================================== */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .section-container {
+    padding: 3rem 1.25rem;
+  }
+
+  .app-container {
+    padding-bottom: clamp(3.5rem, 7vh, 5.5rem) !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 5vw, 2.15rem) !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.98rem !important;
+  }
+
+  /* Multi-column layouts stack to single column on Phablets/Small Tablets */
+  .grid-2col,
+  .grid-3col,
+  .grid-4col,
+  .grid-auto-fit,
+  .services-grid,
+  .services-cards-grid,
+  .team-grid,
+  .stats-grid,
+  .strategy-selector-grid,
+  .result-breakdown-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Touch-friendly interactive targets (min 44x44px) */
+  .btn,
+  button,
+  a.btn,
+  .form-input,
+  select.form-input {
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  /* Prevent iOS Safari automatic form zoom by enforcing >= 16px font */
+  input,
+  select,
+  textarea,
+  .form-input,
+  .consult-form-input,
+  .modal-form-input {
+    font-size: 16px !important;
+  }
+
+  .btn {
+    width: 100% !important;
+    justify-content: center;
+  }
+
+  .toast-messages-container {
+    top: 75px;
+    width: 94%;
+  }
+
+  .modal-container {
+    padding: 1.5rem 1rem !important;
+    max-width: 96% !important;
+  }
+
+  /* Universal Responsive Table Wrapper */
+  .table-responsive,
+  .legal-table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 6: Standard Phones (4.0" - 5.5" | 376px to 576px)
+   Resolutions: 720x1280, 750x1334, 1080x1920
+   ========================================================================== */
+@media (max-width: 576px) {
+  html {
+    font-size: 14.5px;
+  }
+
+  .section-container {
+    padding: 2.25rem 1rem !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 1.95rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .card-container {
+    padding: 1.5rem 1rem !important;
+    margin-top: 5rem !important;
+    border-radius: var(--radius-lg) !important;
+    max-width: 96% !important;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT 7: Early / Compact Phones (2.5" - 4.0" | max-width: 375px)
+   Resolutions: 320x480, 640x1136, iPhone SE, Galaxy Fold outer screen
+   ========================================================================== */
+@media (max-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+
+  .section-container {
+    padding: 1.75rem 0.75rem !important;
+  }
+
+  .section-title {
+    font-size: 1.45rem !important;
+  }
+
+  .card-container {
+    padding: 1.25rem 0.75rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .btn,
+  button,
+  a.btn {
+    padding: 0.65rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ==========================================================================
+   MASTER WCAG 2.1 AA ACCESSIBILITY ENGINE STYLES
+   ========================================================================== */
+
+/* 2. Global Focus Visible Ring (Keyboard Navigation Indicator) */
+*:focus-visible {
+  outline: 3px solid var(--color-gold, #D4AF37) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.5) !important;
+}
+
+html[data-theme="light"] *:focus-visible,
+body.light-theme *:focus-visible {
+  outline: 3px solid #1E40AF !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 12px rgba(30, 64, 175, 0.4) !important;
+}
+
+/* 3. Accessibility Dynamic Font Resizing & Spacing Presets */
+html.access-font-large {
+  font-size: 19px !important;
+}
+
+html.access-font-xlarge {
+  font-size: 22px !important;
+}
+
+html.access-text-spaced body,
+body.access-text-spaced {
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.85 !important;
+}
+
+/* 4. Colorblind Simulation & Filter Presets */
+/* Color vision presets use a high-contrast semantic palette with strict WCAG AAA contrast guarantees. */
+html.access-colorblind-protanopia {
+  --color-gold: #0D5BC6;
+  --color-blue-accent: #0D5BC6;
+  --color-primary: #0A0D14;
+  --color-subtext: #475569;
+  --color-border: #94A3B8;
+}
+
+html.access-colorblind-deuteranopia {
+  --color-gold: #16324A;
+  --color-blue-accent: #2563EB;
+  --color-primary: #0A0D14;
+  --color-subtext: #475569;
+  --color-border: #94A3B8;
+}
+
+html.access-colorblind-tritanopia {
+  --color-gold: #0D9488;
+  --color-blue-accent: #0D9488;
+  --color-primary: #0A0D14;
+  --color-subtext: #475569;
+  --color-border: #94A3B8;
+}
+
+html.access-colorblind-monochrome {
+  --color-gold: #0A0D14;
+  --color-blue-accent: #0A0D14;
+  --color-primary: #0A0D14;
+  --color-subtext: #334155;
+  --color-border: #475569;
+}
+
+/* Primary Action Buttons Contrast Guarantee Under Colorblind Modes */
+html.access-colorblind-protanopia .btn-hero-primary,
+html.access-colorblind-deuteranopia .btn-hero-primary,
+html.access-colorblind-tritanopia .btn-hero-primary,
+html.access-colorblind-protanopia .btn-consult-primary,
+html.access-colorblind-deuteranopia .btn-consult-primary,
+html.access-colorblind-tritanopia .btn-consult-primary,
+html.access-colorblind-protanopia .btn-primary,
+html.access-colorblind-deuteranopia .btn-primary,
+html.access-colorblind-tritanopia .btn-primary,
+html.access-colorblind-protanopia .btn-confirm-consultation,
+html.access-colorblind-deuteranopia .btn-confirm-consultation,
+html.access-colorblind-tritanopia .btn-confirm-consultation,
+html.access-colorblind-protanopia .showcase-cta-btn,
+html.access-colorblind-deuteranopia .showcase-cta-btn,
+html.access-colorblind-tritanopia .showcase-cta-btn,
+html.access-colorblind-protanopia .btn-mv-primary,
+html.access-colorblind-deuteranopia .btn-mv-primary,
+html.access-colorblind-tritanopia .btn-mv-primary {
+  background: #0D5BC6 !important;
+  color: #FFFFFF !important;
+  border-color: #0D5BC6 !important;
+  text-shadow: none !important;
+}
+
+html.access-colorblind-protanopia .btn-hero-primary *,
+html.access-colorblind-deuteranopia .btn-hero-primary *,
+html.access-colorblind-tritanopia .btn-hero-primary *,
+html.access-colorblind-protanopia .btn-consult-primary *,
+html.access-colorblind-deuteranopia .btn-consult-primary *,
+html.access-colorblind-tritanopia .btn-consult-primary *,
+html.access-colorblind-protanopia .btn-primary *,
+html.access-colorblind-deuteranopia .btn-primary *,
+html.access-colorblind-tritanopia .btn-primary *,
+html.access-colorblind-protanopia .btn-confirm-consultation *,
+html.access-colorblind-deuteranopia .btn-confirm-consultation *,
+html.access-colorblind-tritanopia .btn-confirm-consultation *,
+html.access-colorblind-protanopia .showcase-cta-btn *,
+html.access-colorblind-deuteranopia .showcase-cta-btn *,
+html.access-colorblind-tritanopia .showcase-cta-btn * {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Monochrome / Grayscale High Contrast Buttons: Pure White on Solid Black */
+html.access-colorblind-monochrome .btn-hero-primary,
+html.access-colorblind-monochrome .btn-consult-primary,
+html.access-colorblind-monochrome .btn-primary,
+html.access-colorblind-monochrome .btn-confirm-consultation,
+html.access-colorblind-monochrome .showcase-cta-btn,
+html.access-colorblind-monochrome .btn-mv-primary,
+html.access-colorblind-monochrome .btn-track-submit,
+html.access-colorblind-monochrome .btn-receipt-print {
+  background: #0A0D14 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  text-shadow: none !important;
+}
+
+html.access-colorblind-monochrome .btn-hero-primary *,
+html.access-colorblind-monochrome .btn-consult-primary *,
+html.access-colorblind-monochrome .btn-primary *,
+html.access-colorblind-monochrome .btn-confirm-consultation *,
+html.access-colorblind-monochrome .showcase-cta-btn *,
+html.access-colorblind-monochrome .btn-mv-primary *,
+html.access-colorblind-monochrome .btn-track-submit * {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+html.access-colorblind-monochrome .btn-secondary,
+html.access-colorblind-monochrome .btn-hero-secondary,
+html.access-colorblind-monochrome .btn-consult-secondary {
+  background: #FFFFFF !important;
+  color: #0A0D14 !important;
+  border: 2px solid #0A0D14 !important;
+}
+
+html.access-colorblind-monochrome .btn-secondary *,
+html.access-colorblind-monochrome .btn-hero-secondary *,
+html.access-colorblind-monochrome .btn-consult-secondary * {
+  color: #0A0D14 !important;
+  -webkit-text-fill-color: #0A0D14 !important;
+}
+
+/* Accessibility Control Console Text Protection (Always Crystal Clear) */
+html.access-colorblind-protanopia .accessibility-panel *,
+html.access-colorblind-deuteranopia .accessibility-panel *,
+html.access-colorblind-tritanopia .accessibility-panel *,
+html.access-colorblind-monochrome .accessibility-panel * {
+  text-shadow: none !important;
+}
+
+html.access-colorblind-protanopia .accessibility-item-btn,
+html.access-colorblind-deuteranopia .accessibility-item-btn,
+html.access-colorblind-tritanopia .accessibility-item-btn,
+html.access-colorblind-monochrome .accessibility-item-btn {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+html.access-colorblind-protanopia .accessibility-item-btn *,
+html.access-colorblind-deuteranopia .accessibility-item-btn *,
+html.access-colorblind-tritanopia .accessibility-item-btn *,
+html.access-colorblind-monochrome .accessibility-item-btn * {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
+html.access-colorblind-protanopia .accessibility-status-text,
+html.access-colorblind-deuteranopia .accessibility-status-text,
+html.access-colorblind-tritanopia .accessibility-status-text,
+html.access-colorblind-monochrome .accessibility-status-text {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+
+/* 5. Live Announcement Screen Reader Region (Visually Hidden) */
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* 6. Accessible Print Stylesheet (@media print) */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .accessibility-widget,
+  .toast-messages-container,
+  .finance-navbar-wrapper,
+  .chat-widget-wrapper,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    page-break-after: avoid;
+  }
+
+  .card-container,
+  .section-container,
+  table {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* Shared small-screen safety net for every page extending the base template. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe,
+table {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .hero-content-wrapper,
+  .about-hero-content-wrapper,
+  .section-container,
+  .page-container,
+  .main-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .accessibility-widget {
+    right: 1rem !important;
+    bottom: 1rem !important;
+  }
+
+  .accessibility-panel,
+  .chat-panel {
+    right: 0.75rem;
+    bottom: 5.5rem;
+    width: min(360px, calc(100vw - 1.5rem));
+    max-height: calc(100vh - 7rem);
+  }
+}
+
+/* ==========================================================================
+   FIDUCIARY COMING SOON CARD STYLING (FOR EMPTY FAQS & TESTIMONIALS)
+   ========================================================================== */
+.fiduciary-coming-soon-card {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  margin: 1.5rem auto 2rem auto;
+  padding: 3.5rem 2.25rem;
+  text-align: center;
+  background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.12) 0%, rgba(18, 22, 32, 0.95) 70%);
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 35px rgba(212, 175, 55, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: all 0.35s ease;
+  box-sizing: border-box;
+}
+
+html[data-theme="light"] .fiduciary-coming-soon-card,
+body.light-theme .fiduciary-coming-soon-card,
+[data-theme="light"] .fiduciary-coming-soon-card {
+  background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08) 0%, #FFFFFF 75%) !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.3) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), 0 0 25px rgba(212, 175, 55, 0.1) !important;
+}
+
+.fiduciary-coming-soon-crest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.crest-icon-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1.5px solid var(--color-gold, #D4AF37);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+  animation: crestPulse 3s infinite ease-in-out;
+}
+
+@keyframes crestPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 32px rgba(212, 175, 55, 0.4);
+  }
+}
+
+.coming-soon-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 9999px;
+  color: var(--color-gold, #D4AF37);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.coming-soon-pill-badge .pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-gold, #D4AF37);
+}
+
+.coming-soon-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-primary, #ffffff);
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+html[data-theme="light"] .coming-soon-title,
+body.light-theme .coming-soon-title,
+[data-theme="light"] .coming-soon-title {
+  color: #0F172A !important;
+}
+
+.coming-soon-desc {
+  max-width: 620px;
+  margin: 0 auto 2rem auto;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--color-subtext, rgba(255, 255, 255, 0.7));
+}
+
+html[data-theme="light"] .coming-soon-desc,
+body.light-theme .coming-soon-desc,
+[data-theme="light"] .coming-soon-desc {
+  color: #475569 !important;
+}
+
+.coming-soon-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+

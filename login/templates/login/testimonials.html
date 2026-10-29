@@ -1,0 +1,245 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Client Testimonials | GuardianTree FP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/testimonials.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 1. HERO BANNER SECTION -->
+<section class="hero-banner">
+  <!-- Customized Background Image from photos folder -->
+  <img class="hero-video-bg" src="{% static 'testimonials_hero.png' %}" alt="GuardianTree FP Global Partners & Leaders" fetchpriority="high" decoding="async">
+
+  <!-- Ambient Gold Glow Backdrop -->
+  <div class="hero-glow-gold"></div>
+
+  <div class="hero-content-wrapper">
+    <div class="hero-left-section">
+
+      <!-- Gold Pill Badge -->
+      <div class="hero-pill-badge">
+        <span>⭐ Client Reviews &amp; Success Stories</span>
+      </div>
+
+      <!-- Headline matching Home Page styling -->
+      <h1 class="hero-image-styled-title">
+        Hear from our<br>
+        global financial<br>
+        <span class="highlight-text">community!</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-image-styled-subtitle">
+        Discover authentic feedback and verified success stories from salaried professionals, entrepreneurs, and families compounding wealth and securing their retirement with GuardianTree FP.
+      </p>
+
+      <!-- Pill Search & Filter Bar -->
+      <div class="hero-pill-bar">
+        <div class="pill-left-content">
+          <span class="pill-icon">💬</span>
+          <span class="pill-store-name">Reviews</span>
+          <span class="pill-divider">|</span>
+          <input type="text" id="testimonialSearchInput" class="pill-input"
+            placeholder="Search by name, title, or location...">
+        </div>
+        <button type="button" class="pill-submit-btn" aria-label="Search reviews">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Financial Market Metrics Ticker -->
+    <div class="metrics-ticker-wrapper">
+      <div class="metric-item">
+        <div class="metric-value">₹15,000+ Cr</div>
+        <div class="metric-label">Assets Under Advisory</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">99.4%</div>
+        <div class="metric-label">Client Retention</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">25+ Yrs</div>
+        <div class="metric-label">Advisory Heritage</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">ISO 27001</div>
+        <div class="metric-label">Institutional Security</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 2. WAVY LEADERS PORTRAIT GRID SECTION -->
+<div class="testimonials-galaxy-page">
+
+  <!-- Staggered Portrait Grid of Leaders -->
+  <div class="leaders-wavy-wrapper">
+    <div class="leaders-wavy-grid">
+
+      <!-- DYNAMIC DB SUBMITTED TESTIMONIALS (DISPLAYED IN 9 COLUMNS) -->
+      {% for col_items in testimonials_cols %}
+      <div class="grid-col">
+        {% if not col_items %}
+        <div class="grid-placeholder"></div>
+        {% endif %}
+
+        {% for item in col_items %}
+        {% with avatar_url=item.get_avatar_url|escapejs %}
+        <div class="leader-portrait-card"
+          onclick="openReviewModal('{{ item.name|escapejs }}', '{{ item.role|escapejs }}', '{{ item.location|escapejs }}', '{{ item.quote|escapejs }}', '⭐⭐⭐⭐⭐', '{{ avatar_url }}', 'Verified Client Member')">
+          {% if item.get_avatar_url %}
+          <img src="{{ item.get_avatar_url }}" alt="{{ item.name }}" loading="lazy" decoding="async">
+          {% else %}
+          <div class="card-avatar-initials">{{ item.name|slice:":1"|upper }}</div>
+          {% endif %}
+          <div class="portrait-hover-badge">{{ item.name }}</div>
+        </div>
+        {% endwith %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <!-- Central Header Content & Review Submission Button -->
+  <div class="center-content-section">
+    <div class="testimonials-pill-badge">Testimonials</div>
+    <h2 class="main-headline-bold">Trusted by leaders<br><span class="highlight-text">from various industries</span></h2>
+    <p class="main-description-text">
+      Learn why professionals trust our wealth management solutions to secure and compound their financial futures.
+    </p>
+
+    <!-- Write Your Own Testimonial CTA Button & Schedule Consultation -->
+    <div style="display: flex; gap: 1.25rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
+      <a href="{% url 'login:consultation' %}" class="btn-gold-lg-glow" style="text-decoration: none;">
+        <span>Book a Private Consultation</span>
+        <span>&rarr;</span>
+      </a>
+      <button class="btn-testimonial-secondary" onclick="openWriteModal()">
+        <span>Write Your Own Testimonial</span>
+        <span>&rarr;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL A: READ TESTIMONIAL DETAIL OVERLAY -->
+  <div class="modal-overlay" id="detailModal" onclick="closeReviewModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeReviewModal()">&times;</button>
+
+      <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem;">
+        <div id="mAvatarWrapper">
+          <img id="mAvatar" src="{% static 'avatar_emily.png' %}" alt="Avatar"
+            style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-gold); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+        </div>
+        <div>
+          <h3 id="mName" style="color: var(--color-primary); font-size: 1.35rem; margin-bottom: 0.2rem;">Emily Carter</h3>
+          <div id="mRole" style="color: var(--color-gold); font-weight: 700; font-size: 0.9rem;">Fintech Entrepreneur</div>
+          <div id="mLocation" style="color: var(--color-subtext); font-size: 0.82rem; margin-top: 0.2rem;">📍 Zurich</div>
+        </div>
+      </div>
+
+      <div
+        style="background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); padding: 0.75rem 1.1rem; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+        <span style="color: var(--color-gold); font-weight: 700; font-size: 0.9rem;" id="mHighlight">Verified Client Member</span>
+        <span style="color: #fbbf24; font-size: 0.95rem;" id="mStars">⭐⭐⭐⭐⭐</span>
+      </div>
+
+      <p id="mQuote"
+        style="color: var(--color-primary); font-size: 1.1rem; line-height: 1.65; font-family: 'Playfair Display'; margin-bottom: 1.5rem;">
+        "This platform completely transformed my portfolio management."
+      </p>
+
+      <div
+        style="display: flex; align-items: center; justify-content: space-between; padding-top: 1.1rem; border-top: 1px solid var(--color-border);">
+        <div
+          style="display: flex; align-items: center; gap: 0.4rem; color: #0a66c2; font-size: 0.85rem; font-weight: 700;">
+          <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+          <span>Verified Identity via LinkedIn</span>
+        </div>
+        <button class="write-testimonial-btn" onclick="closeReviewModal()"
+          style="padding: 0.5rem 1.6rem; font-size: 0.9rem; border-radius: var(--radius-pill);">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL B: WRITE YOUR OWN TESTIMONIAL FORM OVERLAY -->
+  <div class="modal-overlay" id="writeModal" onclick="closeWriteModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeWriteModal()">&times;</button>
+
+      <h2 class="modal-title">Write Your Testimonial</h2>
+
+      <form class="modal-form" method="post" action="{% url 'login:testimonials' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_name">Full Name</label>
+          {{ testimonial_form.name }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_email">Email Address (For publication alert)</label>
+          {{ testimonial_form.email }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_role">Professional Title / Role</label>
+          {{ testimonial_form.role }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_location">Location / City</label>
+          {{ testimonial_form.location }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_category">Category Partner Group</label>
+          {{ testimonial_form.category }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_rating">Star Rating</label>
+          {{ testimonial_form.rating }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_quote">Your Testimonial Review</label>
+          {{ testimonial_form.quote }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_avatar_file">Profile Image Photo (Optional)</label>
+          {{ testimonial_form.avatar_file }}
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-form-label" for="id_linkedin_url">LinkedIn Profile URL (Optional)</label>
+          {{ testimonial_form.linkedin_url }}
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; font-weight: 700; margin-top: 1rem;">
+          Submit Testimonial for Approval
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'login/js/testimonials.js' %}"></script>
+{% endblock %}

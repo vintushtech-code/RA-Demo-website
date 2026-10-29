@@ -1,0 +1,196 @@
+{% extends 'login/legal/base_legal.html' %}
+{% load static %}
+
+{% block title %}AML / KYC Compliance Policy | GuardianTree FP{% endblock %}
+
+{% block doc_title %}
+  Anti-Money Laundering &amp;<br>
+  <span class="highlight-text">KYC Compliance.</span>
+{% endblock %}
+
+{% block doc_subtitle %}
+  Institutional-grade safeguards, Customer Due Diligence (CDD), global sanction screening, and regulatory protocols governing our zero-tolerance stance against illicit finance.
+{% endblock %}
+
+{% block table_of_contents %}
+  <a href="#section-1" class="clean-toc-link">1. Statutory Anti-Crime Mandate</a>
+  <a href="#section-2" class="clean-toc-link">2. Customer Due Diligence (CDD)</a>
+  <a href="#section-3" class="clean-toc-link">3. Enhanced Due Diligence (EDD)</a>
+  <a href="#section-4" class="clean-toc-link">4. Source of Wealth Verification</a>
+  <a href="#section-5" class="clean-toc-link">5. Global Sanctions Screening</a>
+  <a href="#section-6" class="clean-toc-link">6. Suspicious Activity Reporting</a>
+  <a href="#section-7" class="clean-toc-link">7. Record Keeping &amp; Audit Logs</a>
+  <a href="#section-8" class="clean-toc-link">8. Refusal of Service &amp; Freezes</a>
+  <a href="#section-9" class="clean-toc-link">9. Principal Compliance Officer</a>
+{% endblock %}
+
+{% block doc_content %}
+  
+  <!-- Section 1 -->
+  <section class="doc-section-block" id="section-1">
+    <h2 class="doc-section-title">
+      <span class="section-number">01</span> Regulatory Authority &amp; Anti-Financial Crime Mandate
+    </h2>
+    <p>
+      <strong>GuardianTree FP</strong> and <strong>Sabin Balan Finance</strong> enforce a strict, zero-tolerance policy against money laundering, terrorist financing, proliferation financing, and financial fraud. We operate in strict conformity with:
+    </p>
+    <ul>
+      <li>The <strong>Prevention of Money Laundering Act, 2002 (PMLA)</strong> and the Prevention of Money-Laundering (Maintenance of Records) Rules, 2005.</li>
+      <li>The <strong>Financial Action Task Force (FATF)</strong> 40 Recommendations on combating money laundering and terrorist financing.</li>
+      <li>The <strong>Securities and Exchange Board of India (SEBI)</strong> Master Circular on Anti-Money Laundering (AML) Standards and KYC Norms.</li>
+      <li>Directives issued by the <strong>Financial Intelligence Unit - India (FIU-IND)</strong> and relevant international regulatory counterparties.</li>
+    </ul>
+    <div class="legal-callout-box">
+      <div class="callout-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div class="callout-content">
+        <h4>Zero-Tolerance Anti-Financial Crime Mandate</h4>
+        <p>No client relationship will be established or transaction executed without verified Customer Due Diligence and authenticated source-of-wealth documentation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="doc-section-block" id="section-2">
+    <h2 class="doc-section-title">
+      <span class="section-number">02</span> Customer Due Diligence (CDD) Standards
+    </h2>
+    <p>
+      Prior to onboarding any individual or institutional advisory client, our compliance desk conducts multi-tier Customer Due Diligence:
+    </p>
+    <div class="legal-table-wrapper">
+      <table class="legal-data-table">
+        <thead>
+          <tr>
+            <th>Client Classification</th>
+            <th>Required Documentation</th>
+            <th>Verification Methodology</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Individual / Retail Clients</strong></td>
+            <td>Government Photo ID (Passport/Aadhaar/National ID), PAN card, recent utility bill / proof of address, selfie liveness check.</td>
+            <td>Real-time biometric facial match &amp; CKYC (Central KYC Registry) API query.</td>
+          </tr>
+          <tr>
+            <td><strong>High-Net-Worth (HNW) &amp; Family Offices</strong></td>
+            <td>Certified financial balance sheets, tax returns (ITR V), bank statements (past 12 months), trust deeds.</td>
+            <td>Independent chartered accountant attestations &amp; source-of-funds trace.</td>
+          </tr>
+          <tr>
+            <td><strong>Corporate &amp; Institutional Entities</strong></td>
+            <td>Certificate of Incorporation, MOA &amp; AOA, Board Resolution for authorized signatories, Ultimate Beneficial Ownership (UBO) declaration.</td>
+            <td>Corporate registry verification (MCA/Companies House) &amp; UBO identification &ge; 10% ownership threshold.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="doc-section-block" id="section-3">
+    <h2 class="doc-section-title">
+      <span class="section-number">03</span> Enhanced Due Diligence (EDD) for High-Risk &amp; PEPs
+    </h2>
+    <p>
+      Enhanced Due Diligence (EDD) is automatically triggered for:
+    </p>
+    <ul>
+      <li><strong>Politically Exposed Persons (PEPs):</strong> Individuals who are or have been entrusted with prominent public functions (e.g., Heads of State, senior politicians, judicial or military officials, senior executives of state-owned enterprises), as well as their immediate family members and close associates.</li>
+      <li><strong>High-Risk Jurisdictions:</strong> Clients residing in or capital originating from FATF "Black List" or "Grey List" jurisdictions subject to increased monitoring.</li>
+      <li><strong>Complex Corporate Vehicles:</strong> Private trusts, offshore entities, or structures with opaque ownership layers.</li>
+    </ul>
+    <p>
+      Establishing an advisory relationship with any PEP requires mandatory senior executive and Managing Partner approval.
+    </p>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="doc-section-block" id="section-4">
+    <h2 class="doc-section-title">
+      <span class="section-number">04</span> Source of Wealth &amp; Source of Funds Verification
+    </h2>
+    <p>
+      In compliance with FATF recommendations, we require comprehensive documentary proof establishing the economic origin of the client's overall net worth (<strong>Source of Wealth</strong>) as well as the specific capital allocated for advisory portfolios (<strong>Source of Funds</strong>). Acceptable documentation includes audited business dividends, documented corporate sales, inheritance probates, real estate liquidation proceeds, or verified executive compensation records.
+    </p>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="doc-section-block" id="section-5">
+    <h2 class="doc-section-title">
+      <span class="section-number">05</span> Global Sanctions &amp; Watchlist Screening
+    </h2>
+    <p>
+      All client names, associated directors, beneficial owners, and authorized signatories are screened in real-time and on a continuous automated recurring schedule against global sanction and PEP watchlists:
+    </p>
+    <ul>
+      <li><strong>United Nations Security Council Sanctions Committee (UNSC)</strong> consolidated lists.</li>
+      <li><strong>United States Office of Foreign Assets Control (OFAC)</strong> Specially Designated Nationals (SDN) lists.</li>
+      <li><strong>European Union Consolidated Financial Sanctions</strong> and UK HM Treasury lists.</li>
+      <li><strong>INTERPOL Red Notices</strong> and domestic criminal registry databases.</li>
+    </ul>
+    <div class="legal-callout-box danger">
+      <div class="callout-icon"><i class="fa-solid fa-ban"></i></div>
+      <div class="callout-content">
+        <h4>Immediate Sanction Blocking</h4>
+        <p>Any exact match with an active UNSC or OFAC sanction designation results in immediate termination of onboarding, suspension of communication, and statutory notification to FIU-IND without tipping off the target.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="doc-section-block" id="section-6">
+    <h2 class="doc-section-title">
+      <span class="section-number">06</span> Suspicious Transaction Reporting (STR) &amp; Tipping-Off Prohibition
+    </h2>
+    <p>
+      Our compliance desk continuously audits consultation activity and wealth restructuring requests for red flags (e.g., reluctance to provide CDD documentation, structured transactions below reporting thresholds, unexplained international wire routing).
+    </p>
+    <p>
+      Where reasonable grounds exist to suspect illicit origins, our Designated Principal Officer is statutorily mandated to file a <strong>Suspicious Transaction Report (STR)</strong> with the Financial Intelligence Unit (FIU-IND) within seven (7) working days. Under Section 12 of PMLA, our personnel are strictly prohibited from disclosing or "tipping off" the client regarding any such report.
+    </p>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="doc-section-block" id="section-7">
+    <h2 class="doc-section-title">
+      <span class="section-number">07</span> Record Retention &amp; Regulatory Audit Trail
+    </h2>
+    <p>
+      All client identification files, CDD verification records, consultation transcripts, and correspondence are preserved securely in an immutable, encrypted audit vault for a statutory minimum duration of <strong>eight (8) years</strong> from the date of cessation of the advisory engagement.
+    </p>
+  </section>
+
+  <!-- Section 8 -->
+  <section class="doc-section-block" id="section-8">
+    <h2 class="doc-section-title">
+      <span class="section-number">08</span> Refusal of Engagement &amp; Asset Freezes
+    </h2>
+    <p>
+      GuardianTree FP maintains the unfettered legal right to refuse advisory services, freeze consultation workflows, and decline transactions where a client fails or refuses to provide required KYC documentation, submits fraudulent credentials, or appears on statutory sanction lists.
+    </p>
+  </section>
+
+  <!-- Section 9 -->
+  <section class="doc-section-block" id="section-9">
+    <h2 class="doc-section-title">
+      <span class="section-number">09</span> Designated Principal Officer Contact Information
+    </h2>
+    <p>
+      All formal AML inquiries, law enforcement subpoenas, and regulatory requests must be directed to our appointed Principal Officer:
+    </p>
+    <div class="legal-callout-box info">
+      <div class="callout-icon"><i class="fa-solid fa-building-shield"></i></div>
+      <div class="callout-content">
+        <h4>Office of the Principal AML Compliance Officer</h4>
+        <p>
+          <strong>GuardianTree FP / Sabin Balan Finance</strong><br>
+          Designated Principal Officer (FIU-IND Nominee)<br>
+          Email: <a href="mailto:aml-compliance@guardiantreefp.com" style="color: var(--color-gold); font-weight: 700;">aml-compliance@guardiantreefp.com</a><br>
+          Regulatory Inquiries Portal: <a href="{% url 'contactform:contact' %}" style="color: var(--color-gold); font-weight: 700;">Contact Compliance &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

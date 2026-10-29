@@ -1,0 +1,404 @@
+/* ==========================================================================
+   GuardianTree FP — Executive 404 & 500 Error Pages Master Stylesheet
+   Supports Light Mode & Dark Mode dynamically via CSS Custom Properties.
+   Vanilla CSS — Fully Responsive across all device breakpoints.
+   ========================================================================== */
+
+/* Error Section Layout Container */
+.error-section-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1.5rem;
+  overflow: hidden;
+}
+
+/* Ambient Radial Glow Background Accents */
+.error-ambient-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.warning-glow {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Main Error Glassmorphism Card */
+.error-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3.5rem 3rem;
+  background: var(--color-secondary, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-xl, 24px);
+  box-shadow: var(--shadow-elevated, 0 20px 40px rgba(0, 0, 0, 0.1));
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.35s ease;
+}
+
+/* Eye-Friendly Glass Card */
+[data-theme='dark'] .error-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border, #E2E8F0);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+}
+
+/* Hero Graphic & Center Emblem Photo (No animation) */
+.error-hero-graphic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.error-illustration-wrapper {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Navbar Center 3D Gold Shield Emblem Photo */
+.error-emblem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.error-emblem-img:hover {
+  transform: scale(1.04);
+}
+
+.error-code-text {
+  font-family: var(--font-heading);
+  font-size: clamp(4.5rem, 11vw, 7.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, #FFF9C4 0%, #FFD700 35%, #F59E0B 75%, #B45309 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+  margin-top: -0.5rem;
+}
+
+.text-warning-code {
+  background: linear-gradient(180deg, #FEF3C7 0%, #F59E0B 40%, #D97706 75%, #92400E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Status Pill Badges */
+.error-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.25rem;
+  border-radius: var(--radius-pill, 9999px);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--color-gold, #D4AF37);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #F59E0B;
+}
+
+.badge-dot-pulsing {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gold, #D4AF37);
+  box-shadow: 0 0 10px var(--color-gold, #D4AF37);
+}
+
+.warning-dot {
+  background-color: #F59E0B;
+  box-shadow: 0 0 10px #F59E0B;
+}
+
+/* Error Typography */
+.error-title {
+  font-size: clamp(1.75rem, 3.8vw, 2.6rem);
+  font-weight: 700;
+  color: var(--color-primary, #ffffff);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.error-description {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: var(--color-subtext, #94a3b8);
+  max-width: 620px;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* Action Buttons Layout Group */
+.error-actions-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* System Health Status Indicator Box (500 Page Specific) */
+.system-health-status-box {
+  width: 100%;
+  max-width: 680px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--color-border, rgba(212, 175, 55, 0.2));
+  border-radius: var(--radius-lg, 16px);
+  text-align: left;
+}
+
+.health-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.health-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-bottom: 0.25rem;
+}
+
+.active-beacon {
+  background-color: #34D399;
+  box-shadow: 0 0 10px #34D399;
+}
+
+.pulse-amber {
+  background-color: #F59E0B;
+  box-shadow: 0 0 10px #F59E0B;
+}
+
+.health-label {
+  color: var(--color-subtext, #94a3b8);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.health-value {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.text-success { color: #34D399; }
+.text-amber { color: #F59E0B; }
+
+/* Quick Navigation Shortcuts Section */
+.error-shortcuts-card {
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.shortcuts-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-gold, #D4AF37);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 0.6rem;
+  background: var(--color-input-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-md, 12px);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.shortcut-item:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--color-gold, #D4AF37);
+  transform: translateY(-3px);
+}
+
+.shortcut-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.shortcut-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-primary, #ffffff);
+  white-space: nowrap;
+}
+
+.shortcut-item:hover .shortcut-title {
+  color: var(--color-gold, #D4AF37);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .error-card {
+    padding: 3rem 2rem;
+    max-width: 95%;
+  }
+
+  .shortcuts-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+  }
+
+  .system-health-status-box {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Phablets & Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .error-section-wrapper {
+    padding: 2.5rem 1rem;
+    min-height: calc(100vh - 160px);
+  }
+
+  .error-card {
+    padding: 2.25rem 1.25rem;
+    border-radius: var(--radius-lg, 16px);
+    gap: 1.35rem;
+  }
+
+  .error-illustration-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .error-code-text {
+    font-size: 4.8rem;
+  }
+
+  .error-actions-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .error-actions-group .btn {
+    width: 100% !important;
+  }
+
+  .system-health-status-box {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 1rem;
+  }
+
+  .shortcuts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+/* Compact Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .error-card {
+    padding: 1.75rem 1rem;
+  }
+
+  .error-code-text {
+    font-size: 4rem;
+  }
+
+  .error-pill-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .error-title {
+    font-size: 1.5rem;
+  }
+
+  .error-description {
+    font-size: 0.92rem;
+  }
+
+  .shortcuts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shortcut-item {
+    padding: 0.75rem 0.4rem;
+  }
+
+  .shortcut-title {
+    font-size: 0.72rem;
+    white-space: normal;
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.25;
+  }
+}

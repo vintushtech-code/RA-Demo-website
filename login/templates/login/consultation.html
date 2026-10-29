@@ -1,0 +1,845 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Book Your Consultation — Private Wealth Advisory | GuardianTree FP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/consultation.css' %}?v=1.3">
+{% endblock %}
+
+{% block content %}
+<div class="consultation-page">
+  <div class="consult-container">
+
+    <!-- ====================================================================
+         SECTION 01: INTRO / CONSULTATION HEADING (IMAGE LEFT, TEXT RIGHT)
+         ==================================================================== -->
+    <section class="consult-intro-section" id="consult-intro">
+
+      <!-- Left: High-End Luxury Editorial Finance Visual -->
+      <div class="consult-intro-visual-col">
+        <div class="consult-intro-image-frame">
+          <img src="{% static 'sabin_balan_3.png' %}" alt="Sabin Balan — Founder & Fiduciary Wealth Advisor, GuardianTree FP"
+            class="consult-intro-img" loading="lazy" decoding="async">
+          <div class="consult-intro-floating-badge">
+            <div class="consult-badge-icon-gold">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <div>
+              <div class="consult-badge-title">PRIVATE WEALTH BOARDROOM</div>
+              <div class="consult-badge-sub">1-on-1 Fiduciary Advisory &amp; Family Office</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Sophisticated Strategic Typography & Value Indicators -->
+      <div class="consult-intro-text-col">
+        <div class="consult-eyebrow-pill">
+          <span class="consult-eyebrow-dot"></span>
+          PRIVATE FINANCIAL CONSULTATION
+        </div>
+
+        <h1 class="consult-main-headline">
+          Plan With Purpose.<br>
+          <span class="headline-gold">Move Forward With Confidence.</span>
+        </h1>
+
+        <p class="consult-intro-paragraph">
+          A focused, institutional-grade consultation designed around your financial goals, capital preservation
+          priorities, and long-term generational wealth vision. Experience fee-only advisory without third-party
+          commission conflicts.
+        </p>
+
+        <div class="consult-trust-pills-row">
+          <div class="consult-trust-pill-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>SEBI-Registered Fiduciary Standard</span>
+          </div>
+          <div class="consult-trust-pill-item">
+            <i class="fa-solid fa-handshake-angle"></i>
+            <span>Zero Brokerage Commissions</span>
+          </div>
+        </div>
+
+        <div class="consult-intro-actions">
+          <a href="#booking-hub" class="btn-consult-primary">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Schedule Consultation</span>
+          </a>
+          <a href="#track-section" class="btn-consult-secondary">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Track Existing Reference Key</span>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====================================================================
+         SECTION 03: MASTER TWO-COLUMN BOOKING INTERFACE (FUNCTIONAL HERO)
+         ==================================================================== -->
+    <section class="consult-booking-hub-section" id="booking-hub">
+      <div class="consult-hub-container">
+
+        <div class="consult-hub-header">
+          <div class="consult-eyebrow-pill" style="margin-bottom: 0.85rem;">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            RESERVE YOUR ADVISORY SESSION
+          </div>
+          <h2 class="section-title">Private Wealth <span class="highlight-text"> Consultation Scheduling</span></h2>
+          <p class="consult-hub-subtitle">
+            Select your preferred consultation duration, choose an available business date on our interactive calendar,
+            pick a dynamic time slot, and submit your briefing requirements.
+          </p>
+        </div>
+
+        <!-- ONBOARDING PROGRESS INDICATOR -->
+        <div class="consult-progress-wrapper" id="consult-progress-wrapper">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+          </div>
+          <div class="progress-steps-labels">
+            <span class="progress-step-label active" id="label-step-1">1. Duration</span>
+            <span class="progress-step-label" id="label-step-2">2. Date & Time</span>
+            <span class="progress-step-label" id="label-step-3">3. Client Details</span>
+          </div>
+        </div>
+
+        <div class="consult-hub-grid">
+
+          <!-- --------------------------------------------------------------
+               LEFT COLUMN: DURATION SELECTOR, CALENDAR, AND DYNAMIC TIME SLOTS
+               -------------------------------------------------------------- -->
+          <div class="consult-hub-left">
+
+            <!-- Step 1: Duration Cards -->
+            <div class="consult-flow-block">
+              <div class="consult-flow-step-heading">
+                <span class="consult-step-number">1</span>
+                <span>Select Consultation Duration</span>
+              </div>
+              <div class="consult-duration-cards-row" role="radiogroup" aria-label="Consultation Duration Selection">
+                <div class="duration-card-item" data-duration="30" tabindex="0" role="button" aria-label="30 Minute Focused Consultation Fee ₹3,000" onclick="selectDuration(30)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDuration(30);}">
+                  <div class="duration-tag">30 MIN</div>
+                  <div class="duration-price-tag">₹3,000</div>
+                  <div class="duration-name">Focused Consultation</div>
+                  <div class="duration-desc">Targeted analysis for specific queries, SIP limits, or initial assessments.
+                  </div>
+                </div>
+
+                <div class="duration-card-item selected" data-duration="45" tabindex="0" role="button" aria-label="45 Minute Strategic Consultation Fee ₹5,000 (Recommended)" onclick="selectDuration(45)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDuration(45);}">
+                  <div class="duration-tag">45 MIN</div>
+                  <div class="duration-price-tag">₹5,000</div>
+                  <div class="duration-name">Strategic Consultation</div>
+                  <div class="duration-desc">Recommended — Deep dive into goals, asset allocation, and tax balancing.
+                  </div>
+                </div>
+
+                <div class="duration-card-item" data-duration="60" tabindex="0" role="button" aria-label="60 Minute Comprehensive Consultation Fee ₹8,000" onclick="selectDuration(60)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDuration(60);}">
+                  <div class="duration-tag">60 MIN</div>
+                  <div class="duration-price-tag">₹8,000</div>
+                  <div class="duration-name">Comprehensive</div>
+                  <div class="duration-desc">Full institutional portfolio diagnostic &amp; family office legacy roadmap.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Interactive Luxury Calendar -->
+            <div class="consult-flow-block">
+              <div class="consult-flow-step-heading">
+                <span class="consult-step-number">2</span>
+                <span>Select Preferred Business Date</span>
+              </div>
+
+              <div class="consult-calendar-wrapper">
+                <div class="calendar-header-nav">
+                  <div class="calendar-month-title" id="calendar-month-year">August 2026</div>
+                  <div class="calendar-nav-buttons">
+                    <button type="button" class="calendar-nav-btn" id="cal-prev-btn" onclick="prevMonth()"
+                      aria-label="Previous Month">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="calendar-nav-btn" id="cal-next-btn" onclick="nextMonth()"
+                      aria-label="Next Month">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Weekday Headers -->
+                <div class="calendar-weekdays-row">
+                  <div class="calendar-weekday-cell">Mon</div>
+                  <div class="calendar-weekday-cell">Tue</div>
+                  <div class="calendar-weekday-cell">Wed</div>
+                  <div class="calendar-weekday-cell">Thu</div>
+                  <div class="calendar-weekday-cell">Fri</div>
+                  <div class="calendar-weekday-cell weekend">Sat</div>
+                  <div class="calendar-weekday-cell weekend">Sun</div>
+                </div>
+
+                <!-- Dynamic Days Grid -->
+                <div class="calendar-days-grid" id="calendar-days-grid">
+                  <!-- Populated dynamically via JavaScript -->
+                </div>
+
+                <!-- Selected Date Info Bar -->
+                <div class="calendar-selected-summary-bar">
+                  <div class="calendar-selected-label">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span id="calendar-selected-date-text">{{ default_date_display|default:"Tuesday, 18 August 2026" }}</span>
+                  </div>
+                  <div class="calendar-hours-note">
+                    <i class="fa-regular fa-clock"></i> Mon–Fri, 9:00 AM – 6:00 PM
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Choose Your Time Slot -->
+            <div class="consult-flow-block">
+              <div class="consult-flow-step-heading">
+                <span class="consult-step-number">3</span>
+                <span>Choose Your Time Slot</span>
+              </div>
+
+              <div class="consult-time-slots-container">
+                <div class="time-slots-header">
+                  <div class="time-slots-title">
+                    <i class="fa-solid fa-stopwatch" style="color: var(--c-gold); margin-right: 4px;"></i>
+                    Available Time Slots (15-min gap calculated)
+                  </div>
+                  <div class="time-slots-meta" id="slots-count-meta">Calculating slots...</div>
+                </div>
+
+                <div class="time-slots-grid" id="time-slots-grid">
+                  <!-- Dynamic time slots loaded from server API -->
+                  <div class="time-slots-empty-state">
+                    <i class="fa-solid fa-spinner fa-spin" style="margin-right: 6px;"></i> Loading available appointment
+                    times...
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- --------------------------------------------------------------
+               RIGHT COLUMN: CLIENT INFORMATION FORM & LIVE SUMMARY
+               -------------------------------------------------------------- -->
+          <div class="consult-hub-right">
+            <h3 class="consult-form-heading">Client Briefing &amp; Details</h3>
+            <p class="consult-form-subtext">
+              Please enter your details to coordinate your private advisory session.
+            </p>
+
+            <form id="consultation-booking-form" method="POST" action="{% url 'login:consultation' %}" onsubmit="handleBookingSubmit(event)">
+              {% csrf_token %}
+              <input type="hidden" name="form_action" value="book">
+              <input type="hidden" name="duration_minutes" id="id_duration_minutes"
+                value="{{ default_duration|default:45 }}">
+              <input type="hidden" name="consultation_date" id="id_consultation_date" value="{{ default_date }}">
+              <input type="hidden" name="consultation_time" id="id_consultation_time" value="">
+
+              <!-- Group 1: Personal Contact -->
+              <div class="consult-form-group">
+                <label class="consult-form-label" for="id_client_name">Full Name *</label>
+                <div class="consult-input-wrapper">
+                  <i class="fa-regular fa-user consult-input-icon"></i>
+                  <input type="text" name="client_name" id="id_client_name" class="consult-form-input"
+                    placeholder="e.g. Eleanor Vance" required
+                    value="{% if user.is_authenticated %}{{ user.get_full_name|default:user.username }}{% endif %}">
+                </div>
+              </div>
+
+              <div class="consult-form-grid-2">
+                <div class="consult-form-group">
+                  <label class="consult-form-label" for="id_email">Email Address *</label>
+                  <div class="consult-input-wrapper">
+                    <i class="fa-regular fa-envelope consult-input-icon"></i>
+                    <input type="email" name="email" id="id_email" class="consult-form-input"
+                      placeholder="name@company.com" required
+                      value="{% if user.is_authenticated %}{{ user.email }}{% endif %}">
+                  </div>
+                </div>
+
+                <div class="consult-form-group">
+                  <label class="consult-form-label" for="id_phone">Phone Number *</label>
+                  <div class="consult-input-wrapper">
+                    <i class="fa-solid fa-phone consult-input-icon"></i>
+                    <input type="tel" name="phone" id="id_phone" class="consult-form-input"
+                      placeholder="+1 (555) 234-5678" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 2: Service & Communication -->
+              <div class="consult-form-grid-2">
+                <div class="consult-form-group">
+                  <label class="consult-form-label" for="id_service">Consultation Service *</label>
+                  <div class="consult-input-wrapper">
+                    <i class="fa-solid fa-briefcase consult-input-icon"></i>
+                    <select name="service" id="id_service" class="consult-form-select" onchange="updateSummaryCard()">
+                      {% for val, label in service_choices %}
+                      <option value="{{ val }}" {% if val == 'investment' %}selected{% endif %}>{{ label }}</option>
+                      {% endfor %}
+
+
+                    </select>
+                  </div>
+                </div>
+
+                <div class="consult-form-group">
+                  <label class="consult-form-label" for="id_preferred_comm">Communication Mode</label>
+                  <div class="consult-input-wrapper">
+                    <i class="fa-solid fa-video consult-input-icon"></i>
+                    <select name="preferred_comm" id="id_preferred_comm" class="consult-form-select"
+                      onchange="updateSummaryCard()">
+                      {% for val, label in comm_choices %}
+                      <option value="{{ val }}">{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 3: Subject & Requirements -->
+              <div class="consult-form-group">
+                <label class="consult-form-label" for="id_subject">Subject / Purpose of Consultation</label>
+                <div class="consult-input-wrapper">
+                  <i class="fa-solid fa-heading consult-input-icon"></i>
+                  <input type="text" name="subject" id="id_subject" class="consult-form-input"
+                    placeholder="e.g. Multi-Asset Portfolio Rebalancing &amp; Trust Structuring">
+                </div>
+              </div>
+
+              <div class="consult-form-group">
+                <label class="consult-form-label" for="id_message">Requirements / Specific Objectives</label>
+                <textarea name="message" id="id_message" class="consult-form-textarea"
+                  placeholder="Please describe your key financial priorities, portfolio scope, or specific topics for the advisory team..."></textarea>
+              </div>
+
+              <!-- Live Dynamic Booking Summary Card -->
+              <div class="consult-summary-card">
+                <div class="consult-summary-header">
+                  <div class="consult-summary-title">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    YOUR CONSULTATION SUMMARY
+                  </div>
+                  <div class="consult-summary-badge">LIVE SELECTION</div>
+                </div>
+
+                <div class="consult-summary-grid">
+                  <div>
+                    <div class="consult-summary-item-label">Advisory Service</div>
+                    <div class="consult-summary-item-value" id="summary-service-text">Investment &amp; Multi-Asset
+                      Strategy</div>
+                  </div>
+                  <div>
+                    <div class="consult-summary-item-label">Consultation Duration</div>
+                    <div class="consult-summary-item-value" id="summary-duration-text">45 Minutes</div>
+                  </div>
+                  <div>
+                    <div class="consult-summary-item-label">Consultation Fee</div>
+                    <div class="consult-summary-item-value" id="summary-fee-text"
+                      style="color: var(--color-gold, #D4AF37); font-weight: 700;">₹5,000 INR</div>
+                  </div>
+                  <div>
+                    <div class="consult-summary-item-label">Selected Date &amp; Time</div>
+                    <div class="consult-summary-item-value" id="summary-datetime-text">{{ default_date_display|default:"Tuesday, 18 August 2026" }} at 10:00 AM</div>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submission CTA -->
+              <button type="submit" class="btn-confirm-consultation" id="btn-submit-booking">
+                <i class="fa-solid fa-lock"></i>
+                <span>Confirm Consultation</span>
+              </button>
+
+              <div class="consult-privacy-reassurance">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Your information is kept private and governed by our <a href="{% url 'login:privacy_policy' %}"
+                    style="color: var(--color-gold, #D4AF37); text-decoration: underline;">Privacy Policy</a> and <a
+                    href="{% url 'login:terms_conditions' %}"
+                    style="color: var(--color-gold, #D4AF37); text-decoration: underline;">Terms</a>.</span>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 05: SUCCESS / CONFIRMATION EXPERIENCE
+         ==================================================================== -->
+    <section class="consult-confirmed-section" id="confirmation-card" {% if not confirmed_key and not tracked_booking %}style="display: none;"{% endif %}>
+
+      <div class="consult-confirmation-card">
+        <div class="confirmation-gold-halo">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <h2 class="confirmation-title">CONSULTATION REQUEST CONFIRMED</h2>
+        <p class="confirmation-desc">
+          Your consultation request has been successfully received and allocated to our senior advisory desk. Please
+          retain your unique 10-character reference key below to track your consultation status in real time.
+        </p>
+
+        <!-- Unique 10-Character Reference Key Box -->
+        <div class="reference-key-display-box">
+          <div class="ref-key-label">Your Unique Booking Reference Key</div>
+          <div class="ref-key-code-row">
+            <div class="ref-key-code" id="display-reference-key">{% firstof confirmed_key tracked_booking.reference_key "GT7K4M9P2X" %}</div>
+            <button type="button" class="btn-copy-ref-key" onclick="copyReferenceKey()">
+              <i class="fa-regular fa-copy"></i>
+              <span id="copy-btn-label">Copy Key</span>
+            </button>
+          </div>
+          <div class="ref-key-instructions">
+            Keep this 10-character key to check appointment status, advisor assignment, or reschedule notifications.
+          </div>
+        </div>
+
+        <div class="confirmation-details-summary" id="confirmation-details-box">
+          <h4>Consultation Schedule Overview</h4>
+          <div class="confirmation-summary-grid">
+            <div>
+              <div class="consult-summary-item-label">Client Name</div>
+              <div class="consult-summary-item-value" id="conf-client-name">{% firstof tracked_booking.client_name "Eleanor Vance" %}</div>
+            </div>
+            <div>
+              <div class="consult-summary-item-label">Advisory Service</div>
+              <div class="consult-summary-item-value" id="conf-service">{% firstof tracked_booking.get_service_display "Investment & Multi-Asset Portfolio Strategy" %}</div>
+            </div>
+            <div>
+              <div class="consult-summary-item-label">Consultation Schedule</div>
+              <div class="consult-summary-item-value" id="conf-datetime">
+                {% if tracked_booking %}
+                {{ tracked_booking.consultation_date|date:"l, d F Y" }} at {{ tracked_booking.consultation_time|time:"h:i A" }}
+                {% else %}
+                Tuesday, 18 August 2026 at 10:00 AM
+                {% endif %}
+              </div>
+            </div>
+            <div>
+              <div class="consult-summary-item-label">Session Duration</div>
+              <div class="consult-summary-item-value" id="conf-duration">{% firstof tracked_booking.duration_label "45 Minutes (Strategic Consultation)" %}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="confirmation-actions-row" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="#track-section" class="btn-consult-primary" id="btn-track-confirmed-booking"
+            data-ref-key="{% firstof confirmed_key tracked_booking.reference_key '' %}"
+            onclick="lookupSpecificKey(this.getAttribute('data-ref-key')); return false;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Track Consultation Status Now</span>
+          </a>
+          <button type="button" class="btn-consult-secondary" onclick="openReceiptModal()">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>View &amp; Print Confirmation Statement</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 06: TRACK YOUR CONSULTATION & STATUS TIMELINE
+         ==================================================================== -->
+    <section class="consult-tracking-section" id="track-section" aria-label="Consultation Lifecycle Monitoring & Status Tracking">
+      <div class="tracking-search-card">
+
+        <div class="tracking-header">
+          <div class="consult-eyebrow-pill" style="margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-fingerprint" aria-hidden="true"></i>
+            YOUR WEALTH ARCHITECTURE &bull; LIFECYCLE MONITORING
+          </div>
+          <h2 class="tracking-title">Track Your Consultation Status</h2>
+          <p class="tracking-subtitle" id="track-subtitle-desc">
+            Enter your unique 10-character reference key to monitor fiduciary review, schedule confirmation, payment
+            clearance, or advisor rescheduling updates in real time.
+          </p>
+        </div>
+
+        <form class="tracking-input-form" id="tracking-lookup-form" onsubmit="handleTrackingSearch(event)">
+          <label for="track-reference-key-input" class="sr-only">10-Character Consultation Reference Key</label>
+          <input type="text" id="track-reference-key-input" class="track-input-field" placeholder="e.g. GT7K4M9P2X"
+            maxlength="10" autocomplete="off" value="{{ lookup_key|default:confirmed_key|default:'' }}" required
+            aria-required="true" aria-label="Enter your 10-character consultation reference key" aria-describedby="track-subtitle-desc">
+          <button type="submit" class="btn-track-submit" id="btn-track-submit" aria-label="Search and Track Consultation Status">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <span>Track Status</span>
+          </button>
+        </form>
+
+        <!-- Tracking Result Display Container with Live ARIA Announcement -->
+        <div id="tracking-result-container" role="region" aria-live="polite" aria-label="Tracking Status Results" {% if not tracked_booking %}style="display: none;" {% endif %}>
+          {% if tracked_booking %}
+          <div class="tracking-result-box">
+            <div class="tracking-result-header">
+              <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
+                <span class="tracking-ref-badge">{{ tracked_booking.reference_key }}</span>
+                <div>
+                  <strong style="font-size: 1.05rem; color: var(--c-navy);">{{ tracked_booking.client_name }}</strong>
+                  <div style="font-size: 0.8rem; color: var(--c-subtext);">{{ tracked_booking.get_service_display }}
+                  </div>
+                </div>
+              </div>
+              <span class="tracking-status-pill {{ tracked_booking.status_badge_class }}">
+                {{ tracked_booking.get_status_display }}
+              </span>
+            </div>
+
+            <!-- Rescheduled Visual Schedule Diff -->
+            {% if tracked_booking.status == 'rescheduled' or tracked_booking.previous_date %}
+            <div class="rescheduled-diff-banner">
+              <div class="rescheduled-diff-title">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>CONSULTATION SCHEDULE REVISION NOTIFICATION</span>
+              </div>
+              <div class="rescheduled-diff-grid">
+                <div class="diff-schedule-box previous">
+                  <div class="diff-label">Previous Schedule</div>
+                  <div class="diff-time">
+                    {% if tracked_booking.previous_date %}
+                    {{ tracked_booking.previous_date|date:"l, d F Y" }} — {{ tracked_booking.previous_time|time:"h:i A" }}
+                    {% else %}
+                    Tuesday, 18 August — 10:00 AM
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="diff-schedule-box updated">
+                  <div class="diff-label">Updated Schedule</div>
+                  <div class="diff-time">
+                    {{ tracked_booking.consultation_date|date:"l, d F Y" }} — {{ tracked_booking.consultation_time|time:"h:i A" }}
+                  </div>
+                </div>
+              </div>
+              <div class="rescheduled-reason-note">
+                <strong>Advisory Desk Note:</strong> {{ tracked_booking.rescheduled_reason|default:"The schedule was updated by the advisory desk to allocate senior partner boardroom resources." }}
+              </div>
+            </div>
+            {% endif %}
+
+            <!-- Interactive Visual Timeline -->
+            <div class="timeline-stepper">
+              <div class="timeline-step-item completed">
+                <div class="timeline-node">1</div>
+                <div class="timeline-label">Request Submitted</div>
+                <div class="timeline-subtext">Received &amp; Queued</div>
+              </div>
+
+              <div
+                class="timeline-step-item {% if tracked_booking.status in 'under_review confirmed paid rescheduled completed' %}completed{% else %}active{% endif %}">
+                <div class="timeline-node">2</div>
+                <div class="timeline-label">Under Review</div>
+                <div class="timeline-subtext">Fiduciary Scope</div>
+              </div>
+
+              <div
+                class="timeline-step-item {% if tracked_booking.status in 'paid completed' %}completed{% elif tracked_booking.status in 'confirmed rescheduled' %}active{% else %}pending{% endif %}">
+                <div class="timeline-node">3</div>
+                <div class="timeline-label">Confirmed</div>
+                <div class="timeline-subtext">Advisor Allocated</div>
+              </div>
+
+              <div
+                class="timeline-step-item {% if tracked_booking.status == 'completed' or tracked_booking.payment_status in 'completed waived' %}completed{% elif tracked_booking.status == 'paid' %}active{% else %}pending{% endif %}">
+                <div class="timeline-node">4</div>
+                <div class="timeline-label">Payment Cleared</div>
+                <div class="timeline-subtext">Retainer Verified</div>
+              </div>
+
+              <div
+                class="timeline-step-item {% if tracked_booking.status == 'completed' %}completed{% else %}pending{% endif %}">
+                <div class="timeline-node">5</div>
+                <div class="timeline-label">Completed</div>
+                <div class="timeline-subtext">Briefing Delivered</div>
+              </div>
+            </div>
+
+            <!-- Booking Metadata Grid -->
+            <div class="confirmation-details-summary" style="margin-bottom: 0;">
+              <div class="confirmation-summary-grid">
+                <div>
+                  <div class="consult-summary-item-label">Consultation Date &amp; Time</div>
+                  <div class="consult-summary-item-value">{{ tracked_booking.consultation_date|date:"l, d F Y" }} at {{ tracked_booking.consultation_time|time:"h:i A" }}</div>
+                </div>
+                <div>
+                  <div class="consult-summary-item-label">Duration &amp; Channel</div>
+                  <div class="consult-summary-item-value">{{ tracked_booking.duration_label }} ({{ tracked_booking.get_preferred_comm_display }})</div>
+                </div>
+                <div>
+                  <div class="consult-summary-item-label">Client Email</div>
+                  <div class="consult-summary-item-value">{{ tracked_booking.email }}</div>
+                </div>
+                <div>
+                  <div class="consult-summary-item-label">Payment Status</div>
+                  <div class="consult-summary-item-value" style="color: #059669;">{{ tracked_booking.get_payment_status_display }}</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          {% endif %}
+        <!-- Merged Wealth Architecture Quick Action Footer -->
+        <div class="tracking-footer-action" style="margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--c-border, rgba(212, 175, 55, 0.2)); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div style="text-align: left;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: var(--c-navy, #0A0D14);">Ready to build your wealth architecture?</div>
+            <div style="font-size: 0.82rem; color: var(--c-subtext, #71717A);">Reserve a 1-on-1 private strategy session with our senior fiduciary advisors.</div>
+          </div>
+          <a href="#booking-hub" class="btn-consult-primary" style="padding: 0.75rem 1.65rem; font-size: 0.9rem;">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Book Advisory Session</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ====================================================================
+     EXECUTIVE CONSULTATION CONFIRMATION & BILLING RECEIPT MODAL
+     ==================================================================== -->
+<div class="receipt-modal-overlay" id="consultation-receipt-modal"
+  onclick="if(event.target === this) closeReceiptModal()">
+  <div class="receipt-modal-dialog">
+
+    <!-- Modal Control Toolbar -->
+    <div class="receipt-modal-toolbar">
+      <div class="receipt-toolbar-left">
+        <span class="receipt-doc-tag"><i class="fa-solid fa-shield-halved"></i> OFFICIAL FIDUCIARY RECORD</span>
+      </div>
+      <div class="receipt-toolbar-actions">
+        <button type="button" class="btn-receipt-action btn-receipt-copy" onclick="copyReceiptDetails()">
+          <i class="fa-regular fa-copy"></i>
+          <span id="copy-receipt-btn-label">Copy Summary</span>
+        </button>
+        <button type="button" class="btn-receipt-action btn-receipt-print" onclick="printReceiptDirectly()">
+          <i class="fa-solid fa-print"></i>
+          <span>Print Official Statement</span>
+        </button>
+        <button type="button" class="btn-receipt-close" onclick="closeReceiptModal()" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Official Printable Paper Slip Container -->
+    <div class="receipt-paper" id="consultation-printable-receipt">
+
+      <!-- Top Brand & Header Section -->
+      <div class="receipt-header">
+        <div class="receipt-brand-block">
+          <img src="{% static 'logo.png' %}" alt="Sabin Balan Finance Logo" class="receipt-firm-logo"
+            data-fallback="{% static 'navfooter/images/shield_emblem_nobg.png' %}"
+            onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');">
+          <div class="receipt-firm-info">
+            <h3 class="receipt-firm-title">SABIN BALAN FINANCE</h3>
+            <div class="receipt-firm-subtitle">Institutional Wealth Advisory &amp; Fiduciary Management</div>
+            <div class="receipt-firm-meta">Geneva &bull; London &bull; New York &bull; Fiduciary ID #SB-70492</div>
+          </div>
+        </div>
+
+        <div class="receipt-doc-meta">
+          <div class="receipt-meta-pill">CONSULTATION CONFIRMATION</div>
+          <div class="receipt-ref-code-title">REFERENCE KEY</div>
+          <div class="receipt-ref-code-val" id="rcpt-ref-key">{% firstof confirmed_key tracked_booking.reference_key "GT7K4M9P2X" %}</div>
+          <div class="receipt-issue-date">Issued: <span id="rcpt-issue-date">{% now "F j, Y" %}</span></div>
+        </div>
+      </div>
+
+      <div class="receipt-divider-gold"></div>
+
+      <!-- Status Banner -->
+      <div class="receipt-status-banner">
+        <div class="receipt-status-badge">
+          <span class="status-indicator-dot" id="rcpt-status-dot"></span>
+          <span id="rcpt-status-badge-text">STATUS: {% if tracked_booking %}{{ tracked_booking.get_status_display|upper }}{% else %}CONFIRMED &amp; ALLOCATED{% endif %}</span>
+        </div>
+        <div class="receipt-security-stamp">
+          <i class="fa-solid fa-shield-check"></i> VERIFIED FIDUCIARY RECORD
+        </div>
+      </div>
+
+      <!-- Two Column Overview (Client & Appointment) -->
+      <div class="receipt-info-grid">
+        <div class="receipt-info-card">
+          <div class="receipt-card-header"><i class="fa-solid fa-user-tie"></i> CLIENT CREDENTIALS</div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Client Name:</span>
+            <span class="receipt-info-value" id="rcpt-client-name">{% firstof tracked_booking.client_name "Eleanor Vance" %}</span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Contact Email:</span>
+            <span class="receipt-info-value" id="rcpt-client-email">{% firstof tracked_booking.email "client@advisory.guardiantreefp.com" %}</span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Contact Phone:</span>
+            <span class="receipt-info-value" id="rcpt-client-phone">{% firstof tracked_booking.phone "+91 98765 43210" %}</span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Account Privilege:</span>
+            <span class="receipt-info-value">Private Client / Institutional</span>
+          </div>
+        </div>
+
+        <div class="receipt-info-card">
+          <div class="receipt-card-header"><i class="fa-solid fa-calendar-check"></i> APPOINTMENT SCHEDULE</div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Date &amp; Time:</span>
+            <span class="receipt-info-value highlight" id="rcpt-datetime">
+              {% if tracked_booking %}
+              {{ tracked_booking.consultation_date|date:"l, d F Y" }} at {{ tracked_booking.consultation_time|time:"h:i A" }}
+              {% else %}
+              Tuesday, 18 August 2026 at 10:00 AM
+              {% endif %}
+            </span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Session Duration:</span>
+            <span class="receipt-info-value" id="rcpt-duration">{% firstof tracked_booking.duration_label "45 Minutes (Strategic Consultation)" %}</span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Meeting Channel:</span>
+            <span class="receipt-info-value" id="rcpt-channel">{% firstof tracked_booking.get_preferred_comm_display "Secure Video Conference" %}</span>
+          </div>
+          <div class="receipt-info-row">
+            <span class="receipt-info-label">Fiduciary Desk:</span>
+            <span class="receipt-info-value" id="rcpt-fiduciary-desk">{% firstof tracked_booking.fiduciary_desk "Senior Wealth Advisory Desk" %}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisory Scope & Service Mandate -->
+      <div class="receipt-mandate-card">
+        <div class="receipt-card-header"><i class="fa-solid fa-compass-drafting"></i> ADVISORY ENGAGEMENT MANDATE</div>
+        <div class="receipt-mandate-name" id="rcpt-service-name">{% firstof tracked_booking.get_service_display "Investment & Multi-Asset Portfolio Strategy" %}</div>
+        <p class="receipt-mandate-desc" id="rcpt-service-desc">
+          Discretionary capital cultivation, multi-generational balance sheet forensic audit, liability restructuring,
+          and non-correlated downside risk buffers.
+        </p>
+      </div>
+
+      <!-- Itemized Billing & Retainer Statement Table (Dynamic in ₹ INR) -->
+      <div class="receipt-billing-card">
+        <div class="receipt-card-header"><i class="fa-solid fa-receipt"></i> BILLING &amp; RETAINER SUMMARY (INR)</div>
+        <table class="receipt-table">
+          <thead>
+            <tr>
+              <th>Description / Fiduciary Service</th>
+              <th>Standard Fee</th>
+              <th>Discount / Waiver</th>
+              <th style="text-align: right;">Net Payable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong id="rcpt-table-service-title">Private Wealth Advisory Consultation</strong>
+                <div class="table-subtext" id="rcpt-table-service-sub">Fiduciary Review &amp; Strategic Portfolio
+                  Consultation (<span id="rcpt-table-duration">{% firstof tracked_booking.duration_label "45 Minutes" %}</span>)</div>
+              </td>
+              <td id="rcpt-fee-rate">{% if tracked_booking %}{{ tracked_booking.fee_amount_display }}{% else %}₹5,000.00{% endif %}</td>
+              <td id="rcpt-discount-amount" style="color: #059669;">{% if tracked_booking %}-{{ tracked_booking.discount_amount_display }}{% else %}-₹0.00{% endif %}</td>
+              <td style="text-align: right; font-weight: 700;" id="rcpt-net-total">{% if tracked_booking %}{{ tracked_booking.net_amount_display }}{% else %}₹5,000.00{% endif %}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" style="text-align: right; font-weight: 700;">TOTAL AMOUNT DUE / PAID:</td>
+              <td style="text-align: right; font-weight: 800; font-size: 1.15rem; color: #059669;"
+                id="rcpt-grand-total">
+                {% if tracked_booking %}{{ tracked_booking.net_amount_display }} INR{% else %}₹5,000.00 INR{% endif %}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="receipt-payment-meta">
+          <span><strong>Payment Status:</strong> <span style="font-weight: 700;" id="rcpt-payment-status">{% firstof tracked_booking.get_payment_status_display "UNPAID / PAYMENT DUE" %}</span></span>
+          <span><strong>Invoice / Tax Ref:</strong> <span id="rcpt-invoice-id">{% firstof tracked_booking.invoice_number "INV-2026-GT7K4M" %}</span></span>
+        </div>
+      </div>
+
+      <!-- Pre-Session Guidance Checklist -->
+      <div class="receipt-instructions-box">
+        <div class="instructions-title"><i class="fa-solid fa-list-check"></i> Pre-Consultation Preparation Checklist:
+        </div>
+        <ul class="instructions-list" id="rcpt-instructions-list">
+          <li><strong>Encrypted Meeting Room:</strong> Your dedicated secure conference link will be dispatched to your
+            email 30 minutes prior to session time.</li>
+          <li><strong>Document Readiness:</strong> Please have your current asset allocation summary, tax returns, or
+            enterprise balance sheet available for reference.</li>
+          <li><strong>Rescheduling Policy:</strong> Kindly provide a minimum of 24 hours notice for calendar adjustments
+            using your Reference Key above.</li>
+        </ul>
+      </div>
+
+      <!-- Official Sign-off & Seal Footer -->
+      <div class="receipt-footer">
+        <div class="receipt-seal-block">
+          <div class="fiduciary-seal-emblem">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div class="fiduciary-seal-text">
+            <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b;">OFFICIALLY VERIFIED &amp; REGISTERED
+            </div>
+            <div style="font-size: 0.72rem; color: #64748b;">Sabin Balan Finance Global Fiduciary Governance Desk</div>
+          </div>
+        </div>
+
+        <div class="receipt-signature-block">
+          <div class="signature-line-mark">Sabin Balan</div>
+          <div class="signature-caption">Managing Partner &amp; Chief Fiduciary Officer</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================================
+     REQUIRED FIELDS VALIDATION ALERT MODAL POPUP
+     ==================================================================== -->
+<div class="receipt-modal-overlay" id="consultation-validation-modal" style="display: none; z-index: 999999;" onclick="if(event.target === this) closeValidationModal()">
+  <div class="receipt-modal-dialog validation-modal-dialog" style="max-width: 500px; padding: 2.25rem 2rem; border-radius: 18px; background: var(--color-surface, #ffffff); border: 1.5px solid var(--color-gold, #D4AF37); box-shadow: 0 30px 70px rgba(0,0,0,0.45); text-align: center;">
+    
+    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(220, 38, 38, 0.1); border: 2px solid #EF4444; color: #EF4444; display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1rem;">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    
+    <h3 style="margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--color-primary, #0F172A);">Required Information Missing</h3>
+    <p style="margin: 0.5rem 0 1.25rem; font-size: 0.88rem; color: var(--color-subtext, #64748B); line-height: 1.5;">Please complete the required details below to confirm your advisory session:</p>
+    
+    <div id="validation-errors-list" style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem; color: var(--color-primary, #0F172A);">
+      <!-- Populated dynamically via JavaScript -->
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <button type="button" class="btn-confirm-consultation" onclick="closeValidationModal()" style="width: 100%; max-width: 240px; margin: 0; padding: 0.75rem 1.5rem;">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span>Complete Form</span>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  window.DEFAULT_DATE = "{{ default_date }}";
+  window.DEFAULT_DURATION = parseInt("{{ default_duration|default:45 }}") || 45;
+  window.SLOTS_API_URL = "{% url 'login:consultation_slots' %}";
+  window.TRACK_API_URL = "{% url 'login:consultation_track_api' %}";
+</script>
+
+<script src="{% static 'login/js/consultation.js' %}?v=1.2"></script>
+{% endblock %}

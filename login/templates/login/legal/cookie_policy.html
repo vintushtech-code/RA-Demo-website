@@ -1,0 +1,173 @@
+{% extends 'login/legal/base_legal.html' %}
+{% load static %}
+
+{% block title %}Cookie Policy &amp; Tracking Preferences | GuardianTree FP{% endblock %}
+
+{% block doc_title %}
+  Cookie Policy &amp;<br>
+  <span class="highlight-text">Tracking Preferences.</span>
+{% endblock %}
+
+{% block doc_subtitle %}
+  Detailed breakdown of how GuardianTree FP utilizes essential cookies, cryptographic session identifiers, and local preference storage to ensure seamless, secure financial advisory operations.
+{% endblock %}
+
+{% block table_of_contents %}
+  <a href="#section-1" class="clean-toc-link">1. What Are Cookies &amp; Storage</a>
+  <a href="#section-2" class="clean-toc-link">2. Zero Ad Tracking Philosophy</a>
+  <a href="#section-3" class="clean-toc-link">3. Categories of Cookies Used</a>
+  <a href="#section-4" class="clean-toc-link">4. Technical Cookie Inventory</a>
+  <a href="#section-5" class="clean-toc-link">5. Local Storage &amp; 2FA Sessions</a>
+  <a href="#section-6" class="clean-toc-link">6. How to Control &amp; Revoke</a>
+  <a href="#section-7" class="clean-toc-link">7. Third-Party Font CDNs</a>
+  <a href="#section-8" class="clean-toc-link">8. Policy Revisions &amp; Inquiries</a>
+{% endblock %}
+
+{% block doc_content %}
+  
+  <!-- Section 1 -->
+  <section class="doc-section-block" id="section-1">
+    <h2 class="doc-section-title">
+      <span class="section-number">01</span> What Are Cookies &amp; Local Storage?
+    </h2>
+    <p>
+      Cookies are small alphanumeric text files stored securely on your browser or device when you interact with digital platforms. Alongside HTTP cookies, modern web technologies utilize browser LocalStorage and SessionStorage to maintain stateful navigation, secure authentication sessions, and user visual preferences.
+    </p>
+    <p>
+      This Cookie Policy describes the types of cookies and tracking mechanisms employed by <strong>GuardianTree FP</strong> and <strong>Sabin Balan Finance</strong>, why we use them, and how you can exercise full sovereignty over your preferences.
+    </p>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="doc-section-block" id="section-2">
+    <h2 class="doc-section-title">
+      <span class="section-number">02</span> Fiduciary Cookie Philosophy: Zero Behavioral Advertising
+    </h2>
+    <p>
+      Unlike mass-consumer web portals, our firm does not employ third-party advertising networks, invasive retargeting pixels, or cross-site behavioral tracking scripts. Every cookie deployed across our portal exists solely to deliver high-performance security, preserve cryptographic login sessions, maintain user UI preferences (such as dark/light themes), and support consultation tracking workflows.
+    </p>
+    <div class="legal-callout-box">
+      <div class="callout-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+      <div class="callout-content">
+        <h4>No Cross-Site Ad Tracking</h4>
+        <p>GuardianTree FP never allows third-party ad brokers to profile your browsing behavior or correlate your financial interests with external marketing registries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="doc-section-block" id="section-3">
+    <h2 class="doc-section-title">
+      <span class="section-number">03</span> Categories of Cookies We Deploy
+    </h2>
+    <p>
+      We organize all active digital identifiers into three strict functional tiers:
+    </p>
+    <ul>
+      <li><strong>1. Strictly Necessary &amp; Security Cookies:</strong> Essential for platform operation, CSRF (Cross-Site Request Forgery) protection, session authentication, and rate-limiting enforcement. These cannot be disabled without breaking basic site functionality.</li>
+      <li><strong>2. Functional &amp; Preference Cookies:</strong> Preserve your bespoke user experience, including high-contrast dark/light mode toggle states (<code>bf-theme</code>) and consultation form drafts.</li>
+      <li><strong>3. Privacy-Preserving Performance Telemetry:</strong> Aggregated, anonymized latency measurements and server uptime diagnostics to maintain 99.99% portal availability.</li>
+    </ul>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="doc-section-block" id="section-4">
+    <h2 class="doc-section-title">
+      <span class="section-number">04</span> Technical Cookie Inventory &amp; Specifications
+    </h2>
+    <p>
+      Below is an exhaustive inventory of the active cookies and storage keys utilized across our domain:
+    </p>
+    <div class="legal-table-wrapper">
+      <table class="legal-data-table">
+        <thead>
+          <tr>
+            <th>Cookie Identifier</th>
+            <th>Type / Provider</th>
+            <th>Lifespan</th>
+            <th>Functional Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>csrftoken</code></td>
+            <td>Strictly Necessary / First-Party</td>
+            <td>1 Year</td>
+            <td>Cryptographic token defending against Cross-Site Request Forgery (CSRF) on forms.</td>
+          </tr>
+          <tr>
+            <td><code>sessionid</code></td>
+            <td>Strictly Necessary / First-Party</td>
+            <td>Session (or 14 Days)</td>
+            <td>Maintains authenticated user session state with HttpOnly and Secure flags.</td>
+          </tr>
+          <tr>
+            <td><code>bf-theme</code></td>
+            <td>Preference / LocalStorage</td>
+            <td>Persistent</td>
+            <td>Stores user visual interface selection (Executive Dark Mode vs. Light Mode).</td>
+          </tr>
+          <tr>
+            <td><code>_gt_2fa_token</code></td>
+            <td>Security / Session</td>
+            <td>15 Minutes</td>
+            <td>Time-bound verification token for Multi-Factor Admin authentication challenges.</td>
+          </tr>
+          <tr>
+            <td><code>_gt_slot_cache</code></td>
+            <td>Functional / SessionStorage</td>
+            <td>Session</td>
+            <td>Caches real-time consultation appointment availability during booking flow.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="doc-section-block" id="section-5">
+    <h2 class="doc-section-title">
+      <span class="section-number">05</span> Local Storage &amp; 2FA Session Hygiene
+    </h2>
+    <p>
+      For enhanced security, all sensitive authentication tokens and 2FA challenge responses are kept exclusively in memory or temporary HttpOnly session storage with <code>SameSite=Strict</code> configurations. We never persist unencrypted credentials or biometric markers in client-side storage.
+    </p>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="doc-section-block" id="section-6">
+    <h2 class="doc-section-title">
+      <span class="section-number">06</span> How to Control &amp; Revoke Cookie Preferences
+    </h2>
+    <p>
+      You can manage, restrict, or purge cookies at any time through your browser preferences. Note that disabling strictly necessary cookies (such as <code>csrftoken</code> and <code>sessionid</code>) will prevent secure login and form submission.
+    </p>
+    <ul>
+      <li><strong>Google Chrome:</strong> Settings &rarr; Privacy and Security &rarr; Third-party cookies &rarr; Manage site data.</li>
+      <li><strong>Mozilla Firefox:</strong> Settings &rarr; Privacy &amp; Security &rarr; Enhanced Tracking Protection &amp; Cookies.</li>
+      <li><strong>Apple Safari:</strong> Preferences &rarr; Privacy &rarr; Manage Website Data &amp; Block all cookies.</li>
+      <li><strong>Microsoft Edge:</strong> Settings &rarr; Cookies and site permissions &rarr; Manage and delete cookies.</li>
+    </ul>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="doc-section-block" id="section-7">
+    <h2 class="doc-section-title">
+      <span class="section-number">07</span> Third-Party Fonts &amp; Static Assets
+    </h2>
+    <p>
+      Our portal utilizes Google Fonts (Plus Jakarta Sans &amp; Inter) and Font Awesome icon libraries to deliver an executive typography experience. These assets are fetched via secure CDN channels with zero cross-site advertising correlation.
+    </p>
+  </section>
+
+  <!-- Section 8 -->
+  <section class="doc-section-block" id="section-8">
+    <h2 class="doc-section-title">
+      <span class="section-number">08</span> Policy Revisions &amp; Compliance Inquiries
+    </h2>
+    <p>
+      We review our digital tracking architecture quarterly to ensure ongoing alignment with evolving ePrivacy Directives, GDPR, and Indian DPDP Act standards. For questions regarding our cookie practices, please contact our technical compliance desk at <a href="mailto:compliance@guardiantreefp.com" style="color: var(--color-gold); font-weight: 700;">compliance@guardiantreefp.com</a>.
+    </p>
+  </section>
+
+{% endblock %}

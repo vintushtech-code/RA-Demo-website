@@ -1,0 +1,35 @@
+# ==============================================================================
+# SABIN BALAN FINANCE (GUARDIANTREE FP) — SYSTEMD GUNICORN SERVICE
+# Location: /etc/systemd/system/sabin_finance.service
+# Management: sudo systemctl start|stop|restart|status sabin_finance
+# ==============================================================================
+
+[Unit]
+Description=Sabin Balan Finance — Production Gunicorn Application Daemon
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/sabin_finance
+EnvironmentFile=/var/www/sabin_finance/.env
+ExecStart=/var/www/sabin_finance/venv/bin/gunicorn \
+          --access-logfile /var/log/sabin_finance/access.log \
+          --error-logfile /var/log/sabin_finance/error.log \
+          --workers 3 \
+          --threads 2 \
+          --worker-class gthread \
+          --timeout 120 \
+          --keep-alive 5 \
+          --max-requests 1000 \
+          --max-requests-jitter 50 \
+          --bind unix:/var/www/sabin_finance/gunicorn.sock \
+          sabin_balan_finance_project.wsgi:application
+
+Restart=always
+RestartSec=5s
+KillMode=mixed
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

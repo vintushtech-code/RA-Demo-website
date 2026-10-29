@@ -1,0 +1,1120 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}GuardianTree FP — Wealth & Institutional Advisory{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/home.css' %}?v=3.9">
+<link rel="stylesheet" href="{% static 'login/css/consultation.css' %}?v=1.3">
+{% endblock %}
+
+{% block content %}
+<!-- 1. EXECUTIVE HERO BANNER WITH BACKGROUND VIDEO -->
+<section class="hero-banner">
+  <video class="hero-video-bg" autoplay loop muted playsinline poster="{% static 'home_hero.png' %}">
+    <source src="{% static 'hero.mp4' %}" type="video/mp4">
+  </video>
+
+  <div class="hero-content-wrapper">
+    <!-- Left Aligned Hero Structure (Matching Attached Image) -->
+    <div class="hero-left-section">
+      <div class="hero-pill-badge">
+        <span>✨ GuardianTree FP — Structured Wealth Advisory</span>
+      </div>
+
+      <h1 class="hero-image-styled-title">
+        Register<br>
+        your financial<br>
+        <span class="highlight-text">portfolio now!</span>
+      </h1>
+
+      <p class="hero-image-styled-subtitle">
+        With GuardianTree FP, we specialize in helping salaried professionals, entrepreneurs, and families secure their
+        future through structured financial planning, wealth management, and retirement solutions.
+      </p>
+
+      <form class="hero-pill-bar" action="#contact-section" method="get">
+        <div class="pill-left-content">
+          <span class="pill-icon">💼</span>
+          <span class="pill-store-name">GuardianTree FP</span>
+          <span class="pill-divider">|</span>
+          <input type="text" name="message" class="pill-input" placeholder="Enter your financial goal or query"
+            required>
+        </div>
+        <button type="submit" class="pill-submit-btn" aria-label="Submit query">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Live Financial Market Metrics Ticker -->
+    <div class="metrics-ticker-wrapper">
+      <div class="metric-item">
+        <div class="metric-value">₹15,000+ Cr</div>
+        <div class="metric-label">Assets Under Advisory</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">99.4%</div>
+        <div class="metric-label">Client Retention</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">25+ Yrs</div>
+        <div class="metric-label">Advisory Heritage</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-value">ISO 27001</div>
+        <div class="metric-label">Institutional Security</div>
+      </div>
+    </div>
+
+    <!-- Authenticated Member Command Bar -->
+    {% if user.is_authenticated %}
+    <div class="member-banner">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div
+          style="width: 46px; height: 46px; border-radius: 50%; background: var(--color-gold); color: #0A0D14; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem;">
+          {{ user.get_initials }}
+        </div>
+        <div>
+          <div style="font-weight: 700; font-size: 1.05rem; color: var(--color-primary);">
+            Welcome Back, {{ user.get_display_name }}
+          </div>
+          <div style="font-size: 0.85rem; color: var(--color-subtext);">
+            Client Account #{{ user.id|stringformat:"05d" }} &bull; Provider: {{ user.auth_provider|title }}
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="btn btn-secondary" onclick="document.getElementById('bio-modal').style.display='flex'"
+          style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+          Edit Profile Bio
+        </button>
+        <form method="post" action="{% url 'login:logout' %}" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-gold" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+            Sign Out
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- Removed Trust Signals Section completely -->
+<!-- 1.5 EXECUTIVE SHOWCASE SECTION (JUST AFTER HERO) -->
+<div class="executive-showcase-wrapper">
+  <section class="executive-showcase-container">
+    <!-- Background Chevron Geometry Graphic (Full Unclipped Viewport) -->
+    <svg class="showcase-bg-lines" viewBox="-70 0 440 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50 250 L150 150 L-50 50" stroke="var(--color-gold, #D4AF37)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.65" />
+      <path d="M0 300 L200 200 L0 100" stroke="var(--color-gold, #D4AF37)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.45" />
+      <path d="M50 350 L250 250 L50 150" stroke="var(--color-gold, #D4AF37)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.25" />
+    </svg>
+
+    <div class="showcase-left-content">
+      <div class="section-tag">Strategic Wealth Partners</div>
+      <h2 class="showcase-title">Empowering Your Financial Future with <span class="highlight-text">Precision &
+          Trust</span></h2>
+      <p class="showcase-subtitle">
+        Combining institutional-grade market intelligence, zero-commission advisory, and customized wealth architectures
+        to compound your capital with total peace of mind.
+      </p>
+
+      <a href="#contact-section" class="showcase-cta-btn">
+        <span>Connect Now</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="showcase-image-wrapper">
+      <img class="showcase-main-img" src="{% static 'financial_advisors_team.png' %}" alt="GuardianTree FP Advisors"
+        loading="lazy" decoding="async">
+
+      <!-- Floating Gold Pill Badge 1: Financial Planning -->
+      <div class="floating-badge badge-financial-planning">
+        <div class="badge-icon-circle">₹</div>
+        <span class="badge-text-label">Financial Planning</span>
+      </div>
+
+      <!-- Floating Gold Pill Badge 2: Wealth Management -->
+      <div class="floating-badge badge-wealth-mgmt">
+        <div class="badge-icon-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+        <span class="badge-text-label">Wealth Management</span>
+      </div>
+
+      <!-- Floating Gold Pill Badge 3: Portfolio Growth -->
+      <div class="floating-badge badge-portfolio-growth">
+        <div class="badge-icon-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+        </div>
+        <span class="badge-text-label">Portfolio Growth</span>
+      </div>
+    </div>
+
+    {% if partners or media_mentions %}
+    <div
+      style="grid-column: 1 / -1; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(212, 175, 55, 0.15); width: 100%; position: relative; z-index: 10;">
+      <div
+        style="text-align: center; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-gold, #D4AF37); margin-bottom: 1rem;">
+        Institutional Partners &amp; Media Mentions
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1rem 1.75rem;">
+        {% for p in partners %}
+        <div
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.1rem; background: rgba(10, 20, 15, 0.6); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+          {% if p.get_logo_url %}
+          <img src="{{ p.get_logo_url }}" alt="{{ p.name }}" style="height: 22px; width: auto; object-fit: contain;">
+          {% else %}
+          <span style="font-size: 0.84rem; font-weight: 700; color: #E2E8F0;">🏛️ {{ p.name }}</span>
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% for m in media_mentions %}
+        <a href="{{ m.link|default:'#' }}" {% if m.link %}target="_blank" rel="noopener noreferrer" {% endif %}
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.1rem; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 30px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+          {% if m.get_logo_url %}
+          <img src="{{ m.get_logo_url }}" alt="{{ m.name }}" style="height: 22px; width: auto; object-fit: contain;">
+          {% else %}
+          <span style="font-size: 0.84rem; font-weight: 700; color: #F5D77F;">📰 {{ m.name }}</span>
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+</div>
+
+<!-- SECTION: CONNECT WITH AN EXECUTIVE ADVISOR (LEFT IMAGE, RIGHT TEXT — NO BG) -->
+<section class="executive-cta-section" id="connect-advisor-cta">
+  <div class="section-container">
+    <div class="advisor-cta-grid-layout">
+      <!-- Left Column: High-Resolution Boardroom Advisory Image -->
+      <div class="advisor-cta-image-col">
+        <div class="advisor-cta-img-frame">
+          <img src="{% static 'wealth_advisors_boardroom.png' %}" alt="GuardianTree FP Executive Advisory Board"
+            class="advisor-cta-img" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <!-- Right Column: Strategic Advisory Text & Pillars -->
+      <div class="advisor-cta-text-col">
+        <div class="section-tag"
+          style="background: rgba(212, 175, 55, 0.12); color: #B45309; border: 1px solid rgba(212, 175, 55, 0.35); align-self: flex-start;">
+          ✨ Fiduciary Counsel &amp; Wealth Architecture
+        </div>
+        <h2 class="advisor-cta-title">
+          Connect with an <span class="highlight-text">Executive Advisor</span>
+        </h2>
+        <p class="advisor-cta-subtitle">
+          Experience conflict-free fiduciary advisory built for family offices, entrepreneurs, and high-net-worth
+          professionals. Sitting 100% on your side of the table with zero product commissions.
+        </p>
+
+        <div class="advisor-pillars-list">
+          <div class="advisor-pillar-item">
+            <div class="pillar-icon">🏛️</div>
+            <div>
+              <h4>Fee-Only Fiduciary</h4>
+              <p>100% transparent fee structure. No third-party sales commissions or distributor kickbacks.</p>
+            </div>
+          </div>
+          <div class="advisor-pillar-item">
+            <div class="pillar-icon">🔒</div>
+            <div>
+              <h4>Non-Discretionary Security</h4>
+              <p>Your money stays in your existing institutional accounts. We never assume custody or discretionary
+                trading.</p>
+            </div>
+          </div>
+          <div class="advisor-pillar-item">
+            <div class="pillar-icon">📊</div>
+            <div>
+              <h4>Second Opinion Analysis</h4>
+              <p>Complimentary 360-degree review of your current portfolio, asset allocation, and hidden fees.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="advisor-cta-buttons">
+          <a href="{% url 'login:consultation' %}" class="btn-advisor-primary">
+            <span>Schedule a Private Consultation</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="{% url 'contactform:contact' %}" class="btn-advisor-secondary">
+            <span>Advisory Desk Direct Inquiry</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- 4.5 CLIENT TESTIMONIALS BRIEF PREVIEW SECTION -->
+<section id="home-testimonials-section" class="home-testimonials-wrapper">
+  <div class="testimonials-glow-backdrop"></div>
+  <!-- Background Constellation Network Geometry Graphic -->
+  <svg class="section-bg-lines bg-lines-right-top" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="360" cy="120" r="180" stroke="var(--color-gold, #D4AF37)" stroke-width="14" stroke-dasharray="20 12"
+      fill="none" opacity="0.55" />
+    <circle cx="360" cy="120" r="110" stroke="var(--color-gold, #D4AF37)" stroke-width="10" stroke-dasharray="14 8"
+      fill="none" opacity="0.4" />
+    <circle cx="360" cy="120" r="50" stroke="var(--color-gold, #D4AF37)" stroke-width="6" fill="none" opacity="0.3" />
+    <line x1="180" y1="120" x2="540" y2="120" stroke="var(--color-gold, #D4AF37)" stroke-width="4" opacity="0.3" />
+    <line x1="360" y1="-60" x2="360" y2="300" stroke="var(--color-gold, #D4AF37)" stroke-width="4" opacity="0.3" />
+  </svg>
+  <div class="section-container" style="padding-top: 0; padding-bottom: 0;">
+
+    <!-- Section Header with Header Action Button -->
+    <div class="home-testimonials-header-row">
+      <div class="section-header" style="text-align: left; margin: 0 0 0 0; max-width: 680px;">
+        <div class="section-tag">✨ Client Trust &amp; Verified Reviews</div>
+        <h2 class="section-title">Empowering Wealth Across <span class="highlight-text">Generations</span></h2>
+        <p class="section-subtitle">
+          Real stories from corporate executives, tech founders, and families who rely on our zero-commission fiduciary
+          advisory to compound and preserve capital.
+        </p>
+      </div>
+
+      <div class="home-testimonials-header-action">
+        <a href="{% url 'login:testimonials' %}" class="btn-testimonials-view-all">
+          <span>View All Reviews</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Testimonials Preview Grid (2-3 Cards) -->
+    <div class="home-testimonials-grid">
+      {% for t in testimonials %}
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span class="rating-num">{{ t.rating|default:"5.0" }}</span>
+        </div>
+
+        <p class="testimonial-quote">
+          "{{ t.quote|truncatewords:30 }}"
+        </p>
+
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            {% if t.get_avatar_url %}
+            <img src="{{ t.get_avatar_url }}" alt="{{ t.name }}" class="author-avatar-img" loading="lazy"
+              decoding="async">
+            {% else %}
+            <div class="author-initials-avatar">{{ t.name|slice:":2"|upper }}</div>
+            {% endif %}
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">{{ t.name }}</h4>
+            <p class="author-role">{{ t.role }}{% if t.location %} — {{ t.location }}{% endif %}</p>
+          </div>
+        </div>
+
+        {% if t.category %}
+        <div class="testimonial-category-tag">{{ t.get_category_display|default:t.category|title }}</div>
+        {% endif %}
+      </div>
+      {% empty %}
+      <!-- Fallback Sample Testimonials if Database has no active testimonials yet -->
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="testimonial-quote">
+          "GuardianTree FP's zero-commission advisory transformed our family office asset allocation. Their quantitative
+          risk models gave us total peace of mind during market volatility."
+        </p>
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            <div class="author-initials-avatar">RS</div>
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">Rajesh Sharma</h4>
+            <p class="author-role">Tech Founder &amp; Investor — Mumbai</p>
+          </div>
+        </div>
+        <div class="testimonial-category-tag">Wealth Management</div>
+      </div>
+
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="testimonial-quote">
+          "The fee-only fiduciary model is a breath of fresh air. No high-commission products were pushed; instead, we
+          received a tax-optimized SIP strategy aligned with our retirement goals."
+        </p>
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            <div class="author-initials-avatar">AM</div>
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">Ananya Mehta</h4>
+            <p class="author-role">VP Product — Bengaluru</p>
+          </div>
+        </div>
+        <div class="testimonial-category-tag">Retirement &amp; SIP</div>
+      </div>
+
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="testimonial-quote">
+          "Outstanding financial planning. Sabin Balan Finance structured our corporate tax liability and multi-asset
+          wealth plan seamlessly. Highly recommended!"
+        </p>
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            <div class="author-initials-avatar">VK</div>
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">Vikram Kulkarni</h4>
+            <p class="author-role">Managing Director — Pune</p>
+          </div>
+        </div>
+        <div class="testimonial-category-tag">Fiduciary Advisory</div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- 5. FREQUENTLY ASKED QUESTIONS (FAQ) SECTION -->
+<section id="faq-section" class="faq-section-wrapper">
+  <div class="faq-glow-backdrop"></div>
+  <!-- Background Hex Shield Geometry Graphic -->
+  <svg class="section-bg-lines bg-lines-left-bottom" viewBox="0 0 500 450" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <polygon points="120,40 280,40 360,180 280,320 120,320 40,180" stroke="var(--color-gold, #D4AF37)" stroke-width="18"
+      stroke-linejoin="round" fill="none" opacity="0.5" />
+    <polygon points="140,70 260,70 320,180 260,290 140,290 80,180" stroke="var(--color-gold, #D4AF37)" stroke-width="10"
+      stroke-linejoin="round" fill="none" opacity="0.35" />
+    <polygon points="160,100 240,100 280,180 240,260 160,260 120,180" stroke="var(--color-gold, #D4AF37)"
+      stroke-width="6" stroke-linejoin="round" fill="none" opacity="0.2" />
+  </svg>
+  <div class="section-container" style="padding-top: 0; padding-bottom: 0;">
+
+    <div class="faq-split-container">
+
+      <!-- Left Column: Header, Search, Accordion FAQ List, Pagination -->
+      <div class="faq-left-col">
+        <div class="section-header" style="text-align: left; margin: 0 0 2rem 0; max-width: 680px;">
+          <div class="section-tag">✨ Empowering Your Financial Future with Precision &amp; Trust</div>
+          <h2 class="section-title">Frequently Asked <span class="highlight-text">Questions</span></h2>
+          <p class="section-subtitle">
+            Combining institutional-grade market intelligence, zero-commission advisory, and customized wealth
+            architectures to compound your capital with total peace of mind.
+          </p>
+        </div>
+
+        <!-- Real-time Search Input Bar -->
+        <div class="faq-search-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="faq-search-input" placeholder="Search question here..." oninput="handleFaqSearch()">
+          <button type="button" class="faq-search-clear" id="faq-search-clear" onclick="clearFaqSearch()"
+            style="display: none;">✕</button>
+        </div>
+
+        <!-- FAQ Cards Container (Paginated 3 at a time) -->
+        <div class="faq-accordion-container" id="faq-accordion-list">
+          {% for faq in faqs %}
+          <div class="faq-card {% if forloop.first %}open{% endif %}" data-question="{{ faq.question|lower }}"
+            data-answer="{{ faq.answer|lower }}" data-category="{{ faq.get_category_display|lower }}"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">{{ faq.get_category_display }}</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">{{ faq.question }}</h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">{{ faq.answer }}</p>
+            </div>
+          </div>
+          {% empty %}
+          <!-- Fallback Hardcoded FAQ List if database has zero FAQs -->
+          <div class="faq-card open"
+            data-question="how does sabin balan finance create a customized financial advisory plan?"
+            data-answer="our financial advisory process begins with a comprehensive quantitative analysis..."
+            data-category="general advisory" onclick="toggleFaq(this)">
+            <span class="faq-badge-category">General Advisory</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">How does Sabin Balan Finance create a customized financial advisory plan?
+              </h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                Our financial advisory process begins with a comprehensive quantitative analysis of your current net
+                worth,
+                cash flow dynamics, risk tolerance, and tax profile. We design bespoke multi-asset allocation strategies
+                and
+                actionable roadmaps to align your wealth with your short- and long-term life objectives.
+              </p>
+            </div>
+          </div>
+          <div class="faq-card" data-question="what is the difference between wealth management and financial advisory?"
+            data-answer="while financial advisory focuses on goal-based budgeting..." data-category="wealth management"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">Wealth Management</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">What is the difference between Wealth Management and Financial Advisory?
+              </h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                While financial advisory focuses on goal-based budgeting, risk management, and strategic asset
+                allocation,
+                wealth management provides an all-inclusive institutional service encompassing multi-asset portfolio
+                management,
+                estate planning, tax optimization, and family office solutions for capital growth and legacy
+                preservation.
+              </p>
+            </div>
+          </div>
+          <div class="faq-card" data-question="how do you ensure conflict-free advisory and fee transparency?"
+            data-answer="we operate under a strict fee-only fiduciary model..." data-category="fiduciary"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">Fiduciary</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">How do you ensure conflict-free advisory and fee transparency?</h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                We operate under a strict fee-only fiduciary model with zero hidden broker commissions, kickbacks, or
+                product
+                markups. Our advisory desk charges a transparent, upfront retainer or fixed AUM fee, ensuring our
+                guidance is
+                100% aligned with your best financial interests.
+              </p>
+            </div>
+          </div>
+          <div class="faq-card"
+            data-question="what minimum portfolio size or investment amount is required to get started?"
+            data-answer="we offer flexible entry tiers across our advisory desks..." data-category="investment"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">Investment</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">What minimum portfolio size or investment amount is required to get started?
+              </h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                We offer flexible entry tiers across our advisory desks. While our institutional private wealth team
+                handles
+                high-net-worth portfolios, individual investors can start building automated, quantitative SIP
+                portfolios with
+                a minimum monthly contribution of ₹5,000.
+              </p>
+            </div>
+          </div>
+          <div class="faq-card" data-question="how does financial advisory assist with tax planning and optimization?"
+            data-answer="our advisory desk structures tax-efficient portfolios..." data-category="investment"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">Investment</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">How does financial advisory assist with tax planning and optimization?</h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                Our advisory desk structures tax-efficient portfolios utilizing loss harvesting, capital gains tax
+                balancing,
+                tax-advantaged rebalancing, and optimal instrument selection (such as ELSS, Sovereign Gold Bonds, and
+                direct growth strategies)
+                to maximize your post-tax returns.
+              </p>
+            </div>
+          </div>
+          <div class="faq-card" data-question="how are my invested capital and personal financial data secured?"
+            data-answer="your securities and funds remain directly under your custody..." data-category="fiduciary"
+            onclick="toggleFaq(this)">
+            <span class="faq-badge-category">Fiduciary</span>
+            <div class="faq-question-row">
+              <h3 class="faq-question-text">How are my invested capital and personal financial data secured?</h3>
+              <div class="faq-toggle-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="icon-v-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="faq-answer-wrapper">
+              <p class="faq-answer-text">
+                Your securities and funds remain directly under your custody with SEBI-registered depositories
+                (NSDL/CDSL). We provide
+                advisory intelligence without taking direct custody of your assets, while all platform interactions are
+                protected
+                using bank-grade 256-bit encryption and ISO-27001 compliant security.
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- No Results Fallback State -->
+        <div class="faq-no-results" id="faq-no-results" style="display: none;">
+          <div class="faq-empty-crest">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold, #D4AF37)"
+              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
+          <h3 class="faq-empty-title">No Matching Questions Found</h3>
+          <p class="faq-empty-subtitle">We couldn't find any advisory answers matching your search. Browse our full
+            knowledge library or reset your filter.</p>
+          <button type="button" class="showcase-cta-btn faq-empty-cta-btn" onclick="clearFaqSearch()">
+            <span>View All FAQs</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Smooth Pagination Bar (3 at a time) -->
+        <div class="faq-pagination-wrapper" id="faq-pagination-controls">
+          <button type="button" class="faq-nav-btn" id="faq-prev-btn" onclick="changeFaqPage(-1)" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          <div class="faq-page-indicators" id="faq-page-indicators">
+            <!-- Dynamically populated by JavaScript -->
+          </div>
+
+          <button type="button" class="faq-nav-btn" id="faq-next-btn" onclick="changeFaqPage(1)">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Perfectly Proportioned Interactive Video Section -->
+      <div class="faq-right-col">
+        <div class="faq-video-container">
+          <video id="faq-main-video" autoplay loop muted playsinline poster="{% static 'login.png' %}">
+            <source src="{% static 'login/videos/faq_video.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <!-- Top Overlay Tag -->
+          <div class="video-top-bar">
+            <span class="video-badge-tag">
+              <span class="pulse-dot"></span>
+              <span>FAQ Explainer Video</span>
+            </span>
+          </div>
+
+          <!-- Bottom Controls Bar (Voice / Mute Option Only - Continuous Autoplay) -->
+          <div class="faq-video-controls-bar">
+            <div class="video-status-group">
+              <span class="video-status-text" id="faq-video-status">GuardianTree FP Advisory</span>
+            </div>
+
+            <button type="button" class="video-mute-btn" id="faq-video-mute-btn" onclick="toggleFaqVideoMute(event)"
+              title="Toggle Audio / Mute">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" id="faq-mute-icon">
+                <path d="M11 5L6 9H2V15H6L11 19V5Z"></path>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+              <span id="faq-voice-label" style="font-size: 0.76rem; font-weight: 700; margin-left: 2px;">Muted</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- 5.5 SEBI RIA REGULATORY DISCLOSURES SECTION (Left Visual Ledger, Right Text & Heading) -->
+<section id="regulatory-disclosures" class="sebi-regulatory-section">
+  <div class="section-container">
+    <div class="sebi-split-layout">
+      <!-- Left Column: Executive RIA Verified Credentials Ledger Terminal -->
+      <div class="sebi-split-visual-col">
+        <div class="sebi-ledger-terminal">
+          <div class="ledger-terminal-header">
+            <div class="ledger-terminal-brand">
+              <span class="ledger-shield-icon">🛡️</span>
+              <div>
+                <div class="ledger-title">SECURITIES AND EXCHANGE BOARD OF INDIA</div>
+                <div class="ledger-sub">Fiduciary Investment Adviser Registry &bull; Statutory Client Entitlements Ledger</div>
+              </div>
+            </div>
+            <div class="ledger-status-badge">
+              <span class="status-live-dot"></span>
+              <span>CURRENT FY ACCREDITED</span>
+            </div>
+          </div>
+
+          <div class="ledger-credentials-grid-2col">
+            <!-- 1. SEBI Reg No -->
+            <div class="ledger-cred-card">
+              <div class="cred-tag">SEBI REGISTRATION NO.</div>
+              <div class="cred-value-row">
+                <span class="cred-value" id="sebiRegNumber">INA000016977</span>
+                <button type="button" class="cred-copy-btn" onclick="copySebiReg()" title="Copy Registration Number"
+                  aria-label="Copy SEBI Registration Number">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="copyConfirmText">Copy</span>
+                </button>
+              </div>
+              <div class="cred-sub">Individual RIA &bull; Perpetual Validity</div>
+            </div>
+
+            <!-- 2. BASL Membership -->
+            <div class="ledger-cred-card">
+              <div class="cred-tag">BASL MEMBERSHIP</div>
+              <div class="cred-value-row">
+                <span class="cred-value">ID: 1839</span>
+              </div>
+              <div class="cred-sub">BSE Administration &amp; Supervision Ltd</div>
+            </div>
+
+            <!-- 3. Principal Fiduciary Office -->
+            <div class="ledger-cred-card">
+              <div class="cred-tag">PRINCIPAL FIDUCIARY OFFICE</div>
+              <div class="cred-value-row">
+                <span class="cred-value" style="font-size: 1.05rem;">Cuffe Parade, Mumbai</span>
+              </div>
+              <div class="cred-sub">Maker Tower B, 400005 &bull; Maharashtra</div>
+            </div>
+
+            <!-- 4. Grievance Track Record -->
+            <div class="ledger-cred-card ledger-cred-highlight">
+              <div class="cred-tag">GRIEVANCE AUDIT RECORD</div>
+              <div class="cred-value-row">
+                <span class="cred-value" style="color: #059669;">0 Pending</span>
+              </div>
+              <div class="cred-sub">100% Resolved &bull; Monthly SEBI Audit</div>
+            </div>
+          </div>
+
+          <!-- Redressal Architecture Pipeline Mini inside Terminal -->
+          <div class="terminal-pipeline-box">
+            <div class="terminal-pipeline-title">
+              <span>⚖️ FOUR-STAGE ESCALATION &amp; REDRESSAL PATHWAY</span>
+            </div>
+            <div class="console-pipeline-mini">
+              <div class="console-pipe-item">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span class="console-pipe-tag">STAGE 1</span>
+                  <span class="console-pipe-label">Direct Advisory Desk</span>
+                </div>
+                <span class="console-pipe-detail">24hr Ack</span>
+              </div>
+              <div class="console-pipe-item">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span class="console-pipe-tag">STAGE 2</span>
+                  <span class="console-pipe-label">Compliance Review</span>
+                </div>
+                <span class="console-pipe-detail">7 Days</span>
+              </div>
+              <div class="console-pipe-item">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span class="console-pipe-tag">STAGE 3</span>
+                  <span class="console-pipe-label">SEBI SCORES 2.0</span>
+                </div>
+                <span class="console-pipe-detail">Centralized</span>
+              </div>
+              <div class="console-pipe-item">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span class="console-pipe-tag">STAGE 4</span>
+                  <span class="console-pipe-label">SMART ODR Portal</span>
+                </div>
+                <span class="console-pipe-detail">Arbitration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Strategic Text, Heading & Guarantees -->
+      <div class="sebi-split-text-col">
+        <div class="sebi-header-pill" style="align-self: flex-start; margin-bottom: 1rem;">
+          <span>🏛️ STATUTORY REGULATORY ACCREDITATION &amp; MANDATES</span>
+        </div>
+        <h2 class="sebi-headline-bold" style="text-align: left; margin-bottom: 1rem;">
+          <span class="sebi-headline-muted">Everything a Client is</span><br>
+          <span class="sebi-headline-prominent">Entitled to See</span>
+        </h2>
+        <p class="sebi-section-subtitle" style="text-align: left; margin: 0 0 1.5rem 0;">
+          As a SEBI-registered Fee-Only Fiduciary (RIA), absolute statutory transparency is our legal foundation. Review
+          our verified regulatory accreditation, investor charter, compliance audit track record, and institutional
+          dispute redressal mechanisms.
+        </p>
+
+        <ul class="console-features-list" style="margin-bottom: 2rem;">
+          <li class="console-feature-item">
+            <span style="color: #059669; font-weight: 800;">✓</span>
+            <span><strong>SEBI RIA Code of Conduct:</strong> Full fiduciary standard aligned with global fiduciary governance.</span>
+          </li>
+          <li class="console-feature-item">
+            <span style="color: #059669; font-weight: 800;">✓</span>
+            <span><strong>Fee-Only Guarantee:</strong> Zero commissions, no product kickbacks, non-discretionary safety.</span>
+          </li>
+          <li class="console-feature-item">
+            <span style="color: #059669; font-weight: 800;">✓</span>
+            <span><strong>Monthly Grievance Audit:</strong> 0 Pending Disputes &bull; 100% On-Time Resolution Track Record.</span>
+          </li>
+          <li class="console-feature-item">
+            <span style="color: #059669; font-weight: 800;">✓</span>
+            <span><strong>Direct Regulatory Escalation:</strong> Access to SEBI SCORES 2.0 and SMART ODR Online Arbitration.</span>
+          </li>
+        </ul>
+
+        <div class="console-actions-row" style="flex-wrap: wrap; gap: 0.75rem; width: 100%;">
+          <a href="{% url 'login:disclaimer' %}" class="btn-advisor-primary" style="flex: 1 1 200px; justify-content: center;">
+            <span>View Full Investor Charter</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener noreferrer" class="btn-advisor-secondary"
+            style="flex: 0 1 auto; justify-content: center;">
+            <span>SEBI SCORES</span> <span>↗</span>
+          </a>
+          <a href="https://smartodr.in/login" target="_blank" rel="noopener noreferrer" class="btn-advisor-secondary"
+            style="flex: 0 1 auto; justify-content: center;">
+            <span>SMART ODR</span> <span>↗</span>
+          </a>
+        </div>
+
+        <div class="sebi-statutory-notice-mini" style="margin-top: 1.75rem; font-size: 0.8rem; color: #71717A; line-height: 1.5; border-left: 2px solid #09090B; padding-left: 0.75rem;">
+          <p style="margin: 0;"><strong>Statutory Notice:</strong> "Investment in securities market are subject to market risks. Read all related documents carefully before investing."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copySebiReg() {
+    const regNo = document.getElementById('sebiRegNumber').textContent.trim();
+    navigator.clipboard.writeText(regNo).then(() => {
+      const textEl = document.getElementById('copyConfirmText');
+      if (textEl) {
+        textEl.textContent = 'Copied!';
+        setTimeout(() => { textEl.textContent = 'Copy'; }, 2000);
+      }
+      if (typeof showToast === 'function') {
+        showToast('SEBI Registration No. INA000016977 copied to clipboard.', 'success');
+      }
+    });
+  }
+</script>
+
+
+<!-- 6. FINAL EXECUTIVE ADVISORY CONTACT SECTION -->
+<section id="contact-section" class="contact-preview-wrapper">
+  <div class="contact-glow-backdrop"></div>
+  <!-- Background Institutional Structural Pillars Geometry Graphic -->
+  <svg class="section-bg-lines bg-lines-right-center" viewBox="0 0 480 420" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 400 L300 100 L450 100" stroke="var(--color-gold, #D4AF37)" stroke-width="16" stroke-linecap="round"
+      fill="none" opacity="0.6" />
+    <path d="M150 420 L350 120 L480 120" stroke="var(--color-gold, #D4AF37)" stroke-width="12" stroke-linecap="round"
+      fill="none" opacity="0.4" />
+    <path d="M200 440 L400 140 L510 140" stroke="var(--color-gold, #D4AF37)" stroke-width="8" stroke-linecap="round"
+      fill="none" opacity="0.2" />
+  </svg>
+
+  <div class="section-container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="contact-preview-card">
+      <div class="contact-preview-left">
+        <div class="section-header" style="text-align: left; margin: 0 0 1.5rem 0; max-width: 680px;">
+          <div class="section-tag">✨ Private Consultation Intake</div>
+          <h2 class="section-title">Schedule a <span class="highlight-text">Private Strategy Session</span></h2>
+          <p class="section-subtitle">
+            Schedule a confidential 1-on-1 strategy session with our senior advisory team to review your current
+            portfolio, optimize tax liabilities, and build a personalized wealth blueprint.
+          </p>
+        </div>
+
+        <ul class="lead-feature-list">
+          <li class="lead-feature-item">
+            <span class="lead-feature-icon">✓</span>
+            <span>Complimentary comprehensive portfolio risk &amp; yield analysis</span>
+          </li>
+          <li class="lead-feature-item">
+            <span class="lead-feature-icon">✓</span>
+            <span>Tailored multi-asset allocation and tax-optimization roadmap</span>
+          </li>
+          <li class="lead-feature-item">
+            <span class="lead-feature-icon">✓</span>
+            <span>Direct 1-on-1 access to SEBI-registered fiduciary wealth managers</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-preview-right">
+        <div class="contact-action-box">
+          <!-- Text Content (Above Image) -->
+          <div class="action-box-header">
+            <h3 class="action-box-title">Ready to Elevate Your Capital?</h3>
+            <p class="action-box-desc">
+              Get in touch with our certified financial planners via our private advisory portal.
+            </p>
+          </div>
+
+          <!-- Full Quality Image Frame (No Text Overlay) -->
+          <div class="action-box-full-img-frame">
+            <img src="{% static 'home_contact.png' %}" alt="Executive Financial Advisory" class="action-box-full-img"
+              loading="lazy" decoding="async">
+          </div>
+
+          <!-- Direct CTA Action Button (Below Image) -->
+          <div class="action-box-footer" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <a href="{% url 'login:consultation' %}" class="btn-gold-lg-glow"
+              style="width: 100%; justify-content: center; text-decoration: none;">
+              <span>Book Your Consultation</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </a>
+            <a href="{% url 'contactform:contact' %}"
+              style="width: 100%; justify-content: center; text-align: center; font-size: 0.88rem; padding: 0.65rem 1rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border, #E2E8F0); color: var(--color-subtext, #475569); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+              <span>General Inquiries &amp; Contact Desk &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for Profile Bio Edit (if authenticated) -->
+{% if user.is_authenticated %}
+<div id="bio-modal"
+  style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem;">
+  <div class="glass-card" style="width: 100%; max-width: 500px; padding: 2.25rem; background: var(--color-secondary);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+      <h3 style="font-size: 1.25rem;">Update Profile Summary</h3>
+      <button onclick="document.getElementById('bio-modal').style.display='none'"
+        style="background: none; border: none; font-size: 1.5rem; color: var(--color-subtext); cursor: pointer;">&times;</button>
+    </div>
+
+    <form method="post" action="{% url 'login:home' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="form-label">Personal Bio / Advisory Note</label>
+        <textarea name="bio" class="form-input" rows="4"
+          placeholder="Enter a brief summary about yourself or your financial objectives...">{{ user.bio }}</textarea>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button type="button" class="btn btn-secondary"
+          onclick="document.getElementById('bio-modal').style.display='none'">Cancel</button>
+        <button type="submit" class="btn btn-gold">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'login/js/home.js' %}"></script>
+{% endblock %}

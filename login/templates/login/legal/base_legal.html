@@ -1,0 +1,151 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<!-- Font Awesome & Master Clean Legal Documentation Stylesheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'login/css/legal_docs.css' %}">
+{% block legal_extra_css %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="legal-docs-wrapper">
+  <div class="legal-layout-grid">
+    
+    <!-- LEFT SIDEBAR: Clean Documentation Hub & Table of Contents -->
+    <aside class="legal-clean-sidebar">
+      
+      <!-- Group 1: Document Switcher -->
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">
+          <span class="highlight-text">Documentation Hub</span>
+        </div>
+        <ul class="clean-doc-nav-list">
+          <li>
+            <a href="{% url 'login:privacy_policy' %}" class="clean-doc-nav-item {% if current_doc == 'privacy' %}active{% endif %}">
+              <i class="fa-solid fa-lock"></i>
+              <span>Privacy Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'login:cookie_policy' %}" class="clean-doc-nav-item {% if current_doc == 'cookie' %}active{% endif %}">
+              <i class="fa-solid fa-cookie"></i>
+              <span>Cookie Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'login:terms_conditions' %}" class="clean-doc-nav-item {% if current_doc == 'terms' %}active{% endif %}">
+              <i class="fa-regular fa-file-lines"></i>
+              <span>Terms &amp; Conditions</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'login:aml_kyc' %}" class="clean-doc-nav-item {% if current_doc == 'aml_kyc' %}active{% endif %}">
+              <i class="fa-solid fa-file-contract"></i>
+              <span>AML / KYC Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'login:disclaimer' %}" class="clean-doc-nav-item {% if current_doc == 'disclaimer' %}active{% endif %}">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Risk Disclaimer</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Group 2: Table of Contents -->
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">
+          <span class="highlight-text">On This Page</span>
+        </div>
+        <nav class="clean-toc-list" id="table-of-contents-nav">
+          {% block table_of_contents %}{% endblock %}
+        </nav>
+      </div>
+
+      <!-- Group 3: Help & Inquiries -->
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">
+          <span class="highlight-text">Need Assistance?</span>
+        </div>
+        <a href="{% url 'contactform:contact' %}" class="clean-doc-nav-item" style="font-size: 0.85rem;">
+          <i class="fa-regular fa-envelope"></i>
+          <span>Contact Legal Desk</span>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT MAIN: Clean Document Canvas with Corporate Letterhead -->
+    <main class="clean-doc-main" id="printable-document">
+      
+      <!-- 1. Corporate Letterhead with Logo Above Statements -->
+      <header class="clean-letterhead">
+        <div class="letterhead-identity">
+          <img src="{% static 'logo.png' %}" alt="GuardianTree FP Logo" class="clean-company-logo" data-fallback="{% static 'navfooter/images/shield_emblem_nobg.png' %}" onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');">
+          <div class="letterhead-credentials">
+            <h2>GUARDIANTREE FP &middot; SABIN BALAN FINANCE</h2>
+            <p><span class="highlight-text">Institutional Wealth &amp; Fiduciary Financial Advisory</span></p>
+            <div class="letterhead-badges-row">
+              <span class="clean-badge"><i class="fa-solid fa-certificate"></i> SEBI Reg. INA000016977 &middot; BSE ID: 1839</span>
+              <span class="clean-badge"><i class="fa-solid fa-shield-check"></i> FATF / PMLA Compliant</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Print, Accessible View & Share Toolbar -->
+        <div class="clean-actions-bar" role="toolbar" aria-label="Document tools toolbar">
+          <button type="button" class="clean-print-btn" onclick="printLegalDocument()" title="Print accessible document or save as high-contrast PDF" aria-label="Print accessible document or save as high-contrast PDF">
+            <i class="fa-solid fa-print" aria-hidden="true"></i> Print / Accessible PDF
+          </button>
+          <button type="button" class="clean-share-btn" onclick="speakLegalDocumentText()" title="Listen to document narration (Speech Assist)" aria-label="Listen to document text with Audio Speech Assist">
+            <i class="fa-solid fa-volume-high" aria-hidden="true"></i> Listen Audio
+          </button>
+          <button type="button" class="clean-share-btn" onclick="copyDocumentLink()" title="Copy link to this document" aria-label="Copy document link">
+            <i class="fa-regular fa-copy" aria-hidden="true"></i> Share Link
+          </button>
+        </div>
+      </header>
+
+      <!-- 2. Clean Document Title Block (Half-Gold Gradient Styling) -->
+      <div class="clean-doc-header-block">
+        <h1 class="hero-image-styled-title">
+          {% block doc_title %}{% endblock %}
+        </h1>
+        <p class="clean-doc-subtitle">
+          {% block doc_subtitle %}{% endblock %}
+        </p>
+        <div class="clean-doc-meta-pills">
+          <div class="doc-meta-item"><i class="fa-regular fa-clock"></i> Effective: <strong>August 2026</strong></div>
+          <div class="doc-meta-item"><i class="fa-solid fa-code-branch"></i> Version: <strong>3.4 (Enforced)</strong></div>
+          <div class="doc-meta-item"><i class="fa-solid fa-gavel"></i> Regulatory Scope: <strong>SEBI / PMLA / FATF / GDPR</strong></div>
+        </div>
+      </div>
+
+      <!-- 3. Document Statements Body -->
+      <div class="clean-doc-body" id="document-body-content">
+        {% block doc_content %}{% endblock %}
+      </div>
+
+      <!-- 4. Clean Attestation Footer -->
+      <footer class="clean-attestation-footer">
+        <div>
+          GuardianTree FP / Sabin Balan Finance &bull; Fiduciary Compliance &amp; Legal Operations
+        </div>
+        <div class="clean-attestation-seal">
+          <i class="fa-solid fa-stamp" style="color: #D4AF37;"></i>
+          <span class="highlight-text">Official Fiduciary Instrument</span>
+        </div>
+      </footer>
+
+    </main>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'login/js/legal_docs.js' %}"></script>
+{% block legal_extra_js %}{% endblock %}
+{% endblock %}
