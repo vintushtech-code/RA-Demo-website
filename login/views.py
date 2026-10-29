@@ -730,6 +730,52 @@ class AcademyView(TemplateView):
 <p>At Kalphora Equity, every recommendation initiates with an ATR (Average True Range) trailing stop. Once a stock advances +8%, the stop-loss moves to breakeven, converting the trade into a risk-free free-roll.</p>
                 """
             }
+,
+            {
+                "id": "management-integrity-forensics",
+                "title": "Auditing Management Integrity: 7 Forensic Signals in Annual Reports",
+                "category": "Governance & Forensics",
+                "read_time": "8 min read",
+                "author": "Anand K. Deshmukh, Senior Analyst",
+                "image": "photos/about_best_fit_advisors.png",
+                "excerpt": "How to spot promoter tunneling, related-party remuneration games, and auditor qualification red flags before committing institutional capital.",
+                "content": """
+<h3>Evaluating the People Behind the Balance Sheet</h3>
+<p>Numbers can be sculpted, but promoter character and governance hygiene leave unmistakable footprints across the notes to accounts, directors' reports, and statutory audit remarks.</p>
+<h4>1. Frequent Auditor Resignations</h4>
+<p>When a reputed statutory audit firm resigns midway through an audit cycle citing 'preoccupation' or disagreements over accounting treatment, it is one of the highest-conviction sell signals in capital markets.</p>
+<h4>2. Promoter Remuneration vs Minority Dividends</h4>
+<p>Inspect the ceiling on managerial remuneration. If executive promoters draw statutory maximum salary and commission while slashing dividends or diluting minority equity through warrants, shareholder alignment is severely broken.</p>
+<h4>3. Key Integrity Checklist</h4>
+<ul>
+  <li>Inspect loans & advances given to related private entities.</li>
+  <li>Verify pledged promoter shares (any pledge above 10% is a yellow flag).</li>
+  <li>Cross-check political contributions and CSR spending recipients.</li>
+</ul>
+"""
+            },
+            {
+                "id": "quant-multibagger-screener",
+                "title": "The 5-Point Quantitative Filter for Spotting Emerging Compounders",
+                "category": "Alpha Discovery",
+                "read_time": "5 min read",
+                "author": "M Kalpesh, Lead Analyst",
+                "image": "photos/market_intel_treasury.jpg",
+                "excerpt": "Screening Indian equities with low institutional ownership, debt-to-equity below 0.5, and 3-year compound sales growth above 15%.",
+                "content": """
+<h3>Screening Without Emotional Bias</h3>
+<p>At Kalphora Equity, before qualitative deep dives begin, companies must pass our strict quantitative preliminary screen on Screener.in and Trendlyne.</p>
+<h4>The 5-Point Fundamental Screener Criteria</h4>
+<ul>
+  <li><strong>ROCE > 18%:</strong> Maintained consistently over 3 and 5-year rolling windows.</li>
+  <li><strong>Debt-to-Equity < 0.5:</strong> Debt coverage ratio (EBITDA / Interest expense) exceeding 4.0x.</li>
+  <li><strong>CFO / PAT > 0.8:</strong> Healthy cash conversion proving true operating strength.</li>
+  <li><strong>Promoter Holding > 50%:</strong> Zero or negligible promoter share pledge.</li>
+  <li><strong>Working Capital Cycle:</strong> Cash conversion cycle under 90 days.</li>
+</ul>
+<p>Passing these 5 criteria eliminates 90% of listed balance sheet traps on the NSE/BSE, leaving a high-conviction pool for intrinsic DCF valuation.</p>
+"""
+            }
         ]
 
         # 3 Cohort Mentorship Tiers

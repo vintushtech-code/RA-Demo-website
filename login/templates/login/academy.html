@@ -5,32 +5,20 @@
 
 {% block extra_css %}
 <style>
-  /* --------------------------------------------------------------------------
-     KALPHORA RESEARCH ACADEMY — LUXURY EMERALD & GOLD STYLING
-     -------------------------------------------------------------------------- */
-  :root {
-    --academy-gold: #D4AF37;
-    --academy-gold-glow: rgba(212, 175, 55, 0.35);
-    --academy-dark-bg: #060B08;
-    --academy-card-bg: rgba(10, 20, 15, 0.7);
-    --academy-border: rgba(212, 175, 55, 0.22);
-  }
+  /* ==========================================================================
+     KALPHORA RESEARCH ACADEMY — THEME ADAPTIVE STYLESHEET
+     Adapts dynamically to Light Theme (:root) & Dark Theme ([data-theme='dark']).
+     All sections share the base page background (var(--color-bg)).
+     Zero invisible button text — high contrast guaranteed.
+     ========================================================================== */
 
-  .academy-hero {
+  /* Section Wrappers — Shared Base Page Background */
+  .academy-section-wrap {
+    width: 100%;
+    background: transparent !important;
     position: relative;
-    padding: 6.5rem 1.5rem 4rem 1.5rem;
-    background: radial-gradient(circle at 50% 20%, rgba(20, 50, 35, 0.45) 0%, #060B08 75%);
-    text-align: center;
-    overflow: hidden;
-    border-bottom: 1px solid var(--academy-border);
-  }
-
-  .academy-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%);
-    pointer-events: none;
+    padding: 5rem 1.5rem;
+    box-sizing: border-box;
   }
 
   .academy-container {
@@ -40,44 +28,74 @@
     z-index: 2;
   }
 
+  /* Pill Badges */
   .academy-pill-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.45rem 1.25rem;
+    gap: 0.5rem;
+    padding: 0.4rem 1.15rem;
     border-radius: 30px;
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    color: var(--academy-gold);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    margin-bottom: 1.25rem;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: var(--color-gold, #D4AF37);
+  }
+
+  .badge-demo-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    vertical-align: middle;
+    margin-left: 0.4rem;
+  }
+
+  /* Hero Section */
+  .academy-hero-wrap {
+    padding: 6.5rem 1.5rem 4.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .academy-hero-title {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
     font-weight: 800;
-    line-height: 1.18;
-    color: #F8FAFC;
+    line-height: 1.2;
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
   }
 
   .academy-hero-title .highlight-gold {
-    background: linear-gradient(135deg, #FFF9D2 0%, #F5D77F 40%, #D4AF37 80%, #AA8018 100%);
+    color: var(--color-gold, #D4AF37) !important;
+    background: linear-gradient(135deg, #FFF9D2 0%, #D4AF37 70%, #AA8018 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  html:not([data-theme='dark']) .academy-hero-title .highlight-gold {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    color: #B45309 !important;
   }
 
   .academy-hero-desc {
     max-width: 820px;
     margin: 0 auto 2.5rem auto;
-    font-size: 1.12rem;
+    font-size: 1.1rem;
     line-height: 1.75;
-    color: #94A3B8;
+    color: var(--color-subtext);
   }
 
   .academy-hero-actions {
@@ -89,50 +107,56 @@
     margin-bottom: 3.5rem;
   }
 
-  .btn-gold-glow {
+  /* High-Contrast Interactive Buttons */
+  .btn-academy-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.65rem;
     padding: 0.85rem 1.85rem;
     border-radius: 40px;
-    background: linear-gradient(135deg, #D4AF37 0%, #AA8018 100%);
-    color: #060B08 !important;
+    background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 50%, #B88A28 100%);
+    color: #0A0D14 !important;
     font-weight: 800;
     font-size: 0.95rem;
     text-decoration: none;
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
-    transition: all 0.3s ease;
-    border: none;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.6);
     cursor: pointer;
+    transition: all 0.25s ease;
   }
 
-  .btn-gold-glow:hover {
+  .btn-academy-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.55);
+    color: #000000 !important;
   }
 
-  .btn-outline-gold {
+  .btn-academy-secondary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.65rem;
     padding: 0.85rem 1.85rem;
     border-radius: 40px;
-    background: rgba(10, 20, 15, 0.6);
-    color: #F8FAFC !important;
+    background: var(--color-secondary);
+    color: var(--color-primary) !important;
     font-weight: 700;
     font-size: 0.95rem;
     text-decoration: none;
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    transition: all 0.3s ease;
+    border: 1.5px solid var(--color-border);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
   }
 
-  .btn-outline-gold:hover {
-    border-color: var(--academy-gold);
-    background: rgba(212, 175, 55, 0.12);
+  .btn-academy-secondary:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold) !important;
     transform: translateY(-2px);
   }
 
-  /* Academy Metrics Bar */
+  /* Metrics Ticker */
   .academy-metrics-ticker {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -140,11 +164,10 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 1.5rem 2rem;
-    background: rgba(10, 20, 15, 0.8);
-    border: 1px solid var(--academy-border);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow-subtle, 0 4px 20px rgba(0,0,0,0.06));
   }
 
   .academy-metric-item {
@@ -154,14 +177,14 @@
   .academy-metric-val {
     font-size: 1.85rem;
     font-weight: 800;
-    color: var(--academy-gold);
-    font-family: 'Playfair Display', Georgia, serif;
-    margin-bottom: 0.2rem;
+    color: var(--color-gold, #D4AF37);
+    font-family: var(--font-heading, sans-serif);
+    margin-bottom: 0.25rem;
   }
 
   .academy-metric-lbl {
     font-size: 0.78rem;
-    color: #94A3B8;
+    color: var(--color-subtext);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
@@ -174,22 +197,34 @@
     }
   }
 
-  /* --------------------------------------------------------------------------
-     SECTION 2: LIVE DEMO CLASS VIDEO STREAM & DOWNLOAD HANDOUT
-     -------------------------------------------------------------------------- */
-  .demo-class-section {
-    padding: 5rem 1.5rem;
-    background: #080E0B;
-    border-bottom: 1px solid var(--academy-border);
+  /* Section Headers */
+  .section-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem auto;
   }
 
+  .section-head h2 {
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .section-head p {
+    color: var(--color-subtext);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+
+  /* Live Demo Class Card */
   .demo-video-card {
-    background: rgba(12, 24, 18, 0.75);
-    border: 1px solid var(--academy-border);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-elevated, 0 10px 30px rgba(0,0,0,0.08));
+    transition: var(--transition-smooth);
   }
 
   .video-frame-container {
@@ -207,33 +242,33 @@
   }
 
   .video-info-strip {
-    padding: 2rem;
+    padding: 2.25rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
-    background: rgba(8, 16, 12, 0.95);
-    border-top: 1px solid rgba(212, 175, 55, 0.18);
+    background: var(--color-secondary);
+    border-top: 1px solid var(--color-border);
   }
 
   .video-details h3 {
     font-size: 1.45rem;
-    color: #F8FAFC;
+    color: var(--color-primary);
     margin: 0 0 0.4rem 0;
     font-weight: 700;
   }
 
   .video-details p {
-    color: #94A3B8;
-    font-size: 0.92rem;
+    color: var(--color-subtext);
+    font-size: 0.95rem;
     margin: 0;
   }
 
   .video-meta-tags {
     display: flex;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
+    gap: 0.65rem;
+    margin-top: 0.85rem;
     flex-wrap: wrap;
   }
 
@@ -242,40 +277,12 @@
     font-weight: 700;
     padding: 0.25rem 0.65rem;
     border-radius: 6px;
-    background: rgba(212, 175, 55, 0.15);
-    color: var(--academy-gold);
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--color-gold, #D4AF37);
     border: 1px solid rgba(212, 175, 55, 0.25);
   }
 
-  /* --------------------------------------------------------------------------
-     SECTION 3: 6-MODULE CURRICULUM
-     -------------------------------------------------------------------------- */
-  .curriculum-section {
-    padding: 5.5rem 1.5rem;
-    background: #060B08;
-    border-bottom: 1px solid var(--academy-border);
-  }
-
-  .section-head {
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto 3.5rem auto;
-  }
-
-  .section-head h2 {
-    font-size: clamp(1.9rem, 4vw, 2.7rem);
-    font-weight: 800;
-    color: #F8FAFC;
-    margin-bottom: 0.85rem;
-    font-family: 'Playfair Display', Georgia, serif;
-  }
-
-  .section-head p {
-    color: #94A3B8;
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
+  /* Curriculum Cards */
   .modules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -283,28 +290,29 @@
   }
 
   .module-card {
-    background: rgba(12, 24, 18, 0.6);
-    border: 1px solid var(--academy-border);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
     padding: 2.25rem 2rem;
     position: relative;
+    box-shadow: var(--shadow-subtle, 0 4px 15px rgba(0,0,0,0.04));
     transition: all 0.3s ease;
   }
 
   .module-card:hover {
     transform: translateY(-5px);
-    border-color: var(--academy-gold);
-    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.15);
+    border-color: var(--color-gold);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
   }
 
   .module-number {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-weight: 900;
-    color: rgba(212, 175, 55, 0.22);
+    color: rgba(212, 175, 55, 0.25);
     position: absolute;
     top: 1.25rem;
     right: 1.5rem;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--font-heading, sans-serif);
   }
 
   .module-tag {
@@ -312,59 +320,52 @@
     font-size: 0.74rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--academy-gold);
+    color: var(--color-gold, #D4AF37);
     letter-spacing: 0.08em;
     margin-bottom: 0.75rem;
   }
 
   .module-title {
     font-size: 1.25rem;
-    color: #F8FAFC;
+    color: var(--color-primary);
     margin: 0 0 0.85rem 0;
     font-weight: 700;
   }
 
   .module-desc {
-    color: #94A3B8;
+    color: var(--color-subtext);
     font-size: 0.92rem;
     line-height: 1.65;
     margin: 0;
   }
 
-  /* --------------------------------------------------------------------------
-     SECTION 4: EDUCATIONAL KNOWLEDGE HUB & ARTICLES
-     -------------------------------------------------------------------------- */
-  .blogs-section {
-    padding: 5.5rem 1.5rem;
-    background: #080E0B;
-    border-bottom: 1px solid var(--academy-border);
-  }
-
+  /* Blogs Grid */
   .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
   }
 
   .blog-card {
-    background: rgba(12, 24, 18, 0.65);
-    border: 1px solid var(--academy-border);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: var(--shadow-subtle, 0 4px 15px rgba(0,0,0,0.04));
     transition: all 0.3s ease;
   }
 
   .blog-card:hover {
     transform: translateY(-5px);
-    border-color: var(--academy-gold);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+    border-color: var(--color-gold);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
   }
 
   .blog-thumb-wrap {
-    height: 190px;
+    height: 195px;
     position: relative;
     overflow: hidden;
     background: #0F172A;
@@ -385,14 +386,14 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: rgba(6, 11, 8, 0.85);
+    background: rgba(10, 20, 15, 0.85);
     backdrop-filter: blur(8px);
-    color: var(--academy-gold);
+    color: #F5D77F;
     font-size: 0.72rem;
     font-weight: 700;
     padding: 0.25rem 0.65rem;
     border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.4);
   }
 
   .blog-body {
@@ -407,7 +408,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.78rem;
-    color: #64748B;
+    color: var(--color-subtext);
     margin-bottom: 0.75rem;
     font-weight: 600;
   }
@@ -415,23 +416,26 @@
   .blog-title {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #F8FAFC;
+    color: var(--color-primary);
     line-height: 1.45;
     margin: 0 0 0.85rem 0;
   }
 
   .blog-excerpt {
     font-size: 0.88rem;
-    color: #94A3B8;
+    color: var(--color-subtext);
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
 
   .btn-read-article {
-    background: none;
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    color: var(--academy-gold);
-    padding: 0.55rem 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-primary) !important;
+    padding: 0.55rem 1.25rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 700;
@@ -441,19 +445,12 @@
   }
 
   .btn-read-article:hover {
-    background: var(--academy-gold);
-    color: #060B08;
+    background: var(--color-gold);
+    color: #0A0D14 !important;
+    border-color: var(--color-gold);
   }
 
-  /* --------------------------------------------------------------------------
-     SECTION 5: COHORT PRICING & ENROLLMENT PLANS
-     -------------------------------------------------------------------------- */
-  .cohorts-section {
-    padding: 5.5rem 1.5rem;
-    background: #060B08;
-    border-bottom: 1px solid var(--academy-border);
-  }
-
+  /* Cohorts Pricing Grid */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -462,21 +459,21 @@
   }
 
   .pricing-card {
-    background: rgba(12, 24, 18, 0.65);
-    border: 1px solid var(--academy-border);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
     border-radius: 20px;
     padding: 2.75rem 2.25rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    box-shadow: var(--shadow-subtle, 0 4px 15px rgba(0,0,0,0.04));
     transition: all 0.3s ease;
   }
 
   .pricing-card.popular-tier {
-    border-color: var(--academy-gold);
-    background: rgba(16, 32, 24, 0.85);
-    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.22);
+    border-color: var(--color-gold);
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.2);
     transform: translateY(-8px);
   }
 
@@ -485,8 +482,8 @@
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #D4AF37, #AA8018);
-    color: #060B08;
+    background: linear-gradient(135deg, #F5D77F, #D4AF37);
+    color: #0A0D14;
     font-size: 0.75rem;
     font-weight: 800;
     padding: 0.3rem 1.1rem;
@@ -498,20 +495,20 @@
   .tier-name {
     font-size: 1.45rem;
     font-weight: 800;
-    color: #F8FAFC;
+    color: var(--color-primary);
     margin: 0 0 0.5rem 0;
   }
 
   .tier-price {
     font-size: 2.4rem;
     font-weight: 900;
-    color: var(--academy-gold);
-    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--color-gold, #D4AF37);
+    font-family: var(--font-heading, sans-serif);
     margin-bottom: 1rem;
   }
 
   .tier-desc {
-    color: #94A3B8;
+    color: var(--color-subtext);
     font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 2rem;
@@ -525,7 +522,7 @@
 
   .tier-features-list li {
     font-size: 0.88rem;
-    color: #E2E8F0;
+    color: var(--color-primary);
     margin-bottom: 0.85rem;
     display: flex;
     align-items: flex-start;
@@ -534,19 +531,17 @@
   }
 
   .feature-check {
-    color: var(--academy-gold);
+    color: var(--color-gold, #D4AF37);
     font-weight: bold;
   }
 
-  /* --------------------------------------------------------------------------
-     ARTICLE READER MODAL
-     -------------------------------------------------------------------------- */
+  /* Modals Overlay */
   .article-modal-backdrop {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
     z-index: 10000;
     align-items: center;
     justify-content: center;
@@ -558,8 +553,8 @@
   }
 
   .article-modal-content {
-    background: #0B1410;
-    border: 1px solid var(--academy-gold);
+    background: var(--color-secondary, #FFFFFF);
+    border: 1.5px solid var(--color-gold, #D4AF37);
     border-radius: 20px;
     width: 100%;
     max-width: 780px;
@@ -567,8 +562,8 @@
     overflow-y: auto;
     padding: 2.75rem 2.25rem;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-    color: #E2E8F0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    color: var(--color-primary);
   }
 
   .modal-close-cross {
@@ -578,61 +573,61 @@
     background: none;
     border: none;
     font-size: 2rem;
-    color: #94A3B8;
+    color: var(--color-subtext);
     cursor: pointer;
     line-height: 1;
     transition: color 0.2s ease;
   }
 
   .modal-close-cross:hover {
-    color: var(--academy-gold);
+    color: var(--color-gold);
   }
 
   .article-modal-content h3 {
-    color: var(--academy-gold);
+    color: var(--color-gold);
     font-size: 1.35rem;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
   }
 
   .article-modal-content h4 {
-    color: #F8FAFC;
+    color: var(--color-primary);
     font-size: 1.15rem;
     margin-top: 1.25rem;
     margin-bottom: 0.5rem;
   }
 
   .article-modal-content p, .article-modal-content li {
-    line-height: 1.7;
-    color: #CBD5E1;
+    line-height: 1.75;
+    color: var(--color-subtext);
     font-size: 0.95rem;
   }
 
   .article-modal-content code, .article-modal-content pre {
-    background: rgba(0,0,0,0.5);
+    background: var(--color-bg);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    color: #F5D77F;
+    color: var(--color-gold);
     font-family: monospace;
+    border: 1px solid var(--color-border);
   }
 
   .article-modal-content pre {
     padding: 1rem;
     margin: 1rem 0;
     overflow-x: auto;
-    border: 1px solid rgba(212, 175, 55, 0.2);
   }
 </style>
 {% endblock %}
 
 {% block content %}
 <!-- ==========================================================================
-     1. HERO PROMOTIONAL BANNER
+     1. HERO PROMOTIONAL BANNER (THEME ADAPTIVE & NO HARDCODED BG)
      ========================================================================== -->
-<section class="academy-hero">
+<section class="academy-section-wrap academy-hero-wrap">
   <div class="academy-container">
     <div class="academy-pill-badge">
-      <span>🎓 Kalphora Research Academy &bull; NISM Series XV Mentorship</span>
+      <span>🎓 Kalphora Research Academy &bull; Interactive Educational Demo</span>
     </div>
 
     <h1 class="academy-hero-title">
@@ -645,14 +640,14 @@
     </p>
 
     <div class="academy-hero-actions">
-      <a href="#demo-class-anchor" class="btn-gold-glow">
+      <a href="#demo-class-anchor" class="btn-academy-primary">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
         <span>Watch Live Demo Class</span>
       </a>
 
-      <a href="{% url 'login:academy_demo_pdf' %}" class="btn-outline-gold" download>
+      <a href="{% url 'login:academy_demo_pdf' %}" class="btn-academy-secondary" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
@@ -661,7 +656,7 @@
         <span>Download Syllabus &amp; Demo Notes (PDF)</span>
       </a>
 
-      <a href="#cohort-pricing-anchor" class="btn-outline-gold" style="border-color: rgba(255,255,255,0.2);">
+      <a href="#cohort-pricing-anchor" class="btn-academy-secondary">
         <span>View Cohort Batches &rarr;</span>
       </a>
     </div>
@@ -690,12 +685,15 @@
 
 
 <!-- ==========================================================================
-     2. LIVE DEMO CLASS VIDEO RECORDING & DOWNLOADABLE PDF HANDOUT
+     2. LIVE DEMO CLASS VIDEO STREAM & DOWNLOAD HANDOUT
      ========================================================================== -->
-<section class="demo-class-section" id="demo-class-anchor">
+<section class="academy-section-wrap" id="demo-class-anchor" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container">
     <div class="section-head">
-      <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">🔴 Free Live Demo Lecture</div>
+      <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">
+        <span>🔴 Live Demo Class (Sample Recording)</span>
+        <span class="badge-demo-pill">Demo Preview</span>
+      </div>
       <h2>Watch the <span class="highlight-gold">Live Masterclass Demo</span></h2>
       <p>
         Experience our institutional teaching methodology. In this 45-minute recorded live session, Lead Analyst M Kalpesh walks through real-world balance sheet forensics and identifying accounting manipulation on BSE/NSE listed stocks.
@@ -727,7 +725,7 @@
         </div>
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="{% url 'login:academy_demo_pdf' %}" class="btn-gold-glow" download style="font-size: 0.9rem;">
+          <a href="{% url 'login:academy_demo_pdf' %}" class="btn-academy-primary" download style="font-size: 0.9rem;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
@@ -735,7 +733,7 @@
             </svg>
             <span>Download Demo Handout (PDF)</span>
           </a>
-          <a href="#cohort-pricing-anchor" class="btn-outline-gold" style="font-size: 0.9rem;">
+          <a href="#cohort-pricing-anchor" class="btn-academy-secondary" style="font-size: 0.9rem;">
             <span>Enroll in Cohort</span>
           </a>
         </div>
@@ -748,7 +746,7 @@
 <!-- ==========================================================================
      3. 6-MODULE CORE CURRICULUM ROADMAP
      ========================================================================== -->
-<section class="curriculum-section">
+<section class="academy-section-wrap" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container">
     <div class="section-head">
       <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Syllabus Architecture</div>
@@ -775,7 +773,7 @@
 <!-- ==========================================================================
      4. KNOWLEDGE HUB: EDUCATIONAL BLOGS & REAL CASE STUDIES
      ========================================================================== -->
-<section class="blogs-section">
+<section class="academy-section-wrap" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container">
     <div class="section-head">
       <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Analytical Insights</div>
@@ -802,11 +800,20 @@
             <p class="blog-excerpt">{{ article.excerpt }}</p>
           </div>
           <button type="button" class="btn-read-article" onclick="openArticleModal('{{ article.id }}')">
-            Read Full Lesson &rarr;
+            <span>Read Lesson</span>
+            <span>&rarr;</span>
           </button>
         </div>
       </div>
       {% endfor %}
+    </div>
+
+    <!-- See All Blogs & Case Studies (Demo Mode Option) -->
+    <div style="text-align: center; margin-top: 3.5rem;">
+      <button type="button" class="btn-academy-secondary" onclick="openComingSoonModal('Full Research Knowledge Hub &amp; Case Studies Archive')" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
+        <span>See All 100+ Research Blogs &amp; Case Studies &rarr;</span>
+        <span class="badge-demo-pill">Coming Soon</span>
+      </button>
     </div>
   </div>
 </section>
@@ -815,7 +822,7 @@
 <!-- ==========================================================================
      5. STUDENT TESTIMONIALS & OUTCOMES
      ========================================================================== -->
-<section style="padding: 5.5rem 1.5rem; background: #060B08; border-bottom: 1px solid var(--academy-border);">
+<section class="academy-section-wrap" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container">
     <div class="section-head">
       <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Verified Student Reviews</div>
@@ -827,21 +834,21 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem;">
       {% for rev in student_testimonials %}
-      <div class="glass-card" style="padding: 2.25rem 2rem; border-radius: 16px; background: rgba(12, 24, 18, 0.65); border: 1px solid var(--academy-border); display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="module-card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
             <div style="color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
-            <span style="font-size: 0.75rem; font-weight: 700; color: var(--academy-gold); background: rgba(212, 175, 55, 0.15); padding: 0.25rem 0.65rem; border-radius: 20px;">NISM XV Certified</span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-gold, #D4AF37); background: rgba(212, 175, 55, 0.15); padding: 0.25rem 0.65rem; border-radius: 20px;">NISM XV Certified</span>
           </div>
-          <p style="color: #E2E8F0; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
             "{{ rev.quote }}"
           </p>
         </div>
-        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid rgba(212, 175, 55, 0.15); padding-top: 1.25rem;">
-          <img src="{{ rev.avatar }}" alt="{{ rev.name }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--academy-gold);">
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <img src="{{ rev.avatar }}" alt="{{ rev.name }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-gold);">
           <div>
-            <h4 style="font-size: 1rem; font-weight: 700; color: #F8FAFC; margin: 0;">{{ rev.name }}</h4>
-            <p style="font-size: 0.8rem; color: #94A3B8; margin: 0.2rem 0 0 0;">{{ rev.role }} &bull; 📍 {{ rev.location }}</p>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">{{ rev.name }}</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">{{ rev.role }} &bull; 📍 {{ rev.location }}</p>
           </div>
         </div>
       </div>
@@ -854,10 +861,13 @@
 <!-- ==========================================================================
      6. PROMOTIONAL MENTORSHIP COHORTS & PRICING
      ========================================================================== -->
-<section class="cohorts-section" id="cohort-pricing-anchor">
+<section class="academy-section-wrap" id="cohort-pricing-anchor" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container">
     <div class="section-head">
-      <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Enrollment Options</div>
+      <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">
+        <span>Enrollment Options</span>
+        <span class="badge-demo-pill">Demo Mode</span>
+      </div>
       <h2>Join the Next <span class="highlight-gold">Research Mentorship Cohort</span></h2>
       <p>
         Select the program that matches your career objectives — whether self-paced certification preparation or hands-on live weekend mentorship with Lead Analyst M Kalpesh.
@@ -886,7 +896,7 @@
         </div>
 
         <div>
-          <a href="{% url 'login:consultation' %}?subject=Academy+Enrollment" class="{% if tier.popular %}btn-gold-glow{% else %}btn-outline-gold{% endif %}" style="width: 100%; justify-content: center; text-decoration: none;">
+          <a href="{% url 'login:consultation' %}?subject=Academy+Enrollment" class="{% if tier.popular %}btn-academy-primary{% else %}btn-academy-secondary{% endif %}" style="width: 100%; justify-content: center; text-decoration: none;">
             <span>{{ tier.cta_text }} &rarr;</span>
           </a>
         </div>
@@ -895,12 +905,12 @@
     </div>
 
     <!-- Free Academic Counseling Banner -->
-    <div style="margin-top: 3.5rem; padding: 2.25rem; background: rgba(16, 32, 24, 0.75); border: 1px solid var(--academy-border); border-radius: 16px; text-align: center; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+    <div style="margin-top: 3.5rem; padding: 2.25rem; background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 16px; text-align: center; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; box-shadow: var(--shadow-subtle, 0 4px 15px rgba(0,0,0,0.05));">
       <div style="text-align: left; max-width: 650px;">
-        <h4 style="font-size: 1.3rem; color: #F8FAFC; margin: 0 0 0.35rem 0; font-weight: 700;">Unsure Which Program is Right for You?</h4>
-        <p style="color: #94A3B8; margin: 0; font-size: 0.92rem;">Schedule a 15-minute 1-on-1 academic counseling call with our research desk to review your background and syllabus questions.</p>
+        <h4 style="font-size: 1.3rem; color: var(--color-primary); margin: 0 0 0.35rem 0; font-weight: 700;">Unsure Which Program is Right for You?</h4>
+        <p style="color: var(--color-subtext); margin: 0; font-size: 0.92rem;">Schedule a 15-minute 1-on-1 academic counseling call with our research desk to review your background and syllabus questions.</p>
       </div>
-      <a href="{% url 'login:consultation' %}" class="btn-gold-glow">
+      <a href="{% url 'login:consultation' %}" class="btn-academy-primary">
         <span>Schedule Free Academic Call</span>
       </a>
     </div>
@@ -911,7 +921,7 @@
 <!-- ==========================================================================
      7. ACADEMY FAQS
      ========================================================================== -->
-<section style="padding: 5rem 1.5rem; background: #080E0B; border-bottom: 1px solid var(--academy-border);">
+<section class="academy-section-wrap" style="border-bottom: 1px solid var(--color-border);">
   <div class="academy-container" style="max-width: 900px;">
     <div class="section-head">
       <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Common Questions</div>
@@ -919,24 +929,24 @@
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 1rem;">
-      <details style="background: rgba(12, 24, 18, 0.65); border: 1px solid var(--academy-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: #E2E8F0; cursor: pointer;">
-        <summary style="font-weight: 700; color: #F8FAFC; font-size: 1.05rem;">Do I need a prior commerce or finance degree to join?</summary>
-        <p style="margin-top: 0.85rem; color: #94A3B8; font-size: 0.92rem; line-height: 1.6;">No. Our curriculum is engineered from first principles. We start with fundamental accounting equations and build step-by-step into complex DCF models and technical breakout indicators. Engineers, doctors, and non-finance graduates frequently excel in our cohorts.</p>
+      <details style="background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: var(--color-primary); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <summary style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">Do I need a prior commerce or finance degree to join?</summary>
+        <p style="margin-top: 0.85rem; color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">No. Our curriculum is engineered from first principles. We start with fundamental accounting equations and build step-by-step into complex DCF models and technical breakout indicators. Engineers, doctors, and non-finance graduates frequently excel in our cohorts.</p>
       </details>
 
-      <details style="background: rgba(12, 24, 18, 0.65); border: 1px solid var(--academy-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: #E2E8F0; cursor: pointer;">
-        <summary style="font-weight: 700; color: #F8FAFC; font-size: 1.05rem;">Does this course guarantee job placement or trading profits?</summary>
-        <p style="margin-top: 0.85rem; color: #94A3B8; font-size: 0.92rem; line-height: 1.6;">No. In accordance with strict SEBI regulations and ethical principles, the Kalphora Research Academy is a vocational and educational training initiative. We do not provide job placement guarantees or promise stock market profits. We provide rigorous institutional-quality training, financial modeling skills, and interview preparation for research desks.</p>
+      <details style="background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: var(--color-primary); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <summary style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">Does this course guarantee job placement or trading profits?</summary>
+        <p style="margin-top: 0.85rem; color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">No. In accordance with strict SEBI regulations and ethical principles, the Kalphora Research Academy is a vocational and educational training initiative. We do not provide job placement guarantees or promise stock market profits. We provide rigorous institutional-quality training, financial modeling skills, and interview preparation for research desks.</p>
       </details>
 
-      <details style="background: rgba(12, 24, 18, 0.65); border: 1px solid var(--academy-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: #E2E8F0; cursor: pointer;">
-        <summary style="font-weight: 700; color: #F8FAFC; font-size: 1.05rem;">How are live demo classes and weekly sessions conducted?</summary>
-        <p style="margin-top: 0.85rem; color: #94A3B8; font-size: 0.92rem; line-height: 1.6;">Live cohort sessions are held over Zoom on Saturday and Sunday mornings. All sessions are recorded in high-definition and uploaded to your student portal within 2 hours, accompanied by the lecturer's Excel model spreadsheets and PDF handout notes.</p>
+      <details style="background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: var(--color-primary); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <summary style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">How are live demo classes and weekly sessions conducted?</summary>
+        <p style="margin-top: 0.85rem; color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">Live cohort sessions are held over Zoom on Saturday and Sunday mornings. All sessions are recorded in high-definition and uploaded to your student portal within 2 hours, accompanied by the lecturer's Excel model spreadsheets and PDF handout notes.</p>
       </details>
 
-      <details style="background: rgba(12, 24, 18, 0.65); border: 1px solid var(--academy-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: #E2E8F0; cursor: pointer;">
-        <summary style="font-weight: 700; color: #F8FAFC; font-size: 1.05rem;">What software and tools will I learn to use?</summary>
-        <p style="margin-top: 0.85rem; color: #94A3B8; font-size: 0.92rem; line-height: 1.6;">You will master Microsoft Excel for dynamic financial modeling, Screener.in for custom balance sheet forensic queries, Trendlyne / Tijori Finance for shareholding patterns, and TradingView for multi-timeframe price action and volume analysis.</p>
+      <details style="background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.25rem 1.5rem; color: var(--color-primary); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <summary style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">What software and tools will I learn to use?</summary>
+        <p style="margin-top: 0.85rem; color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">You will master Microsoft Excel for dynamic financial modeling, Screener.in for custom balance sheet forensic queries, Trendlyne / Tijori Finance for shareholding patterns, and TradingView for multi-timeframe price action and volume analysis.</p>
       </details>
     </div>
   </div>
@@ -946,20 +956,63 @@
 <!-- ==========================================================================
      8. STATUTORY SEBI EDUCATIONAL DISCLAIMER
      ========================================================================== -->
-<div style="background: #040705; border-top: 1px solid rgba(212, 175, 55, 0.15); padding: 2rem 1.5rem; text-align: center;">
-  <div style="max-width: 980px; margin: 0 auto; font-size: 0.78rem; color: #64748B; line-height: 1.6;">
-    <strong style="color: #94A3B8;">Mandatory SEBI Educational Disclosure:</strong> The Kalphora Research Academy is strictly an educational and instructional initiative operated by Kalphora Equity. All lectures, case studies, financial models, video streams, and PDF handouts are designed purely for vocational training and preparation for the NISM Series XV examination. They do not constitute investment advice, stock recommendations, or portfolio management services. Securities market investments are subject to market risks; read all related documents carefully before investing.
+<div class="academy-section-wrap" style="padding: 2.5rem 1.5rem; text-align: center; border-top: 1px solid var(--color-border);">
+  <div style="max-width: 980px; margin: 0 auto; font-size: 0.8rem; color: var(--color-subtext); line-height: 1.6;">
+    <strong style="color: var(--color-primary);">Mandatory SEBI Educational Disclosure:</strong> The Kalphora Research Academy is strictly an educational and instructional initiative operated by Kalphora Equity. All lectures, case studies, financial models, video streams, and PDF handouts are designed purely for vocational training and preparation for the NISM Series XV examination. They do not constitute investment advice, stock recommendations, or portfolio management services. Securities market investments are subject to market risks; read all related documents carefully before investing.
   </div>
 </div>
 
 
 <!-- ==========================================================================
-     HIDDEN ARTICLES DATA & INTERACTIVE POPUP MODAL
+     MODAL 1: INTERACTIVE ARTICLE READER MODAL
      ========================================================================== -->
 <div class="article-modal-backdrop" id="articleModalBackdrop" onclick="closeArticleModal(event)">
   <div class="article-modal-content" onclick="event.stopPropagation()">
     <button type="button" class="modal-close-cross" onclick="closeArticleModal()">&times;</button>
     <div id="modalArticleContainer"></div>
+  </div>
+</div>
+
+
+<!-- ==========================================================================
+     MODAL 2: "COMING SOON — PHASE 3 DEMO" MODAL
+     ========================================================================== -->
+<div class="article-modal-backdrop" id="comingSoonModalBackdrop" onclick="closeComingSoonModal(event)">
+  <div class="article-modal-content" style="max-width: 600px; text-align: center;" onclick="event.stopPropagation()">
+    <button type="button" class="modal-close-cross" onclick="closeComingSoonModal()">&times;</button>
+    
+    <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(212, 175, 55, 0.15); border: 1.5px solid var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.25rem auto;">
+      🚀
+    </div>
+
+    <div class="academy-pill-badge" style="margin-bottom: 0.75rem;">Interactive Demo Mode</div>
+
+    <h3 id="comingSoonTitle" style="font-size: 1.6rem; color: var(--color-primary); margin: 0 0 1rem 0; font-weight: 800;">
+      Full Knowledge Hub Archive Coming Soon
+    </h3>
+
+    <p style="color: var(--color-subtext); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.75rem;">
+      You are viewing the interactive <strong>Phase 1 &amp; Phase 2 Demo</strong> of Kalphora Equity. The full library of 100+ research blogs, downloadable valuation templates, and the private student community forum is scheduled for deployment in Phase 3.
+    </p>
+
+    <div style="background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.75rem; text-align: left;">
+      <div style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.4rem;">What You Can Do in This Demo:</div>
+      <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--color-subtext); line-height: 1.6;">
+        <li>Watch the complete 45-minute Live Demo Masterclass.</li>
+        <li>Download the Live Demo Handout &amp; Formula Cheat-Sheet (PDF).</li>
+        <li>Read our 6 featured deep-dive research case studies.</li>
+        <li>Schedule an academic orientation session with our research desk.</li>
+      </ul>
+    </div>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="{% url 'login:academy_demo_pdf' %}" class="btn-academy-primary" download style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+        <span>Download Demo PDF</span>
+      </a>
+      <button type="button" class="btn-academy-secondary" onclick="closeComingSoonModal()" style="padding: 0.75rem 1.5rem; font-size: 0.9rem;">
+        <span>Close Preview</span>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -982,19 +1035,19 @@
     if (!data) return;
     const container = document.getElementById('modalArticleContainer');
     container.innerHTML = `
-      <div style="display: inline-block; font-size: 0.75rem; font-weight: 700; color: #D4AF37; background: rgba(212, 175, 55, 0.15); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); margin-bottom: 1rem;">
+      <div style="display: inline-block; font-size: 0.75rem; font-weight: 700; color: var(--color-gold, #D4AF37); background: rgba(212, 175, 55, 0.15); padding: 0.25rem 0.75rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); margin-bottom: 1rem;">
         ${data.category}
       </div>
-      <h2 style="font-size: 1.75rem; color: #F8FAFC; margin: 0 0 0.85rem 0; font-family: 'Playfair Display', serif;">${data.title}</h2>
-      <div style="display: flex; gap: 1.25rem; font-size: 0.82rem; color: #94A3B8; margin-bottom: 1.75rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 0.75rem;">
+      <h2 style="font-size: 1.75rem; color: var(--color-primary); margin: 0 0 0.85rem 0; font-family: var(--font-heading, sans-serif);">${data.title}</h2>
+      <div style="display: flex; gap: 1.25rem; font-size: 0.82rem; color: var(--color-subtext); margin-bottom: 1.75rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
         <span>✍️ ${data.author}</span>
         <span>⏱️ ${data.read_time}</span>
       </div>
-      <div style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.75;">
+      <div style="color: var(--color-subtext); font-size: 0.95rem; line-height: 1.75;">
         ${data.content}
       </div>
-      <div style="margin-top: 2.5rem; text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 1.5rem;">
-        <button type="button" class="btn-gold-glow" onclick="closeArticleModal()" style="padding: 0.65rem 1.75rem; font-size: 0.88rem;">
+      <div style="margin-top: 2.5rem; text-align: center; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+        <button type="button" class="btn-academy-primary" onclick="closeArticleModal()" style="padding: 0.65rem 1.75rem; font-size: 0.88rem;">
           Close Lesson Reader
         </button>
       </div>
@@ -1006,10 +1059,29 @@
 
   function closeArticleModal(e) {
     const backdrop = document.getElementById('articleModalBackdrop');
-    if (e && e.target !== backdrop && !e.target.classList.contains('modal-close-cross') && !e.target.classList.contains('btn-gold-glow')) {
+    if (e && e.target !== backdrop && !e.target.classList.contains('modal-close-cross') && !e.target.classList.contains('btn-academy-primary')) {
       return;
     }
     backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function openComingSoonModal(featureName) {
+    if (featureName) {
+      const titleEl = document.getElementById('comingSoonTitle');
+      if (titleEl) titleEl.textContent = featureName + ' (Phase 3 Demo)';
+    }
+    const backdrop = document.getElementById('comingSoonModalBackdrop');
+    if (backdrop) backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeComingSoonModal(e) {
+    const backdrop = document.getElementById('comingSoonModalBackdrop');
+    if (e && e.target !== backdrop && !e.target.classList.contains('modal-close-cross')) {
+      return;
+    }
+    if (backdrop) backdrop.classList.remove('active');
     document.body.style.overflow = '';
   }
 </script>

@@ -274,26 +274,26 @@
   </div>
 </section>
 
-<!-- 3.5 KALPHORA RESEARCH ACADEMY PROMOTIONAL STRIP -->
-<section style="background: radial-gradient(circle at 50% 50%, rgba(20, 50, 35, 0.5) 0%, #060B08 85%); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 4.5rem 1.5rem; position: relative;">
+<!-- 3.5 KALPHORA RESEARCH ACADEMY PROMOTIONAL STRIP (THEME ADAPTIVE & SHARED BG) -->
+<section style="background: transparent; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 4.5rem 1.5rem; position: relative;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2.5rem; flex-wrap: wrap;">
     <div style="max-width: 680px;">
-      <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 1rem; border-radius: 30px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); color: #D4AF37; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;">
-        🎓 Kalphora Research Academy &bull; Educational Platform
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 1rem; border-radius: 30px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); color: var(--color-gold, #D4AF37); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;">
+        🎓 Kalphora Research Academy &bull; Educational Platform Demo
       </div>
-      <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; color: #F8FAFC; margin: 0 0 1rem 0; line-height: 1.25; font-family: 'Playfair Display', serif;">
+      <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; color: var(--color-primary); margin: 0 0 1rem 0; line-height: 1.25; font-family: var(--font-heading, serif);">
         Aspiring to Become a Research Analyst?<br>
-        <span style="color: #D4AF37;">Learn Directly from Certified Analysts</span>
+        <span style="color: var(--color-gold, #D4AF37);">Learn Directly from Certified Analysts</span>
       </h2>
-      <p style="color: #94A3B8; font-size: 1rem; line-height: 1.7; margin: 0 0 1.75rem 0;">
+      <p style="color: var(--color-subtext); font-size: 1rem; line-height: 1.7; margin: 0 0 1.75rem 0;">
         Clear your NISM Series XV exam and master real-world forensic accounting, financial modeling in Excel, and multi-cap stock selection. Access our 6-module curriculum, live demo classes, and downloadable lecture notes.
       </p>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-        <a href="{% url 'login:academy' %}" class="btn-gold-lg-glow" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.8rem 1.75rem; border-radius: 30px; font-weight: 800; font-size: 0.95rem;">
+        <a href="{% url 'login:academy' %}" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.85rem 1.85rem; border-radius: 40px; background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 50%, #B88A28 100%); color: #0A0D14 !important; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35); border: 1px solid rgba(212, 175, 55, 0.6);">
           <span>Explore Research Academy</span>
           <span>&rarr;</span>
         </a>
-        <a href="{% url 'login:academy_demo_pdf' %}" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.4); color: #F8FAFC; font-weight: 700; font-size: 0.95rem; background: rgba(10, 20, 15, 0.6);" download>
+        <a href="{% url 'login:academy_demo_pdf' %}" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.85rem 1.85rem; border-radius: 40px; border: 1.5px solid var(--color-border); color: var(--color-primary) !important; font-weight: 700; font-size: 0.95rem; background: var(--color-secondary); box-shadow: 0 2px 8px rgba(0,0,0,0.05);" download>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
@@ -305,26 +305,26 @@
     </div>
 
     <!-- Quick Stats Card -->
-    <div style="background: rgba(12, 24, 18, 0.75); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 2rem 2.25rem; min-width: 280px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
-      <div style="font-size: 0.8rem; font-weight: 700; color: #D4AF37; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem;">
-        Cohort Highlights
+    <div style="background: var(--color-secondary); border: 1px solid var(--color-border); border-radius: 20px; padding: 2rem 2.25rem; min-width: 280px; box-shadow: var(--shadow-subtle, 0 8px 25px rgba(0,0,0,0.06));">
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--color-gold, #D4AF37); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem;">
+        Cohort Highlights &bull; Demo
       </div>
       <div style="display: flex; flex-direction: column; gap: 1.1rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-          <span style="color: #94A3B8; font-size: 0.88rem;">Passing Rate:</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 0.6rem;">
+          <span style="color: var(--color-subtext); font-size: 0.88rem;">Passing Rate:</span>
           <strong style="color: #10B981; font-size: 1rem;">98.2% NISM XV</strong>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-          <span style="color: #94A3B8; font-size: 0.88rem;">Training Mode:</span>
-          <strong style="color: #F8FAFC; font-size: 0.95rem;">Live Zoom + Recordings</strong>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 0.6rem;">
+          <span style="color: var(--color-subtext); font-size: 0.88rem;">Training Mode:</span>
+          <strong style="color: var(--color-primary); font-size: 0.95rem;">Live Zoom + Recordings</strong>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-          <span style="color: #94A3B8; font-size: 0.88rem;">Curriculum:</span>
-          <strong style="color: #F8FAFC; font-size: 0.95rem;">6 Practical Modules</strong>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 0.6rem;">
+          <span style="color: var(--color-subtext); font-size: 0.88rem;">Curriculum:</span>
+          <strong style="color: var(--color-primary); font-size: 0.95rem;">6 Practical Modules</strong>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="color: #94A3B8; font-size: 0.88rem;">Live Demo Class:</span>
-          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-size: 0.78rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px;">Free Access</span>
+          <span style="color: var(--color-subtext); font-size: 0.88rem;">Live Demo Class:</span>
+          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-size: 0.78rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px;">Free Demo Access</span>
         </div>
       </div>
     </div>
