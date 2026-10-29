@@ -1,0 +1,22 @@
+"Timestamp","Full Name / Name of the Entity","Primary Contact Email","Primary Contact Phone Number","Do you already have a registered domain name?","If you have a domain or a preferred domain name, please list it here","Brand Logo and Trademark","Website Page Structure and Content: What specific pages would you like to include on your public website?","Do you have any specific color schemes or design preferences for the website?","Social Media URLs: Please provide the links to any social media profiles you would like showcased.","Client Portal Access and Upgrade Flow: Please describe what specific content or dashboard features should be visible to Free users versus Premium users","For your Client Portal, what specific functionalities do you want to offer to your users?","For Anti-Piracy and PDF Protection on Premium Content, which MaiPDF DRM plan do you anticipate needing?","Which payment aggregator do you prefer to use for capturing client subscriptions?","Are there any other specific features, pages, or third-party integrations you would like to add to this project scope?","Feedback and Suggestions: Please let us know if you have any initial feedback on this project proposal.","Do you acknowledge the communication timeline and response requirements?"
+"2026/10/27 1:51:06 pm GMT+5:30","M Kalpesh / Kalphora Equity","kalpeshsancheti333@gmail.com","9941817896","No, I need to register a new one","","I do not have a logo.","The advisory and education businesses - Free Learning Hub / Blog: educational articles and market-concept explainers. Free content stays openly visible, while paid content is locked in the portal - Research Advisory (plans & Pricing) - Education / Academy: course overview (basics to advanced), curriculum outline, who the course is for, batch details and enrolment.","NO.","Will provide later.","Free users:
+
+Educational content (articles, market-concept explainers, glossary, short videos)
+Course catalogue and enrolment
+Advisory Closed Calls if we could show as performance track record
+Plan comparison and an “Upgrade to Premium” button
+SEBI disclosures, grievance links and risk disclaimers
+
+Premium users (after onboarding and payment):
+
+Everything in free, plus:
+Research recommendations (swing, breakout, long-term) with rationale, Reco date, Exit Date,entry Price, target/Exit Price, stop-loss, holding timeframe , Call Status (Open/closed/Fresh call/Update) and risk disclosure
+Alerts for new recommendations, plus updates and exit calls with status
+Archive of past recommendations and downloadable reports
+Plan validity, renewal and auto-renew management, invoices, and signed agreement and MITC documents
+Support and grievance tickets
+
+Upgrade flow: Click Upgrade, choose a plan, complete KYC, risk profile and agreement consent, pay online, and premium access starts automatically. On expiry , the user returns to free access with a renewal prompt.
+
+Admin side: I should be able to publish and update recommendations with automatic timestamps, view and export the client list with plan status, and manage content without a developer.","e-KYC and client onboarding;e-signing;Other","Not sure yet, let us discuss.","I need help deciding.","Automated email and SMS notifications for new recommendations, renewal reminders and payment confirmations.Lead capture form for free users, so I can later convert them into premium clients.Option to add Academy course delivery (PPT PDFs and assignments) for paid students. On website asking participants to provide Rating and feedback review and showing them on the website.","I would like to review a basic wireframe or demo before full development.
+I need training on using the admin panel, and a clear support process after launch.","Yes, understood."
