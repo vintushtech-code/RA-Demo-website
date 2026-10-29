@@ -1,0 +1,39 @@
+{% load i18n static %}
+
+{% if app_list %}
+  {% for app in app_list %}
+    <div class="app-{{ app.app_label }} module{% if app.has_module_perms %} has-module-perms{% endif %}">
+      <table>
+        <caption>
+          <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a>
+        </caption>
+        {% for model in app.models %}
+          <tr class="model-{{ model.object_name|lower }}{% if model.admin_url in request.path %} current-model{% endif %}">
+            <th scope="row" id="{{ model.admin_url }}">
+              {% if model.admin_url %}
+                <a href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>{{ model.name }}</a>
+              {% else %}
+                {{ model.name }}
+              {% endif %}
+            </th>
+
+            <td style="text-align: right; white-space: nowrap;">
+              {% if model.add_url %}
+                <a href="{{ model.add_url }}" class="addlink" title="{% blocktranslate with name=model.name %}Add new {{ name }}{% endblocktranslate %}">&#43; {% translate 'Add' %}</a>
+              {% endif %}
+              {% if model.admin_url %}
+                {% if model.view_only %}
+                  <a href="{{ model.admin_url }}" class="viewlink">{% translate 'View' %}</a>
+                {% else %}
+                  <a href="{{ model.admin_url }}" class="changelink" aria-describedby="{{ model.admin_url }}">{% translate 'Manage' %}</a>
+                {% endif %}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endfor %}
+{% else %}
+  <p style="padding: 20px; color: var(--admin-text-muted);">{% translate "You don’t have permission to view or edit anything." %}</p>
+{% endif %}

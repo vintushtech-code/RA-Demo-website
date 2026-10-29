@@ -1,0 +1,22 @@
+# Core Framework
+Django>=5.0,<6.0
+
+# Database & Environment Configuration
+python-dotenv>=1.0.1
+dj-database-url>=2.1.0
+psycopg2-binary>=2.9.9
+
+# Static Files & Media Handling
+pillow>=10.2.0
+whitenoise>=6.6.0
+
+# Web APIs & Security
+djangorestframework>=3.14.0
+django-cors-headers>=4.3.1
+
+# Production WSGI Server
+gunicorn>=21.2.0
+
+# Utility Libraries
+requests>=2.31.0
+waitress

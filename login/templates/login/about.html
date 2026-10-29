@@ -1,0 +1,631 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}About Us | GreenTree FP{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 1. INDEPENDENT HERO BANNER WITH BACKGROUND IMAGE -->
+<section class="about-hero-banner">
+  <img class="about-hero-video-bg" src="{% static 'about_hero.png' %}"
+    alt="About GuardianTree FP — Structured Wealth & Advisory">
+
+  <div class="about-hero-content-wrapper">
+    <!-- Left Aligned Hero Structure -->
+    <div class="about-hero-left-section">
+      <div class="about-hero-pill-badge">
+        <span>✨ Structured Wealth & Advisory Services</span>
+      </div>
+
+      <h1 class="about-hero-image-styled-title">
+        Discover<br>
+        our financial<br>
+        <span class="highlight-text">heritage now!</span>
+      </h1>
+
+      <p class="about-hero-image-styled-subtitle">
+        At GuardianTree FP, we partner with salaried professionals, entrepreneurs, and families to design structured
+        financial planning, wealth management, and retirement strategies.
+      </p>
+
+      <form class="about-hero-pill-bar" action="{% url 'contactform:contact' %}" method="get">
+        <div class="about-pill-left-content">
+          <span class="about-pill-icon">💼</span>
+          <span class="about-pill-store-name">GuardianTree FP</span>
+          <span class="about-pill-divider">|</span>
+          <input type="text" name="message" class="about-pill-input" placeholder="Enter your financial goal or query"
+            required>
+        </div>
+        <button type="submit" class="about-pill-submit-btn" aria-label="Submit query">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Live Financial Market Metrics Ticker -->
+    <div class="about-metrics-ticker-wrapper">
+      <div class="about-metric-item">
+        <div class="about-metric-value">25+ Yrs</div>
+        <div class="about-metric-label">Heritage of Trust</div>
+      </div>
+      <div class="about-metric-item">
+        <div class="about-metric-value">₹15,000+ Cr</div>
+        <div class="about-metric-label">Assets Under Advisory</div>
+      </div>
+      <div class="about-metric-item">
+        <div class="about-metric-value">99.4%</div>
+        <div class="about-metric-label">Client Retention</div>
+      </div>
+      <div class="about-metric-item">
+        <div class="about-metric-value">ISO 27001</div>
+        <div class="about-metric-label">Security Certified</div>
+      </div>
+    </div>
+
+    <!-- Authenticated Member Command Bar -->
+    {% if user.is_authenticated %}
+    <div class="about-member-banner">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div
+          style="width: 46px; height: 46px; border-radius: 50%; background: var(--color-gold); color: #0A0D14; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem;">
+          {{ user.get_initials }}
+        </div>
+        <div>
+          <div style="font-weight: 700; font-size: 1.05rem; color: var(--color-primary);">
+            Welcome Back, {{ user.get_display_name }}
+          </div>
+          <div style="font-size: 0.85rem; color: var(--color-subtext);">
+            Client Account #{{ user.id|stringformat:"05d" }} &bull; Provider: {{ user.auth_provider|title }}
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button class="btn btn-secondary" onclick="document.getElementById('bio-modal').style.display='flex'"
+          style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+          Edit Profile Bio
+        </button>
+        <form method="post" action="{% url 'login:logout' %}" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-gold" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+            Sign Out
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- OUR MISSION & OUR VISION SECTION — Fiduciary Core -->
+<!-- ============================================================= -->
+<section class="about-mission-vision-wrapper">
+  <div class="about-mission-vision-container">
+    <div class="about-mission-content">
+      <div class="mv-section-tag">
+        <span>👤 Our About Us & Fiduciary Core</span>
+      </div>
+
+      <h2 class="mv-section-title">
+        Built on Trust. Driven<span class="highlight-text"> by Purpose</span>
+      </h2>
+
+      <p class="mv-section-subtitle">
+        Sabin Balan Finance is a premier wealth advisory firm serving as a trusted fiduciary to families, entrepreneurs,
+        and executive leaders across global markets. Our mission is simple: deliver nourishing, high-quality financial
+        strategies that support people, businesses, and generational wealth.
+      </p>
+
+      <div class="vision-mission-grid">
+        <div class="vision-mission-card">
+          <div class="vision-mission-image">
+            <img src="{% static 'about_mission_vision_circle.png' %}" alt="Our Vision" loading="lazy" decoding="async" />
+          </div>
+          <div class="vision-mission-content">
+            <span class="vision-mission-label">Our Vision</span>
+            <h3>To be the most trusted fiduciary wealth partner for generations to come.</h3>
+            <p>We envision a world where every financial decision is made with integrity, every relationship is built on
+              trust, and every legacy is stronger than the last.</p>
+          </div>
+        </div>
+
+        <div class="vision-mission-card">
+          <div class="vision-mission-image">
+            <img src="{% static 'about_mission_vision_board.png' %}" alt="Our Mission" loading="lazy" decoding="async" />
+          </div>
+          <div class="vision-mission-content">
+            <span class="vision-mission-label">Our Mission</span>
+            <h3>To deliver personalized wealth solutions with unwavering fiduciary commitment.</h3>
+            <p>We partner with our clients to simplify complexity, manage risk, and unlock opportunities that create
+              meaningful, lasting impact.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mv-cta-row">
+        <a href="{% url 'contactform:contact' %}" class="btn-mv-primary">
+          <span>Discover More</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <a href="tel:8779649031" class="mv-call-pill">
+          <div class="mv-call-icon">📞</div>
+          <div>
+            <div style="font-size: 0.75rem; color: var(--color-subtext); font-weight: 500;">Speak with an Advisor</div>
+            <span class="highlight-text">8779649031</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="about-hero-panel">
+      <div class="about-hero-image-card">
+        <img class="about-hero-image" src="{% static 'sabin_balan_3.png' %}"
+          alt="Sabin Balan — Founder & Fiduciary Wealth Advisor, GreenTree FP" loading="lazy" decoding="async">
+        <div class="about-hero-circle-outline"></div>
+      </div>
+
+      <div class="about-hero-extras">
+        <div class="about-hero-stats-grid">
+          <div class="about-hero-stat-card">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Years of Fiduciary Excellence</div>
+          </div>
+          <div class="about-hero-stat-card">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Dedicated Advisory Clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- TOP ADVISORY SECTION 1: WHY OUR ADVISORY WILL BE INVALUABLE TO YOU -->
+<!-- ============================================================= -->
+<section class="advisory-top-section-1">
+  <div class="advisory-left-content-1">
+    <div class="advisory-breadcrumb">
+      <span class="crumb-muted">Home /</span>
+      <span>About</span>
+    </div>
+
+    <h2 class="advisory-section-title">
+      Why Our Advisory Will Be<br>
+      <span class="highlight-gold">Invaluable To You.</span>
+    </h2>
+
+    <p class="advisory-section-desc">
+      At GreenTree FP we believe in the power of collaboration to achieve outstanding results. With a team of
+      skilled professionals and a commitment to quality, we work hand-in-hand with our clients to bring their ideas to
+      life. Together, we create spaces and solutions that stand the test of time.
+    </p>
+  </div>
+
+  <div class="advisory-image-container-1">
+    <img class="advisory-main-img-1" src="{% static 'about_advisory_invaluable.png' %}"
+      alt="Why Our Advisory Will Be Invaluable To You — GreenTree FP" loading="lazy" decoding="async">
+
+    <!-- Rotating Emblem Circular Badge -->
+    <div class="advisory-circular-badge">
+      <div class="badge-arrow-btn">↗</div>
+      <div class="badge-text-ring">
+        <svg viewBox="0 0 100 100">
+          <path id="ringPath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+          <text>
+            <textPath href="#ringPath" startOffset="0%">GREENTREE FP • ADVISORY • GREENTREE FP •</textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- MIDDLE HIGHLIGHT STATEMENT & STAT COUNTERS ROW -->
+<!-- ============================================================= -->
+<div class="advisory-middle-banner-wrapper">
+  <div class="advisory-middle-banner-content">
+    <p class="advisory-center-quote">
+      At GreenTree FP we are committed to revolutionizing the wealth advisory industry with innovative,
+      sustainable, and cost-effective solutions. With a proven track record of delivering exceptional portfolios, we
+      combine <span class="highlight-bold">state-of-the-art technology</span>, <span class="highlight-muted">skilled
+        expertise, and customer-centric approaches to bring visions to life.</span>
+    </p>
+  </div>
+
+  <div class="advisory-stats-grid">
+    <div class="advisory-stat-card">
+      <div class="advisory-stat-number">150+</div>
+      <div class="advisory-stat-label">Complete Portfolios</div>
+    </div>
+    <div class="advisory-stat-card">
+      <div class="advisory-stat-number">100+</div>
+      <div class="advisory-stat-label">Team Members</div>
+    </div>
+    <div class="advisory-stat-card">
+      <div class="advisory-stat-number">200+</div>
+      <div class="advisory-stat-label">Client Reviews</div>
+    </div>
+    <div class="advisory-stat-card">
+      <div class="advisory-stat-number">30</div>
+      <div class="advisory-stat-label">Winning Awards</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================= -->
+<!-- TOP ADVISORY SECTION 2: FOR WHOM ARE WE THE BEST-FIT ADVISORS? -->
+<!-- ============================================================= -->
+<section class="advisory-top-section-2">
+  <div class="advisory-double-image-wrapper">
+    <img class="advisory-base-img" src="{% static 'about_best_fit_advisors.png' %}"
+      alt="Financial Blueprints & Strategic Planning" loading="lazy" decoding="async">
+    <img class="advisory-overlay-img-card" src="{% static 'financial_advisors_team.png' %}"
+      alt="Fiduciary Advisory Team Discussion" loading="lazy" decoding="async">
+  </div>
+
+  <div class="advisory-right-content-2">
+    <h2 class="advisory-section-title">
+      For Whom Are We the<br>
+      <span class="highlight-gold">Best-Fit Advisors?</span>
+    </h2>
+
+    <p class="advisory-section-desc">
+      To provide exceptional wealth advisory services that exceed client expectations through innovation, quality
+      craftsmanship, and a commitment to sustainability. We aim to build lasting relationships and create solutions that
+      enhance the lives of our clients and communities. Through precision, expertise, and a customer-centric approach,
+      we strive to exceed expectations in every project.
+    </p>
+
+    <div class="advisory-target-list">
+      <div class="advisory-target-item">
+        <div class="advisory-check-badge">✔</div>
+        <span>Fostering Sustainable Growth and Green Development</span>
+      </div>
+      <div class="advisory-target-item">
+        <div class="advisory-check-badge">✔</div>
+        <span>Innovating for a Sustainable Future</span>
+      </div>
+      <div class="advisory-target-item">
+        <div class="advisory-check-badge">✔</div>
+        <span>Customer-Centric Approach</span>
+      </div>
+      <div class="advisory-target-item">
+        <div class="advisory-check-badge">✔</div>
+        <span>Building Stronger Communities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A BIT ABOUT US SECTION -->
+<div class="a-bit-about-us-wrapper">
+  <div class="a-bit-about-us-container">
+    <div class="a-bit-about-us-left">
+      <div class="a-bit-about-us-tag">A Bit About Us</div>
+
+      <h2 class="a-bit-about-us-title">
+        Building Wealth.<br>
+        Safeguarding Futures.<br>
+        <span class="highlight-gold">Creating Legacies.</span>
+      </h2>
+
+      <p class="a-bit-about-us-subtitle">
+        At GuardianTree FP, we partner with salaried professionals, entrepreneurs, and families to build, protect, and
+        transfer wealth with structured financial planning, clear retirement roadmaps, and custom management.
+      </p>
+
+      <!-- Values Grid -->
+      <div class="a-bit-about-us-values-grid">
+        <!-- Card 1: Integrity -->
+        <div class="a-bit-about-us-value-card">
+          <div class="value-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m9 11 2 2 4-4"></path>
+            </svg>
+          </div>
+          <div class="value-title">Integrity</div>
+          <div class="value-desc">We act with honesty and uphold the highest standards.</div>
+        </div>
+
+        <!-- Card 2: Client First -->
+        <div class="a-bit-about-us-value-card">
+          <div class="value-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="value-title">Client First</div>
+          <div class="value-desc">Your goals, your priorities and your success come first.</div>
+        </div>
+
+        <!-- Card 3: Expertise -->
+        <div class="a-bit-about-us-value-card">
+          <div class="value-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div class="value-title">Expertise</div>
+          <div class="value-desc">Decades of experience to guide you ahead.</div>
+        </div>
+
+        <!-- Card 4: Trust -->
+        <div class="a-bit-about-us-value-card">
+          <div class="value-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+              </path>
+            </svg>
+          </div>
+          <div class="value-title">Trust</div>
+          <div class="value-desc">Long-term relationships built on trust and respect.</div>
+        </div>
+      </div>
+
+      <!-- Mission Card -->
+      <div class="a-bit-about-us-mission-card">
+        <div class="mission-icon-container">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 22h18"></path>
+            <path d="M6 18v-7"></path>
+            <path d="M10 18v-7"></path>
+            <path d="M14 18v-7"></path>
+            <path d="M18 18v-7"></path>
+            <path d="M12 2 2 7h20z"></path>
+          </svg>
+        </div>
+        <div class="mission-content">
+          <div class="mission-title-label">Our Mission</div>
+          <div class="mission-text-desc">To empower our clients with personalized financial strategies that create
+            lasting value and secure future generations.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="a-bit-about-us-right">
+      <div class="a-bit-about-us-image-container">
+        <div class="a-bit-about-us-fade-overlay"></div>
+        <img class="a-bit-about-us-img" src="{% static 'bit_about_us.png' %}"
+          alt="Sabin Balan Private Wealth Advisory Meeting" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. EXECUTIVE SHOWCASE SECTION -->
+<div class="executive-showcase-wrapper">
+  <section class="executive-showcase-container">
+    <!-- Background Chevron Geometry Graphic -->
+    <svg class="showcase-bg-lines" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50 250 L150 150 L-50 50" stroke="var(--color-gold)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.6" />
+      <path d="M0 300 L200 200 L0 100" stroke="var(--color-gold)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.4" />
+      <path d="M50 350 L250 250 L50 150" stroke="var(--color-gold)" stroke-width="24" stroke-linecap="round"
+        stroke-linejoin="round" opacity="0.2" />
+    </svg>
+
+    <div class="showcase-left-content">
+      <div class="section-tag">Legacy & Expertise</div>
+      <h2 class="showcase-title">Crafting Bespoke Wealth Solutions Driven by <span class="highlight-text">Fiduciary
+          Trust</span></h2>
+      <p class="showcase-subtitle">
+        At Sabin Balan Finance, we place our clients' interests at the center of everything we do. Our team of veteran
+        advisors leverages advanced quantitative strategies to build and compound your capital, blending global fidelity
+        with deep India market expertise to support both domestic growth and cross-border wealth preservation.
+      </p>
+
+      <a href="{% url 'contactform:contact' %}" class="showcase-cta-btn">
+        <span>Connect Now</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="showcase-image-wrapper">
+      <video class="showcase-main-img" autoplay loop muted playsinline>
+        <source src="{% static 'about_video.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Floating Gold Pill Badge 1: Fiduciary Trust -->
+      <div class="floating-badge badge-financial-planning">
+        <div class="badge-icon-circle">💼</div>
+        <span class="badge-text-label">Fiduciary Trust</span>
+      </div>
+
+      <!-- Floating Gold Pill Badge 2: Expert Guidance -->
+      <div class="floating-badge badge-wealth-mgmt">
+        <div class="badge-icon-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </div>
+        <span class="badge-text-label">Expert Guidance</span>
+      </div>
+
+      <!-- Floating Gold Pill Badge 3: Custom Solutions -->
+      <div class="floating-badge badge-portfolio-growth">
+        <div class="badge-icon-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+            <polyline points="17 6 23 6 23 12"></polyline>
+          </svg>
+        </div>
+        <span class="badge-text-label">Custom Solutions</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- OUR PROFESSIONAL TEAM MEMBERS SECTION -->
+<section class="team-members-wrapper">
+  <div class="team-members-header">
+    <span class="team-members-tag">Our Team Members</span>
+    <h2 class="team-members-title">Meet Our <span class="highlight-text">Professional Advisors</span></h2>
+  </div>
+
+  <div class="team-members-accordion">
+    {% for member in team_members %}
+    <div class="team-member-card">
+      {% if member.get_image_url %}
+      <img class="team-member-image" src="{{ member.get_image_url }}" alt="{{ member.name }} - {{ member.role }}"
+        loading="lazy" decoding="async" onerror="this.onerror=null; this.src='{% static "financial_advisors_team.png" %}';">
+      {% elif member.image %}
+      <img class="team-member-image" src="{{ member.image.url }}" alt="{{ member.name }} - {{ member.role }}"
+        loading="lazy" decoding="async" onerror="this.onerror=null; this.src='{% static "financial_advisors_team.png" %}';">
+      {% else %}
+      <img class="team-member-image" src="{% static 'financial_advisors_team.png' %}"
+        alt="{{ member.name }} - {{ member.role }}" loading="lazy" decoding="async">
+      {% endif %}
+      <div class="team-member-overlay">
+        <h3 class="team-member-name">{{ member.name }}</h3>
+        <p class="team-member-role">{{ member.role }}</p>
+      </div>
+    </div>
+    {% empty %}
+    <div
+      style="text-align: center; width: 100%; color: var(--color-subtext); padding: 3rem; background: var(--color-secondary); border-radius: var(--radius-lg); border: 1px dashed var(--color-border);">
+      No dynamic team members published yet. Add them in the Django Admin Panel.
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Team slider controls -->
+  <div class="team-slider-controls" id="team-controls">
+    <button id="team-prev-btn" class="team-slider-nav-btn" aria-label="Previous Team Members">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="team-slider-dots" id="team-dots"></div>
+    <button id="team-next-btn" class="team-slider-nav-btn" aria-label="Next Team Members">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- 3. MISSION, VALUES & PLATFORM HIGHLIGHTS -->
+<div class="about-container"
+  style="max-width: 900px; width: 100%; margin: 1.5rem auto 3rem; padding: 0 1.5rem; box-sizing: border-box;">
+  <!-- Mission & Core Values Grid -->
+  <div
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; width: 100%;">
+
+    <div class="card-container" style="max-width: 100%; margin: 0;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        🎯 Our Mission
+      </h3>
+      <p style="color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">
+        To simplify complex financial workflows through elegant user experiences, real-time insights, and uncompromised
+        privacy.
+      </p>
+    </div>
+
+    <div class="card-container" style="max-width: 100%; margin: 0;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        🛡️ Bank-Grade Security
+      </h3>
+      <p style="color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">
+        Built with 256-bit encryption standards, ORM SQL injection immunity, and custom brute-force rate-limiting
+        defenses.
+      </p>
+    </div>
+
+    <div class="card-container" style="max-width: 100%; margin: 0;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        ⚙️ Modular Architecture
+      </h3>
+      <p style="color: var(--color-subtext); font-size: 0.92rem; line-height: 1.6;">
+        Engineered with isolated, decoupled Django micro-modules (<code>login</code>, <code>theme_config</code>,
+        <code>navfooter</code>, <code>contactform</code>).
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Key Statistics Banner -->
+  <div class="profile-card"
+    style="background-color: var(--color-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-subtle);">
+    <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; text-align: center;">Platform <span
+        class="highlight-text">Highlights</span></h3>
+
+    <div class="info-grid"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; text-align: center;">
+      <div class="info-box"
+        style="background-color: var(--color-input-bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-primary);">99.99%</div>
+        <div style="font-size: 0.85rem; color: var(--color-subtext); text-transform: uppercase; margin-top: 0.25rem;">
+          Uptime Security</div>
+      </div>
+
+      <div class="info-box"
+        style="background-color: var(--color-input-bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-primary);">256-Bit</div>
+        <div style="font-size: 0.85rem; color: var(--color-subtext); text-transform: uppercase; margin-top: 0.25rem;">
+          SSL Encryption</div>
+      </div>
+
+      <div class="info-box"
+        style="background-color: var(--color-input-bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <div style="font-size: 1.8rem; font-weight: 800; color: var(--color-primary);">Instant</div>
+        <div style="font-size: 0.85rem; color: var(--color-subtext); text-transform: uppercase; margin-top: 0.25rem;">
+          OAuth Authentication</div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+      <a href="{% url 'login:consultation' %}" class="btn btn-gold"
+        style="width: auto; padding: 0.85rem 2.25rem; background: linear-gradient(135deg, #0B192C, #1E293B); border: 1px solid #D4AF37; color: #FFF9D2; border-radius: var(--radius-pill); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 8px 24px rgba(11, 25, 44, 0.3);">
+        <i class="fa-regular fa-calendar-check"></i>
+        <span>Schedule a Private Consultation</span>
+      </a>
+      <a href="{% url 'contactform:contact' %}" class="btn btn-secondary"
+        style="width: auto; padding: 0.85rem 2rem; text-decoration: none; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 0.5rem;">
+        <span>Get in Touch With Us</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'login/js/about.js' %}"></script>
+{% endblock %}

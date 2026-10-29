@@ -1,0 +1,61 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}🎉 Congratulations! Here is Your Master License Key — Sabin Balan Finance{% endblock %}
+
+{% block doc_badge %}MASTER LICENSE KEY &amp; UNLOCK ISSUED{% endblock %}
+
+{% block email_content %}
+<h2>🎉 Congratulations, Sabin Balan!</h2>
+<p>
+  Your SaaS subscription for the <strong>GuardianTree FP Executive Management Suite</strong> has been successfully issued &amp; renewed by <strong>KPRegTech &amp; VintushTech</strong>.
+</p>
+
+<div class="details-card" style="border: 1.5px solid #FFD700; background: linear-gradient(145deg, #162038 0%, #0D1629 100%);">
+  <div style="text-align: center; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 215, 0, 0.25); margin-bottom: 14px;">
+    <span style="color: #94A3B8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">YOUR OFFICIAL MASTER UNLOCK KEY</span>
+    <div style="font-family: monospace; font-size: 22px; font-weight: 800; color: #FFD700; letter-spacing: 2.5px; margin-top: 6px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);">
+      {{ license_key }}
+    </div>
+  </div>
+
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Subscription Plan:</td>
+      <td class="details-value highlight">{{ plan_name }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">License Status:</td>
+      <td class="details-value">
+        <span class="status-badge status-active">ACTIVE &amp; UNLOCKED</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Access Expiration:</td>
+      <td class="details-value">{{ expires_at }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Issuing Provider:</td>
+      <td class="details-value">KPRegTech &amp; VintushTech Cloud Desk</td>
+    </tr>
+  </table>
+</div>
+
+<div style="background: rgba(239, 68, 68, 0.12); border-left: 3px solid #EF4444; border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 20px 0;">
+  <strong style="color: #F87171; font-size: 12px; text-transform: uppercase; display: flex; align-items: center; gap: 4px;">
+    ⚠️ Confidentiality &amp; Security Notice
+  </strong>
+  <p style="color: #FECACA; font-size: 13px; margin: 6px 0 0 0; line-height: 1.5;">
+    This Master License Key is confidential and intended solely for <strong>Sabin Balan (GuardianTree FP)</strong>. Please keep this key secure and <strong>DO NOT share this key with anyone outside your authorized administrative team</strong>.
+  </p>
+</div>
+
+<div style="text-align: center; margin: 24px 0 10px;">
+  <a href="{{ site_url }}/x7K9mQp2LrT4/login/adminsaassubscription/" class="btn-action">
+    Unlock &amp; Manage Admin Panel &rarr;
+  </a>
+</div>
+
+<p style="font-size: 12px; color: #94A3B8; text-align: center; margin-top: 18px;">
+  Need assistance or instant license key verification? Contact the KPRegTech &amp; VintushTech Priority Desk at <a href="mailto:info@kpregtech.com" style="color: #FFD700; text-decoration: underline;">info@kpregtech.com</a> or call <a href="tel:+918779649031" style="color: #FFD700; text-decoration: underline;">+91 8779649031</a> (8779649031).
+</p>
+{% endblock %}

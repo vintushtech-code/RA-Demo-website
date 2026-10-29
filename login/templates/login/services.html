@@ -1,0 +1,694 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}GreenTree FP — Wealth & Institutional Advisory Services{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/services.css' %}?v=1.1">
+{% endblock %}
+
+{% block content %}
+<!-- 1. EXECUTIVE HERO BANNER WITH BACKGROUND IMAGE -->
+<section class="hero-banner">
+    <img class="hero-video-bg" src="{% static 'service_hero.png' %}"
+        alt="Architecting Generational Prosperity & Capital Resilience" fetchpriority="high" decoding="async">
+
+    <div class="hero-content-wrapper">
+        <!-- Left Aligned Hero Structure -->
+        <div class="hero-left-section">
+            <div class="hero-pill-badge">
+                <span>✨ BESPOKE WEALTH & INSTITUTIONAL ADVISORY</span>
+            </div>
+
+            <h1 class="hero-image-styled-title">
+                Architecting<br>
+                generational prosperity<br>
+                <span class="highlight-text">& capital resilience</span>
+            </h1>
+
+            <p class="hero-image-styled-subtitle">
+                Elevate your financial trajectory with bespoke advisory services engineered for ultra-high-net-worth
+                individuals, family offices, and corporations. We construct resilient, forward-looking strategies that
+                preserve and multiply your legacy.
+            </p>
+
+            <form class="hero-pill-bar" action="{% url 'login:consultation' %}" method="get">
+                <div class="pill-left-content">
+                    <span class="pill-icon">💼</span>
+                    <span class="pill-store-name">GuardianTree FP</span>
+                    <span class="pill-divider">|</span>
+                    <input type="text" name="message" class="pill-input"
+                        placeholder="Enter your financial goal or query" required>
+                </div>
+                <button type="submit" class="pill-submit-btn" aria-label="Submit query">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- Live Financial Market Metrics Ticker -->
+        <div class="metrics-ticker-wrapper">
+            <div class="metric-item">
+                <div class="metric-value">$4.8B+</div>
+                <div class="metric-label">Assets Under Advisory</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">99.4%</div>
+                <div class="metric-label">Client Retention Rate</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">25+ Yrs</div>
+                <div class="metric-label">Fiduciary Excellence</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Independent Counsel</div>
+            </div>
+        </div>
+
+        <!-- Authenticated Member Command Bar -->
+        {% if user.is_authenticated %}
+        <div class="member-banner">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div
+                    style="width: 46px; height: 46px; border-radius: 50%; background: var(--color-gold); color: #0A0D14; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem;">
+                    {{ user.get_initials }}
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1.05rem; color: var(--color-primary);">
+                        Welcome Back, {{ user.get_display_name }}
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--color-subtext);">
+                        Client Account #{{ user.id|stringformat:"05d" }} &bull; Provider: {{ user.auth_provider|title }}
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <button class="btn btn-secondary" onclick="document.getElementById('bio-modal').style.display='flex'"
+                    style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                    Edit Profile Bio
+                </button>
+                <form method="post" action="{% url 'login:logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-gold"
+                        style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                        Sign Out
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- Main Services Section -->
+<section class="services-showcase" id="service-showcase">
+    <div class="container">
+        <div class="showcase-shell">
+            <button class="showcase-nav prev" type="button" aria-label="Previous service">&#8249;</button>
+
+            <div class="showcase-stage">
+                <article class="showcase-panel active" data-service-key="portfolio-strategy" style="--service-image: url('{% static 'login/images/service_portfolio.jpg' %}'); --mask-shape: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);">
+                    <div class="showcase-copy">
+                        <div class="showcase-kicker">Wealth Management</div>
+                        <h3>Portfolio <span class="highlight-text">Strategy</span></h3>
+                        <p>Capital allocation built for resilience, compounding, and institutional-grade discipline across public and private markets.</p>
+                        <ul class="showcase-list">
+                            <li>Strategic asset allocation</li>
+                            <li>Risk-balanced positioning</li>
+                            <li>Private market access</li>
+                            <li>Governance-led oversight</li>
+                        </ul>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-badge">
+                            <span>Asset mix</span>
+                            <strong>Growth</strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="showcase-panel" data-service-key="retirement-planning" style="--service-image: url('{% static 'login/images/service_retirement.jpg' %}'); --mask-shape: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 18%);">
+                    <div class="showcase-copy">
+                        <div class="showcase-kicker">Retirement Advisory</div>
+                        <h3>Retirement <span class="highlight-text">Planning</span></h3>
+                        <p>Tax-aware retirement frameworks that protect lifestyle, optimize drawdown, and preserve wealth beyond your working years.</p>
+                        <ul class="showcase-list">
+                            <li>Income sustainability</li>
+                            <li>Tax-efficient withdrawals</li>
+                            <li>Healthcare contingency</li>
+                            <li>Legacy continuity</li>
+                        </ul>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-badge">
+                            <span>Retirement</span>
+                            <strong>Security</strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="showcase-panel" data-service-key="institutional-treasury" style="--service-image: url('{% static 'login/images/service_treasury.png' %}'); --mask-shape: polygon(22% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 34%);">
+                    <div class="showcase-copy">
+                        <div class="showcase-kicker">Corporate Advisory</div>
+                        <h3>Institutional <span class="highlight-text">Treasury</span></h3>
+                        <p>Liquidity strategies and cash management frameworks that strengthen certainty, improve working capital, and support growth.</p>
+                        <ul class="showcase-list">
+                            <li>Liquidity forecasting</li>
+                            <li>Debt and capital structure</li>
+                            <li>Cash optimization</li>
+                            <li>Execution discipline</li>
+                        </ul>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-badge">
+                            <span>Liquidity</span>
+                            <strong>Control</strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="showcase-panel" data-service-key="fiduciary-services" style="--service-image: url('{% static 'login/images/service_fiduciary.jpg' %}'); --mask-shape: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 22%);">
+                    <div class="showcase-copy">
+                        <div class="showcase-kicker">Fiduciary Governance</div>
+                        <h3>Fiduciary <span class="highlight-text">Services</span></h3>
+                        <p>Trust architecture, governance, and compliance support that keeps complex wealth structures protected and aligned with intent.</p>
+                        <ul class="showcase-list">
+                            <li>Trust structuring</li>
+                            <li>Compliance oversight</li>
+                            <li>Asset protection</li>
+                            <li>Governance clarity</li>
+                        </ul>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-badge">
+                            <span>Governance</span>
+                            <strong>Trust</strong>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <button class="showcase-nav next" type="button" aria-label="Next service">&#8250;</button>
+        </div>
+
+        <div class="showcase-dots" aria-label="Service navigation">
+            <button class="showcase-dot active" type="button" data-service-key="portfolio-strategy" aria-label="Open Portfolio Strategy"></button>
+            <button class="showcase-dot" type="button" data-service-key="retirement-planning" aria-label="Open Retirement Planning"></button>
+            <button class="showcase-dot" type="button" data-service-key="institutional-treasury" aria-label="Open Institutional Treasury"></button>
+            <button class="showcase-dot" type="button" data-service-key="fiduciary-services" aria-label="Open Fiduciary Services"></button>
+        </div>
+    </div>
+</section>
+
+<section class="services-section" id="services-explore">
+    <div class="container">
+        <header class="section-header">
+            <span class="subtitle">COMPREHENSIVE ADVISORY MATRIX</span>
+            <h2>Bespoke <span class="highlight-text">Financial Services</span></h2>
+
+            <div class="divider"></div>
+            <p class="header-description">Explore our specialized financial divisions engineered to protect capital,
+                optimize tax obligations, and generate sustainable multi-generational growth.</p>
+        </header>
+
+        <!-- Category Filter & Search Bar Box -->
+        <div class="filter-search-bar">
+            <div class="filter-pills" id="filter-pills">
+                <button class="filter-pill active" data-category="all">All Services</button>
+                <button class="filter-pill" data-category="wealth">Private Wealth</button>
+                <button class="filter-pill" data-category="portfolio">Portfolio Management</button>
+                <button class="filter-pill" data-category="retirement">Retirement & Pension</button>
+                <button class="filter-pill" data-category="legacy">Legacy & Corporate</button>
+                <button class="filter-pill" data-category="tax">Tax & Estate</button>
+                <button class="filter-pill" data-category="impact">Impact & Community</button>
+            </div>
+            <div class="search-input-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="service-search" placeholder="Search service e.g. Tax, Estate, Portfolio..." />
+            </div>
+        </div>
+
+        <!-- Services Grid (Box Form) -->
+        <div class="services-grid" id="services-grid">
+
+            <!-- Box 1 -->
+            <article class="service-card" data-category="wealth tax">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="architecture"
+                        data-service-name="Bespoke Financial Architecture" onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/card_1.jpg' %}" alt="Bespoke Financial Architecture" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">WEALTH ARCHITECTURE</span>
+                </div>
+                <div class="card-content">
+                    <h3>Bespoke Financial Architecture</h3>
+                    <p>A meticulous, structural approach to wealth creation and asset positioning. We construct
+                        institutional-grade blueprints aligning liquid reserves, fixed assets, and growth capital.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Integrated Cash Flow Management</li>
+                        <li><span class="check">✓</span> Advanced Tax Exposure Optimization</li>
+                        <li><span class="check">✓</span> Strategic Liability Structuring</li>
+                        <li><span class="check">✓</span> Global Asset Protection Frameworks</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Target: $1M+ Portfolios</span>
+                        <button class="btn-card-action" onclick="openModal('architecture')">
+                            DISCOVER PATH <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 2 -->
+            <article class="service-card" data-category="portfolio wealth">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="portfolio"
+                        data-service-name="Active Wealth Cultivation" onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/card_2.jpg' %}" alt="Active Wealth Cultivation" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">PORTFOLIO GROWTH</span>
+                </div>
+                <div class="card-content">
+                    <h3>Active Wealth Cultivation</h3>
+                    <p>Dynamic, disciplined portfolio management for active capital growth and inflation protection. We
+                        deploy proprietary quantitative insights tailored to your risk parameters.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Discretionary Portfolio Management</li>
+                        <li><span class="check">✓</span> Alternative Investments & Private Equity</li>
+                        <li><span class="check">✓</span> Real-Time Global Market Intelligence</li>
+                        <li><span class="check">✓</span> Institutional Risk Audit & Reporting</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Discretionary Mandates</span>
+                        <button class="btn-card-action" onclick="openModal('portfolio')">
+                            BUILD LEGACY <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 3 -->
+            <article class="service-card" data-category="retirement wealth">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="retirement"
+                        data-service-name="Optimized Retirement Trajectories"
+                        onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/card_3.jpg' %}" alt="Optimized Retirement Trajectories" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">RETIREMENT & LONGEVITY</span>
+                </div>
+                <div class="card-content">
+                    <h3>Optimized Retirement Trajectories</h3>
+                    <p>Secure a seamless transition into your next executive chapter. We engineer sustainable, tax-free
+                        distribution structures that guarantee income stability for decades.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Strategic Income Cash-Flow Stream</li>
+                        <li><span class="check">✓</span> Longevity Risk Shielding</li>
+                        <li><span class="check">✓</span> Executive Pension Restructuring</li>
+                        <li><span class="check">✓</span> Tax-Efficient Capital Distributions</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Lifetime Income Guarantee</span>
+                        <button class="btn-card-action" onclick="openModal('retirement')">
+                            SECURE FUTURE <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 4 -->
+            <article class="service-card" data-category="legacy wealth">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="legacy"
+                        data-service-name="Strategic Corporate & Legacy Counsel"
+                        onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/service_4.jpg' %}" alt="Strategic Corporate & Legacy Counsel" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">CORPORATE & SUCCESSION</span>
+                </div>
+                <div class="card-content">
+                    <h3>Strategic Corporate & Legacy Counsel</h3>
+                    <p>Specialized advisory for business founders, executives, and multi-generational families. We
+                        preserve corporate achievements while transferring wealth seamlessly to heirs.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Business Succession & M&A Governance</li>
+                        <li><span class="check">✓</span> Executive Equity & Retention Models</li>
+                        <li><span class="check">✓</span> Philanthropic & Foundation Structuring</li>
+                        <li><span class="check">✓</span> Family Office Charter Creation</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Family Office Governance</span>
+                        <button class="btn-card-action" onclick="openModal('legacy')">
+                            PLAN GENERATIONS <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 5 -->
+            <article class="service-card" data-category="tax wealth">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="tax"
+                        data-service-name="Tax Mitigation & Estate Shielding"
+                        onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/service_1.jpg' %}" alt="Tax Mitigation & Cross-Border Advisory" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">TAX & ESTATE SHIELDING</span>
+                </div>
+                <div class="card-content">
+                    <h3>Tax Mitigation & Estate Shielding</h3>
+                    <p>Sophisticated cross-border tax advisory designed to minimize capital gains, estate taxes, and
+                        inheritance friction through offshore and domestic trust instruments.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Multi-Jurisdictional Tax Minimization</li>
+                        <li><span class="check">✓</span> Irrevocable & Dynasty Trust Design</li>
+                        <li><span class="check">✓</span> Estate Audit & Liability Containment</li>
+                        <li><span class="check">✓</span> Sovereign Wealth Protection</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Up to 40% Tax Reduction</span>
+                        <button class="btn-card-action" onclick="openModal('tax')">
+                            DISCOVER SHIELD <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 6 -->
+            <article class="service-card" data-category="portfolio legacy">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="alternatives"
+                        data-service-name="Private Equity & Alternative Assets"
+                        onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/service_3.jpg' %}" alt="Private Equity & Alternative Assets" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">ALTERNATIVE VENTURES</span>
+                </div>
+                <div class="card-content">
+                    <h3>Private Equity & Alternative Assets</h3>
+                    <p>Exclusive access to institutional private market deals, venture funding, commercial real estate
+                        portfolios, and private debt instruments unavailable to public markets.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Direct Co-Investment Opportunities</li>
+                        <li><span class="check">✓</span> Premium Commercial Real Estate Syndicate</li>
+                        <li><span class="check">✓</span> High-Yield Private Credit Funds</li>
+                        <li><span class="check">✓</span> Venture Capital Allocation</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Exclusive Institutional Deals</span>
+                        <button class="btn-card-action" onclick="openModal('alternatives')">
+                            EXPLORE VENTURES <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 7 -->
+            <article class="service-card" data-category="advisory">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="advisory"
+                        data-service-name="Strategic Corporate Advisory" onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/anti_poverty.jpg' %}" alt="Corporate Finance Advisory" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">FINANCE ADVISORY</span>
+                </div>
+                <div class="card-content">
+                    <h3>Strategic Corporate Advisory</h3>
+                    <p>Specialized strategic advisory services for corporate restructuring, mergers and acquisitions,
+                        capital raising, and complex financial optimization.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Mergers & Acquisitions Consulting</li>
+                        <li><span class="check">✓</span> Corporate Restructuring Strategy</li>
+                        <li><span class="check">✓</span> Complex Capital Raising</li>
+                        <li><span class="check">✓</span> Enterprise Valuation Modeling</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Bespoke Advisory</span>
+                        <button class="btn-card-action" onclick="openModal('advisory')">
+                            LEARN MORE <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box 8 -->
+            <article class="service-card" data-category="impact legacy">
+                <div class="compare-checkbox-wrapper" title="Select to compare">
+                    <input type="checkbox" class="compare-select" data-service-id="family"
+                        data-service-name="Family & Next-Gen Financial Literacy"
+                        onclick="handleCompareSelect(this, event)">
+                </div>
+                <div class="card-image">
+                    <img src="{% static 'login/images/family_programs.jpg' %}" alt="Family & Youth Engagement" loading="lazy" decoding="async">
+                    <div class="overlay-gradient"></div>
+                    <span class="card-badge">COMMUNITY & YOUTH</span>
+                </div>
+                <div class="card-content">
+                    <h3>Family & Next-Gen Financial Literacy</h3>
+                    <p>Comprehensive educational programs designed to prepare heirs and community youth for financial
+                        stewardship, leadership roles, and economic independence.</p>
+                    <ul class="features-list">
+                        <li><span class="check">✓</span> Heir Stewardship Seminars</li>
+                        <li><span class="check">✓</span> Youth Oasis Financial Resource Center</li>
+                        <li><span class="check">✓</span> Entrepreneurial Leadership Bootcamps</li>
+                        <li><span class="check">✓</span> Community Wealth Workshops</li>
+                    </ul>
+                    <div class="card-footer-info">
+                        <span class="metric-pill">Youth Mentorship</span>
+                        <button class="btn-card-action" onclick="openModal('family')">
+                            LEARN MORE <span class="arrow">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Advisory Recommendation Box -->
+<section class="calculator-section">
+    <div class="container">
+        <div class="calc-box">
+            <header class="section-header" style="margin-bottom: 32px;">
+                <span class="subtitle">⚡ INTERACTIVE ADVISORY FINDER</span>
+                <h2>Find Your Tailored <span class="highlight-text">Advisory Blueprint</span></h2>
+                <div class="divider"></div>
+                <p class="header-description">Select your profile parameters to immediately identify the optimal wealth management framework for your goals.</p>
+            </header>
+            <div class="calc-grid">
+                <div class="calc-inputs">
+                    <div class="input-group">
+                        <label for="calc-profile">Client Entity Type:</label>
+                        <select id="calc-profile" onchange="calculateRecommendation()">
+                            <option value="hnw">High-Net-Worth Individual ($1M - $10M)</option>
+                            <option value="vhnw">Ultra High-Net-Worth ($10M - $50M)</option>
+                            <option value="fo">Family Office / Multi-Gen ($50M+)</option>
+                            <option value="corp">Corporate Founder / Executive</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="calc-objective">Primary Strategic Goal:</label>
+                        <select id="calc-objective" onchange="calculateRecommendation()">
+                            <option value="growth">Aggressive Capital Growth & Alternative Access</option>
+                            <option value="preservation">Capital Preservation & Risk Shielding</option>
+                            <option value="tax">Tax Minimization & Estate Structuring</option>
+                            <option value="succession">Corporate Succession & Heir Education</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calc-result" id="calc-result-box">
+                    <div class="result-badge">RECOMMENDED FRAMEWORK</div>
+                    <h4 id="rec-title">Bespoke Wealth Architecture & Tax Shield</h4>
+                    <p id="rec-desc">Optimal for High-Net-Worth profiles seeking integrated tax optimization,
+                        discretionary portfolio management, and sovereign risk defense.</p>
+                    <div class="rec-features" id="rec-features">
+                        <span>• 1-on-1 Senior Managing Director</span>
+                        <span>• Quarterly Portfolio Audit</span>
+                        <span>• Offshore Trust Options</span>
+                    </div>
+                    <a id="apply-advisory-link" href="{% url 'login:consultation' %}?service=financial_planning" class="btn-gold-sm"
+                        style="margin-top: 15px; width: 100%; text-align: center;">APPLY FOR ADVISORY MANDATE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4-Step Bespoke Advisory Process Box Grid -->
+<section class="process-section">
+    <div class="container">
+        <header class="section-header">
+            <span class="subtitle">METHODOLOGY OF EXCELLENCE</span>
+            <h2>Our 4-Step <span class="highlight-text">Advisory Process</span></h2>
+
+            <div class="divider"></div>
+        </header>
+
+        <div class="process-grid">
+            <div class="process-box">
+                <div class="process-step-num">01</div>
+                <h3 class="process-title">Discovery & Audit</h3>
+                <p class="process-desc">A forensic review of global asset allocations, tax exposures, liabilities, and
+                    multi-generational objectives.</p>
+            </div>
+            <div class="process-box">
+                <div class="process-step-num">02</div>
+                <h3 class="process-title">Strategic Architecture</h3>
+                <p class="process-desc">Engineering bespoke wealth blueprints, asset distribution frameworks, and
+                    quantitative risk buffers.</p>
+            </div>
+            <div class="process-box">
+                <div class="process-step-num">03</div>
+                <h3 class="process-title">Precision Execution</h3>
+                <p class="process-desc">Disciplined capital deployment across global liquid markets, private equity
+                    funds, and tax-shielded trusts.</p>
+            </div>
+            <div class="process-box">
+                <div class="process-step-num">04</div>
+                <h3 class="process-title">Dynamic Governance</h3>
+                <p class="process-desc">Continuous real-time portfolio rebalancing, risk monitoring, and
+                    institutional-grade quarterly reporting.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Client Success Spotlight Box -->
+<section class="spotlight-section">
+    <div class="container">
+        <div class="spotlight-box">
+            <div class="spotlight-image">
+                <video src="{% static 'login/videos/video.mp4' %}" autoplay loop muted playsinline></video>
+                <div class="spotlight-overlay"></div>
+            </div>
+            <div class="spotlight-content">
+                <div class="spotlight-tag">CASE STUDY SPOTLIGHT</div>
+                <h2>Legacy Wealth Preservation <span class="highlight-text">& Tax Restructuring</span></h2>
+                <p class="spotlight-quote">"We recently assisted an international family office in restructuring their
+                    $45M global asset portfolio, resulting in an immediate 38% reduction in annual tax exposure and
+                    establishing an enduring philanthropic trust."</p>
+
+                <div class="spotlight-metrics">
+                    <div class="spot-metric">
+                        <span class="m-val">38%</span>
+                        <span class="m-lbl">Tax Reduction</span>
+                    </div>
+                    <div class="spot-metric">
+                        <span class="m-val">$12M</span>
+                        <span class="m-lbl">Trust Fund Protected</span>
+                    </div>
+                    <div class="spot-metric">
+                        <span class="m-val">100%</span>
+                        <span class="m-lbl">Succession Alignment</span>
+                    </div>
+                </div>
+
+                <a href="{% url 'login:consultation' %}" class="btn-gold-sm" style="display: inline-block;">REQUEST CASE STUDY AUDIT
+                    →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Service Detail Modal -->
+<div class="modal-overlay" id="service-modal">
+    <div class="modal-container">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div id="modal-body-content">
+            <!-- Injected via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Profile Bio Edit (if authenticated) -->
+{% if user.is_authenticated %}
+<div id="bio-modal"
+    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div class="glass-card"
+        style="width: 100%; max-width: 500px; padding: 2.25rem; background: var(--color-secondary);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.25rem;">Update Profile Summary</h3>
+            <button onclick="document.getElementById('bio-modal').style.display='none'"
+                style="background: none; border: none; font-size: 1.5rem; color: var(--color-subtext); cursor: pointer;">&times;</button>
+        </div>
+
+        <form method="post" action="{% url 'login:home' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">Personal Bio / Advisory Note</label>
+                <textarea name="bio" class="form-input" rows="4"
+                    placeholder="Enter a brief summary about yourself or your financial objectives...">{{ user.bio }}</textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+                <button type="button" class="btn btn-secondary"
+                    onclick="document.getElementById('bio-modal').style.display='none'">Cancel</button>
+                <button type="submit" class="btn btn-gold">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<!-- Floating Comparison Drawer -->
+<div class="comparison-drawer" id="comparison-drawer">
+    <div class="drawer-info">
+        <div class="drawer-title">Compare Services</div>
+        <div class="drawer-subtitle" id="compare-count-text">0 of 3 selected</div>
+    </div>
+    <div class="drawer-actions">
+        <button class="btn-glass" style="padding: 10px 20px; font-size: 0.85rem; border-radius: 30px;"
+            onclick="clearComparison()">Clear All</button>
+        <button class="btn-gold-sm" style="padding: 10px 22px; border-radius: 30px;"
+            onclick="openComparisonModal()">Compare Now</button>
+    </div>
+</div>
+
+<!-- Comparison Matrix Modal -->
+<div class="compare-modal-overlay" id="compare-modal">
+    <div class="compare-modal-container">
+        <button class="modal-close" onclick="closeComparisonModal()">×</button>
+        <div style="text-align: center; margin-bottom: 24px;">
+            <span class="calc-badge">📊 SIDE-BY-SIDE MATRIX</span>
+            <h2
+                style="font-size: 2.2rem; font-family: var(--font-heading); margin-top: 8px; color: var(--color-heading-text);">
+                Compare Selected Services</h2>
+            <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-top: 8px;">Review core objectives,
+                targets, and delivery models to find your optimal path.</p>
+        </div>
+        <div id="compare-table-wrapper" style="overflow-x: auto;">
+            <!-- Dynamically generated table will go here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.CONSULTATION_URL = "{% url 'login:consultation' %}";
+</script>
+<script src="{% static 'login/js/services.js' %}"></script>
+{% endblock %}

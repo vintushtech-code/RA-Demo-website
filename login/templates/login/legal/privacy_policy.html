@@ -1,0 +1,203 @@
+{% extends 'login/legal/base_legal.html' %}
+{% load static %}
+
+{% block title %}Privacy Policy &amp; Data Protection | GuardianTree FP{% endblock %}
+
+{% block doc_title %}
+  Privacy Policy &amp;<br>
+  <span class="highlight-text">Data Protection.</span>
+{% endblock %}
+
+{% block doc_subtitle %}
+  Our rigorous institutional privacy governance, bank-grade encryption protocols, and zero-compromise commitments to safeguarding your personal and financial assets.
+{% endblock %}
+
+{% block table_of_contents %}
+  <a href="#section-1" class="clean-toc-link">1. Fiduciary Privacy Commitment</a>
+  <a href="#section-2" class="clean-toc-link">2. Information We Collect</a>
+  <a href="#section-3" class="clean-toc-link">3. 2FA &amp; Authentication Security</a>
+  <a href="#section-4" class="clean-toc-link">4. How We Use Your Data</a>
+  <a href="#section-5" class="clean-toc-link">5. Data Sharing Safeguards</a>
+  <a href="#section-6" class="clean-toc-link">6. AES-256 Encryption &amp; Storage</a>
+  <a href="#section-7" class="clean-toc-link">7. Your Legal Privacy Rights</a>
+  <a href="#section-8" class="clean-toc-link">8. Data Retention &amp; Destruction</a>
+  <a href="#section-9" class="clean-toc-link">9. Data Protection Officer (DPO)</a>
+{% endblock %}
+
+{% block doc_content %}
+  
+  <!-- Section 1 -->
+  <section class="doc-section-block" id="section-1">
+    <h2 class="doc-section-title">
+      <span class="section-number">01</span> Fiduciary Privacy Commitment
+    </h2>
+    <p>
+      At <strong>GuardianTree FP</strong> (operating alongside Sabin Balan Finance), we treat the protection of your personal and financial data as our sacred fiduciary duty. As an institutional wealth advisory firm registered with the Securities and Exchange Board of India (SEBI) and compliant with international privacy benchmarks including the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), we uphold the highest levels of transparency and confidentiality.
+    </p>
+    <div class="legal-callout-box">
+      <div class="callout-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="callout-content">
+        <h4>Core Privacy Principle</h4>
+        <p>We do not monetize, rent, trade, or sell your personal or financial data to any third-party advertisers or data brokers under any circumstances.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="doc-section-block" id="section-2">
+    <h2 class="doc-section-title">
+      <span class="section-number">02</span> Information We Collect
+    </h2>
+    <p>
+      In order to deliver bespoke private wealth advisory, fiduciary portfolio management, and secure account access, we collect and process the following categories of data:
+    </p>
+    <ul>
+      <li><strong>Identity &amp; Contact Data:</strong> Full legal name, date of birth, nationality, government-issued identification numbers (PAN, Passport, National ID), physical residential address, registered email address, and telephone numbers.</li>
+      <li><strong>Financial &amp; Wealth Profiles:</strong> Investment objectives, risk tolerance metrics, annual income brackets, liquid net worth statements, banking details, demat account numbers, and sovereign tax residency statuses.</li>
+      <li><strong>Technical &amp; Telemetry Data:</strong> IP addresses, browser fingerprint identifiers, login timestamps, operating system specifications, session tokens, and cryptographic hardware signatures used during session authentication.</li>
+      <li><strong>Consultation &amp; Advisory Records:</strong> Structured communication logs, booked advisory appointment transcripts, portfolio review notes, and submitted inquiry documentation.</li>
+    </ul>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="doc-section-block" id="section-3">
+    <h2 class="doc-section-title">
+      <span class="section-number">03</span> Two-Factor Authentication (2FA) &amp; Security Logs
+    </h2>
+    <p>
+      To prevent unauthorized access to sensitive financial consultation logs and administrative portals, our platform enforces mandatory <strong>Two-Factor Authentication (2FA)</strong> with time-sensitive One-Time Passcodes (OTP) and cryptographic session validation.
+    </p>
+    <div class="legal-callout-box info">
+      <div class="callout-icon"><i class="fa-solid fa-key"></i></div>
+      <div class="callout-content">
+        <h4>Authentication Telemetry</h4>
+        <p>All authentication attempts, failed password inputs, and 2FA verification requests are logged alongside client IP addresses and cryptographically timestamped to ensure auditability and defend against brute-force attacks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="doc-section-block" id="section-4">
+    <h2 class="doc-section-title">
+      <span class="section-number">04</span> How We Use Your Data
+    </h2>
+    <p>
+      Your data is processed strictly under legitimate fiduciary and statutory legal bases:
+    </p>
+    <ul>
+      <li><strong>Provision of Advisory Services:</strong> Designing customized asset allocation strategies, financial planning roadmaps, and tax-efficient wealth preservation models.</li>
+      <li><strong>Regulatory &amp; Statutory Compliance:</strong> Satisfying mandatory Know Your Customer (KYC), Anti-Money Laundering (AML), and Prevention of Money Laundering Act (PMLA) legal obligations.</li>
+      <li><strong>Security &amp; Fraud Prevention:</strong> Detecting anomalous login behavior, mitigating cyber threats, and verifying administrative instructions.</li>
+      <li><strong>Client Communications:</strong> Delivering portfolio audit updates, market outlook advisories, and transactional consultation notifications.</li>
+    </ul>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="doc-section-block" id="section-5">
+    <h2 class="doc-section-title">
+      <span class="section-number">05</span> Data Sharing &amp; Non-Disclosure Safeguards
+    </h2>
+    <p>
+      We share client information exclusively with authorized institutional entities under strict confidentiality covenants:
+    </p>
+    <div class="legal-table-wrapper">
+      <table class="legal-data-table">
+        <thead>
+          <tr>
+            <th>Entity Category</th>
+            <th>Purpose of Access</th>
+            <th>Safeguards Enforced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SEBI / Regulatory Bodies</strong></td>
+            <td>Statutory compliance audits and legal reporting requirements.</td>
+            <td>Encrypted regulatory portals &amp; formal legal review.</td>
+          </tr>
+          <tr>
+            <td><strong>Custodian Banks &amp; Depositories</strong></td>
+            <td>Execution of authorized securities transactions and portfolio custody.</td>
+            <td>Direct banking APIs with mutual TLS encryption.</td>
+          </tr>
+          <tr>
+            <td><strong>Auditors &amp; Legal Counsel</strong></td>
+            <td>Annual fiduciary compliance audits and risk verification.</td>
+            <td>Signed Non-Disclosure Agreements (NDAs) &amp; pseudonymized data.</td>
+          </tr>
+          <tr>
+            <td><strong>Cloud Infrastructure Partners</strong></td>
+            <td>Enterprise hosting, encrypted backup redundancy, and 2FA delivery.</td>
+            <td>SOC 2 Type II certified data centers with AES-256 encryption.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="doc-section-block" id="section-6">
+    <h2 class="doc-section-title">
+      <span class="section-number">06</span> AES-256 Encryption &amp; Security Standards
+    </h2>
+    <p>
+      Our digital architecture operates on defense-in-depth principles:
+    </p>
+    <ul>
+      <li><strong>Data at Rest:</strong> All database records, consultation logs, and identity documents are encrypted using <strong>AES-256 (Advanced Encryption Standard)</strong>.</li>
+      <li><strong>Data in Transit:</strong> All web and API traffic is secured with <strong>TLS 1.3 encryption</strong> with Perfect Forward Secrecy (PFS) and strict HSTS headers.</li>
+      <li><strong>Access Control:</strong> Strict Principle of Least Privilege (PoLP) and role-based access control (RBAC) governing all internal staff interactions.</li>
+    </ul>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="doc-section-block" id="section-7">
+    <h2 class="doc-section-title">
+      <span class="section-number">07</span> Your Legal Privacy Rights
+    </h2>
+    <p>
+      Depending on your jurisdiction (including India's Digital Personal Data Protection Act, GDPR, and CCPA), you possess sovereign rights over your data:
+    </p>
+    <ul>
+      <li><strong>Right to Access:</strong> Request a complete copy of all personal records maintained by our firm.</li>
+      <li><strong>Right to Rectification:</strong> Demand immediate correction of inaccurate or outdated information.</li>
+      <li><strong>Right to Erasure ("Right to be Forgotten"):</strong> Request data deletion, subject to mandatory statutory financial record retention periods (e.g., 5–8 years under PMLA).</li>
+      <li><strong>Right to Data Portability:</strong> Receive your financial profiles and consultation history in a structured, machine-readable format.</li>
+      <li><strong>Right to Object &amp; Restrict Processing:</strong> Opt out of non-essential communications and restrict secondary data analytics.</li>
+    </ul>
+  </section>
+
+  <!-- Section 8 -->
+  <section class="doc-section-block" id="section-8">
+    <h2 class="doc-section-title">
+      <span class="section-number">08</span> Data Retention &amp; Secure Destruction
+    </h2>
+    <p>
+      We retain personal and financial records only for as long as required to fulfill the advisory mandate or satisfy statutory regulations. Under SEBI and PMLA statutory directives, client identification and transaction records must be retained for a mandatory minimum period of <strong>eight (8) years</strong> following the termination of the advisory relationship. Following this retention window, all records are permanently destroyed using DOD 5220.22-M sanitization standards.
+    </p>
+  </section>
+
+  <!-- Section 9 -->
+  <section class="doc-section-block" id="section-9">
+    <h2 class="doc-section-title">
+      <span class="section-number">09</span> Data Protection Officer (DPO) Contact
+    </h2>
+    <p>
+      For any inquiries, data access requests, or regulatory privacy submissions, please direct your formal correspondence to our appointed Data Protection Officer:
+    </p>
+    <div class="legal-callout-box info">
+      <div class="callout-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+      <div class="callout-content">
+        <h4>Data Protection &amp; Privacy Desk</h4>
+        <p>
+          <strong>GuardianTree FP / Sabin Balan Finance</strong><br>
+          Attention: Data Protection Officer (DPO)<br>
+          Email: <a href="mailto:privacy@guardiantreefp.com" style="color: var(--color-gold); font-weight: 700;">privacy@guardiantreefp.com</a><br>
+          Direct Compliance Line: +91 (022) 6940-8800<br>
+          Regulatory Inquiries: <a href="{% url 'contactform:contact' %}" style="color: var(--color-gold); font-weight: 700;">Submit Official Inquiry &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

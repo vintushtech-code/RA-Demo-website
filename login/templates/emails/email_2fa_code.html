@@ -1,0 +1,38 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}[{{ code }}] Admin 2FA Verification Code — Sabin Balan Finance{% endblock %}
+
+{% block doc_badge %}ADMIN 2-FACTOR AUTHENTICATION (ADMIN ONLY){% endblock %}
+
+{% block email_content %}
+<h2>Administrator Access Authorization</h2>
+<p>
+  Hello <strong>{{ user.get_display_name }}</strong>,
+</p>
+<p>
+  A high-privilege login request to the <strong>Sabin Balan Finance Administrator Dashboard</strong> was initiated for your account. Please enter the 6-digit one-time authorization code below:
+</p>
+
+<!-- Large Stylized OTP Container -->
+<div style="background: #0A1128; border: 2px dashed #D4AF37; border-radius: 12px; text-align: center; padding: 26px 16px; margin: 26px 0;">
+  <div style="font-family: 'Courier New', Courier, monospace; font-size: 40px; font-weight: 800; color: #FFD700; letter-spacing: 12px; margin: 0;">
+    {{ code }}
+  </div>
+  <div style="font-size: 13px; color: #94A3B8; margin-top: 10px;">
+    ⏳ Security Code Expires in <strong>{{ expiry_minutes }} Minutes</strong>
+  </div>
+</div>
+
+<div class="checklist-box">
+  <strong>🔒 Fiduciary Security Notice:</strong>
+  <ul>
+    <li>This 2FA code is strictly for authorized <strong>Administrator</strong> sessions.</li>
+    <li>Never share this code with anyone. Sabin Balan Finance staff will never ask for your 2FA OTP.</li>
+    <li>If you did not initiate this administrator login, please change your password immediately.</li>
+  </ul>
+</div>
+
+<p style="font-size: 12px; color: #64748B; margin-top: 20px;">
+  <strong>Terminal Mode Active:</strong> During local development, this code is also mirrored directly to your command-line console.
+</p>
+{% endblock %}

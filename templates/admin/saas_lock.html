@@ -1,0 +1,675 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Access Expired • Provided by VintushTech & KPRegTech</title>
+  <link rel="stylesheet" href="{% static 'theme_config/css/admin_theme.css' %}">
+  <link rel="icon" href="{% static 'logo.png' %}">
+  <style>
+    :root {
+      --saas-gold: #D4AF37;
+      --saas-gold-bright: #F5D061;
+      --saas-gold-dark: #997A15;
+      --saas-bg: #070A08;
+      --saas-surface: #0E120F;
+      --saas-card: #141815;
+      --saas-border: rgba(212, 175, 55, 0.3);
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #151A17 0%, #060807 100%) !important;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .saas-lock-container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(14, 18, 15, 0.92);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 28px;
+      padding: 45px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(212, 175, 55, 0.15);
+      box-sizing: border-box;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .provider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+    }
+
+    .provider-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFD700;
+      letter-spacing: -0.02em;
+    }
+
+    .provider-sub {
+      font-size: 0.82rem;
+      color: var(--saas-gold-bright);
+    }
+
+    .client-badge {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      color: var(--saas-gold-bright);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-lock-banner {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .lock-icon-pulse {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.15);
+      border: 2px solid var(--saas-gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: var(--saas-gold-bright);
+      margin-bottom: 20px;
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+    }
+
+    .hero-lock-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: #00E676;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-lock-desc {
+      font-size: 1.05rem;
+      color: #86EFAC;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .data-preservation-box {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(0, 0, 0, 0.4));
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 18px;
+      padding: 20px 25px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .data-preservation-icon {
+      font-size: 2rem;
+    }
+
+    .data-preservation-title {
+      font-weight: 700;
+      color: #FFD700;
+      font-size: 1rem;
+      margin: 0 0 4px 0;
+    }
+
+    .data-preservation-text {
+      font-size: 0.88rem;
+      color: #86EFAC;
+      margin: 0;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .plan-card {
+      background: var(--saas-card);
+      border: 1px solid rgba(0, 230, 118, 0.2);
+      border-radius: 20px;
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--saas-gold);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .plan-card.popular {
+      border-color: var(--saas-gold);
+      background: linear-gradient(145deg, #18201B 0%, #101512 100%);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #F5D061, #D4AF37);
+      color: #060B08;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .plan-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFD700;
+      margin: 0 0 8px 0;
+    }
+
+    .plan-price-wrap {
+      margin-bottom: 20px;
+    }
+
+    .plan-price {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--saas-gold-bright);
+    }
+
+    .plan-period {
+      font-size: 0.8rem;
+      color: #86EFAC;
+    }
+
+    .plan-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px 0;
+      font-size: 0.82rem;
+      color: #86EFAC;
+      line-height: 1.8;
+    }
+
+    .plan-features-list li::before {
+      content: "✓ ";
+      color: var(--saas-gold);
+      font-weight: bold;
+    }
+
+    .btn-renew {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      background: linear-gradient(135deg, #F5D061, #D4AF37);
+      color: #070B08;
+    }
+
+    .btn-renew:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+    }
+
+    .license-activation-section {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      padding: 25px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .license-input {
+      background: rgba(6, 10, 8, 0.9);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+      border-radius: 12px;
+      padding: 12px 18px;
+      color: #00E676;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      min-width: 320px;
+      outline: none;
+    }
+
+    .license-input:focus {
+      border-color: var(--saas-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    .footer-credits {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.82rem;
+      color: #94A3B8;
+    }
+
+    .footer-credits a {
+      color: var(--saas-gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .saas-lock-container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="saas-lock-container">
+
+    <!-- Header with Partner Logos -->
+    <div class="provider-header">
+      <div class="brand-logos">
+        <img src="{% static 'admin_portal_banner.jpg' %}" alt="KPRegTech & VintushTech Banner" class="brand-logo-img" style="max-height: 44px; width: auto; border-radius: 8px; border: 1px solid var(--saas-gold);">
+        <img src="{% static 'logo.png' %}" alt="GuardianTree FP" class="brand-logo-img">
+        <img src="{% static 'vintushtech_logo.png' %}" alt="VintushTech" class="brand-logo-img">
+        <img src="{% static 'kplogo.png' %}" alt="KPRegTech" class="brand-logo-img">
+        <div>
+          <div class="provider-title">KPRegTech &amp; VintushTech</div>
+          <div class="provider-sub">Official Enterprise Software &amp; Cloud Partners &bull; Helpline: +91 8779649031</div>
+        </div>
+      </div>
+      <div class="client-badge">
+        <span>👑</span>
+        <span>Client: <strong>Sabin Balan</strong> (Founder, GuardianTree FP)</span>
+      </div>
+    </div>
+
+    {% if not saas_status.is_locked %}
+    <!-- Active Unlocked License Banner -->
+    <div
+      style="background: rgba(16, 185, 129, 0.12); border: 1.5px solid #10b981; border-radius: 20px; padding: 22px 28px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+          <span style="font-weight: 800; color: #34d399; font-size: 1.15rem;">
+            🟢 SaaS License Active • Unlocked
+          </span>
+          <span
+            style="background: #10b981; color: #060b08; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 50px;">
+            ⏳ {{ saas_status.days_remaining|default:"90" }} Days Left
+          </span>
+        </div>
+        <div style="color: #cbd5e1; font-size: 0.9rem;">
+          {% if saas_status.has_generated_plan and saas_status.plan_name %}
+          Plan: <strong>{{ saas_status.plan_name }}</strong> •
+          {% endif %}
+          Access Valid Until: <strong>{{ saas_status.expires_at|date:"d F Y" }}</strong>
+        </div>
+
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        {% if latest_invoice %}
+        <button type="button"
+          onclick="printActiveInvoice('{{ latest_invoice.invoice_number }}', '{{ latest_invoice.plan_name }}', '₹{{ latest_invoice.amount_inr }} / ${{ latest_invoice.amount_usd }}', '{{ latest_invoice.master_key }}', '{{ latest_invoice.issued_at|date:" d F Y" }}', '{{ latest_invoice.valid_until|date:"d F Y" }}' )"
+          style="background: rgba(255, 255, 255, 0.1); border: 1.5px solid #FFD700; color: #FFD700; padding: 10px 20px; border-radius: 50px; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          📄 Print Active Invoice
+        </button>
+        {% endif %}
+
+        <a href="{{ admin_url }}"
+          style="background: #10b981; color: #060B08; padding: 10px 22px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+          ⚡ Open Admin Dashboard ↗
+        </a>
+      </div>
+    </div>
+    {% else %}
+    <!-- Lock Hero Banner -->
+    <div class="hero-lock-banner">
+      <div class="lock-icon-pulse">🔒</div>
+      <h1 class="hero-lock-title">Admin Panel Access Expired</h1>
+      <p class="hero-lock-desc">
+        Your 3-Month Complimentary Trial provided by <strong>VintushTech</strong> &amp; <strong>KPRegTech</strong> has
+        concluded.
+        Select a membership plan below or contact our technical team to immediately restore access to your Executive
+        Admin Panel.
+      </p>
+    </div>
+    {% endif %}
+
+
+    <!-- Provider Contact & Renewal Notice Banner -->
+    <div
+      style="background: rgba(212, 175, 55, 0.08); border: 1.5px solid rgba(212, 175, 55, 0.4); border-radius: 20px; padding: 22px 28px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div>
+        <div style="font-weight: 800; color: #FFD700; font-size: 1.05rem; margin-bottom: 4px;">
+          📞 Contact Provider Desk to Renew Subscription
+        </div>
+        <div style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.5;">
+          Your SaaS Subscription for GuardianTree FP Executive Admin Panel has expired. Please contact VintushTech &amp;
+          KPRegTech to renew your subscription and restore full admin access.
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="mailto:info@kpregtech.com?subject=SaaS%20Support%20Request%20-%20GuardianTree%20FD"
+          style="background: rgba(255,255,255,0.08); border: 1px solid rgba(212,175,55,0.5); color: #FFD700; padding: 10px 18px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+          ✉️ Email Support
+        </a>
+
+        <a href="https://wa.me/9196255 81998?text=Hello%20VintushTech%20KPRegTech,%20I%20need%20to%20renew%20my%20SaaS%20Admin%20Subscription%20for%20GuardianTree%20FD."
+          target="_blank" rel="noopener noreferrer"
+          style="background: #000000; color: #060B08; padding: 10px 18px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+          💬 WhatsApp Desk
+        </a>
+      </div>
+    </div>
+
+    <!-- Master-Slave Vault Architecture Data Preservation Reassurance Banner -->
+    <div class="data-preservation-box">
+      <div class="data-preservation-icon">🛡️</div>
+      <div>
+        <h3 class="data-preservation-title">Master-Slave Vault Architecture • 100% Zero Data Loss Guarantee</h3>
+        <p class="data-preservation-text">
+          All client consultations, user accounts, and financial records remain 100% secured in the Master Database
+          Store &amp; Slave Backup Mirror Vault (<strong>{{ backup_summary.total_backups|default:"1" }} Saved
+            Snapshots</strong>). All incoming public leads and website operations continue running with zero downtime.
+          Restoring access unlocks your workspace instantly.
+        </p>
+      </div>
+    </div>
+
+
+    {% if messages %}
+    <div style="margin-bottom: 25px;">
+      {% for message in messages %}
+      <div
+        style="padding: 16px 22px; border-radius: 14px; font-weight: 700; font-size: 0.92rem; background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; color: #34d399; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 4 Tier Membership Plans Grid -->
+    <div class="plans-grid">
+
+      <!-- 1 Month Plan -->
+      <div class="plan-card">
+        <div>
+          <h3 class="plan-name">1 Month Plan</h3>
+          <div class="plan-price-wrap">
+            <span class="plan-price">$49</span>
+            <span class="plan-period">/ Rs. 3,999 (30 Days)</span>
+          </div>
+          <ul class="plan-features-list">
+            <li>Full Admin Panel Access</li>
+            <li>Real-Time Consultation Tracking</li>
+            <li>Automated Continuous Backups</li>
+            <li>Standard Email Support</li>
+          </ul>
+        </div>
+        <form method="post" action="{% url 'login:saas_unlock' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="request_plan">
+          <input type="hidden" name="plan_code" value="1_month">
+          <button type="submit" class="btn-renew">📩 Buy Plan — Send Request Email</button>
+        </form>
+      </div>
+
+      <!-- 3 Months Plan (Popular) -->
+      <div class="plan-card popular">
+        <span class="popular-tag">Most Popular</span>
+        <div>
+          <h3 class="plan-name">3 Months Plan</h3>
+          <div class="plan-price-wrap">
+            <span class="plan-price">$129</span>
+            <span class="plan-period">/ Rs. 9,999 (90 Days)</span>
+          </div>
+          <ul class="plan-features-list">
+            <li>Full Admin Suite &amp; CRM</li>
+            <li>Priority 2FA Authentication</li>
+            <li>Automated Vault Snapshots</li>
+            <li>Priority Developer Support</li>
+          </ul>
+        </div>
+        <form method="post" action="{% url 'login:saas_unlock' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="request_plan">
+          <input type="hidden" name="plan_code" value="3_months">
+          <button type="submit" class="btn-renew">📩 Buy Plan — Send Request Email</button>
+        </form>
+      </div>
+
+      <!-- 6 Months Plan -->
+      <div class="plan-card">
+        <div>
+          <h3 class="plan-name">6 Months Plan</h3>
+          <div class="plan-price-wrap">
+            <span class="plan-price">$229</span>
+            <span class="plan-period">/ Rs. 17,999 (180 Days)</span>
+          </div>
+          <ul class="plan-features-list">
+            <li>Includes All Pro Features</li>
+            <li>Save 15% on Monthly Fees</li>
+            <li>Custom Lead Routing</li>
+            <li>Dedicated Account Lead</li>
+          </ul>
+        </div>
+        <form method="post" action="{% url 'login:saas_unlock' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="request_plan">
+          <input type="hidden" name="plan_code" value="6_months">
+          <button type="submit" class="btn-renew">📩 Buy Plan — Send Request Email</button>
+        </form>
+      </div>
+
+      <!-- 1 Year Plan (Enterprise) -->
+      <div class="plan-card">
+        <div>
+          <h3 class="plan-name">1 Year Plan</h3>
+          <div class="plan-price-wrap">
+            <span class="plan-price">$399</span>
+            <span class="plan-period">/ Rs. 29,999 (365 Days)</span>
+          </div>
+          <ul class="plan-features-list">
+            <li>Maximum Value Tier</li>
+            <li>24/7 Priority SLA Response</li>
+            <li>Infinite Vault Retention</li>
+            <li>Complimentary Feature Upgrades</li>
+          </ul>
+        </div>
+        <form method="post" action="{% url 'login:saas_unlock' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="request_plan">
+          <input type="hidden" name="plan_code" value="1_year">
+          <button type="submit" class="btn-renew">📩 Buy Plan — Send Request Email</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- 24-Hour Key & Invoice Dispatch SLA Notice -->
+    <div
+      style="background: rgba(16, 185, 129, 0.06); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 18px 24px; margin-top: 25px; margin-bottom: 30px; display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 26px;">🕒</div>
+      <div style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">
+        <strong style="color: #34D399;">Automated Purchase Email &amp; 24-Hour Key Dispatch Guarantee:</strong><br>
+        Clicking any plan automatically dispatches an order request email to <strong>info@kpregtech.com</strong> and
+        sends an automated receipt confirmation to <strong>sabin@guardiantreefp.com</strong>. KPRegTech will generate and
+        issue your Master License Key &amp; Invoice within 24 hours. For urgent activation, contact <a
+          href="mailto:info@kpregtech.com" style="color: #FFD700;">info@kpregtech.com</a> or <a
+          href="mailto:vintushtech@gmail.com" style="color: #FFD700;">vintushtech@gmail.com</a> directly.
+      </div>
+    </div>
+
+
+
+    <!-- License Key Instant Activation -->
+    <div class="license-activation-section">
+      <div>
+        <h4 style="color: #FFD700; margin: 0 0 4px 0; font-size: 1.05rem;">Have a Master License Key?</h4>
+        <p style="color: #86EFAC; margin: 0; font-size: 0.85rem;">Enter your KPRegTech / VintushTech license key for
+          instant offline activation.</p>
+      </div>
+      <form method="post" action="{% url 'login:saas_unlock' %}" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="activate_key">
+        <input type="hidden" name="saas_action" value="unlock_license">
+        <input type="text" name="license_key" class="license-input" placeholder="e.g. KP-VINTUSH-XXXX-YYYY" required>
+        <button type="submit" class="btn-renew" style="width: auto; padding: 12px 24px;">Unlock Desk</button>
+      </form>
+
+    </div>
+
+    <!-- Footer Attribution -->
+    <div class="footer-credits">
+      Engineered &amp; Powered by <a href="https://vintushtech.cloud" target="_blank">VintushTech</a> &amp; <a
+        href="https://kpregtech.com" target="_blank">KPRegTech</a> &bull;
+      Honoring <strong>Sabin Balan</strong> (Founder, GuardianTree FP) &bull; &copy; 2026 All Rights Reserved.
+    </div>
+
+  </div>
+
+  <script>
+    function printActiveInvoice(invNum, planName, fee, masterKey, issueDate, validDate) {
+      const printWin = window.open('', '_blank', 'width=800,height=900');
+      if (!printWin) return;
+      printWin.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>SaaS Software License Invoice — ${invNum}</title>
+              <style>
+                  body { font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; color: #1e293b; }
+                  .inv-box { max-width: 700px; margin: 0 auto; border: 2px solid #0f172a; padding: 30px; border-radius: 12px; }
+                  .inv-header { display: flex; justify-content: space-between; border-bottom: 2px solid #0f172a; padding-bottom: 15px; margin-bottom: 20px; }
+                  .inv-title { font-size: 22px; font-weight: 800; color: #0f172a; }
+                  .inv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+                  .inv-card { background: #f8fafc; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px; font-size: 13px; }
+                  .inv-key-box { background: #0f172a; color: #d4af37; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 16px; font-weight: bold; text-align: center; margin-top: 10px; }
+              </style>
+          </head>
+          <body>
+              <div class="inv-box">
+                  <div class="inv-header">
+                      <div>
+                          <div class="inv-title">KPRegTech &amp; VintushTech</div>
+                          <div style="font-size: 12px; color: #64748b;">Enterprise SaaS Licensing Desk</div>
+                      </div>
+                      <div style="text-align: right;">
+                          <div style="font-size: 18px; font-weight: 800; color: #0f172a;">OFFICIAL INVOICE</div>
+                          <div style="font-size: 13px; font-weight: 700; color: #d4af37;">${invNum}</div>
+                          <div style="font-size: 11px; color: #64748b;">Issued: ${issueDate}</div>
+                      </div>
+                  </div>
+                  <div class="inv-grid">
+                      <div class="inv-card">
+                          <strong>Billed To (Client):</strong><br>
+                          Sabin Balan (Founder, GuardianTree FP)<br>
+                          sabin@guardiantreefp.com
+                      </div>
+                      <div class="inv-card">
+                          <strong>Issued By (Provider):</strong><br>
+                          KPRegTech &amp; VintushTech Group<br>
+                          info@kpregtech.com
+                      </div>
+                  </div>
+                  <table style="width:100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px;">
+                      <tr style="background: #0f172a; color: #fff;">
+                          <th style="padding: 10px; text-align: left;">Service Description</th>
+                          <th style="padding: 10px; text-align: right;">Amount</th>
+                      </tr>
+                      <tr>
+                          <td style="padding: 12px; border-bottom: 1px solid #cbd5e1;">
+                              <strong>${planName}</strong><br>
+                              <span style="font-size: 11px; color: #64748b;">GuardianTree FP Executive Admin Panel Operating License</span>
+                          </td>
+                          <td style="padding: 12px; border-bottom: 1px solid #cbd5e1; text-align: right; font-weight: bold;">${fee}</td>
+                      </tr>
+                  </table>
+                  <div style="font-size: 13px; font-weight: bold;">Issued Master License Key:</div>
+                  <div class="inv-key-box">${masterKey}</div>
+                  <div style="margin-top: 20px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px;">
+                      Valid Expiration Date: ${validDate} • Zero Data Loss Master-Slave Preservation Guarantee
+                  </div>
+                  </div>
+                  <script>window.onload = function() { window.print(); };</script>
+</body>
+
+</html>
+`);
+printWin.document.close();
+}
+</script>
+</body>
+
+</html>

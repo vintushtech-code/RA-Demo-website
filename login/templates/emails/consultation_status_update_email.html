@@ -1,0 +1,93 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}Consultation Status Update — #{{ booking.reference_key }}{% endblock %}
+
+{% block doc_badge %}CONSULTATION STATUS &amp; BILLING UPDATE{% endblock %}
+
+{% block email_content %}
+<h2>Dear {{ booking.client_name }},</h2>
+<p>
+  This is an official update regarding your Private Wealth Consultation <strong>#{{ booking.reference_key }}</strong>.
+</p>
+
+<!-- Current Status Banner -->
+<div style="background: #162038; border-left: 4px solid #D4AF37; padding: 14px 18px; border-radius: 6px; margin: 18px 0;">
+  <div style="font-size: 11px; color: #94A3B8; text-transform: uppercase; font-weight: 700;">CURRENT APPOINTMENT STATUS</div>
+  <div style="margin-top: 4px;">
+    <span class="status-badge status-{{ booking.status }}" style="font-size: 13px; padding: 6px 14px;">
+      {{ booking.get_status_display }}
+    </span>
+    <span class="status-badge status-{{ booking.payment_status }}" style="font-size: 13px; padding: 6px 14px; margin-left: 6px;">
+      {{ booking.get_payment_status_display }}
+    </span>
+  </div>
+</div>
+
+{% if is_rescheduled %}
+<!-- Rescheduled Diff Notice -->
+<div style="background: rgba(234, 88, 12, 0.12); border: 1px solid #EA580C; border-radius: 8px; padding: 16px; margin: 20px 0;">
+  <strong style="color: #FED7AA; font-size: 14px;">📅 Schedule Revision Notification:</strong>
+  <p style="color: #FED7AA; margin: 8px 0 0; font-size: 13px;">
+    <strong>Previous Schedule:</strong> {{ previous_schedule }}<br>
+    <strong>Updated Schedule:</strong> {{ updated_schedule }}<br>
+    {% if booking.rescheduled_reason %}
+    <strong>Advisory Note:</strong> {{ booking.rescheduled_reason }}
+    {% endif %}
+  </p>
+</div>
+{% endif %}
+
+<div class="details-card">
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Reference ID:</td>
+      <td class="details-value highlight" style="font-family: monospace; font-size: 15px;">#{{ booking.reference_key }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Invoice Ref:</td>
+      <td class="details-value">{{ booking.invoice_number }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Scheduled Date:</td>
+      <td class="details-value">{{ booking.consultation_date|date:"l, d F Y" }} at {{ booking.consultation_time|time:"h:i A" }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Assigned Desk:</td>
+      <td class="details-value">{{ booking.fiduciary_desk }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Advisory Fee:</td>
+      <td class="details-value">{{ booking.fee_amount_display }}</td>
+    </tr>
+    {% if booking.discount_amount > 0 %}
+    <tr>
+      <td class="details-label">Discount / Waiver:</td>
+      <td class="details-value" style="color: #059669;">-{{ booking.discount_amount_display }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td class="details-label">Net Due / Paid:</td>
+      <td class="details-value highlight" style="font-size: 16px;">{{ booking.net_amount_display }}</td>
+    </tr>
+  </table>
+</div>
+
+{% if booking.meeting_link %}
+<div style="background: rgba(5, 150, 105, 0.12); border: 1px solid #059669; border-radius: 8px; padding: 16px; margin: 20px 0; text-align: center;">
+  <div style="font-weight: 700; color: #A7F3D0; font-size: 14px; margin-bottom: 6px;">🔐 Secure Meeting Room Link Allocated:</div>
+  <a href="{{ booking.meeting_link }}" style="color: #FFD700; word-break: break-all; font-weight: 700; text-decoration: underline;">
+    {{ booking.meeting_link }}
+  </a>
+</div>
+{% endif %}
+
+<div style="text-align: center; margin: 26px 0 10px;">
+  <a href="{{ site_url }}/book-consultation/#track-section" class="btn-action">
+    View &amp; Print Official Statement
+  </a>
+</div>
+
+<p style="font-size: 13px; color: #94A3B8; text-align: center;">
+  For inquiries, contact your dedicated private wealth advisory desk at <a href="mailto:advisory@sabinbalanfinance.com" style="color: #D4AF37; text-decoration: underline;">advisory@sabinbalanfinance.com</a>.
+</p>
+{% endblock %}

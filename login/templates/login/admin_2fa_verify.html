@@ -1,0 +1,341 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Admin 2-Way Verification — GuardianTree FP{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+<style>
+  html, body {
+    background: #050706 !important;
+    color: #00E676 !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .auth-split-wrapper-fullscreen {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    background: radial-gradient(circle at 75% 20%, #0D1A14 0%, #050706 70%) !important;
+  }
+  .auth-split-image-fullscreen {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    min-height: 100vh !important;
+    padding: 3.5rem 3rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    border-right: 1px solid rgba(0, 230, 118, 0.2) !important;
+  }
+  .auth-split-form-fullscreen {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    min-height: 100vh !important;
+    padding: 3.5rem 4rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    background: rgba(8, 14, 10, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+  @media (max-width: 991px) {
+    .auth-split-wrapper-fullscreen {
+      flex-direction: column !important;
+      min-height: 100vh !important;
+    }
+    .auth-split-image-fullscreen {
+      flex: 0 0 auto !important;
+      width: 100% !important;
+      min-height: auto !important;
+      padding: 2.5rem 1.5rem 1.5rem 1.5rem !important;
+      border-right: none !important;
+      border-bottom: 1px solid rgba(0, 230, 118, 0.2) !important;
+    }
+    .auth-split-form-fullscreen {
+      flex: 1 0 auto !important;
+      width: 100% !important;
+      min-height: auto !important;
+      padding: 2rem 1.5rem 3rem 1.5rem !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .auth-split-image-fullscreen {
+      padding: 1.5rem 1rem 1rem 1rem !important;
+    }
+    .auth-split-form-fullscreen {
+      padding: 1.5rem 1rem 2.5rem 1rem !important;
+    }
+    .otp-input-container {
+      gap: 0.35rem !important;
+    }
+    .otp-box {
+      width: clamp(36px, 12vw, 44px) !important;
+      height: clamp(44px, 14vw, 52px) !important;
+      font-size: 1.25rem !important;
+    }
+  }
+  .otp-input-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 1.25rem 0;
+  }
+  .otp-box {
+    width: 52px;
+    height: 60px;
+    background: rgba(6, 10, 8, 0.95) !important;
+    border: 2px solid rgba(0, 230, 118, 0.35) !important;
+    border-radius: 12px !important;
+    color: #FFD700 !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+  }
+  .otp-box:focus {
+    border-color: #FFD700 !important;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3), 0 0 15px rgba(0, 230, 118, 0.4) !important;
+    background: rgba(10, 16, 12, 0.98) !important;
+    transform: translateY(-2px);
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, #FFE066 0%, #FFD700 50%, #F59E0B 100%) !important;
+    color: #050706 !important;
+    font-weight: 800 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4) !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6) !important;
+    color: #000000 !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-split-wrapper-fullscreen">
+
+  <!-- Left Side: Security Hero Panel -->
+  <div class="auth-split-image-fullscreen login-bg">
+    <div class="auth-image-content" style="position: relative; z-index: 10; max-width: 520px; color: #00E676;">
+      <span class="auth-image-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.15rem; background: rgba(0, 200, 83, 0.18); border: 1px solid rgba(0, 230, 118, 0.45); border-radius: 9999px; color: #00E676; font-size: 0.82rem; font-weight: 800; text-transform: uppercase; margin-bottom: 1.25rem;">
+        🛡️ Administrator Security Gate
+      </span>
+      <h2 style="font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #00E676;">
+        Two-Way Verification <span style="background: linear-gradient(135deg, #FFE066 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Enforced</span>
+      </h2>
+      <p style="font-size: 1rem; color: #86EFAC; line-height: 1.6;">
+        To protect institutional assets and client records, enter the 6-digit one-time passkey (OTP) generated for this session.
+      </p>
+
+      <div style="margin-top: 2rem; padding: 1.25rem 1.5rem; background: rgba(8, 14, 10, 0.9); border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.6);">
+        <div style="font-size: 0.92rem; color: #FFD700; font-weight: 800; margin-bottom: 0.4rem;">
+          💻 Development Terminal Output Active
+        </div>
+        <p style="font-size: 0.85rem; color: #86EFAC; margin: 0; line-height: 1.5;">
+          The code is automatically printed to your running server terminal console (<code>python manage.py runserver</code>) and dispatched to your email address.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: 2FA Input Panel -->
+  <div class="auth-split-form-fullscreen">
+    <div class="auth-header" style="text-align: left; margin-bottom: 1.5rem;">
+      <div style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); color: #FFD700; font-size: 1.4rem; margin-bottom: 1rem; box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);">
+        🔑
+      </div>
+      <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.35rem; color: #00E676;">
+        2-Way Verification <span style="background: linear-gradient(135deg, #FFE066 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Security Code</span>
+      </h1>
+      <p class="subtitle" style="font-size: 0.95rem; color: #86EFAC;">
+        Enter the 6-digit verification code for <strong style="color: #FFD700;">{{ target_user.username }}</strong>
+      </p>
+    </div>
+
+    <!-- Messages / Error Banner -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}error{% else %}{{ message.tags }}{% endif %}" style="margin-bottom: 1.25rem; background: rgba(0, 200, 83, 0.15); border: 1px solid rgba(0, 230, 118, 0.4); color: #00E676; padding: 0.85rem 1.15rem; border-radius: 10px; font-weight: 700;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if error %}
+      <div class="alert alert-error" style="margin-bottom: 1.25rem; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #F87171; padding: 0.85rem 1.15rem; border-radius: 10px; font-weight: 700;">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <!-- Terminal Code Notice Box -->
+    <div style="background: rgba(8, 14, 10, 0.9); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 14px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.35rem;">
+        <span style="font-weight: 800; font-size: 0.88rem; color: #FFD700;">⚡ Code Dispatched</span>
+        <span style="background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.35); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.78rem; font-weight: 800; color: #FFD700;">
+          ⏳ <span id="countdown-timer" data-seconds="{{ expiry_seconds|default:300 }}">05:00</span>
+        </span>
+      </div>
+      <div style="font-size: 0.84rem; line-height: 1.45; color: #86EFAC;">
+        The 6-digit code has been output to your <strong>Terminal Console</strong> and sent to <strong>{{ target_email }}</strong>.
+      </div>
+    </div>
+
+    <!-- 2FA OTP Form -->
+    <form method="post" action="{% url 'login:admin_2fa_verify' %}" id="otp-form" class="auth-form" novalidate onsubmit="syncOtpBeforeSubmit()">
+      {% csrf_token %}
+      
+      <input type="hidden" name="otp_code" id="otp_code_hidden">
+
+      <div class="form-group">
+        <label class="form-label" style="text-align: center; display: block; font-weight: 700; color: #FFD700; font-size: 0.95rem;">
+          Enter 6-Digit Passcode
+        </label>
+        
+        <div class="otp-input-container">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" autofocus id="digit1">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" id="digit2">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" id="digit3">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" id="digit4">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" id="digit5">
+          <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric" id="digit6">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-gold" id="btn-verify" style="width: 100%; margin-top: 0.5rem; font-size: 1.05rem; padding: 0.9rem;">
+        Authorize & Complete Sign In &rarr;
+      </button>
+    </form>
+
+    <!-- Resend & Cancel Controls -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(0, 230, 118, 0.2);">
+      <form method="post" action="{% url 'login:admin_2fa_resend' %}" style="margin: 0;">
+        {% csrf_token %}
+        <button type="submit" class="btn-resend" id="resend-btn" style="background: rgba(0, 200, 83, 0.15); border: 1px solid rgba(0, 230, 118, 0.35); color: #00E676; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 700; cursor: pointer;">
+          🔄 Resend OTP Code
+        </button>
+      </form>
+
+      <a href="{% url 'admin:login' %}" style="color: #94A3B8; font-size: 0.88rem; text-decoration: none; font-weight: 700;" onmouseover="this.style.color='#FFD700'" onmouseout="this.style.color='#94A3B8'">
+        ✕ Cancel Login
+      </a>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function getOtpBoxes() {
+    return [
+      document.getElementById('digit1'),
+      document.getElementById('digit2'),
+      document.getElementById('digit3'),
+      document.getElementById('digit4'),
+      document.getElementById('digit5'),
+      document.getElementById('digit6')
+    ];
+  }
+
+  function syncOtpBeforeSubmit() {
+    const boxes = getOtpBoxes();
+    const hiddenInput = document.getElementById('otp_code_hidden');
+    if (hiddenInput && boxes[0]) {
+      hiddenInput.value = boxes.map(b => b ? b.value : '').join('').trim();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const boxes = getOtpBoxes();
+    const hiddenInput = document.getElementById('otp_code_hidden');
+    const form = document.getElementById('otp-form');
+
+    if (boxes[0]) boxes[0].focus();
+
+    boxes.forEach((box, idx) => {
+      if (!box) return;
+
+      box.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value && idx < 5 && boxes[idx + 1]) {
+          boxes[idx + 1].focus();
+        }
+        syncOtpBeforeSubmit();
+
+        if (hiddenInput && hiddenInput.value.length === 6 && form) {
+          form.submit();
+        }
+      });
+
+      box.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace') {
+          if (!this.value && idx > 0 && boxes[idx - 1]) {
+            boxes[idx - 1].focus();
+            boxes[idx - 1].value = '';
+            syncOtpBeforeSubmit();
+          }
+        }
+      });
+
+      box.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const pasteData = (e.clipboardData || window.clipboardData).getData('text').trim().replace(/[^0-9]/g, '');
+        if (pasteData.length >= 6) {
+          for (let i = 0; i < 6; i++) {
+            if (boxes[i]) boxes[i].value = pasteData[i];
+          }
+          if (boxes[5]) boxes[5].focus();
+          syncOtpBeforeSubmit();
+          if (form) form.submit();
+        } else if (pasteData.length > 0) {
+          for (let i = 0; i < pasteData.length && (idx + i) < 6; i++) {
+            if (boxes[idx + i]) boxes[idx + i].value = pasteData[i];
+          }
+          const nextIdx = Math.min(5, idx + pasteData.length);
+          if (boxes[nextIdx]) boxes[nextIdx].focus();
+          syncOtpBeforeSubmit();
+        }
+      });
+    });
+
+    // Countdown Timer
+    const timerElem = document.getElementById('countdown-timer');
+    if (timerElem) {
+      const rawSecs = timerElem.getAttribute('data-seconds');
+      let totalSeconds = rawSecs ? parseInt(rawSecs) : 300;
+
+      function updateTimer() {
+        if (totalSeconds <= 0) {
+          timerElem.textContent = "00:00 (Expired)";
+          timerElem.style.color = "#F87171";
+          return;
+        }
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        timerElem.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        totalSeconds--;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+  });
+</script>
+<script src="{% static 'login/js/auth.js' %}"></script>
+{% endblock %}

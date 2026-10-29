@@ -1,0 +1,83 @@
+{% extends 'emails/base_email.html' %}
+
+{% block email_title %}Consultation Booking Confirmation — #{{ booking.reference_key }}{% endblock %}
+
+{% block doc_badge %}CONSULTATION BOOKING CONFIRMATION{% endblock %}
+
+{% block email_content %}
+<h2>Dear {{ booking.client_name }},</h2>
+<p>
+  Thank you for scheduling a private advisory session with <strong>Sabin Balan Finance</strong>. Your consultation
+  request has been successfully registered under tracking reference <strong>#{{ booking.reference_key }}</strong>.
+</p>
+
+<div class="details-card">
+  <table class="details-table">
+    <tr>
+      <td class="details-label">Reference Key:</td>
+      <td class="details-value highlight" style="font-family: monospace; font-size: 16px; letter-spacing: 1.5px;">
+        {{booking.reference_key }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Advisory Mandate:</td>
+      <td class="details-value">{{ booking.get_service_display }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Date &amp; Time:</td>
+      <td class="details-value">{{ booking.consultation_date|date:"l, d F Y" }} at {{ booking.consultation_time|time:"h:i A" }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Session Duration:</td>
+      <td class="details-value">{{ booking.duration_label }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Meeting Mode:</td>
+      <td class="details-value">{{ booking.get_preferred_comm_display }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Advisory Fee:</td>
+      <td class="details-value highlight">{{ booking.fee_amount_display }}</td>
+    </tr>
+    <tr>
+      <td class="details-label">Payment Status:</td>
+      <td class="details-value">
+        <span class="status-badge status-{{ booking.payment_status }}">
+          {{ booking.get_payment_status_display }}
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="details-label">Booking Status:</td>
+      <td class="details-value">
+        <span class="status-badge status-{{ booking.status }}">
+          {{ booking.get_status_display }}
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="checklist-box">
+  <strong>Pre-Consultation Preparation Checklist:</strong>
+  <ul>
+    <li><strong>Encrypted Meeting Link:</strong> Your dedicated secure conference link will be dispatched 30 minutes
+      prior to session time.</li>
+    <li><strong>Asset Allocation Data:</strong> Please have your current portfolio overview or tax returns available for
+      reference.</li>
+    <li><strong>Rescheduling Policy:</strong> Kindly provide a minimum of 24 hours notice for any calendar adjustments
+      using your Reference Key.</li>
+  </ul>
+</div>
+
+<div style="text-align: center; margin: 28px 0 10px;">
+  <a href="{{ site_url }}/book-consultation/#track-section" class="btn-action">
+    Track Consultation Status in Real-Time
+  </a>
+</div>
+
+<p style="font-size: 13px; color: #94A3B8; text-align: center; margin-top: 18px;">
+  If you have any urgent questions, reach our Senior Wealth Advisory Desk at <a
+    href="mailto:advisory@sabinbalanfinance.com"
+    style="color: #D4AF37; text-decoration: underline;">advisory@sabinbalanfinance.com</a>.
+</p>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Message Dispatched — Sabin Balan Finance{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'contactform/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-split-wrapper" style="display: flex; width: 100%; min-height: 100vh; background: var(--color-bg);">
+  
+  <!-- Left Side: Message Dispatched Full Quality Hero Image & Brand Overlay -->
+  <div class="auth-split-image contact-success-hero">
+    <div class="auth-image-content" style="position: relative; z-index: 10; max-width: 540px; color: #ffffff;">
+      <span class="auth-image-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.1rem; background: rgba(10, 13, 20, 0.75); backdrop-filter: blur(12px); border: 1.5px solid rgba(212, 175, 55, 0.5); border-radius: 9999px; color: var(--color-gold); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        ✉️ Message Dispatched
+      </span>
+      <h2 style="font-size: 2.75rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
+        Thank You for Reaching Out
+      </h2>
+      <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.95); line-height: 1.6; text-shadow: 0 2px 8px rgba(0,0,0,0.6);">
+        Our senior chartered advisory team will review your requirements and respond to your inquiry within 24 hours.
+      </p>
+    </div>
+  </div>
+
+  <!-- Right Side: Content Column -->
+  <div class="auth-split-form" style="flex: 0 0 520px; max-width: 520px; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem 3rem; background: var(--color-secondary);">
+    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--color-success); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.25rem;">
+      ✓
+    </div>
+
+    <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Message Received!</h1>
+    <p class="subtitle" style="font-size: 0.95rem; margin-bottom: 1.5rem;">
+      Your transmission has been delivered successfully.
+    </p>
+
+    <p style="color: var(--color-subtext); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem;">
+      We appreciate you connecting with Sabin Balan Private Wealth Advisory. An advisor will reach out to you directly at your email address.
+    </p>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+      <a href="{% url 'login:home' %}" class="btn btn-gold" style="flex: 1;">
+        Return to Home &rarr;
+      </a>
+      <a href="{% url 'contactform:contact' %}" class="btn btn-secondary" style="flex: 1;">
+        Contact Desk
+      </a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Security Throttling — Sabin Balan Private Wealth{% endblock %}
+
+{% block content %}
+<div class="card-container glass-card" style="text-align: center; margin: 4rem auto; max-width: 500px;">
+  <div style="font-size: 3.5rem; margin-bottom: 1rem;">🛡️</div>
+  <div class="auth-header">
+    <h1 style="color: var(--color-error); font-size: 1.8rem;">Submission Limit Exceeded</h1>
+    <p class="subtitle">Security throttling active to prevent automated spam</p>
+  </div>
+  <p style="color: var(--color-subtext); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6;">
+    {{ error_message|default:"Too many submission attempts detected from your IP address. Please wait a short while before sending another consultation request." }}
+  </p>
+
+  <a href="{% url 'login:home' %}" class="btn btn-gold" style="width: 100%;">Return to Home Page &rarr;</a>
+</div>
+{% endblock %}

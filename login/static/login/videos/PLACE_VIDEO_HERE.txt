@@ -1,0 +1,15 @@
+========================================================================
+FAQ VIDEO FILE INSTRUCTIONS
+========================================================================
+
+Please place your FAQ video file in this directory with the exact name:
+
+    faq_video.mp4
+
+Full file path:
+    c:\Users\hp\Sabin-Balan_Finance\login\static\login\videos\faq_video.mp4
+
+Supported format: MP4 (H.264 video codec recommended for best browser compatibility).
+
+Once placed here, the FAQ section on your homepage will automatically play your video!
+========================================================================

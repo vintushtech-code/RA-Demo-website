@@ -1,0 +1,26 @@
+{% extends 'theme_config/base.html' %}
+{% load static %}
+
+{% block title %}Security Protection Active — Sabin Balan Private Wealth{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card-container glass-card" style="text-align: center; margin: 4rem auto; max-width: 500px;">
+  <div class="auth-header">
+    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛡️</div>
+    <h1 style="color: var(--color-error); font-size: 1.8rem;">Security Throttling Active</h1>
+    <p class="subtitle">
+      Too many authentication attempts detected.
+    </p>
+  </div>
+
+  <p style="font-size: 0.95rem; color: var(--color-subtext); margin-bottom: 1.75rem; line-height: 1.6;">
+    To protect client credentials against unauthorized access, this endpoint is rate limited. Please wait a moment before trying again.
+  </p>
+
+  <a href="{% url 'login:login' %}" class="btn btn-gold" style="width: 100%;">Return to Portal Sign In &rarr;</a>
+</div>
+{% endblock %}

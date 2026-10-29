@@ -1,0 +1,14 @@
+Sabin Balan Finance — Admin 2-Way Verification Code
+=====================================================
+
+Hello {{ user.get_display_name }},
+
+Your 6-digit Admin 2-Factor Verification Code is:
+
+    >>> {{ code }} <<<
+
+This code will expire in {{ expiry_minutes }} minutes.
+
+(During development, this verification code is also printed live to your terminal console.)
+
+If you did not initiate this login, please secure your account immediately.
