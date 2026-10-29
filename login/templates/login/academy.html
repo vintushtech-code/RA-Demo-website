@@ -80,12 +80,14 @@
     color: var(--color-gold, #D4AF37) !important;
     background: linear-gradient(135deg, #FFF9D2 0%, #D4AF37 70%, #AA8018 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   html:not([data-theme='dark']) .academy-hero-title .highlight-gold {
     background: none;
     -webkit-background-clip: initial;
+    background-clip: initial;
     -webkit-text-fill-color: initial;
     color: #B45309 !important;
   }
@@ -1026,19 +1028,16 @@
   </div>
 </div>
 
+{{ educational_articles|json_script:"educational-articles-data" }}
+
 <script>
   // Article data store for instant popup reading
-  const articleData = {
-    {% for article in educational_articles %}
-    "{{ article.id }}": {
-      "title": "{{ article.title|escapejs }}",
-      "category": "{{ article.category|escapejs }}",
-      "author": "{{ article.author|escapejs }}",
-      "read_time": "{{ article.read_time|escapejs }}",
-      "content": `{{ article.content|safe }}`
-    }{% if not forloop.last %},{% endif %}
-    {% endfor %}
-  };
+  const articleListElement = document.getElementById('educational-articles-data');
+  const articleList = articleListElement ? JSON.parse(articleListElement.textContent) : [];
+  const articleData = {};
+  articleList.forEach(function (article) {
+    articleData[article.id] = article;
+  });
 
   function openArticleModal(articleId) {
     const data = articleData[articleId];
