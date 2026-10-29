@@ -932,7 +932,7 @@ class TestimonialsView(View):
             context['testimonials'] = testimonials_list
             
             # Check if there are any testimonials
-            # 5 Static SEBI RA Testimonials
+            # 9 Static SEBI RA Testimonials (Populates all 9 columns of the leaders wavy grid)
             static_reviews = [
                 {
                     "name": "Rajesh Nair",
@@ -954,7 +954,7 @@ class TestimonialsView(View):
                 },
                 {
                     "name": "Aditya Singhania",
-                    "role": "Corporate Finance VP",
+                    "role": "Corporate Finance VP & Direct Investor",
                     "location": "Mumbai",
                     "quote": "The risk-reward discipline is strictly enforced. They never recommend low-float speculative traps. In volatile quarters, capital preservation comes first. Their quarterly earnings notes are sharper and more honest than most sell-side institutional research desks.",
                     "rating": "5.0",
@@ -978,6 +978,42 @@ class TestimonialsView(View):
                     "rating": "5.0",
                     "category": "Breakout Radar",
                     "avatar": "/static/avatar_leader3.png"
+                },
+                {
+                    "name": "Rohan Deshpande",
+                    "role": "Quant Systems Engineer & Momentum Trader",
+                    "location": "Pune",
+                    "quote": "Finding an analyst who understands algorithmic trailing stops and position sizing according to ATR was a game changer for my portfolio. Their technical swing setups have consistent positive expectancy with verified strike rates.",
+                    "rating": "5.0",
+                    "category": "Quant Momentum",
+                    "avatar": "/static/avatar_leader4.png"
+                },
+                {
+                    "name": "Ananya Sen",
+                    "role": "Chartered Accountant & Family Office Allocator",
+                    "location": "Kolkata",
+                    "quote": "From a forensic accounting standpoint, Kalphora\'s scrutiny of promoter pledging and auditor remuneration is institutional quality. They caught accounting manipulation in two midcaps months before the market reacted.",
+                    "rating": "5.0",
+                    "category": "Forensic Due Diligence",
+                    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                },
+                {
+                    "name": "Vikramaditya Rathore",
+                    "role": "Industrialist & Long-Term Compounder",
+                    "location": "Jaipur",
+                    "quote": "Their high-conviction fundamental compounder calls helped me allocate capital to mid-market market leaders with zero debt and ROCE above 22%. Outstanding analytical depth in every quarterly review.",
+                    "rating": "5.0",
+                    "category": "Long-Term Wealth",
+                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                },
+                {
+                    "name": "Shalini Rao",
+                    "role": "Fintech Director & Academy Scholar",
+                    "location": "Bengaluru",
+                    "quote": "The practical DCF financial modeling and balance sheet red flags modules gave me the exact valuation foundation I needed. Kalphora\'s mentorship bridged the gap between academic theory and institutional equity analysis.",
+                    "rating": "5.0",
+                    "category": "Research Academy",
+                    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
                 }
             ]
 

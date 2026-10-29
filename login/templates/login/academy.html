@@ -625,6 +625,17 @@
     font-weight: bold;
   }
 
+  @keyframes blogCardFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* Modals Overlay */
   .article-modal-backdrop {
     display: none;
@@ -883,7 +894,7 @@
 
     <div class="blogs-grid">
       {% for article in educational_articles %}
-      <div class="blog-card">
+      <div class="blog-card{% if forloop.counter > 3 %} blog-card-extra{% endif %}" id="blog-card-{{ forloop.counter }}" style="{% if forloop.counter > 3 %}display: none;{% endif %}">
         <div class="blog-thumb-wrap">
           <img src="{% if 'http' in article.image %}{{ article.image }}{% else %}{% static article.image %}{% endif %}" alt="{{ article.title }}" class="blog-thumb-img" loading="lazy" decoding="async">
           <span class="blog-category-pill">{{ article.category }}</span>
@@ -906,11 +917,15 @@
       {% endfor %}
     </div>
 
-    <!-- See All Blogs & Case Studies (Demo Mode Option) -->
-    <div style="text-align: center; margin-top: 3.5rem;">
-      <button type="button" class="btn-academy-secondary" onclick="openComingSoonModal('Full Research Knowledge Hub &amp; Case Studies Archive')" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
-        <span>See All 100+ Research Blogs &amp; Case Studies &rarr;</span>
-        <span class="badge-demo-pill">Coming Soon</span>
+    <!-- Toggle Show All 6 Blogs & View Full Archive Button -->
+    <div style="text-align: center; margin-top: 3.5rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; align-items: center;">
+      <button type="button" class="btn-academy-secondary" id="toggleBlogsBtn" onclick="toggleAcademyBlogs()" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
+        <span id="toggleBlogsBtnText">Show All Research Case Studies (6) &rarr;</span>
+      </button>
+
+      <button type="button" class="btn-academy-primary" onclick="openComingSoonModal('Full Research Knowledge Hub &amp; 100+ Case Studies Archive')" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
+        <span>Access 100+ Lesson Archive</span>
+        <span class="badge-demo-pill" style="background: rgba(0,0,0,0.25); color: #0A0D14; border: 1px solid rgba(0,0,0,0.3);">Coming Soon</span>
       </button>
     </div>
   </div>
@@ -1124,6 +1139,27 @@
   articleList.forEach(function (article) {
     articleData[article.id] = article;
   });
+
+
+  let blogsExpanded = false;
+  function toggleAcademyBlogs() {
+    const extraCards = document.querySelectorAll('.blog-card-extra');
+    const btnText = document.getElementById('toggleBlogsBtnText');
+    blogsExpanded = !blogsExpanded;
+
+    extraCards.forEach(function (card) {
+      if (blogsExpanded) {
+        card.style.display = 'flex';
+        card.style.animation = 'blogCardFadeIn 0.4s ease forwards';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (btnText) {
+      btnText.textContent = blogsExpanded ? 'Show Less (3 Articles) \u2191' : 'Show All Research Case Studies (6) \u2192';
+    }
+  }
 
   function openArticleModal(articleId) {
     const data = articleData[articleId];
