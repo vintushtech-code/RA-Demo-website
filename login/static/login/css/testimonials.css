@@ -760,3 +760,62 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+
+/* Responsive Enhancements for Testimonials Hero & Tickers */
+@media (max-width: 992px) {
+  .hero-banner {
+    padding: 6rem 1.5rem 3rem 1.5rem;
+    min-height: auto;
+  }
+  .metrics-ticker-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    border-radius: 1.5rem;
+    padding: 0.85rem 1.25rem;
+  }
+  .metric-item:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-banner {
+    padding: 5rem 1rem 2rem 1rem;
+    min-height: auto;
+  }
+  .hero-left-section {
+    max-width: 100%;
+  }
+  .hero-image-styled-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.75rem);
+  }
+  .hero-image-styled-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .hero-pill-bar {
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  }
+  .pill-store-name, .pill-divider {
+    display: none !important;
+  }
+  .pill-input {
+    font-size: 0.85rem;
+  }
+  .metrics-ticker-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+  }
+  .metric-item::after {
+    display: none !important;
+  }
+  .metric-value {
+    font-size: 1.2rem;
+  }
+  .metric-label {
+    font-size: 0.72rem;
+  }
+}

@@ -193,9 +193,95 @@
   }
 
   @media (max-width: 768px) {
+    .academy-section-wrap {
+      padding: 3.5rem 1rem;
+    }
+    .academy-hero-wrap {
+      padding-top: 5.5rem;
+      padding-bottom: 3rem;
+    }
+    .academy-hero-title {
+      font-size: clamp(1.85rem, 6vw, 2.75rem);
+    }
+    .academy-hero-desc {
+      font-size: 0.98rem;
+      margin-bottom: 1.75rem;
+    }
     .academy-metrics-ticker {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+    .video-info-strip {
+      padding: 1.5rem 1.25rem;
+      flex-direction: column;
+      align-items: stretch;
       gap: 1.25rem;
+    }
+    .video-info-strip > div:last-child {
+      flex-direction: column;
+      width: 100%;
+    }
+    .video-info-strip > div:last-child > a,
+    .video-info-strip > div:last-child > button {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    .module-card {
+      padding: 1.75rem 1.5rem;
+    }
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .academy-hero-wrap {
+      padding-top: 5rem;
+      padding-bottom: 2.25rem;
+    }
+    .academy-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .academy-hero-actions > a,
+    .academy-hero-actions > button {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+    }
+    .academy-metrics-ticker {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      padding: 0.85rem 0.75rem;
+      border-radius: 14px;
+    }
+    .academy-metric-val {
+      font-size: 1.35rem;
+    }
+    .academy-metric-lbl {
+      font-size: 0.72rem;
+    }
+    .section-head {
+      margin-bottom: 2.25rem;
+    }
+    .module-card {
+      padding: 1.5rem 1.25rem;
+    }
+    .blog-thumb-wrap {
+      height: 165px;
+    }
+    .blog-body {
+      padding: 1.25rem 1rem;
+    }
+    .article-modal-content {
+      padding: 2rem 1.25rem;
+      max-width: 95%;
     }
   }
 
@@ -289,7 +375,7 @@
   /* Curriculum Cards */
   .modules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.75rem;
   }
 
@@ -346,7 +432,7 @@
   /* Blogs Grid */
   .blogs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
   }
 
@@ -457,7 +543,7 @@
   /* Cohorts Pricing Grid */
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     align-items: stretch;
   }
@@ -640,7 +726,7 @@
     </h1>
 
     <p class="academy-hero-desc">
-      India's premier practical mentorship program for aspiring Research Analysts, finance graduates, and active market investors. Learn forensic accounting, financial statement analysis, dynamic DCF valuation modeling, and technical breakout setups directly from a CFA &amp; SEBI-registered Research Analyst.
+      Practical equity research mentorship for aspiring analysts. Master balance sheet forensics, DCF valuation, and breakout setups directly from a SEBI RA.
     </p>
 
     <div class="academy-hero-actions">
@@ -844,7 +930,7 @@
       </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
       {% for rev in student_testimonials %}
       <div class="module-card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>

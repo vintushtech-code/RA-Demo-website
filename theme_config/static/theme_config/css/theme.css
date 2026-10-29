@@ -1320,3 +1320,69 @@ body.light-theme .coming-soon-desc,
   flex-wrap: wrap;
 }
 
+
+/* ==========================================================================
+   UNIVERSAL MOBILE RESPONSIVENESS & OVERFLOW SAFEGUARD ENGINE
+   ========================================================================== */
+html, body {
+  max-width: 100vw !important;
+  overflow-x: clip !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .page-intro-header {
+    padding-top: 5.5rem !important;
+    padding-bottom: 2rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .page-heading-twotone {
+    font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+  }
+
+  .page-intro-desc {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Universal Image & Video Fluidity */
+  img, video, iframe, canvas {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  /* Safe margins and touch targets */
+  .hero-pill-badge,
+  .about-hero-pill-badge,
+  .academy-pill-badge {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-intro-header {
+    padding-top: 5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .coming-soon-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .coming-soon-actions > * {
+    width: 100% !important;
+    justify-content: center;
+    text-align: center;
+  }
+}

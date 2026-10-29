@@ -2231,8 +2231,11 @@ body.light-theme .faq-page-dot {
     padding: 0.35rem 0.35rem 0.35rem 0.85rem;
   }
 
-  .pill-store-name {
-    font-size: 0.85rem;
+  .pill-store-name, .pill-divider {
+    display: none !important;
+  }
+  .pill-input {
+    font-size: 0.88rem !important;
   }
 
   .floating-badge {
@@ -2244,20 +2247,31 @@ body.light-theme .faq-page-dot {
   }
 
   .badge-financial-planning {
-    left: -10px;
+    left: 8px;
   }
 
   .badge-wealth-mgmt {
-    right: -10px;
+    right: 8px;
   }
 
   .badge-portfolio-growth {
-    left: 10%;
-    bottom: -10px;
+    left: 8px;
+    bottom: 5px;
   }
 
   .metrics-ticker-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+  }
+
+  .metric-value {
+    font-size: 1.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
   }
 
   .metric-item::after {
