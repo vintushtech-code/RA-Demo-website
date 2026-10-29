@@ -153,6 +153,35 @@ function applyCombinedFilters() {
     }
   });
 
+    // Also filter static testimonial cards below
+    const staticCards = document.querySelectorAll('.static-testimonial-card');
+    const isShowingAll = document.getElementById('toggleReviewsText')?.textContent.includes('Show Less');
+
+    staticCards.forEach((card, index) => {
+      const cardName = (card.getAttribute('data-name') || '').toLowerCase();
+      const cardRole = (card.getAttribute('data-role') || '').toLowerCase();
+      const cardLocation = (card.getAttribute('data-location') || '').toLowerCase();
+      const cardQuote = (card.getAttribute('data-quote') || '').toLowerCase();
+      const cardCategory = (card.getAttribute('data-category') || '').toLowerCase();
+      const fullText = `${cardName} ${cardRole} ${cardLocation} ${cardQuote} ${cardCategory}`;
+
+      const matches = !query || fullText.includes(query);
+
+      if (query.length > 0) {
+        // In search mode, display any card that matches
+        card.style.display = matches ? 'flex' : 'none';
+        card.style.opacity = matches ? '1' : '0.2';
+      } else {
+        // When search is empty, respect the 3-card toggle state
+        card.style.opacity = '1';
+        if (index < 3 || isShowingAll) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+    });
+
   const feedback = document.getElementById('testimonialSearchFeedback');
   if (feedback) {
     if (query.length > 0) {
@@ -200,3 +229,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+function toggleTestimonialsView() {
+  const extraCards = document.querySelectorAll('.extra-testimonial');
+  const btnText = document.getElementById('toggleReviewsText');
+  const btnIcon = document.getElementById('toggleReviewsIcon');
+  if (!extraCards.length) return;
+
+  const isExpanded = extraCards[0].classList.contains('visible');
+
+  extraCards.forEach(card => {
+    card.classList.toggle('visible', !isExpanded);
+  });
+
+  if (btnText) {
+    btnText.textContent = isExpanded
+      ? 'Show All Reviews (9 Verified Experiences)'
+      : 'Show Less (Collapse to 3)';
+  }
+
+  if (btnIcon) {
+    btnIcon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+  }
+
+  if (isExpanded) {
+    const section = document.getElementById('staticTestimonialsGrid');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}

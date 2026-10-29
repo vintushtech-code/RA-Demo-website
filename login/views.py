@@ -839,7 +839,7 @@ class AcademyView(TemplateView):
                 "location": "Mumbai",
                 "quote": "The financial modeling and DCF valuation modules gave me the hands-on confidence to build 3-statement models from scratch. Cleared NISM XV in 3 weeks with 86% and transitioned into an institutional research firm.",
                 "rating": "5.0",
-                "avatar": "/static/avatar_leader1.png"
+                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
             },
             {
                 "name": "Priyanka Sharma",
@@ -847,7 +847,7 @@ class AcademyView(TemplateView):
                 "location": "Pune",
                 "quote": "Understanding the difference between reported earnings and operating cash flow saved me from holding two dubious small-caps that later collapsed. The forensic checklist alone is worth 10x the course fee.",
                 "rating": "5.0",
-                "avatar": "/static/avatar_emily.png"
+                "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
             },
             {
                 "name": "Rahul Deshmukh",
@@ -855,7 +855,7 @@ class AcademyView(TemplateView):
                 "location": "Hyderabad",
                 "quote": "The hands-on report authoring module is identical to institutional research formats. Kalpesh sir\'s personal feedback on valuation sensitivity and ROCE filters was invaluable for my career.",
                 "rating": "5.0",
-                "avatar": "/static/avatar_leader2.png"
+                "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
             }
         ]
 
@@ -941,7 +941,7 @@ class TestimonialsView(View):
                     "quote": "The transparency in Kalphora Equity\'s swing recommendations is unmatched. The precise entry zone, defined stop-loss, and trailing profit targets eliminate emotional guesswork from my trading week. Their 1:3 asymmetric risk-reward protected my capital during volatile swings.",
                     "rating": "5.0",
                     "category": "Swing & Breakout Picks",
-                    "avatar": "/static/avatar_david.png"
+                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Dr. Meenakshi Sundaram",
@@ -950,7 +950,7 @@ class TestimonialsView(View):
                     "quote": "As a practicing surgeon with zero time to read 200-page annual reports, Kalphora\'s forensic accounting deep dives gave me absolute clarity on moat sustainability, ROCE, and debt hygiene. Investing in companies with >18% ROCE has given me genuine peace of mind.",
                     "rating": "5.0",
                     "category": "Fundamental Compounders",
-                    "avatar": "/static/avatar_emily.png"
+                    "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Aditya Singhania",
@@ -959,7 +959,7 @@ class TestimonialsView(View):
                     "quote": "The risk-reward discipline is strictly enforced. They never recommend low-float speculative traps. In volatile quarters, capital preservation comes first. Their quarterly earnings notes are sharper and more honest than most sell-side institutional research desks.",
                     "rating": "5.0",
                     "category": "Institutional Research",
-                    "avatar": "/static/avatar_leader1.png"
+                    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Sunita Menon",
@@ -968,7 +968,7 @@ class TestimonialsView(View):
                     "quote": "The Kalphora Research Academy transformed how I assess company management. Learning how to spot divergence between EBITDA and Operating Cash Flow was worth 10x the course fee. I cleared my NISM Series XV exam on the first attempt with 88% marks!",
                     "rating": "5.0",
                     "category": "Research Academy",
-                    "avatar": "/static/avatar_leader2.png"
+                    "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Karthik R. Iyer",
@@ -977,7 +977,7 @@ class TestimonialsView(View):
                     "quote": "Clean execution directly through my Zerodha demat account with zero broker commission conflicts. True fiduciary institutional-grade stock research. The weekly risk summaries and trailing stops allow me to participate in equity breakouts with zero stress.",
                     "rating": "5.0",
                     "category": "Breakout Radar",
-                    "avatar": "/static/avatar_leader3.png"
+                    "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Rohan Deshpande",
@@ -986,7 +986,7 @@ class TestimonialsView(View):
                     "quote": "Finding an analyst who understands algorithmic trailing stops and position sizing according to ATR was a game changer for my portfolio. Their technical swing setups have consistent positive expectancy with verified strike rates.",
                     "rating": "5.0",
                     "category": "Quant Momentum",
-                    "avatar": "/static/avatar_leader4.png"
+                    "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
                 },
                 {
                     "name": "Ananya Sen",
