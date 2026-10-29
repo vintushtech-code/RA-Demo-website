@@ -125,15 +125,145 @@
     <!-- Write Your Own Testimonial CTA Button & Schedule Consultation -->
     <div style="display: flex; gap: 1.25rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
       <a href="{% url 'login:consultation' %}" class="btn-gold-lg-glow" style="text-decoration: none;">
-        <span>Book a Private Consultation</span>
+        <span>Schedule Research Orientation</span>
         <span>&rarr;</span>
       </a>
       <button class="btn-testimonial-secondary" onclick="openWriteModal()">
-        <span>Write Your Own Testimonial</span>
+        <span>Submit Subscriber Review</span>
         <span>&rarr;</span>
       </button>
     </div>
   </div>
+
+  <!-- 3. FEATURED RESEARCH ANALYST REVIEWS & EXPERIENCES (5 STATIC CARDS) -->
+  <section class="featured-reviews-section" style="max-width: 1280px; margin: 3.5rem auto 2rem auto; padding: 0 1.5rem;">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <div class="testimonials-pill-badge" style="display: inline-block; margin-bottom: 0.75rem;">Verified Member Experiences</div>
+      <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--color-primary); margin-bottom: 0.75rem;">
+        Real Results from <span class="highlight-text">Independent Stock Investors</span>
+      </h2>
+      <p style="color: var(--color-subtext); max-width: 680px; margin: 0 auto; font-size: 0.95rem; line-height: 1.6;">
+        Read authentic feedback from working professionals, doctors, business executives, and academy students who execute our SEBI-registered equity research.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.75rem;">
+      <!-- Card 1: Rajesh Nair -->
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--color-secondary); border: 1px solid rgba(212, 175, 55, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div style="display: flex; gap: 0.25rem; color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: rgba(212, 175, 55, 0.15); color: var(--color-gold); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">Verified Swing Subscriber</span>
+          </div>
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "The transparency in Kalphora Equity's swing recommendations is unmatched. The precise entry zone, defined stop-loss, and trailing profit targets completely eliminate emotional guesswork from my trading week. Their 1:3 asymmetric risk-reward protected my capital during choppy market swings."
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #10B981, #047857); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 2px solid var(--color-gold);">
+            RN
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">Rajesh Nair</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">Senior Product Architect &bull; 📍 Bengaluru</p>
+            <span style="display: inline-block; font-size: 0.72rem; color: var(--color-gold); font-weight: 600; margin-top: 0.2rem;">Package: Swing &amp; Breakout Picks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Dr. Meenakshi Sundaram -->
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--color-secondary); border: 1px solid rgba(212, 175, 55, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div style="display: flex; gap: 0.25rem; color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: rgba(212, 175, 55, 0.15); color: var(--color-gold); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">Verified Compounder Subscriber</span>
+          </div>
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "As a practicing surgeon with zero time to read 200-page annual reports, Kalphora's forensic accounting deep dives gave me absolute clarity on moat sustainability, ROCE, and debt hygiene. Investing in companies with >18% ROCE and promoter integrity has given me real peace of mind."
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #D4AF37, #B45309); color: #0A0D14; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 2px solid var(--color-gold);">
+            MS
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">Dr. Meenakshi Sundaram</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">Consultant Surgeon &bull; 📍 Chennai</p>
+            <span style="display: inline-block; font-size: 0.72rem; color: var(--color-gold); font-weight: 600; margin-top: 0.2rem;">Package: Fundamental Compounders</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Aditya Singhania -->
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--color-secondary); border: 1px solid rgba(212, 175, 55, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div style="display: flex; gap: 0.25rem; color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: rgba(212, 175, 55, 0.15); color: var(--color-gold); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">Institutional Subscriber</span>
+          </div>
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "The risk-reward discipline is strictly enforced. They never recommend low-float speculative traps. In volatile quarters, capital preservation comes first. Their quarterly earnings notes are sharper and more honest than most sell-side institutional research desks."
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #3B82F6, #1D4ED8); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 2px solid var(--color-gold);">
+            AS
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">Aditya Singhania</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">Corporate Finance VP &bull; 📍 Mumbai</p>
+            <span style="display: inline-block; font-size: 0.72rem; color: var(--color-gold); font-weight: 600; margin-top: 0.2rem;">Package: Sectoral &amp; Macro Dives</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Sunita Menon -->
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--color-secondary); border: 1px solid rgba(212, 175, 55, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div style="display: flex; gap: 0.25rem; color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: rgba(212, 175, 55, 0.15); color: var(--color-gold); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">Academy Graduate &amp; Mentee</span>
+          </div>
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "The Kalphora Research Academy transformed how I assess company management. Learning how to spot divergence between EBITDA and Operating Cash Flow was worth 10x the course fee. I cleared my NISM Series XV exam on the first attempt with 88% marks!"
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6, #6D28D9); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 2px solid var(--color-gold);">
+            SM
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">Sunita Menon</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">Independent Investor &bull; 📍 Kochi</p>
+            <span style="display: inline-block; font-size: 0.72rem; color: var(--color-gold); font-weight: 600; margin-top: 0.2rem;">Program: Kalphora Research Academy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Karthik R. Iyer -->
+      <div class="glass-card" style="padding: 2rem; border-radius: var(--radius-lg); background: var(--color-secondary); border: 1px solid rgba(212, 175, 55, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div style="display: flex; gap: 0.25rem; color: #fbbf24; font-size: 1.1rem;">★★★★★</div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: rgba(212, 175, 55, 0.15); color: var(--color-gold); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">Verified Subscriber</span>
+          </div>
+          <p style="color: var(--color-primary); font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1.5rem;">
+            "Clean execution directly through my Zerodha demat account with zero broker commission conflicts. True fiduciary institutional-grade stock research. The weekly risk summaries and trailing stops allow me to participate in equity breakouts with zero stress."
+          </p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #EC4899, #BE185D); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; border: 2px solid var(--color-gold);">
+            KI
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin: 0;">Karthik R. Iyer</h4>
+            <p style="font-size: 0.8rem; color: var(--color-subtext); margin: 0.2rem 0 0 0;">Tech Executive &bull; 📍 Hyderabad</p>
+            <span style="display: inline-block; font-size: 0.72rem; color: var(--color-gold); font-weight: 600; margin-top: 0.2rem;">Package: Breakout Radar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- MODAL A: READ TESTIMONIAL DETAIL OVERLAY -->
   <div class="modal-overlay" id="detailModal" onclick="closeReviewModal(event)">

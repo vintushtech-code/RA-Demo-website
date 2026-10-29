@@ -490,34 +490,46 @@
 <!-- OUR PROFESSIONAL TEAM MEMBERS SECTION -->
 <section class="team-members-wrapper">
   <div class="team-members-header">
-    <span class="team-members-tag">Our Team Members</span>
-    <h2 class="team-members-title">Meet Our <span class="highlight-text">Professional Advisors</span></h2>
+    <span class="team-members-tag">Our Research Faculty & Leadership</span>
+    <h2 class="team-members-title">Meet Our <span class="highlight-text">Research Analysts</span></h2>
   </div>
 
   <div class="team-members-accordion">
-    {% for member in team_members %}
+    <!-- Static Team Member 1: Founder & Lead Analyst -->
     <div class="team-member-card">
-      {% if member.get_image_url %}
-      <img class="team-member-image" src="{{ member.get_image_url }}" alt="{{ member.name }} - {{ member.role }}"
-        loading="lazy" decoding="async" onerror="this.onerror=null; this.src='{% static "financial_advisors_team.png" %}';">
-      {% elif member.image %}
-      <img class="team-member-image" src="{{ member.image.url }}" alt="{{ member.name }} - {{ member.role }}"
-        loading="lazy" decoding="async" onerror="this.onerror=null; this.src='{% static "financial_advisors_team.png" %}';">
-      {% else %}
-      <img class="team-member-image" src="{% static 'financial_advisors_team.png' %}"
-        alt="{{ member.name }} - {{ member.role }}" loading="lazy" decoding="async">
-      {% endif %}
+      <img class="team-member-image" src="{% static 'avatar_leader1.png' %}" alt="M Kalpesh — Founder & Lead Research Analyst" loading="lazy" decoding="async">
       <div class="team-member-overlay">
-        <h3 class="team-member-name">{{ member.name }}</h3>
-        <p class="team-member-role">{{ member.role }}</p>
+        <h3 class="team-member-name">M Kalpesh</h3>
+        <p class="team-member-role">Founder &amp; Lead Research Analyst (CFA L1, NISM RA)</p>
       </div>
     </div>
-    {% empty %}
-    <div
-      style="text-align: center; width: 100%; color: var(--color-subtext); padding: 3rem; background: var(--color-secondary); border-radius: var(--radius-lg); border: 1px dashed var(--color-border);">
-      No dynamic team members published yet. Add them in the Django Admin Panel.
+
+    <!-- Static Team Member 2: Lead Fundamental Analyst -->
+    <div class="team-member-card">
+      <img class="team-member-image" src="{% static 'avatar_leader2.png' %}" alt="Vikramaditya Verma — Lead Fundamental Analyst" loading="lazy" decoding="async">
+      <div class="team-member-overlay">
+        <h3 class="team-member-name">Vikramaditya Verma</h3>
+        <p class="team-member-role">Lead Fundamental Analyst (BFSI &amp; Capital Goods)</p>
+      </div>
     </div>
-    {% endfor %}
+
+    <!-- Static Team Member 3: Quantitative & Momentum Strategist -->
+    <div class="team-member-card">
+      <img class="team-member-image" src="{% static 'avatar_emily.png' %}" alt="Pooja Sundaram — Quantitative & Momentum Strategist" loading="lazy" decoding="async">
+      <div class="team-member-overlay">
+        <h3 class="team-member-name">Pooja Sundaram</h3>
+        <p class="team-member-role">Quantitative &amp; Momentum Strategist</p>
+      </div>
+    </div>
+
+    <!-- Static Team Member 4: Senior Research Associate -->
+    <div class="team-member-card">
+      <img class="team-member-image" src="{% static 'avatar_leader3.png' %}" alt="Anand K. Deshmukh — Senior Equity Research Associate" loading="lazy" decoding="async">
+      <div class="team-member-overlay">
+        <h3 class="team-member-name">Anand K. Deshmukh</h3>
+        <p class="team-member-role">Senior Equity Research Associate (Small/Mid-Caps)</p>
+      </div>
+    </div>
   </div>
 
   <!-- Team slider controls -->

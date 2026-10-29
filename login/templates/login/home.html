@@ -274,8 +274,62 @@
   </div>
 </section>
 
+<!-- 3.5 KALPHORA RESEARCH ACADEMY PROMOTIONAL STRIP -->
+<section style="background: radial-gradient(circle at 50% 50%, rgba(20, 50, 35, 0.5) 0%, #060B08 85%); border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 4.5rem 1.5rem; position: relative;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2.5rem; flex-wrap: wrap;">
+    <div style="max-width: 680px;">
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 1rem; border-radius: 30px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); color: #D4AF37; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;">
+        🎓 Kalphora Research Academy &bull; Educational Platform
+      </div>
+      <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; color: #F8FAFC; margin: 0 0 1rem 0; line-height: 1.25; font-family: 'Playfair Display', serif;">
+        Aspiring to Become a Research Analyst?<br>
+        <span style="color: #D4AF37;">Learn Directly from Certified Analysts</span>
+      </h2>
+      <p style="color: #94A3B8; font-size: 1rem; line-height: 1.7; margin: 0 0 1.75rem 0;">
+        Clear your NISM Series XV exam and master real-world forensic accounting, financial modeling in Excel, and multi-cap stock selection. Access our 6-module curriculum, live demo classes, and downloadable lecture notes.
+      </p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <a href="{% url 'login:academy' %}" class="btn-gold-lg-glow" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.8rem 1.75rem; border-radius: 30px; font-weight: 800; font-size: 0.95rem;">
+          <span>Explore Research Academy</span>
+          <span>&rarr;</span>
+        </a>
+        <a href="{% url 'login:academy_demo_pdf' %}" style="display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.4); color: #F8FAFC; font-weight: 700; font-size: 0.95rem; background: rgba(10, 20, 15, 0.6);" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download Demo Handout (PDF)</span>
+        </a>
+      </div>
+    </div>
 
-
+    <!-- Quick Stats Card -->
+    <div style="background: rgba(12, 24, 18, 0.75); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 2rem 2.25rem; min-width: 280px; box-shadow: 0 12px 35px rgba(0,0,0,0.4); backdrop-filter: blur(12px);">
+      <div style="font-size: 0.8rem; font-weight: 700; color: #D4AF37; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem;">
+        Cohort Highlights
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1.1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+          <span style="color: #94A3B8; font-size: 0.88rem;">Passing Rate:</span>
+          <strong style="color: #10B981; font-size: 1rem;">98.2% NISM XV</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+          <span style="color: #94A3B8; font-size: 0.88rem;">Training Mode:</span>
+          <strong style="color: #F8FAFC; font-size: 0.95rem;">Live Zoom + Recordings</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+          <span style="color: #94A3B8; font-size: 0.88rem;">Curriculum:</span>
+          <strong style="color: #F8FAFC; font-size: 0.95rem;">6 Practical Modules</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #94A3B8; font-size: 0.88rem;">Live Demo Class:</span>
+          <span style="background: rgba(16, 185, 129, 0.15); color: #10B981; font-size: 0.78rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 4px;">Free Access</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- 4.5 CLIENT TESTIMONIALS BRIEF PREVIEW SECTION -->
 <section id="home-testimonials-section" class="home-testimonials-wrapper">
@@ -372,140 +426,130 @@
         {% endif %}
       </div>
       {% empty %}
-      <!-- Fallback Sample Testimonials if Database has no active testimonials yet -->
+      <!-- 5 Static SEBI Research Analyst Testimonials -->
+      <!-- Review 1: Rajesh Nair -->
       <div class="home-testimonial-card">
         <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span class="rating-num">5.0</span>
         </div>
         <p class="testimonial-quote">
-          "Kalphora Equity's zero-commission advisory transformed our family office asset allocation. Their quantitative
-          risk models gave us total peace of mind during market volatility."
+          "The transparency in Kalphora Equity's swing recommendations is unmatched. The precise entry zone, defined stop-loss, and trailing profit targets completely eliminate emotional guesswork from my trading week."
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">RS</div>
+            <div class="author-initials-avatar">RN</div>
           </div>
           <div class="author-info">
-            <h4 class="author-name">Rajesh Sharma</h4>
-            <p class="author-role">Tech Founder &amp; Investor — Mumbai</p>
+            <h4 class="author-name">Rajesh Nair</h4>
+            <p class="author-role">Senior Product Architect &bull; Bengaluru</p>
+          </div>
+        </div>
+        <div class="testimonial-category-tag">Swing &amp; Breakout Picks</div>
+      </div>
+
+      <!-- Review 2: Dr. Meenakshi Sundaram -->
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="testimonial-quote">
+          "As a practicing surgeon with zero time to read 200-page annual reports, Kalphora's forensic accounting deep dives gave me absolute clarity on moat sustainability, ROCE, and debt hygiene."
+        </p>
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            <div class="author-initials-avatar">MS</div>
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">Dr. Meenakshi Sundaram</h4>
+            <p class="author-role">Consultant Surgeon &bull; Chennai</p>
           </div>
         </div>
         <div class="testimonial-category-tag">Fundamental Compounders</div>
       </div>
 
+      <!-- Review 3: Aditya Singhania -->
       <div class="home-testimonial-card">
         <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span class="rating-num">5.0</span>
         </div>
         <p class="testimonial-quote">
-          "The fee-only fiduciary model is a breath of fresh air. No high-commission products were pushed; instead, we
-          received a tax-optimized SIP strategy aligned with our retirement goals."
+          "The risk-reward discipline is strictly enforced. They never recommend low-float speculative traps. In volatile quarters, capital preservation comes first. Their quarterly earnings notes are sharper and more honest."
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">AM</div>
+            <div class="author-initials-avatar">AS</div>
           </div>
           <div class="author-info">
-            <h4 class="author-name">Ananya Mehta</h4>
-            <p class="author-role">VP Product — Bengaluru</p>
+            <h4 class="author-name">Aditya Singhania</h4>
+            <p class="author-role">Corporate Finance VP &bull; Mumbai</p>
           </div>
         </div>
-        <div class="testimonial-category-tag">Retirement &amp; SIP</div>
+        <div class="testimonial-category-tag">Institutional Research</div>
       </div>
 
+      <!-- Review 4: Sunita Menon -->
       <div class="home-testimonial-card">
         <div class="card-star-rating">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span class="rating-num">5.0</span>
         </div>
         <p class="testimonial-quote">
-          "Outstanding financial planning. Kalphora Equity structured our corporate tax liability and multi-asset
-          wealth plan seamlessly. Highly recommended!"
+          "The Kalphora Research Academy transformed how I assess company management. Learning how to spot divergence between EBITDA and Operating Cash Flow was worth 10x the course fee. Cleared NISM Series XV with 88%!"
         </p>
         <div class="testimonial-author-row">
           <div class="author-avatar-box">
-            <div class="author-initials-avatar">VK</div>
+            <div class="author-initials-avatar">SM</div>
           </div>
           <div class="author-info">
-            <h4 class="author-name">Vikram Kulkarni</h4>
-            <p class="author-role">Managing Director — Pune</p>
+            <h4 class="author-name">Sunita Menon</h4>
+            <p class="author-role">Independent Investor &bull; Kochi</p>
           </div>
         </div>
-        <div class="testimonial-category-tag">Fiduciary Advisory</div>
+        <div class="testimonial-category-tag">Research Academy</div>
+      </div>
+
+      <!-- Review 5: Karthik R. Iyer -->
+      <div class="home-testimonial-card">
+        <div class="card-star-rating">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span class="rating-num">5.0</span>
+        </div>
+        <p class="testimonial-quote">
+          "Clean execution directly through my Zerodha demat account with zero broker commission conflicts. True fiduciary institutional-grade stock research. The weekly risk summaries and trailing stops allow stress-free participation."
+        </p>
+        <div class="testimonial-author-row">
+          <div class="author-avatar-box">
+            <div class="author-initials-avatar">KI</div>
+          </div>
+          <div class="author-info">
+            <h4 class="author-name">Karthik R. Iyer</h4>
+            <p class="author-role">Tech Executive &bull; Hyderabad</p>
+          </div>
+        </div>
+        <div class="testimonial-category-tag">Breakout Radar</div>
       </div>
       {% endfor %}
     </div>

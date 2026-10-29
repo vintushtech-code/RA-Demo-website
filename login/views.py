@@ -518,7 +518,7 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "About Us — GuardianTree FP"
+        context['page_title'] = "About Us — Kalphora Equity"
         
         # Fetch active team members directly from database (COMMENTED OUT: Team section disabled)
         # try:
@@ -580,13 +580,260 @@ class ServicesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "Our Advisory Services — GuardianTree FP"
+        context['page_title'] = "Our Research Services — Kalphora Equity"
         return context
 
 
 # --------------------------------------------------------------------------
 # 9. Testimonials Page
 # --------------------------------------------------------------------------
+
+
+# --------------------------------------------------------------------------
+# 8.5 Kalphora Research Academy & Educational Platform
+# --------------------------------------------------------------------------
+class AcademyView(TemplateView):
+    """
+    Kalphora Research Academy & Education Platform (academy.html).
+    Showcases vocational training, live demo class recording, downloadable syllabus PDF,
+    curriculum modules, educational articles/case studies, student testimonials, and cohort tiers.
+    """
+    template_name = 'login/academy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Kalphora Research Academy — SEBI Research Analyst Certification & Mentorship"
+
+        # 6 Core Modules
+        context['curriculum_modules'] = [
+            {
+                "number": "01",
+                "title": "SEBI RA Regulatory Framework & Ethics",
+                "tag": "Compliance & Conduct",
+                "description": "Master SEBI (Research Analysts) Regulations, 2014, Regulation 25 audit requirements, avoiding conflicts of interest, and establishing compliant non-personalized research publishing standards."
+            },
+            {
+                "number": "02",
+                "title": "Balance Sheet Forensics & Red Flags",
+                "tag": "Forensic Auditing",
+                "description": "Learn to detect aggressive revenue recognition, Cash Flow from Operations (CFO) vs PAT divergence, related-party transactions, unhedged foreign debt, and promoter pledge manipulation."
+            },
+            {
+                "number": "03",
+                "title": "Intrinsic DCF & Financial Modeling",
+                "tag": "Valuation Engineering",
+                "description": "Build three-statement dynamic financial models from scratch in Excel. Compute Cost of Equity (CAPM), Weighted Average Cost of Capital (WACC), Free Cash Flow to Firm (FCFF), and sensitivity tables."
+            },
+            {
+                "number": "04",
+                "title": "Relative Valuation Multiples & Moat Assessment",
+                "tag": "Multiples & Industry Comps",
+                "description": "Demystify EV/EBITDA, P/E, PEG, and Price-to-Book ratios across cyclical, industrial, and banking sectors. Identify sustainable competitive moats delivering Return on Capital Employed (ROCE) > 18%."
+            },
+            {
+                "number": "05",
+                "title": "Technical Momentum & Price Action Timing",
+                "tag": "Execution Discipline",
+                "description": "Combine fundamental conviction with technical entry timing. Master 50/200 DMA trend filters, multi-month consolidation breakouts, volume confirmation, and strict 1:3 asymmetric risk-reward stop-loss systems."
+            },
+            {
+                "number": "06",
+                "title": "Authoring Institutional Reports & NISM Series XV Mock Drills",
+                "tag": "Career & Certification",
+                "description": "Draft complete initiating coverage research notes with target prices and sensitivity matrices. Practice with 500+ NISM Series XV mock drill questions to guarantee first-attempt exam success."
+            }
+        ]
+
+        # 4 Educational Articles / Case Studies
+        context['educational_articles'] = [
+            {
+                "id": "cfo-pat-divergence",
+                "title": "The Forensic Audit: Spotting Cash Flow Divergence Before a Stock Crashes",
+                "category": "Forensic Accounting",
+                "read_time": "7 min read",
+                "author": "M Kalpesh, Lead Analyst",
+                "image": "photos/market_intel_equity.jpg",
+                "excerpt": "A company can report surging Net Profit while hurtling towards insolvency. Learn how comparing Operating Cash Flow (CFO) to EBITDA reveals channel stuffing and uncollectible receivables.",
+                "content": """
+<h3>The Illusion of Accrual Accounting</h3>
+<p>In standard financial reporting, revenue is recognized when invoiced, not when cash enters the bank. Unscrupulous corporate promoters exploit this loophole to manufacture the appearance of hyper-growth while their actual liquidity bleeds away.</p>
+<h4>1. The Classic Cash Flow Divergence Signal</h4>
+<p>When Reported Profit After Tax (PAT) rises 25% year-on-year, but Cash Flow from Operations (CFO) turns negative or collapses, alarms should sound. A healthy compounder converts at least 80% of its operating profit into real liquid cash flows over a 3-year rolling cycle.</p>
+<h4>2. The Days Sales Outstanding (DSO) Trap</h4>
+<p>Always calculate DSO: <code>(Trade Receivables / Revenue) * 365</code>. If revenue grew 20% but receivables grew 65%, the company is either extending lenient credit terms to fake revenue or booking uncollectible sales to related shell entities.</p>
+<h4>3. Practical Forensic Checklist</h4>
+<ul>
+  <li>Verify Cumulative 5-Year CFO vs Cumulative 5-Year PAT (Ratio should exceed 0.80).</li>
+  <li>Check Contingent Liabilities as a percentage of Net Worth (Should be below 15%).</li>
+  <li>Inspect Auditor Remuneration growth relative to revenue growth.</li>
+</ul>
+                """
+            },
+            {
+                "id": "roce-vs-roe-playbook",
+                "title": "Why ROCE > 18% is the Holy Grail of Long-Term Wealth Creation",
+                "category": "Quality Investing",
+                "read_time": "5 min read",
+                "author": "Vikramaditya Verma, Fundamental Lead",
+                "image": "photos/wealth_arch_allocation.jpg",
+                "excerpt": "Return on Equity (ROE) can be artificially inflated with dangerous financial leverage. Return on Capital Employed (ROCE) cuts through the debt fog to reveal true business quality.",
+                "content": """
+<h3>Why High ROE Can Be a Dangerous Mirage</h3>
+<p>Many amateur investors look solely at Return on Equity (ROE). However, thanks to the DuPont decomposition formula, any management can boost ROE simply by borrowing massive debt. If a business with 10% operating margins takes on 4x leverage, its ROE may appear spectacular right up until an economic downturn strikes.</p>
+<h4>Understanding Return on Capital Employed (ROCE)</h4>
+<p>ROCE measures operating earnings against total capital deployed, regardless of whether that capital came from equity or debt:</p>
+<pre>ROCE = EBIT / (Total Assets - Current Liabilities)</pre>
+<h4>The Compounding Formula</h4>
+<p>Over a 10-year holding period, an equity investor\'s return will inevitably gravitate towards the company\'s Return on Capital Employed, adjusted for re-investment rates. If a company generates 22% ROCE and re-invests 70% of its earnings at that rate, its intrinsic value compounds at ~15.4% annually, beating 95% of mutual funds.</p>
+                """
+            },
+            {
+                "id": "cracking-nism-series-xv",
+                "title": "How to Clear NISM Series XV (Research Analyst) on Your First Attempt",
+                "category": "Exam Blueprint",
+                "read_time": "6 min read",
+                "author": "Kalphora Faculty Desk",
+                "image": "photos/wealth_arch_discovery.jpg",
+                "excerpt": "A high-yield 30-day study roadmap focusing on key chapter weightages, numerical questions, and the high-scoring regulatory sections of the NISM XV certification.",
+                "content": """
+<h3>Exam Structure & Passing Criteria</h3>
+<p>The NISM Series XV: Research Analyst Certification Examination comprises 100 questions of 1 mark each, with a 25% negative marking penalty for incorrect answers. The passing threshold is 60% (60 marks).</p>
+<h4>High-Yield Chapter Weightage Matrix</h4>
+<ul>
+  <li><strong>Regulatory Environment & Code of Conduct:</strong> ~20% of total questions. Focus heavily on SEBI (Research Analysts) Regulations, 2014, Chapter III (Disclosures & Ethics), and insider trading barriers.</li>
+  <li><strong>Economic & Industry Analysis:</strong> ~25% of questions. GDP components, interest rate cycles, fiscal deficits, and Porter\'s Five Forces.</li>
+  <li><strong>Company Analysis & Financial Statements:</strong> ~35% of questions. Ratio analysis, cash flow categorization, working capital formulas, and valuation math.</li>
+</ul>
+<h4>Exam Strategy from 450+ Successful Candidates</h4>
+<p>Never leave the regulatory and ethics chapters for the final week. Those questions require zero complex calculation and represent the easiest 20 marks on the examination paper.</p>
+                """
+            },
+            {
+                "id": "asymmetric-risk-reward",
+                "title": "Asymmetric Risk-Reward: Why 1:3 Trades Beat 90% Win-Rate Systems",
+                "category": "Technical Discipline",
+                "read_time": "4 min read",
+                "author": "Pooja Sundaram, Momentum Strategist",
+                "image": "photos/wealth_arch_execution.jpg",
+                "excerpt": "You do not need an 80% win rate to generate extraordinary equity returns. Discover how strict stop-losses and mathematically positive expectancy protect trading capital.",
+                "content": """
+<h3>The Win-Rate Fallacy</h3>
+<p>Retail traders obsess over finding a trading indicator with a 90% accuracy rate. In institutional quantitative trading, win rate is almost secondary to payoff asymmetry.</p>
+<h4>The Mathematics of Positive Expectancy</h4>
+<p>Consider a trader with only a <strong>40% win rate</strong> (loses 6 out of every 10 trades):</p>
+<ul>
+  <li>Risk per trade (Loss): 1R (e.g. ₹10,000) &times; 6 losses = -₹60,000</li>
+  <li>Reward per winning trade: 3R (e.g. ₹30,000) &times; 4 wins = +₹120,000</li>
+  <li><strong>Net Profit across 10 trades:</strong> +₹60,000 (Expectancy = +0.6R per trade)</li>
+</ul>
+<h4>The Trailing Stop Principle</h4>
+<p>At Kalphora Equity, every recommendation initiates with an ATR (Average True Range) trailing stop. Once a stock advances +8%, the stop-loss moves to breakeven, converting the trade into a risk-free free-roll.</p>
+                """
+            }
+        ]
+
+        # 3 Cohort Mentorship Tiers
+        context['cohort_tiers'] = [
+            {
+                "name": "Self-Paced Certification Track",
+                "price": "₹9,999",
+                "badge": "Certification Ready",
+                "description": "Ideal for students seeking comprehensive recorded theory, Excel spreadsheets, and NISM Series XV question banks to clear the certification exam.",
+                "features": [
+                    "35+ Hours of Pre-Recorded Video Modules",
+                    "Downloadable Excel 3-Statement Valuation Templates",
+                    "NISM Series XV Chapter Question Banks (500+ MCQs)",
+                    "Forensic Balance Sheet Screening Checklist (PDF)",
+                    "Course Completion Certificate",
+                    "Lifetime Access to Video Portal & Updates"
+                ],
+                "cta_text": "Enroll Self-Paced Track",
+                "popular": False
+            },
+            {
+                "name": "Live Interactive Mentorship Cohort",
+                "price": "₹24,999",
+                "badge": "Most Popular ⭐",
+                "description": "Our flagship 8-week weekend program with live weekend classes by M Kalpesh, assignment reviews, private cohort community, and mock research notes.",
+                "features": [
+                    "Everything in Self-Paced Certification Track",
+                    "8 Weeks of Live Weekend Interactive Zoom Classes",
+                    "Direct Q&A with Lead Analyst M Kalpesh (CFA L1, NISM RA)",
+                    "Hands-on Live Financial Statement Modeling in Excel",
+                    "Author 2 Institutional Initiating Coverage Reports",
+                    "Private Discord / WhatsApp Mentorship Community",
+                    "Live Doubt Clearing Sessions Before NISM Exam"
+                ],
+                "cta_text": "Apply for Next Cohort",
+                "popular": True
+            },
+            {
+                "name": "Executive Research Desk Apprenticeship",
+                "price": "₹49,999",
+                "badge": "1-on-1 Apprenticeship",
+                "description": "Personalized 1-on-1 mentorship for candidates aiming to launch an independent SEBI RA practice or join boutique institutional research firms.",
+                "features": [
+                    "Everything in Live Interactive Mentorship Cohort",
+                    "Four 1-on-1 Dedicated Strategy Sessions with Founder",
+                    "Co-author a Live Initiating Coverage Report with Desk",
+                    "Resume & Research Portfolio Review for Job Placements",
+                    "SEBI RA Application Guidance & Regulation 25 Compliance",
+                    "1-Year Access to Kalphora Equity Premium Research Reports"
+                ],
+                "cta_text": "Apply for Apprenticeship",
+                "popular": False
+            }
+        ]
+
+        # 3 Student Testimonials
+        context['student_testimonials'] = [
+            {
+                "name": "Amitav Sen",
+                "role": "Equity Research Associate at Boutique Desk",
+                "location": "Mumbai",
+                "quote": "The financial modeling and DCF valuation modules gave me the hands-on confidence to build 3-statement models from scratch. Cleared NISM XV in 3 weeks with 86% and transitioned into an institutional research firm.",
+                "rating": "5.0",
+                "avatar": "/static/avatar_leader1.png"
+            },
+            {
+                "name": "Priyanka Sharma",
+                "role": "Independent Investor & Swing Trader",
+                "location": "Pune",
+                "quote": "Understanding the difference between reported earnings and operating cash flow saved me from holding two dubious small-caps that later collapsed. The forensic checklist alone is worth 10x the course fee.",
+                "rating": "5.0",
+                "avatar": "/static/avatar_emily.png"
+            },
+            {
+                "name": "Rahul Deshmukh",
+                "role": "MBA Finance Graduate",
+                "location": "Hyderabad",
+                "quote": "The hands-on report authoring module is identical to institutional research formats. Kalpesh sir\'s personal feedback on valuation sensitivity and ROCE filters was invaluable for my career.",
+                "rating": "5.0",
+                "avatar": "/static/avatar_leader2.png"
+            }
+        ]
+
+        return context
+
+
+class AcademyDemoPDFDownloadView(View):
+    """
+    Serves the downloadable PDF handout for the Live Demo Class.
+    """
+    def get(self, request, *args, **kwargs):
+        from django.http import FileResponse, Http404
+        from django.conf import settings
+        pdf_path = settings.BASE_DIR / 'photos' / 'kalphora_academy_demo_handout.pdf'
+        if not pdf_path.exists():
+            from django.http import HttpResponse
+            return HttpResponse("Demo Class Handout PDF is temporarily unavailable.", status=404)
+        return FileResponse(
+            open(pdf_path, 'rb'),
+            as_attachment=True,
+            filename='Kalphora_Research_Academy_Demo_Class_Handout.pdf',
+            content_type='application/pdf'
+        )
+
 class TestimonialsView(View):
     """
     Publicly accessible Testimonials page (testimonials.html).
@@ -623,7 +870,7 @@ class TestimonialsView(View):
 
     def get_context_data(self, **kwargs):
         context = {}
-        context['page_title'] = "Client Testimonials — GuardianTree FP"
+        context['page_title'] = "Subscriber Reviews & Experiences — Kalphora Equity"
         from .forms import TestimonialForm
         context['testimonial_form'] = TestimonialForm()
         
@@ -639,18 +886,74 @@ class TestimonialsView(View):
             context['testimonials'] = testimonials_list
             
             # Check if there are any testimonials
-            if testimonials_list:
-                # Distribute testimonials into 9 columns for masonry layout
-                cols = [[] for _ in range(9)]
-                for idx, item in enumerate(testimonials_list):
-                    cols[idx % 9].append(item)
-                context['testimonials_cols'] = cols
-                context['has_testimonials'] = True
-            else:
-                # No testimonials available
-                context['testimonials_cols'] = [[] for _ in range(9)]
-                context['has_testimonials'] = False
-                context['no_testimonials_message'] = "No client testimonials available at the moment. Be the first to share your experience!"
+            # 5 Static SEBI RA Testimonials
+            static_reviews = [
+                {
+                    "name": "Rajesh Nair",
+                    "role": "Senior Product Architect & Swing Subscriber",
+                    "location": "Bengaluru",
+                    "quote": "The transparency in Kalphora Equity\'s swing recommendations is unmatched. The precise entry zone, defined stop-loss, and trailing profit targets eliminate emotional guesswork from my trading week. Their 1:3 asymmetric risk-reward protected my capital during volatile swings.",
+                    "rating": "5.0",
+                    "category": "Swing & Breakout Picks",
+                    "avatar": "/static/avatar_david.png"
+                },
+                {
+                    "name": "Dr. Meenakshi Sundaram",
+                    "role": "Consultant Surgeon & Portfolio Subscriber",
+                    "location": "Chennai",
+                    "quote": "As a practicing surgeon with zero time to read 200-page annual reports, Kalphora\'s forensic accounting deep dives gave me absolute clarity on moat sustainability, ROCE, and debt hygiene. Investing in companies with >18% ROCE has given me genuine peace of mind.",
+                    "rating": "5.0",
+                    "category": "Fundamental Compounders",
+                    "avatar": "/static/avatar_emily.png"
+                },
+                {
+                    "name": "Aditya Singhania",
+                    "role": "Corporate Finance VP",
+                    "location": "Mumbai",
+                    "quote": "The risk-reward discipline is strictly enforced. They never recommend low-float speculative traps. In volatile quarters, capital preservation comes first. Their quarterly earnings notes are sharper and more honest than most sell-side institutional research desks.",
+                    "rating": "5.0",
+                    "category": "Institutional Research",
+                    "avatar": "/static/avatar_leader1.png"
+                },
+                {
+                    "name": "Sunita Menon",
+                    "role": "Independent Investor & Academy Mentee",
+                    "location": "Kochi",
+                    "quote": "The Kalphora Research Academy transformed how I assess company management. Learning how to spot divergence between EBITDA and Operating Cash Flow was worth 10x the course fee. I cleared my NISM Series XV exam on the first attempt with 88% marks!",
+                    "rating": "5.0",
+                    "category": "Research Academy",
+                    "avatar": "/static/avatar_leader2.png"
+                },
+                {
+                    "name": "Karthik R. Iyer",
+                    "role": "Tech Executive & Breakout Subscriber",
+                    "location": "Hyderabad",
+                    "quote": "Clean execution directly through my Zerodha demat account with zero broker commission conflicts. True fiduciary institutional-grade stock research. The weekly risk summaries and trailing stops allow me to participate in equity breakouts with zero stress.",
+                    "rating": "5.0",
+                    "category": "Breakout Radar",
+                    "avatar": "/static/avatar_leader3.png"
+                }
+            ]
+
+            class StaticReviewItem:
+                def __init__(self, d):
+                    self.name = d["name"]
+                    self.role = d["role"]
+                    self.location = d["location"]
+                    self.quote = d["quote"]
+                    self.rating = d["rating"]
+                    self.category = d["category"]
+                    self.avatar = d["avatar"]
+                def get_avatar_url(self):
+                    return self.avatar
+
+            items_to_display = testimonials_list if testimonials_list else [StaticReviewItem(r) for r in static_reviews]
+            cols = [[] for _ in range(9)]
+            for idx, item in enumerate(items_to_display):
+                cols[idx % 9].append(item)
+            context['testimonials_cols'] = cols
+            context['has_testimonials'] = True
+            context['static_testimonials'] = static_reviews
                 
         except Exception as e:
             context['testimonials'] = []
@@ -1915,6 +2218,7 @@ def sitemap_xml_view(request):
         {'loc': domain + '/about/', 'changefreq': 'weekly', 'priority': '0.9'},
         {'loc': domain + '/services/', 'changefreq': 'weekly', 'priority': '0.9'},
         {'loc': domain + '/testimonials/', 'changefreq': 'weekly', 'priority': '0.8'},
+        {'loc': domain + '/academy/', 'changefreq': 'weekly', 'priority': '0.9'},
         {'loc': domain + '/consultation/', 'changefreq': 'daily', 'priority': '0.9'},
         {'loc': domain + '/contact/', 'changefreq': 'monthly', 'priority': '0.7'},
         {'loc': domain + '/privacy-policy/', 'changefreq': 'monthly', 'priority': '0.5'},

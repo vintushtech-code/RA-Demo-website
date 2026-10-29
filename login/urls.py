@@ -18,6 +18,8 @@ urlpatterns = [
     path('about/', views.AboutView.as_view(), name='about'),
     path('services/', views.ServicesView.as_view(), name='services'),
     path('testimonials/', views.TestimonialsView.as_view(), name='testimonials'),
+    path('academy/', views.AcademyView.as_view(), name='academy'),
+    path('academy/download-demo-pdf/', views.AcademyDemoPDFDownloadView.as_view(), name='academy_demo_pdf'),
 
     # Dedicated Private Wealth Consultation & Tracking Routes
     path('consultation/', views.ConsultationView.as_view(), name='consultation'),

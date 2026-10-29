@@ -62,7 +62,7 @@ class WebsitePagesAndUiTests(TestCase):
     def test_all_public_and_legal_pages_render(self):
         routes = [
             "login:home", "login:about", "login:services", "login:testimonials",
-            "login:consultation", "contactform:contact", "login:privacy_policy",
+            "login:academy", "login:consultation", "contactform:contact", "login:privacy_policy",
             "login:terms_conditions", "login:cookie_policy", "login:aml_kyc",
             "login:disclaimer", "login:login",
         ]
