@@ -496,12 +496,41 @@ function calculateRecommendation() {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initial service showcase activation
-    const initialKey = new URLSearchParams(window.location.search).get('service') || serviceKeys[0];
+    const searchParams = new URLSearchParams(window.location.search);
+    const hasServiceParam = searchParams.has('service');
+    const initialKey = searchParams.get('service') || serviceKeys[0];
     const validKey = serviceKeys.includes(initialKey) ? initialKey : serviceKeys[0];
-    showService(validKey, true);
+    showService(validKey, hasServiceParam);
 
     document.querySelector('.showcase-nav.prev')?.addEventListener('click', () => moveService(-1));
     document.querySelector('.showcase-nav.next')?.addEventListener('click', () => moveService(1));
+
+    // Touch swipe gesture support for interactive showcase carousel on mobile
+    const showcaseShell = document.querySelector('.showcase-shell');
+    if (showcaseShell) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        showcaseShell.addEventListener('touchstart', (e) => {
+            if (!e.changedTouches || e.changedTouches.length === 0) return;
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        showcaseShell.addEventListener('touchend', (e) => {
+            if (!e.changedTouches || e.changedTouches.length === 0) return;
+            const diffX = e.changedTouches[0].screenX - touchStartX;
+            const diffY = e.changedTouches[0].screenY - touchStartY;
+
+            if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX < 0) {
+                    moveService(1); // Swipe left -> next slide
+                } else {
+                    moveService(-1); // Swipe right -> prev slide
+                }
+            }
+        }, { passive: true });
+    }
 
     document.querySelectorAll('.showcase-dot').forEach((dot) => {
         dot.addEventListener('click', () => showService(dot.dataset.serviceKey, true));

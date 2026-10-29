@@ -672,14 +672,14 @@
 <!-- Comparison Matrix Modal -->
 <div class="compare-modal-overlay" id="compare-modal">
     <div class="compare-modal-container">
-        <button class="modal-close" onclick="closeComparisonModal()">×</button>
-        <div style="text-align: center; margin-bottom: 24px;">
+        <button class="modal-close" onclick="closeComparisonModal()" aria-label="Close comparison modal">&times;</button>
+        <div class="compare-modal-header" style="text-align: center; margin-bottom: 20px;">
             <span class="calc-badge">📊 SIDE-BY-SIDE MATRIX</span>
-            <h2
-                style="font-size: 2.2rem; font-family: var(--font-heading); margin-top: 8px; color: var(--color-heading-text);">
-                Compare Selected Services</h2>
-            <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-top: 8px;">Review core objectives,
-                targets, and delivery models to find your optimal path.</p>
+            <h2 class="compare-modal-title">Compare Selected Services</h2>
+            <p class="compare-modal-sub">Review core objectives, targets, and delivery models to find your optimal path.</p>
+            <div class="compare-swipe-hint">
+                <span>👈 Swipe horizontally to compare all packages 👉</span>
+            </div>
         </div>
         <div id="compare-table-wrapper" style="overflow-x: auto;">
             <!-- Dynamically generated table will go here -->
