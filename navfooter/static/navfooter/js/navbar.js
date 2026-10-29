@@ -4,10 +4,10 @@
 
 (function () {
   const saved = localStorage.getItem('bf-theme');
-  if (saved === 'light') {
-    document.documentElement.removeAttribute('data-theme');
-  } else {
+  if (saved === 'dark') {
     document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
   }
 
   window.addEventListener('DOMContentLoaded', () => {

@@ -64,12 +64,12 @@
       style.textContent = "{{ THEME_CSS_VARIABLES|escapejs }}";
       document.head.appendChild(style);
 
-      // Check saved theme preference (Default: Dark Emerald Green & Gold Theme)
+      // Check saved theme preference (Default: Light Theme)
       const savedTheme = localStorage.getItem('bf-theme');
-      if (savedTheme === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-      } else {
+      if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
       }
     })();
   </script>
