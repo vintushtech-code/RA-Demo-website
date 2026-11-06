@@ -14,10 +14,10 @@
   <meta property="og:title" content="Kalphora Equity — SEBI Registered Research Analyst">
   <meta property="og:description" content="Independent equity research, data-driven stock recommendations, and disciplined risk-managed market analytics under SEBI (Research Analysts) Regulations, 2014.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{% static 'logo.png' %}">
+  <meta property="og:image" content="{% static 'og_image.jpg' %}">
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="Kalphora Equity — SEBI Registered Research Analyst">
-  <meta property="twitter:image" content="{% static 'logo.png' %}">
+  <meta property="twitter:image" content="{% static 'og_image.jpg' %}">
 
   <!-- Schema.org Structured Data (JSON-LD) for SEO & AI Agent Discovery -->
   <script type="application/ld+json">
@@ -30,14 +30,14 @@
         "name": "Kalphora Equity",
         "alternateName": ["Kalphora Equity Research", "Kalphora Research Analyst"],
         "url": "https://www.kalphoraequity.com",
-        "logo": "{% static 'logo.png' %}",
+        "logo": "{% static 'kalphora_logo_primary.png' %}",
         "telephone": "+91 XXXXXXXXXX",
         "email": "example@gmail.com",
         "founder": {
           "@type": "Person",
           "name": "M Kalpesh",
           "jobTitle": "SEBI Registered Research Analyst",
-          "image": "{% static 'logo.png' %}"
+          "image": "{% static 'kalphora_logo_secondary.png' %}"
         },
         "priceRange": "$$$$"
       }
@@ -47,10 +47,12 @@
 
   <title>{% block title %}Kalphora Equity — SEBI Registered Research Analyst | Stock Research & Recommendations{% endblock %}</title>
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/png">
-  <link rel="icon" href="{% static 'logo.png' %}" type="image/png">
-  <link rel="apple-touch-icon" href="{% static 'logo.png' %}">
+  <!-- Favicon & Touch Icons -->
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
 
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

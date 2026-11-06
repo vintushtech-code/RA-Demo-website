@@ -92,5 +92,5 @@ class NavbarSettings(models.Model):
         if self.logo_image_url:
             return self.logo_image_url
         from django.templatetags.static import static
-        return static('image.png')
+        return static('kalphora_logo_primary.png')
 

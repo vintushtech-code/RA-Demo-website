@@ -16,36 +16,14 @@
       <a href="{% url 'login:home' %}" class="finance-circle-badge"
         aria-label="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'Kalphora Equity' }}{% endif %}">
         <div class="finance-circle-inner">
-          {% if navbar_settings and navbar_settings.get_logo_url %}
+          {% if navbar_settings and navbar_settings.logo_image_file or navbar_settings.logo_image_url %}
           <img src="{{ navbar_settings.get_logo_url }}"
             alt="{% if navbar_settings and navbar_settings.brand_text %}{{ navbar_settings.brand_text|striptags }}{% else %}{{ brand_name|default:'Logo' }}{% endif %}"
             class="finance-badge-custom-img" />
           {% else %}
-          <!-- Ultra Realistic 3D Coins Badge -->
-          <img src="{% static 'navfooter/images/coins_badge_nobg.png' %}" alt="Savings &amp; Growth"
-            class="finance-badge-real-img"
-            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';" />
-
-          <svg class="finance-coins-badge-svg" viewBox="0 0 60 60" fill="none" style="display:none;">
-            <defs>
-              <linearGradient id="coinGoldBright" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFF9D2" />
-                <stop offset="30%" stop-color="#F5D77F" />
-                <stop offset="60%" stop-color="#D4AF37" />
-                <stop offset="85%" stop-color="#A8801C" />
-                <stop offset="100%" stop-color="#5C4209" />
-              </linearGradient>
-              <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#4CAF50" />
-                <stop offset="60%" stop-color="#2E7D32" />
-                <stop offset="100%" stop-color="#1B5E20" />
-              </linearGradient>
-            </defs>
-            <ellipse cx="30" cy="34" rx="12.5" ry="4.2" fill="#5C4209" />
-            <path d="M23.5 34v6c0 2.3 5.6 4.2 12.5 4.2s12.5-1.9 12.5-4.2v-6" fill="url(#coinGoldBright)" />
-            <ellipse cx="36" cy="22" rx="12.5" ry="4.2" fill="url(#coinGoldBright)" />
-            <path d="M38 43c7-2 12-10 11-17-7 6-10 11-17z" fill="url(#leafGrad)" />
-          </svg>
+          <!-- Official Kalphora 3D Gold & Emerald Emblem -->
+          <img src="{% static 'navfooter/images/shield_emblem_nobg.png' %}" alt="Kalphora Equity Emblem"
+            class="finance-badge-real-img" />
           {% endif %}
         </div>
       </a>
@@ -372,7 +350,10 @@
   <!-- Off-Canvas Mobile Drawer Navigation -->
   <div class="finance-mobile-drawer" id="finance-mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
     <div class="finance-mobile-drawer-header">
-      <span class="finance-mobile-brand-title">Kalphora Equity</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="{% static 'navfooter/images/shield_emblem_nobg.png' %}" alt="Kalphora Logo" style="width: 32px; height: 32px; object-fit: contain;">
+        <span class="finance-mobile-brand-title">Kalphora Equity</span>
+      </div>
       <button class="finance-mobile-close-btn" onclick="toggleMobileDrawer(event)"
         aria-label="Close menu">&times;</button>
     </div>
