@@ -128,12 +128,12 @@
   opacity: 1 !important;
 }
 
-/* Scrim ensuring left-side text has crisp readability while video covers fully from left to right */
+/* Scrim ensuring left-side text has crisp readability while image covers fully without foggy blur */
 .hero-banner::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(10, 13, 20, 0.92) 0%, rgba(10, 13, 20, 0.72) 48%, rgba(10, 13, 20, 0.38) 100%);
+  background: linear-gradient(90deg, rgba(10, 13, 20, 0.65) 0%, rgba(10, 13, 20, 0.2) 40%, transparent 65%);
   z-index: 2;
   pointer-events: none;
 }
@@ -168,7 +168,7 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.45rem 1.25rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 13, 20, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-pill);
   color: #F8FAFC;
@@ -176,7 +176,8 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(8px);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .hero-image-styled-title {
@@ -244,10 +245,11 @@
 }
 
 .btn-hero-secondary {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(10, 13, 20, 0.75) !important;
   color: #FFFFFF !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  backdrop-filter: blur(8px) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   font-weight: 600 !important;
   padding: 0.95rem 2.25rem !important;
   border-radius: 9999px !important;
@@ -350,9 +352,10 @@
   max-width: 920px;
   margin: 0;
   padding: 0.85rem 1.75rem;
-  background: rgba(10, 13, 20, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
+  background: rgba(10, 13, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-radius: var(--radius-pill);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: var(--transition-smooth);

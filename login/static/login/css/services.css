@@ -202,7 +202,8 @@
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(16px);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-radius: 9999px;
   padding: 0.45rem 0.45rem 0.45rem 1.25rem;
   max-width: 540px;
@@ -298,9 +299,10 @@
   max-width: 920px;
   margin: 0;
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(212, 175, 55, 0.35);
-  backdrop-filter: blur(24px);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-radius: var(--radius-pill);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 0 12px rgba(212, 175, 55, 0.08);
   transition: var(--transition-smooth);
