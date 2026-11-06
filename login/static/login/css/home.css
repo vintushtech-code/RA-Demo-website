@@ -110,7 +110,8 @@
   z-index: 1;
 }
 
-.hero-video-bg {
+.hero-video-bg,
+.hero-image-bg {
   position: absolute;
   top: 0;
   left: 0;
