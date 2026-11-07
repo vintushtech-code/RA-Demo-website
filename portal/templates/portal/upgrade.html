@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block portal_content %}
+{% csrf_token %}
 <div class="portal-upgrade-container">
 
   <div class="upgrade-hero-box">
@@ -120,6 +121,11 @@
 
 <script>
 function getCookie(name) {
+  // First check if Django rendered a CSRF input element
+  const csrfInput = document.querySelector('input[name="csrfmiddlewaretoken"]');
+  if (csrfInput && csrfInput.value) {
+    return csrfInput.value;
+  }
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
     const cookies = document.cookie.split(';');
@@ -247,7 +253,8 @@ function initiateCheckout(planCode, amount) {
     rzp.open();
   })
   .catch(err => {
-    alert("Connection error initializing payment gateway.");
+    console.error("Order initialization error:", err);
+    alert("Connection error initializing payment gateway: " + (err.message || err));
     if (btn) { btn.disabled = false; btn.innerText = originalText; }
   });
 }
