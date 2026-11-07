@@ -43,6 +43,9 @@ class PortalSectionAccessMixin(LoginRequiredMixin):
                     details={'section': self.section_key, 'reason': info}
                 )
                 messages.warning(request, f"Access restricted: {info}")
+                # Prevent infinite redirect loop if dashboard/market is restricted
+                if self.section_key == 'market':
+                    return redirect('portal:upgrade')
                 return redirect('portal:dashboard')
 
         return super().dispatch(request, *args, **kwargs)
