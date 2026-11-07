@@ -46,6 +46,7 @@ urlpatterns = [
     
     # Public Client Web Application & Inquiries
     path('portal/', include('portal.urls')),
+    path('billing/', include('billing.urls')),
     path('contact/', include('contactform.urls')),
     path('', include('login.urls')),
 ]

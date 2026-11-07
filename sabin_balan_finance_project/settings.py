@@ -274,11 +274,13 @@ PRIVATE_STORAGE_ROOT = BASE_DIR / 'private_vault'
 RESEARCH_DOCUMENTS_DIR = PRIVATE_STORAGE_ROOT / 'research_documents'
 
 # ================================================================
-# PAYMENT GATEWAY (Razorpay / Mock Test Mode)
+# PAYMENT GATEWAY (Razorpay TEST MODE ONLY)
 # ================================================================
-RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', 'rzp_test_kalphora_mock_key')
-RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', 'rzp_test_kalphora_mock_secret')
+RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', 'rzp_test_kalphora_test_key')
+RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', 'rzp_test_kalphora_test_secret')
+RAZORPAY_WEBHOOK_SECRET = os.environ.get('RAZORPAY_WEBHOOK_SECRET', 'rzp_test_kalphora_webhook_secret')
 RAZORPAY_CURRENCY = 'INR'
+RAZORPAY_MODE = os.environ.get('RAZORPAY_MODE', 'test')
 
 # ================================================================
 # EMAIL DISPATCH CONFIGURATION (Adaptive Gmail & GoDaddy SMTP Engine)
