@@ -13,6 +13,7 @@ Contains all standard and social OAuth authentication views:
 """
 
 import os
+import time
 import uuid
 import requests
 from django.conf import settings
@@ -111,7 +112,6 @@ class LoginView(FormView):
 
     def form_valid(self, form):
         user = form.get_user()
-        remember_me = form.cleaned_data.get('remember_me')
         raw_next = self.request.GET.get('next')
 
         # Check if 2FA is required for Admin / Staff Users
@@ -119,22 +119,14 @@ class LoginView(FormView):
         if admin_2fa_enabled and (user.is_staff or user.is_superuser):
             admin_index = reverse('admin:index')
             redirect_to = raw_next if (raw_next and raw_next.startswith(admin_index)) else admin_index
-            # Store pre-2FA state in session (ensure strings for JSON session serializer)
-            self.request.session['pre_2fa_remember_me'] = bool(remember_me)
             self.request.session['pre_2fa_next'] = str(redirect_to)
             send_2fa_otp(user, self.request)
             messages.info(self.request, f"2-Way Verification code generated for {user.username}! Check terminal output or email.")
             return redirect('login:admin_2fa_verify')
 
-        # Standard Client Login
+        # Standard Client Login (Strict Session Security: Expiry on browser-close, 12h max, 30m inactivity)
         login(self.request, user)
-
-        if not remember_me:
-            # Session expires on browser closure if remember_me is not checked
-            self.request.session.set_expiry(0)
-        else:
-            # Session persists for 14 days
-            self.request.session.set_expiry(1209600)
+        self.request.session['last_activity'] = int(time.time())
 
         portal_dashboard = reverse('portal:dashboard')
         redirect_to = raw_next if (raw_next and not raw_next.startswith('/admin') and not raw_next.startswith(f'/{getattr(settings, "ADMIN_SECRET_PATH", "x7K9mQp2LrT4")}')) else portal_dashboard
@@ -194,7 +186,6 @@ class Admin2FAVerifyView(FormView):
 
         # 2FA Verification Successful! Finalize Authentication
         pre_user_id = self.request.session.get('pre_2fa_user_id')
-        remember_me = self.request.session.get('pre_2fa_remember_me', False)
         redirect_to = self.request.session.get('pre_2fa_next')
 
         user = User.objects.filter(pk=pre_user_id).first()
@@ -205,11 +196,7 @@ class Admin2FAVerifyView(FormView):
 
         login(self.request, user)
         clear_2fa_session(self.request)
-
-        if not remember_me:
-            self.request.session.set_expiry(0)
-        else:
-            self.request.session.set_expiry(1209600)
+        self.request.session['last_activity'] = int(time.time())
 
         messages.success(self.request, f"Welcome back, Administrator {user.get_display_name()}! 2-Way Verification successful.")
         
@@ -320,19 +307,25 @@ def admin_2fa_login(request, extra_context=None):
 # --------------------------------------------------------------------------
 class LogoutView(View):
     """
-    Securely terminates the active staff/admin user session on POST request.
+    Securely terminates the active user session with server-side session flush
+    and anti-caching HTTP headers.
     """
-    def post(self, request, *args, **kwargs):
+    def _perform_logout(self, request):
         if request.user.is_authenticated:
             logout(request)
-            messages.info(request, "You have been logged out successfully.")
-        return redirect('login:home')
+        request.session.flush()
+        messages.info(request, "You have been logged out successfully.")
+        response = redirect('login:home')
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+        return response
+
+    def post(self, request, *args, **kwargs):
+        return self._perform_logout(request)
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            logout(request)
-            messages.info(request, "You have been logged out successfully.")
-        return redirect('login:home')
+        return self._perform_logout(request)
 
 
 # --------------------------------------------------------------------------

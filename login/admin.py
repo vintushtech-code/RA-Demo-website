@@ -5,8 +5,9 @@ from django.utils.html import format_html
 from .models import (
     CustomUser, SuperUser, FAQ, TeamMember, Testimonial,
     ConsultationBooking, AdminSaaSSubscription, AdminBackupLog,
-    MediaMention, PartnerIntegration, MarketResource
+    MediaMention, PartnerIntegration, MarketResource, SecurityAuditLog
 )
+from portal.models import ClientPortalAccessOverride
 from .saas_service import unlock_subscription_with_plan
 from .backup_service import create_live_backup
 import datetime
@@ -282,17 +283,48 @@ class TestimonialAdmin(admin.ModelAdmin):
                 logger.error(f"Error sending testimonial published email to {obj.email}: {e}")
 
 
+class ClientPortalAccessOverrideInline(admin.TabularInline):
+    model = ClientPortalAccessOverride
+    extra = 0
+    fk_name = 'client'
+    fields = ('section', 'access_status', 'custom_badge', 'expires_at', 'notes')
+    autocomplete_fields = ('section',)
+
+
 class CustomUserAdmin(UserAdmin):
     """
     Admin configuration for all CustomUser records.
-    Displays custom user fields (bio, avatar_url, auth_provider) and standard fields.
+    Displays custom user fields, active subscription status, and enables
+    individual client portal section customization via inline overrides.
     """
     model = CustomUser
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_superuser', 'auth_provider', 'created_at')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'auth_provider', 'created_at')
+    list_display = ('username', 'email', 'subscription_badge', 'is_active', 'is_staff', 'is_superuser', 'created_at')
+    list_filter = ('is_active', 'is_staff', 'is_superuser', 'auth_provider', 'created_at')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('-date_joined',)
-    
+    inlines = [ClientPortalAccessOverrideInline]
+    actions = ['activate_clients', 'deactivate_clients']
+
+    @admin.display(description=_("Portal Tier"))
+    def subscription_badge(self, obj):
+        if obj.is_staff or obj.is_superuser:
+            return format_html('<span style="background: rgba(212,175,55,0.2); color: #D4AF37; padding: 2px 8px; border-radius: 9999px; font-weight: 700; font-size: 0.75rem;">🛡️ ADMIN</span>')
+        if obj.is_premium_active:
+            sub = obj.get_active_subscription()
+            plan_name = sub.plan.name if (sub and sub.plan) else "PREMIUM"
+            return format_html('<span style="background: rgba(16,185,129,0.2); color: #10B981; padding: 2px 8px; border-radius: 9999px; font-weight: 700; font-size: 0.75rem;">⭐ {}</span>', plan_name)
+        return format_html('<span style="background: rgba(148,163,184,0.2); color: #94A3B8; padding: 2px 8px; border-radius: 9999px; font-weight: 600; font-size: 0.75rem;">FREE CLIENT</span>')
+
+    @admin.action(description=_("✅ Activate Selected Client Accounts"))
+    def activate_clients(self, request, queryset):
+        updated = queryset.update(is_active=True)
+        self.message_user(request, f"{updated} client account(s) have been successfully activated.")
+
+    @admin.action(description=_("🚫 Suspend / Deactivate Selected Client Accounts"))
+    def deactivate_clients(self, request, queryset):
+        updated = queryset.update(is_active=False)
+        self.message_user(request, f"{updated} client account(s) have been suspended.")
+
     # Extend standard fieldsets to show custom fields
     fieldsets = UserAdmin.fieldsets + (
         (_('Profile Info'), {'fields': ('bio', 'avatar_url', 'auth_provider')}),
@@ -473,6 +505,28 @@ class MarketResourceAdmin(admin.ModelAdmin):
     def make_unpublished(self, request, queryset):
         count = queryset.update(is_published=False)
         self.message_user(request, f"{count} resource(s) hidden from homepage.")
+
+
+@admin.register(SecurityAuditLog)
+class SecurityAuditLogAdmin(admin.ModelAdmin):
+    """
+    Immutable Security Audit Trail for all authentication, session lifecycle,
+    and administrative privilege actions.
+    """
+    list_display = ('event_type', 'actor_user', 'target_user', 'ip_address', 'timestamp')
+    list_filter = ('event_type', 'timestamp')
+    search_fields = ('actor_user__username', 'actor_user__email', 'target_user__username', 'target_user__email', 'ip_address')
+    readonly_fields = ('id', 'event_type', 'actor_user', 'target_user', 'ip_address', 'user_agent', 'details', 'timestamp')
+    ordering = ('-timestamp',)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 # Register models in admin panel

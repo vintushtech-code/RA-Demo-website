@@ -31,3 +31,4 @@ urlpatterns = [
     # Membership Upgrade & Plans
     path('upgrade/', views.UpgradePlanView.as_view(), name='upgrade'),
 ]
+

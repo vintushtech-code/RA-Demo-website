@@ -124,9 +124,16 @@ SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
+
+# Strict Session Security Policy (Enterprise Inactivity & Browser-Close Termination)
+SESSION_COOKIE_AGE = 43200  # 12 Hours maximum session duration
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_INACTIVITY_TIMEOUT = 1800  # 30 minutes inactivity timeout
 
 # HTTPS SSL Redirect & HSTS Headers (Configurable via environment)
 SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False').lower() in ('true', '1', 't')
@@ -164,6 +171,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'login.middleware.SessionInactivityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'login.middleware.AdminSaaSGuardMiddleware',
 ]

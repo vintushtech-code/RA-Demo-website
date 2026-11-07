@@ -13,6 +13,7 @@ SQL injection immunity via auto-parameterization. No raw SQL is used.
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
@@ -814,3 +815,82 @@ class MarketResource(models.Model):
         if self.external_pdf_url:
             return self.external_pdf_url
         return "#"
+
+
+# ==============================================================================
+# ENTERPRISE SECURITY AUDIT LOGGING
+# ==============================================================================
+
+class SecurityAuditLog(models.Model):
+    """
+    Enterprise Security Audit Log.
+    Tracks critical authentication, access events, permission modifications,
+    and administrative overrides with immutable timestamps and client IP tracking.
+    """
+    EVENT_TYPE_CHOICES = (
+        ('login_success', 'Login Successful'),
+        ('login_failed', 'Login Failed / Bad Credentials'),
+        ('logout', 'User Logged Out'),
+        ('session_expired', 'Session Expired (Inactivity)'),
+        ('2fa_sent', '2FA OTP Sent to Administrator'),
+        ('2fa_verified', '2FA OTP Verified Successfully'),
+        ('2fa_failed', '2FA OTP Incorrect / Invalid'),
+        ('access_denied', 'Unauthorized Access Attempt (403)'),
+        ('permission_override', 'Individual Client Permission Override Modified'),
+        ('profile_update', 'User Profile / Password Modified'),
+        ('section_toggle', 'Portal Section Global Toggle Modified'),
+    )
+
+    id = models.BigAutoField(primary_key=True)
+    event_type = models.CharField(max_length=40, choices=EVENT_TYPE_CHOICES, db_index=True)
+    actor_user = models.ForeignKey(
+        'login.CustomUser',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='security_actions_performed'
+    )
+    target_user = models.ForeignKey(
+        'login.CustomUser',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='security_events_targeted'
+    )
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True, default="")
+    details = models.JSONField(default=dict, blank=True)
+    timestamp = models.DateTimeField(default=timezone.now, db_index=True)
+
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = _('Security Audit Log')
+        verbose_name_plural = _('Security Audit Logs')
+
+    def __str__(self):
+        actor_name = self.actor_user.get_display_name() if self.actor_user else 'Anonymous'
+        return f"[{self.get_event_type_display()}] by {actor_name} on {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+
+    @classmethod
+    def log(cls, event_type, request=None, actor=None, target=None, details=None):
+        ip = None
+        user_agent = ""
+        if request:
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                ip = x_forwarded_for.split(',')[0].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            if not actor and hasattr(request, 'user') and request.user.is_authenticated:
+                actor = request.user
+
+        return cls.objects.create(
+            event_type=event_type,
+            actor_user=actor,
+            target_user=target,
+            ip_address=ip,
+            user_agent=user_agent,
+            details=details or {},
+            timestamp=timezone.now()
+        )

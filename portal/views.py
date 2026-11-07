@@ -10,19 +10,61 @@ from django.http import HttpResponse, HttpResponseForbidden, Http404, JsonRespon
 from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
+from django.db import models
 
 from .models import StockRecommendation, RecommendationUpdate, ClientWatchlist, SEBIComplianceAuditLog
+from .services import AccessControlService
+from login.models import SecurityAuditLog
 from research_vault.models import ResearchDocument, DocumentAccessAssignment, DocumentAccessLog
 from billing.models import SubscriptionPlan, UserSubscription
 
 
-class PortalDashboardView(LoginRequiredMixin, TemplateView):
+class PortalSectionAccessMixin(LoginRequiredMixin):
+    """
+    Base mixin enforcing Admin section configuration and individual client overrides.
+    Injects dynamic navigation tabs, live announcements, and target widgets.
+    """
+    section_key = None
+    allow_teaser_for_free = False
+    login_url = 'login:login'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect(self.login_url)
+
+        if self.section_key:
+            allowed, info = AccessControlService.can_access_section(request.user, self.section_key)
+            if not allowed and not self.allow_teaser_for_free:
+                # Log security denial
+                SecurityAuditLog.log(
+                    'access_denied',
+                    request=request,
+                    target=request.user,
+                    details={'section': self.section_key, 'reason': info}
+                )
+                messages.warning(request, f"Access restricted: {info}")
+                return redirect('portal:dashboard')
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['nav_tabs'] = AccessControlService.get_navigation_tabs_for_user(user, current_key=self.section_key)
+        context['active_announcements'] = AccessControlService.get_active_announcements_for_user(user)
+        context['sidebar_widgets'] = AccessControlService.get_active_widgets_for_user(user, widget_type='sidebar_card')
+        context['active_tab'] = self.section_key
+        context['is_premium'] = getattr(user, 'is_premium_active', False)
+        return context
+
+
+class PortalDashboardView(PortalSectionAccessMixin, TemplateView):
     """
     Central Client Portal Dashboard.
     Adapts seamlessly between Free Registered Clients and Active Premium Subscribers.
     """
     template_name = 'portal/dashboard.html'
-    login_url = 'login:login'
+    section_key = 'market'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,7 +83,6 @@ class PortalDashboardView(LoginRequiredMixin, TemplateView):
         # Assigned Research PDFs (Available to Premium Users)
         assigned_docs = []
         if is_premium:
-            # Universal reports OR explicitly assigned reports
             assigned_docs = ResearchDocument.objects.filter(
                 models.Q(is_universal_premium=True) |
                 models.Q(assignments__client=user, assignments__is_active=True),
@@ -60,27 +101,27 @@ class PortalDashboardView(LoginRequiredMixin, TemplateView):
         plans = SubscriptionPlan.objects.filter(is_active=True).order_by('display_order')
 
         context.update({
-            'is_premium': is_premium,
             'active_sub': active_sub,
             'open_recommendations': open_recommendations,
             'watchlist': watchlist,
             'assigned_docs': assigned_docs,
             'market_indices': market_indices,
             'plans': plans,
-            'active_tab': 'market',
         })
         return context
 
 
-class RecommendationsListView(LoginRequiredMixin, ListView):
+class RecommendationsListView(PortalSectionAccessMixin, ListView):
     """
     Research recommendations feed with multi-horizon filtering:
     Intraday, Short Term (Swing), Mid/Long Term, Futures, Options.
+    Free users preview teaser potential % while premium users see complete parameters.
     """
     model = StockRecommendation
     template_name = 'portal/recommendations.html'
     context_object_name = 'recommendations'
-    login_url = 'login:login'
+    section_key = 'calls'
+    allow_teaser_for_free = True
 
     def get_queryset(self):
         qs = StockRecommendation.objects.all().order_by('-published_at')
@@ -96,30 +137,31 @@ class RecommendationsListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        context['is_premium'] = user.is_premium_active
         context['current_horizon'] = self.request.GET.get('horizon', 'all')
         context['current_status'] = self.request.GET.get('status', 'open')
-        context['active_tab'] = 'calls'
         context['plans'] = SubscriptionPlan.objects.filter(is_active=True).order_by('display_order')
         return context
 
 
-class RecommendationDetailView(LoginRequiredMixin, DetailView):
+class RecommendationDetailView(PortalSectionAccessMixin, DetailView):
     """
     Deep-dive trade thesis, balance sheet forensic rationale, and risk parameters.
-    Gated strictly to Premium Subscribers.
+    Gated strictly to Premium Subscribers (or VIP overrides).
     """
     model = StockRecommendation
     template_name = 'portal/recommendation_detail.html'
     context_object_name = 'rec'
     pk_url_kwarg = 'rec_id'
-    login_url = 'login:login'
+    section_key = 'calls'
+    allow_teaser_for_free = False
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('login:login')
-        if not request.user.is_premium_active:
+        
+        # Enforce premium or VIP override
+        allowed, info = AccessControlService.can_access_section(request.user, 'calls')
+        if not allowed:
             messages.warning(request, "This deep-dive institutional research thesis requires an active premium subscription.")
             return redirect('portal:upgrade')
         return super().dispatch(request, *args, **kwargs)
@@ -127,30 +169,23 @@ class RecommendationDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['updates'] = self.object.updates.all().order_by('-timestamp')
-        context['active_tab'] = 'calls'
         return context
 
 
-class ScreenerView(LoginRequiredMixin, TemplateView):
+class ScreenerView(PortalSectionAccessMixin, TemplateView):
     """
     Institutional Equity Screener with valuation ratios & momentum metrics.
     """
     template_name = 'portal/screener.html'
-    login_url = 'login:login'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_premium'] = self.request.user.is_premium_active
-        context['active_tab'] = 'screener'
-        return context
+    section_key = 'screener'
 
 
-class SectorExplorerView(LoginRequiredMixin, TemplateView):
+class SectorExplorerView(PortalSectionAccessMixin, TemplateView):
     """
     Interactive Sector Grid matching StockYaari Screenshot 5.
     """
     template_name = 'portal/sectors.html'
-    login_url = 'login:login'
+    section_key = 'sectors'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -169,36 +204,27 @@ class SectorExplorerView(LoginRequiredMixin, TemplateView):
             {'name': 'Infrastructure', 'code': 'infra', 'trend': '+1.9%', 'is_up': True, 'count': 35},
         ]
         context['sectors'] = sectors
-        context['is_premium'] = self.request.user.is_premium_active
-        context['active_tab'] = 'sectors'
         return context
 
 
-class CorporateActionsView(LoginRequiredMixin, TemplateView):
+class CorporateActionsView(PortalSectionAccessMixin, TemplateView):
     """
     Corporate Actions & Financial Statements view matching StockYaari Screenshot 4.
     """
     template_name = 'portal/corporate_actions.html'
-    login_url = 'login:login'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_premium'] = self.request.user.is_premium_active
-        context['active_tab'] = 'corporate_actions'
-        return context
+    section_key = 'corporate_actions'
 
 
-class WatchlistView(LoginRequiredMixin, TemplateView):
+class WatchlistView(PortalSectionAccessMixin, TemplateView):
     """
     Personal client watchlist.
     """
     template_name = 'portal/watchlist.html'
-    login_url = 'login:login'
+    section_key = 'watchlist'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['watchlist'] = ClientWatchlist.objects.filter(user=self.request.user).order_by('-created_at')
-        context['active_tab'] = 'watchlist'
         return context
 
 
@@ -230,13 +256,14 @@ class WatchlistToggleAPIView(LoginRequiredMixin, View):
             return JsonResponse({'status': 'added', 'ticker': ticker, 'is_watching': True})
 
 
-class ResearchVaultListView(LoginRequiredMixin, TemplateView):
+class ResearchVaultListView(PortalSectionAccessMixin, TemplateView):
     """
     Confidential Research Reports Library.
     Displays universal reports and client-assigned private PDFs.
     """
     template_name = 'portal/vault_list.html'
-    login_url = 'login:login'
+    section_key = 'vault'
+    allow_teaser_for_free = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -254,8 +281,6 @@ class ResearchVaultListView(LoginRequiredMixin, TemplateView):
             docs = []
 
         context['documents'] = docs
-        context['is_premium'] = is_premium
-        context['active_tab'] = 'vault'
         context['plans'] = SubscriptionPlan.objects.filter(is_active=True).order_by('display_order')
         return context
 
@@ -326,15 +351,14 @@ class SecureDocDownloadView(SecureDocStreamView):
         return response
 
 
-class UpgradePlanView(LoginRequiredMixin, TemplateView):
+class UpgradePlanView(PortalSectionAccessMixin, TemplateView):
     """
     Membership upgrade checkout & pricing options.
     """
     template_name = 'portal/upgrade.html'
-    login_url = 'login:login'
+    section_key = 'upgrade'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['plans'] = SubscriptionPlan.objects.filter(is_active=True).order_by('display_order')
-        context['active_tab'] = 'upgrade'
         return context

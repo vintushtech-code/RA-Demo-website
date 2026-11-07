@@ -11,7 +11,9 @@ Enforces SaaS subscription and 3-month free trial rules:
 - Displays the luxury SaaS Subscription Renewal Lock Screen with instant activation.
 """
 
+import time
 from django.conf import settings
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .saas_service import get_saas_status, SUBSCRIPTION_PLANS, unlock_subscription_with_plan, validate_license_key
@@ -95,5 +97,37 @@ class AdminSaaSGuardMiddleware:
             }
             return render(request, 'admin/saas_lock.html', context, status=403)
 
+        return self.get_response(request)
+
+
+class SessionInactivityMiddleware:
+    """
+    Terminates authenticated client and staff sessions if no request has
+    been made within the configured inactivity window (default: 30 minutes / 1800 seconds).
+    Flushes the server-side session and redirects to the login screen with ?expired=1.
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if hasattr(request, 'user') and request.user.is_authenticated:
+            path = request.path_info
+            # Bypass static files, media, and logout endpoints
+            if not (path.startswith('/static/') or path.startswith('/media/') or path.startswith('/logout')):
+                timeout = getattr(settings, 'SESSION_INACTIVITY_TIMEOUT', 1800)
+                current_time = int(time.time())
+                last_activity = request.session.get('last_activity')
+
+                if last_activity and (current_time - last_activity > timeout):
+                    logout(request)
+                    request.session.flush()
+                    login_url = reverse('login:login') + '?expired=1'
+                    response = redirect(login_url)
+                    response['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+                    response['Pragma'] = 'no-cache'
+                    response['Expires'] = '0'
+                    return response
+
+                request.session['last_activity'] = current_time
 
         return self.get_response(request)

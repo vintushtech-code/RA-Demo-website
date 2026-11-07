@@ -93,33 +93,46 @@
   <nav class="portal-nav-tabs-bar">
     <div class="portal-tabs-inner">
       <ul class="portal-nav-tabs">
-        <li class="tab-item {% if active_tab == 'market' %}active{% endif %}">
-          <a href="{% url 'portal:dashboard' %}">Market</a>
-        </li>
-        <li class="tab-item {% if active_tab == 'calls' %}active{% endif %}">
-          <a href="{% url 'portal:recommendations' %}">
-            Premium Calls
-            {% if not is_premium %}<span class="tab-lock-pill">Locked</span>{% endif %}
-          </a>
-        </li>
-        <li class="tab-item {% if active_tab == 'vault' %}active{% endif %}">
-          <a href="{% url 'portal:vault_list' %}">
-            Research Vault
-            {% if not is_premium %}<span class="tab-lock-pill">🔒</span>{% endif %}
-          </a>
-        </li>
-        <li class="tab-item {% if active_tab == 'screener' %}active{% endif %}">
-          <a href="{% url 'portal:screener' %}">Screener</a>
-        </li>
-        <li class="tab-item {% if active_tab == 'sectors' %}active{% endif %}">
-          <a href="{% url 'portal:sectors' %}">Sector</a>
-        </li>
-        <li class="tab-item {% if active_tab == 'corporate_actions' %}active{% endif %}">
-          <a href="{% url 'portal:corporate_actions' %}">Corporate Actions</a>
-        </li>
-        <li class="tab-item {% if active_tab == 'watchlist' %}active{% endif %}">
-          <a href="{% url 'portal:watchlist' %}">Watchlist</a>
-        </li>
+        {% if nav_tabs %}
+          {% for tab in nav_tabs %}
+            <li class="tab-item {% if tab.is_active %}active{% endif %}">
+              <a href="{{ tab.url }}">
+                {{ tab.title }}
+                {% if tab.badge_text %}
+                  <span class="tab-lock-pill {{ tab.badge_class }}">{{ tab.badge_text }}</span>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="tab-item {% if active_tab == 'market' %}active{% endif %}">
+            <a href="{% url 'portal:dashboard' %}">Market</a>
+          </li>
+          <li class="tab-item {% if active_tab == 'calls' %}active{% endif %}">
+            <a href="{% url 'portal:recommendations' %}">
+              Premium Calls
+              {% if not is_premium %}<span class="tab-lock-pill">Locked</span>{% endif %}
+            </a>
+          </li>
+          <li class="tab-item {% if active_tab == 'vault' %}active{% endif %}">
+            <a href="{% url 'portal:vault_list' %}">
+              Research Vault
+              {% if not is_premium %}<span class="tab-lock-pill">🔒</span>{% endif %}
+            </a>
+          </li>
+          <li class="tab-item {% if active_tab == 'screener' %}active{% endif %}">
+            <a href="{% url 'portal:screener' %}">Screener</a>
+          </li>
+          <li class="tab-item {% if active_tab == 'sectors' %}active{% endif %}">
+            <a href="{% url 'portal:sectors' %}">Sector</a>
+          </li>
+          <li class="tab-item {% if active_tab == 'corporate_actions' %}active{% endif %}">
+            <a href="{% url 'portal:corporate_actions' %}">Corporate Actions</a>
+          </li>
+          <li class="tab-item {% if active_tab == 'watchlist' %}active{% endif %}">
+            <a href="{% url 'portal:watchlist' %}">Watchlist</a>
+          </li>
+        {% endif %}
       </ul>
 
       <!-- Right Quick Action -->
@@ -142,6 +155,22 @@
       {% for message in messages %}
       <div class="portal-alert alert-{{ message.tags }}">
         <span>{{ message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if active_announcements %}
+    <div class="portal-announcements-wrapper" style="margin-bottom: 1.25rem;">
+      {% for ann in active_announcements %}
+      <div class="portal-announcement-banner banner-{{ ann.announcement_type }}" style="padding: 0.85rem 1.25rem; border-radius: 10px; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem; background: {% if ann.announcement_type == 'warning' %}rgba(234, 179, 8, 0.12){% elif ann.announcement_type == 'urgent' %}rgba(239, 68, 68, 0.15){% elif ann.announcement_type == 'success' %}rgba(16, 185, 129, 0.15){% else %}rgba(59, 130, 246, 0.12){% endif %}; border: 1px solid {% if ann.announcement_type == 'warning' %}rgba(234, 179, 8, 0.35){% elif ann.announcement_type == 'urgent' %}rgba(239, 68, 68, 0.4){% elif ann.announcement_type == 'success' %}rgba(16, 185, 129, 0.35){% else %}rgba(59, 130, 246, 0.35){% endif %};">
+        <div style="font-size: 1.15rem; line-height: 1.2;">
+          {% if ann.announcement_type == 'warning' %}⚠️{% elif ann.announcement_type == 'urgent' %}🚨{% elif ann.announcement_type == 'success' %}🎯{% else %}ℹ️{% endif %}
+        </div>
+        <div style="flex: 1;">
+          <strong style="color: #ffffff; font-size: 0.92rem; display: block; margin-bottom: 0.2rem;">{{ ann.title }}</strong>
+          <span style="color: #cbd5e1; font-size: 0.85rem; line-height: 1.4;">{{ ann.message }}</span>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -171,3 +200,4 @@
 
 </div>
 {% endblock %}
+

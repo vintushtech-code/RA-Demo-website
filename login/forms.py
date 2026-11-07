@@ -105,14 +105,6 @@ class EmailOrUsernameLoginForm(forms.Form):
             'autocomplete': 'current-password',
         })
     )
-    remember_me = forms.BooleanField(
-        required=False,
-        initial=False,
-        widget=forms.CheckboxInput(attrs={
-            'class': 'form-checkbox',
-        }),
-        label=_("Keep me signed in")
-    )
 
     def clean(self):
         cleaned_data = super().clean()

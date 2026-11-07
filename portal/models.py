@@ -211,3 +211,215 @@ class ClientWatchlist(models.Model):
 
     def __str__(self):
         return f"{self.user.get_display_name()} ➔ {self.ticker}"
+
+
+# ==============================================================================
+# DYNAMIC PORTAL CONFIGURATION & CLIENT PERMISSION OVERRIDE SYSTEM
+# ==============================================================================
+
+class PortalSectionConfig(models.Model):
+    """
+    Administrator-governed configuration for Client Portal modules/tabs.
+    Allows enabling/disabling sections, setting titles, requiring premium,
+    and ordering without modifying code or redeploying.
+    """
+    section_key = models.CharField(
+        max_length=64,
+        unique=True,
+        db_index=True,
+        help_text=_("Unique identifier, e.g. 'market', 'calls', 'screener', 'sectors', 'corporate_actions', 'vault', 'watchlist'")
+    )
+    title = models.CharField(max_length=100, help_text=_("Display label on navigation tab"))
+    subtitle = models.CharField(max_length=255, blank=True, default="", help_text=_("Short contextual description"))
+    url_name = models.CharField(max_length=100, default='portal:dashboard', help_text=_("Django URL pattern name"))
+    icon_name = models.CharField(max_length=50, default='grid', help_text=_("Icon name or emoji symbol"))
+    is_enabled_globally = models.BooleanField(
+        default=True,
+        help_text=_("Master switch: If unchecked, this section is hidden globally from all users unless explicitly overridden.")
+    )
+    requires_premium = models.BooleanField(
+        default=False,
+        help_text=_("If checked, only active paying subscribers (or VIP overrides) can access this section.")
+    )
+    is_visible_in_nav = models.BooleanField(
+        default=True,
+        help_text=_("Whether this section renders as a tab in the main portal navigation.")
+    )
+    display_order = models.PositiveIntegerField(default=0, help_text=_("Tab order (lowest appears first)"))
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['display_order', 'title']
+        verbose_name = _('Portal Section Configuration')
+        verbose_name_plural = _('Portal Section Configurations')
+
+    def __str__(self):
+        status = "🟢 Enabled" if self.is_enabled_globally else "🔴 Disabled"
+        tier = "🔒 Premium" if self.requires_premium else "🔓 Free"
+        return f"{self.title} ({self.section_key}) — {status} | {tier}"
+
+
+class ClientPortalAccessOverride(models.Model):
+    """
+    Enables the Administrator to customize access on an INDIVIDUAL CLIENT basis.
+    E.g., Give Client A VIP access to 'Premium Calls' or 'Research Vault' even without
+    a paid subscription, or restrict Client B from certain modules.
+    Enforced strictly server-side in portal dispatch and views.
+    """
+    ACCESS_STATUS_CHOICES = (
+        ('DEFAULT', 'Default (Follow Global & Plan Tier Rules)'),
+        ('FORCE_ENABLED', 'VIP Granted (Force Enabled even if free)'),
+        ('FORCE_DISABLED', 'Revoked / Restricted (Force Disabled for this client)'),
+    )
+
+    client = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='portal_access_overrides'
+    )
+    section = models.ForeignKey(
+        PortalSectionConfig,
+        on_delete=models.CASCADE,
+        related_name='client_overrides'
+    )
+    access_status = models.CharField(
+        max_length=20,
+        choices=ACCESS_STATUS_CHOICES,
+        default='DEFAULT',
+        help_text=_("Determines whether this client has standard, forced access (VIP), or revoked access.")
+    )
+    custom_badge = models.CharField(
+        max_length=32,
+        blank=True,
+        default="",
+        help_text=_("Optional badge displayed next to tab, e.g. 'VIP', 'Complimentary', 'Beta'")
+    )
+    notes = models.TextField(
+        blank=True,
+        default="",
+        help_text=_("Internal administrative reason for this override (compliance documentation).")
+    )
+    expires_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text=_("Optional expiry timestamp for temporary trial or courtesy access.")
+    )
+    granted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='overrides_granted'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('client', 'section')
+        ordering = ['client', 'section__display_order']
+        verbose_name = _('Individual Client Access Override')
+        verbose_name_plural = _('Individual Client Access Overrides')
+
+    def __str__(self):
+        return f"{self.client.get_display_name()} ➔ {self.section.title}: {self.get_access_status_display()}"
+
+    def is_expired(self):
+        if self.expires_at and timezone.now() > self.expires_at:
+            return True
+        return False
+
+
+class PortalWidgetConfig(models.Model):
+    """
+    Dynamic widgets, banners, and sidebar cards manageable via Admin.
+    Allows changing promotion banners, pricing teasers, or announcements dynamically.
+    """
+    WIDGET_TYPE_CHOICES = (
+        ('sidebar_card', 'Right Sidebar Card / Promo'),
+        ('dashboard_banner', 'Top Dashboard Alert Banner'),
+        ('inline_notice', 'Inline Module Card'),
+    )
+
+    TARGET_TIER_CHOICES = (
+        ('all', 'All Clients'),
+        ('free_only', 'Free Tier Only (Upsell Target)'),
+        ('premium_only', 'Premium Tier Only (Exclusive)'),
+    )
+
+    widget_key = models.CharField(max_length=64, unique=True, db_index=True)
+    title = models.CharField(max_length=150)
+    widget_type = models.CharField(max_length=32, choices=WIDGET_TYPE_CHOICES, default='sidebar_card')
+    target_tier = models.CharField(max_length=20, choices=TARGET_TIER_CHOICES, default='all')
+    content_html = models.TextField(blank=True, default="", help_text=_("Rich HTML content or copy for the card"))
+    cta_text = models.CharField(max_length=100, blank=True, default="", help_text=_("e.g. Upgrade Now →"))
+    cta_url = models.CharField(max_length=255, blank=True, default="", help_text=_("Target link or reverse URL"))
+    is_active = models.BooleanField(default=True)
+    display_order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['display_order', '-created_at']
+        verbose_name = _('Portal Widget Configuration')
+        verbose_name_plural = _('Portal Widget Configurations')
+
+    def __str__(self):
+        status = "🟢 Active" if self.is_active else "🔴 Inactive"
+        return f"[{self.get_widget_type_display()}] {self.title} — {status} ({self.get_target_tier_display()})"
+
+
+class PortalAnnouncement(models.Model):
+    """
+    Flash announcements, SEBI advisories, and market alerts broadcast to clients.
+    Can target all users, free only, premium only, or specific clients.
+    """
+    ANNOUNCEMENT_TYPE_CHOICES = (
+        ('info', 'ℹ️ Market Advisory / Informational'),
+        ('warning', '⚠️ Volatility & Risk Warning'),
+        ('success', '🎯 Target Achieved / New Research Call'),
+        ('urgent', '🚨 Urgent / Action Required'),
+    )
+
+    TARGET_TIER_CHOICES = (
+        ('all', 'All Clients'),
+        ('free_only', 'Free Clients Only'),
+        ('premium_only', 'Premium Clients Only'),
+        ('specific_clients', 'Specific Selected Clients Only'),
+    )
+
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    message = models.TextField(help_text=_("Announcement text. Supports safe HTML or plain text."))
+    announcement_type = models.CharField(max_length=20, choices=ANNOUNCEMENT_TYPE_CHOICES, default='info')
+    target_tier = models.CharField(max_length=20, choices=TARGET_TIER_CHOICES, default='all')
+    specific_clients = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='portal_announcements',
+        help_text=_("Select specific clients if 'Specific Selected Clients Only' is chosen.")
+    )
+    is_active = models.BooleanField(default=True)
+    is_dismissible = models.BooleanField(default=True, help_text=_("Can clients close this banner in their session?"))
+    start_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(null=True, blank=True, help_text=_("Leave empty for indefinite duration"))
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = _('Portal Announcement')
+        verbose_name_plural = _('Portal Announcements')
+
+    def __str__(self):
+        status = "🟢 Active" if self.is_active else "🔴 Inactive"
+        return f"{self.get_announcement_type_display()} - {self.title} [{status}]"
+
+    def is_current(self):
+        now = timezone.now()
+        if not self.is_active:
+            return False
+        if self.start_date and now < self.start_date:
+            return False
+        if self.end_date and now > self.end_date:
+            return False
+        return True
