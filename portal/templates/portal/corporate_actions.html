@@ -1,0 +1,201 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-corp-layout">
+
+  <!-- Left Sidebar: Top Opportunities with Notify Me (StockYaari Screenshot 4 Pattern) -->
+  <aside class="corp-sidebar-col">
+    <div class="portal-panel-card">
+      <div class="panel-header">
+        <h3 class="panel-title">Today Top Opportunities</h3>
+      </div>
+      <p class="panel-subtitle">Key earnings & corporate triggers</p>
+
+      <div class="signal-stocks-list">
+        
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">HDFCBANK</span>
+            <span class="stock-price text-green">₹788.25 (+3.65% Max Profit)</span>
+          </div>
+          <button class="btn-notify-pill" onclick="alert('Notification enabled for HDFCBANK earnings call!')">
+            🔔 Notify Me
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">MOTHERSON</span>
+            <span class="stock-price text-red">₹158.55 (-5.62% Max Save)</span>
+          </div>
+          <button class="btn-notify-pill" onclick="alert('Notification enabled for MOTHERSON earnings call!')">
+            🔔 Notify Me
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">ICICIBANK</span>
+            <span class="stock-price text-green">₹1,571.20 (+4.75% Max Profit)</span>
+          </div>
+          <button class="btn-notify-pill" onclick="alert('Notification enabled for ICICIBANK earnings call!')">
+            🔔 Notify Me
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">CANBK</span>
+            <span class="stock-price text-green">₹122.93 (+0.02% Max Profit)</span>
+          </div>
+          <button class="btn-notify-pill" onclick="alert('Notification enabled for CANBK earnings call!')">
+            🔔 Notify Me
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">TATASTEEL</span>
+            <span class="stock-price text-green">₹186.30 (+2.15% Max Profit)</span>
+          </div>
+          <button class="btn-notify-pill" onclick="alert('Notification enabled for TATASTEEL earnings call!')">
+            🔔 Notify Me
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </aside>
+
+  <!-- Center Main Col: Financial Results & Statements (StockYaari Screenshot 4 Pattern) -->
+  <main class="corp-main-col">
+    
+    <div class="portal-panel-card">
+      
+      <!-- Company Header Block -->
+      <div class="company-corp-header">
+        <div class="corp-ticker-title">Welspun Corp Ltd</div>
+        <div class="corp-exchange-meta">NSE: WELCORP &bull; BSE: 532144</div>
+        <div class="corp-breadcrumb">Home / Corporate Actions / <strong>Result</strong></div>
+      </div>
+
+      <!-- Result Overview Grid (StockYaari Screenshot 4 Pattern) -->
+      <div class="result-overview-box">
+        <h3 class="result-overview-title">Result Overview</h3>
+        
+        <div class="result-specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Symbol</span>
+            <span class="spec-val text-green">WELCORP</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">BSE Code</span>
+            <span class="spec-val">532144</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Reporting Quarter</span>
+            <span class="spec-val text-green">Q4</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Audit Nature</span>
+            <span class="spec-val text-green">AUDITED</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Nature</span>
+            <span class="spec-val text-green">STANDALONE</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Reporting Period</span>
+            <span class="spec-val">01-01-2026 to 31-12-2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statements Sub-Tabs -->
+      <div class="statements-tabs-row">
+        <button class="stmt-tab active" onclick="switchStmt('income')">Income Statement</button>
+        <button class="stmt-tab" onclick="switchStmt('balance')">Balance Sheet</button>
+        <button class="stmt-tab" onclick="switchStmt('cashflow')">Cash Flow</button>
+      </div>
+
+      <!-- Statement Data Table -->
+      <div class="statement-table-wrapper">
+        <table class="signals-table">
+          <thead>
+            <tr>
+              <th>Financial Metric (₹ Crores)</th>
+              <th>Q4 FY26</th>
+              <th>Q3 FY26</th>
+              <th>Q2 FY26</th>
+              <th>YoY Growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Net Revenue from Operations</strong></td>
+              <td>₹4,120.50</td>
+              <td>₹3,840.20</td>
+              <td>₹3,510.00</td>
+              <td class="text-green">+17.4%</td>
+            </tr>
+            <tr>
+              <td><strong>EBITDA</strong></td>
+              <td>₹625.30</td>
+              <td>₹552.10</td>
+              <td>₹480.00</td>
+              <td class="text-green">+30.2%</td>
+            </tr>
+            <tr>
+              <td><strong>EBITDA Margin (%)</strong></td>
+              <td>15.17%</td>
+              <td>14.37%</td>
+              <td>13.67%</td>
+              <td class="text-green">+150 bps</td>
+            </tr>
+            <tr>
+              <td><strong>Net Profit (PAT)</strong></td>
+              <td>₹342.10</td>
+              <td>₹295.40</td>
+              <td>₹248.80</td>
+              <td class="text-green">+37.5%</td>
+            </tr>
+            <tr>
+              <td><strong>Earnings Per Share (EPS)</strong></td>
+              <td>₹13.08</td>
+              <td>₹11.29</td>
+              <td>₹9.51</td>
+              <td class="text-green">+37.5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Right Promo Banner -->
+  <aside class="corp-promo-col">
+    <div class="portal-panel-card promo-atrium-card">
+      <div class="promo-atrium-inner">
+        <span class="promo-pill">OPPORTUNITY</span>
+        <h4>EICHERMOT INTRADAY</h4>
+        <p>Breakout setup with strict defined parameters.</p>
+        <a href="{% url 'portal:recommendations' %}" class="btn-gold-large" style="margin-top: 1rem; display: inline-block;">
+          Download Call Setup
+        </a>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+function switchStmt(type) {
+  const tabs = document.querySelectorAll('.stmt-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+{% endblock %}

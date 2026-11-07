@@ -1,0 +1,259 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-calls-wrapper">
+
+  <!-- ======================================================== -->
+  <!-- 1. MULTI-HORIZON SUB-FILTER PILLS (StockYaari Screenshot 2 & 3) -->
+  <!-- ======================================================== -->
+  <div class="calls-horizon-filter-bar">
+    <div class="horizon-pills-group">
+      <a href="?horizon=all&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'all' %}active{% endif %}">
+        All Calls
+      </a>
+      <a href="?horizon=intraday&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'intraday' %}active{% endif %}">
+        Intraday
+      </a>
+      <a href="?horizon=short_term&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'short_term' %}active{% endif %}">
+        Short term
+      </a>
+      <a href="?horizon=mid_long_term&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'mid_long_term' %}active{% endif %}">
+        Mid/Long term
+      </a>
+      <a href="?horizon=futures&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'futures' %}active{% endif %}">
+        Futures
+      </a>
+      <a href="?horizon=options&status={{ current_status }}" class="horizon-pill {% if current_horizon == 'options' %}active{% endif %}">
+        Options
+      </a>
+    </div>
+
+    <!-- Status Tabs (Open, Closed, Cancelled) -->
+    <div class="status-tabs-group">
+      <a href="?horizon={{ current_horizon }}&status=open" class="status-tab {% if current_status == 'open' %}active{% endif %}">
+        Open
+      </a>
+      <a href="?horizon={{ current_horizon }}&status=closed" class="status-tab {% if current_status == 'closed' %}active{% endif %}">
+        Closed
+      </a>
+      <a href="?horizon={{ current_horizon }}&status=cancelled" class="status-tab {% if current_status == 'cancelled' %}active{% endif %}">
+        Cancelled
+      </a>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. RECOMMENDATIONS FEED CARDS -->
+  <!-- ======================================================== -->
+  <div class="calls-layout-grid">
+    
+    <!-- Main Stream of Cards -->
+    <div class="calls-stream-col">
+
+      <!-- ==================================================== -->
+      <!-- SAMPLE CARD 1: SHREECEM (Screenshot 3 & Screenshot 2) -->
+      <!-- ==================================================== -->
+      {% if not is_premium %}
+      <!-- FREE USER TEASER CARD (Matching StockYaari Screenshot 2) -->
+      <div class="call-trade-card card-locked-teaser">
+        <div class="trade-card-header">
+          <span class="badge-trade-open">🟢 Open Trade</span>
+          <span class="trade-timestamp">Posted on 06 Nov 2026 &bull; 03:03 pm</span>
+        </div>
+
+        <div class="teaser-visual-box">
+          <span class="teaser-label">POTENTIAL LEFT</span>
+          <div class="teaser-potential-val">9.45%</div>
+          <div class="teaser-progress-bar">
+            <div class="progress-fill" style="width: 65%;"></div>
+          </div>
+          
+          <a href="{% url 'portal:upgrade' %}" class="btn-unlock-gold">
+            🔒 Limited Time Offer - Unlock Now ➔
+          </a>
+        </div>
+
+        <div class="teaser-footer">
+          <span>See Exclusive <strong>Trade Setup</strong>, Buy Zone, Target & Stop-Loss</span>
+        </div>
+      </div>
+
+      <!-- FREE USER TEASER CARD 2 (ELGIEQUIP) -->
+      <div class="call-trade-card card-locked-teaser">
+        <div class="trade-card-header">
+          <span class="badge-trade-open">🟢 Open Trade</span>
+          <span class="trade-timestamp">Posted on 06 Nov 2026 &bull; 02:59 pm</span>
+        </div>
+
+        <div class="teaser-visual-box">
+          <span class="teaser-label">POTENTIAL LEFT</span>
+          <div class="teaser-potential-val">14.20%</div>
+          <div class="teaser-progress-bar">
+            <div class="progress-fill" style="width: 80%;"></div>
+          </div>
+          
+          <a href="{% url 'portal:upgrade' %}" class="btn-unlock-gold">
+            🔒 Limited Time Offer - Unlock Now ➔
+          </a>
+        </div>
+
+        <div class="teaser-footer">
+          <span>See Exclusive <strong>Trade Setup</strong>, Buy Zone, Target & Stop-Loss</span>
+        </div>
+      </div>
+
+      {% else %}
+      <!-- PREMIUM USER UNLOCKED TRADE CARDS (Matching StockYaari Screenshot 3) -->
+      <div class="call-trade-card card-unlocked-premium">
+        
+        <div class="trade-card-header">
+          <div class="trade-date-meta">
+            📅 Posted on 06 Nov 2026 | Time: 03:03 pm
+          </div>
+          <span class="badge-trade-open">🟢 Open Trade</span>
+        </div>
+
+        <div class="trade-title-block">
+          <div class="ticker-badge-row">
+            <h3 class="trade-ticker">SHREECEM</h3>
+            <span class="badge-horizon-type">SWING</span>
+          </div>
+          <div class="trade-company-name">SHREE CEMENT LIMITED</div>
+        </div>
+
+        <!-- Target & Stop-Loss Grid -->
+        <div class="trade-targets-grid">
+          <div class="target-box">
+            <span class="box-label">Target Price</span>
+            <span class="box-val text-green">₹27,285.00</span>
+          </div>
+          <div class="sl-box">
+            <span class="box-label">Stop Loss</span>
+            <span class="box-val text-red">₹23,800.00</span>
+          </div>
+        </div>
+
+        <!-- Entry Action Row -->
+        <div class="trade-action-bar">
+          <div class="action-item">
+            <span class="action-label">Action</span>
+            <span class="action-badge-bold buy">BUY</span>
+          </div>
+          <div class="action-item">
+            <span class="action-label">Date & Time</span>
+            <span class="action-val">06/11/2026 03:03 pm</span>
+          </div>
+          <div class="action-item">
+            <span class="action-label">Price (Entry Zone)</span>
+            <span class="action-val-price">₹24,930.00</span>
+          </div>
+        </div>
+
+        <!-- Analyst Thesis Summary -->
+        <div class="trade-thesis-preview">
+          <strong>Analyst Note:</strong> Strong volume consolidation above 200 EMA with expanding cement realization spreads across northern India. Favorable risk-to-reward ratio 1:2.8.
+        </div>
+
+      </div>
+
+      <!-- UNLOCKED TRADE CARD 2 (ELGIEQUIP) -->
+      <div class="call-trade-card card-unlocked-premium">
+        
+        <div class="trade-card-header">
+          <div class="trade-date-meta">
+            📅 Posted on 06 Nov 2026 | Time: 02:59 pm
+          </div>
+          <span class="badge-trade-open">🟢 Open Trade</span>
+        </div>
+
+        <div class="trade-title-block">
+          <div class="ticker-badge-row">
+            <h3 class="trade-ticker">ELGIEQUIP</h3>
+            <span class="badge-horizon-type">SWING</span>
+          </div>
+          <div class="trade-company-name">ELGI EQUIPMENTS LIMITED</div>
+        </div>
+
+        <!-- Target & Stop-Loss Grid -->
+        <div class="trade-targets-grid">
+          <div class="target-box">
+            <span class="box-label">Target Price</span>
+            <span class="box-val text-green">₹735.00</span>
+          </div>
+          <div class="sl-box">
+            <span class="box-label">Stop Loss</span>
+            <span class="box-val text-red">₹615.00</span>
+          </div>
+        </div>
+
+        <!-- Entry Action Row -->
+        <div class="trade-action-bar">
+          <div class="action-item">
+            <span class="action-label">Action</span>
+            <span class="action-badge-bold buy">BUY</span>
+          </div>
+          <div class="action-item">
+            <span class="action-label">Date & Time</span>
+            <span class="action-val">06/11/2026 02:59 pm</span>
+          </div>
+          <div class="action-item">
+            <span class="action-label">Price (Entry Zone)</span>
+            <span class="action-val-price">₹642.50</span>
+          </div>
+        </div>
+
+        <!-- Analyst Thesis Summary -->
+        <div class="trade-thesis-preview">
+          <strong>Analyst Note:</strong> Breakout from 4-month ascending triangle on industrial compressor demand. Zero promoter pledging and resilient operating margins.
+        </div>
+
+      </div>
+
+      {% endif %}
+
+    </div>
+
+    <!-- Sidebar Upgrade Banner (StockYaari Screenshot 2 & 3 Pattern) -->
+    <aside class="calls-sidebar-col">
+      <div class="portal-panel-card plan-promo-card">
+        <div class="plan-promo-badge">85% OFF &bull; SEBI REG. 25</div>
+        <h3 class="plan-promo-title">Premium Research Calls Plan</h3>
+        <p class="plan-promo-sub">One plan. Full institutional access.</p>
+        
+        <div class="plan-pricing-block">
+          <span class="original-price"><del>INR 16,999 / year</del></span>
+          <div class="live-price-row">
+            <span class="currency">INR</span>
+            <span class="amount">2,499</span>
+            <span class="duration">/ year</span>
+          </div>
+          <span class="price-monthly-breakdown">Only ₹208 / month &bull; Save ₹14,500</span>
+        </div>
+
+        <ul class="plan-perks-list">
+          <li>✓ All Swing, Breakout & Positional Calls</li>
+          <li>✓ Defined Targets & Mandatory Stop-Loss</li>
+          <li>✓ Real-Time WhatsApp & Telegram Alerts</li>
+          <li>✓ Confidential Client Research PDF Vault</li>
+          <li>✓ 100% SEBI Regulation 25 Audit Trail</li>
+        </ul>
+
+        <a href="{% url 'portal:upgrade' %}" class="btn-get-plan">
+          Get the Plan ➔
+        </a>
+      </div>
+
+      <div class="portal-panel-card promo-atrium-card">
+        <div class="promo-atrium-inner">
+          <span class="promo-pill">LIVE MARKET</span>
+          <h4>SEBI Regulated Methodology</h4>
+          <p>Every research recommendation is strictly backed by balance sheet forensics and risk management.</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+{% endblock %}

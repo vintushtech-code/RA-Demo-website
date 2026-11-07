@@ -1,0 +1,128 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-upgrade-container">
+
+  <div class="upgrade-hero-box">
+    <span class="upgrade-hero-badge">⭐ INSTITUTIONAL RESEARCH ADVISORY</span>
+    <h1 class="upgrade-hero-title">Upgrade to Kalphora Premium</h1>
+    <p class="upgrade-hero-subtitle">
+      Gain instant access to high-conviction swing and breakout stock research, complete entry/target/stop-loss parameters, real-time alerts, and your confidential Research PDF Vault.
+    </p>
+  </div>
+
+  <!-- Plans Comparison Grid -->
+  <div class="upgrade-plans-grid">
+    
+    <!-- PLAN 1: QUARTERLY SWING ADVISORY -->
+    <div class="pricing-card">
+      <div class="pricing-card-header">
+        <h3 class="plan-name">Momentum & Swing Advisory</h3>
+        <p class="plan-desc">Best for active market participants seeking 1-4 week breakout setups.</p>
+        <div class="plan-price-tag">
+          <span class="currency">₹</span>
+          <span class="price-val">4,999</span>
+          <span class="period">/ 3 Months</span>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <ul>
+          <li>✓ 2-3 High Conviction Swing Calls Weekly</li>
+          <li>✓ Defined Entry Range, Multiple Targets & Stop-Loss</li>
+          <li>✓ Real-Time Trailing Stop-Loss Updates</li>
+          <li>✓ Standard Access to Research PDF Vault</li>
+          <li>✓ Priority WhatsApp & Email Alert Dispatch</li>
+          <li>✓ SEBI Regulation 25 Timestamped Audit</li>
+        </ul>
+      </div>
+      <button class="btn-checkout-plan" onclick="initiateCheckout('SWING_QUARTERLY', 4999)">
+        Activate Quarterly Pass
+      </button>
+    </div>
+
+    <!-- PLAN 2: ANNUAL INSTITUTIONAL ALL-ACCESS (FEATURED) -->
+    <div class="pricing-card featured-plan">
+      <div class="plan-ribbon">MOST POPULAR &bull; 85% OFF</div>
+      <div class="pricing-card-header">
+        <h3 class="plan-name">Institutional All-Access Pass</h3>
+        <p class="plan-desc">Complete full-year institutional research coverage across all market horizons.</p>
+        <div class="plan-price-tag">
+          <span class="currency">₹</span>
+          <span class="price-val">2,499</span>
+          <span class="period">/ 1 Year</span>
+        </div>
+        <span class="monthly-equiv">Only ₹208 / month &bull; Annual Billing</span>
+      </div>
+      <div class="pricing-features">
+        <ul>
+          <li>✓ All Intraday, Swing, Breakout & Positional Calls</li>
+          <li>✓ Direct Client-Specific Assigned Research PDF Vault</li>
+          <li>✓ Forensic Balance Sheet Deep Dives & Valuation Notes</li>
+          <li>✓ Instant Real-Time WhatsApp & Telegram Alerts</li>
+          <li>✓ Direct Analyst Consultation Priority Slots</li>
+          <li>✓ 100% Immutable SEBI Regulation 25 Audit Trail</li>
+        </ul>
+      </div>
+      <button class="btn-checkout-plan featured-btn" onclick="initiateCheckout('ALL_ACCESS_ANNUAL', 2499)">
+        Unlock Institutional Access Now
+      </button>
+    </div>
+
+    <!-- PLAN 3: HNI WEALTH & BESPOKE ADVISORY -->
+    <div class="pricing-card">
+      <div class="pricing-card-header">
+        <h3 class="plan-name">HNI Bespoke Advisory</h3>
+        <p class="plan-desc">For high-net-worth investors requiring customized portfolio audits and direct analyst access.</p>
+        <div class="plan-price-tag">
+          <span class="currency">₹</span>
+          <span class="price-val">19,999</span>
+          <span class="period">/ 1 Year</span>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <ul>
+          <li>✓ Everything in Institutional All-Access</li>
+          <li>✓ Custom Client-Specific Portfolio Research PDFs</li>
+          <li>✓ Quarterly 1-on-1 Direct Research Orientation Call</li>
+          <li>✓ Demerger, Buyback & Special Situations Memos</li>
+          <li>✓ Anti-Piracy Watermarked Confidential Delivery</li>
+          <li>✓ Tailored Capital Protection & Risk Structuring</li>
+        </ul>
+      </div>
+      <button class="btn-checkout-plan" onclick="initiateCheckout('HNI_BESPOKE', 19999)">
+        Activate HNI Advisory
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Trust Badges Row -->
+  <div class="upgrade-trust-strip">
+    <div class="trust-badge-item">
+      <span>🔒</span> 256-Bit SSL Encrypted Payment
+    </div>
+    <div class="trust-badge-item">
+      <span>⚡</span> Instant Membership Unlock
+    </div>
+    <div class="trust-badge-item">
+      <span>🛡️</span> SEBI Reg. 25 Compliant Practice
+    </div>
+    <div class="trust-badge-item">
+      <span>📄</span> GST Tax Invoices Generated
+    </div>
+  </div>
+
+</div>
+
+<script>
+function initiateCheckout(planCode, amount) {
+  // Prototype simulation for Razorpay checkout integration
+  const confirmed = confirm("Proceeding to checkout for " + planCode + " (₹" + amount + ").\n\nClick OK to simulate instant Razorpay payment activation for testing.");
+  if (confirmed) {
+    alert("Payment verified! Your account will be upgraded to Premium.");
+    window.location.href = "{% url 'portal:dashboard' %}";
+  }
+}
+</script>
+{% endblock %}

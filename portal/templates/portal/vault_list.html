@@ -1,0 +1,112 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-vault-container">
+
+  <!-- Header Banner -->
+  <div class="vault-hero-bar">
+    <div>
+      <h2 class="vault-title">🔒 Confidential Research Reports & PDF Vault</h2>
+      <p class="vault-subtitle">Client-specific research briefs, forensic balance sheet audits, and institutional valuation reports.</p>
+    </div>
+    <div class="vault-security-pill">
+      <span>🛡️ Dynamic Anti-Piracy Watermarking Protected</span>
+    </div>
+  </div>
+
+  {% if not is_premium %}
+  <!-- Locked Vault Teaser for Free Users -->
+  <div class="vault-locked-state-card">
+    <div class="locked-icon-circle">🔐</div>
+    <h3>Institutional PDF Vault is Reserved for Premium Clients</h3>
+    <p>Our research analyst uploads tailored, confidential stock research PDFs and bespoke portfolio reviews directly to each client's private vault.</p>
+    
+    <div class="vault-features-preview">
+      <div class="feat-box">
+        <span class="feat-icon">📄</span>
+        <strong>Client-Specific Reports</strong>
+        <span>Only you can access reports assigned to your account.</span>
+      </div>
+      <div class="feat-box">
+        <span class="feat-icon">🔍</span>
+        <strong>Forensic Balance Sheet Audits</strong>
+        <span>Deep balance sheet forensic indicators and promoter checks.</span>
+      </div>
+      <div class="feat-box">
+        <span class="feat-icon">⚖️</span>
+        <strong>SEBI Audited Rationale</strong>
+        <span>Complete regulatory compliance and risk disclosures.</span>
+      </div>
+    </div>
+
+    <a href="{% url 'portal:upgrade' %}" class="btn-gold-large" style="margin-top: 1.5rem; display: inline-block;">
+      ⭐ Upgrade to Premium — Unlock Your Research Vault
+    </a>
+  </div>
+
+  {% else %}
+  <!-- Unlocked Document Library for Paying Subscribers -->
+  <div class="vault-docs-wrapper">
+    
+    {% if documents %}
+    <div class="vault-table-container">
+      <table class="vault-table">
+        <thead>
+          <tr>
+            <th>Report Title & Subject</th>
+            <th>Category</th>
+            <th>Publication Date</th>
+            <th>Size</th>
+            <th>Access Status</th>
+            <th style="text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for doc in documents %}
+          <tr class="vault-doc-row">
+            <td>
+              <div class="doc-title-cell">
+                <span class="doc-icon-pdf">📄</span>
+                <div>
+                  <span class="doc-title-bold">{{ doc.title }}</span>
+                  <span class="doc-desc-sub">{{ doc.description|truncatechars:70 }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="badge-category">{{ doc.get_category_display }}</span>
+            </td>
+            <td class="date-cell">{{ doc.publication_date|date:"d M Y" }}</td>
+            <td class="size-cell">{{ doc.file_size_kb }} KB</td>
+            <td>
+              {% if doc.is_universal_premium %}
+              <span class="status-pill universal">Universal Premium</span>
+              {% else %}
+              <span class="status-pill personal">Assigned to You</span>
+              {% endif %}
+            </td>
+            <td style="text-align: right;">
+              <a href="{% url 'portal:vault_stream' doc.id %}" target="_blank" class="btn-view-pdf">
+                <span>👁️</span> View Secure PDF
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% else %}
+    <div class="vault-empty-state">
+      <span class="empty-icon">📂</span>
+      <h3>Your Private Vault is Ready</h3>
+      <p>Our research analyst assigns bespoke stock research PDFs, earnings audits, and portfolio notes directly to your account. New reports will appear here automatically.</p>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

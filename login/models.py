@@ -95,6 +95,33 @@ class CustomUser(AbstractUser):
             return f"{parts[0][0]}{parts[1][0]}".upper()
         return name[:2].upper() if name else "U"
 
+    @property
+    def is_premium_active(self):
+        """Returns True if the user holds an active or trial subscription."""
+        if self.is_staff or self.is_superuser:
+            return True
+        from django.utils import timezone
+        return self.subscriptions.filter(
+            status__in=['active', 'trial'],
+            end_date__gte=timezone.now()
+        ).exists()
+
+    def get_active_subscription(self):
+        """Retrieves the current valid UserSubscription object, or None."""
+        from django.utils import timezone
+        return self.subscriptions.filter(
+            status__in=['active', 'trial'],
+            end_date__gte=timezone.now()
+        ).order_by('-end_date').first()
+
+    def get_masked_pan(self):
+        """Returns masked PAN for confidential watermarking (e.g. ABCDE****F)."""
+        pan = getattr(self, 'pan_number', '') or ''
+        if len(pan) == 10:
+            return f"{pan[:5]}****{pan[-1]}"
+        return "INH-VERIFIED"
+
+
 
 class SuperUser(CustomUser):
     """

@@ -57,6 +57,7 @@ urlpatterns = [
     path(f'{ADMIN_SECRET_PATH}/', admin.site.urls),
     
     # Public Client Web Application & Inquiries
+    path('portal/', include('portal.urls')),
     path('contact/', include('contactform.urls')),
     path('', include('login.urls')),
 ]

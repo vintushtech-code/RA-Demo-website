@@ -1,0 +1,48 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-panel-card">
+  <div class="panel-header">
+    <div>
+      <h2 class="section-heading">Your Personal Stock Watchlist</h2>
+      <p class="section-subheading">Track price action and momentum signals for your starred equities.</p>
+    </div>
+  </div>
+
+  <div class="watchlist-table-wrapper" style="margin-top: 1.5rem;">
+    <table class="signals-table">
+      <thead>
+        <tr>
+          <th>Stock Symbol</th>
+          <th>Company Name</th>
+          <th>Date Added</th>
+          <th>Active Research Coverage</th>
+          <th style="text-align: right;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in watchlist %}
+        <tr>
+          <td><span class="stock-ticker-bold">{{ item.ticker }}</span></td>
+          <td>{{ item.company_name }}</td>
+          <td>{{ item.created_at|date:"d M Y" }}</td>
+          <td><span class="status-pill personal">Tracked</span></td>
+          <td style="text-align: right;">
+            <button class="btn-signal-set" onclick="removeFromWatchlist('{{ item.ticker }}')">Remove</button>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 3rem 1rem;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⭐</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.35rem;">Your Watchlist is Empty</h3>
+            <p style="color: var(--color-subtext, #64748B);">Star any stock from the Market or Sector tab to track it here.</p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

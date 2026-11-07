@@ -68,11 +68,13 @@ class SignupView(FormView):
     """
     template_name = 'login/signup.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login:home')
+    success_url = reverse_lazy('portal:dashboard')
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('login:home')
+            if request.user.is_staff or request.user.is_superuser:
+                return redirect('admin:index')
+            return redirect('portal:dashboard')
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -83,7 +85,7 @@ class SignupView(FormView):
 
         # Log user in immediately
         login(self.request, user)
-        return super().form_valid(form)
+        return redirect('portal:dashboard')
 
 
 # --------------------------------------------------------------------------
@@ -98,23 +100,25 @@ class LoginView(FormView):
     """
     template_name = 'login/login.html'
     form_class = EmailOrUsernameLoginForm
-    success_url = reverse_lazy('admin:index')
+    success_url = reverse_lazy('portal:dashboard')
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('admin:index')
+            if request.user.is_staff or request.user.is_superuser:
+                return redirect('admin:index')
+            return redirect('portal:dashboard')
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.get_user()
         remember_me = form.cleaned_data.get('remember_me')
         raw_next = self.request.GET.get('next')
-        admin_index = reverse('admin:index')
-        redirect_to = raw_next if (raw_next and raw_next.startswith(admin_index)) else admin_index
 
         # Check if 2FA is required for Admin / Staff Users
         admin_2fa_enabled = getattr(settings, 'ADMIN_2FA_ENABLED', True)
         if admin_2fa_enabled and (user.is_staff or user.is_superuser):
+            admin_index = reverse('admin:index')
+            redirect_to = raw_next if (raw_next and raw_next.startswith(admin_index)) else admin_index
             # Store pre-2FA state in session (ensure strings for JSON session serializer)
             self.request.session['pre_2fa_remember_me'] = bool(remember_me)
             self.request.session['pre_2fa_next'] = str(redirect_to)
@@ -132,6 +136,8 @@ class LoginView(FormView):
             # Session persists for 14 days
             self.request.session.set_expiry(1209600)
 
+        portal_dashboard = reverse('portal:dashboard')
+        redirect_to = raw_next if (raw_next and not raw_next.startswith('/admin') and not raw_next.startswith(f'/{getattr(settings, "ADMIN_SECRET_PATH", "x7K9mQp2LrT4")}')) else portal_dashboard
         return redirect(redirect_to)
 
 

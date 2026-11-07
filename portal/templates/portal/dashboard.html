@@ -1,0 +1,321 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-dashboard-grid">
+
+  <!-- ======================================================== -->
+  <!-- LEFT COLUMN: QUICK WATCHLIST & REAL-TIME ALERTS -->
+  <!-- ======================================================== -->
+  <aside class="portal-left-col">
+    <div class="portal-panel-card">
+      <div class="panel-header">
+        <h3 class="panel-title">Track & Set Signal</h3>
+        <span class="panel-badge">Live Ticker</span>
+      </div>
+      <p class="panel-subtitle">Instant market trigger alerts</p>
+
+      <div class="signal-stocks-list">
+        
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">AXISBANK</span>
+            <span class="stock-sub">Axis Bank Limited</span>
+          </div>
+          <button class="btn-signal-set" onclick="setSignalAlert('AXISBANK')">
+            <span>🔔</span> Set Alert
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">POWERGRID</span>
+            <span class="stock-sub">Power Grid Corp India</span>
+          </div>
+          <button class="btn-signal-set" onclick="setSignalAlert('POWERGRID')">
+            <span>🔔</span> Set Alert
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">VOLTAS</span>
+            <span class="stock-sub">Voltas Limited</span>
+          </div>
+          <button class="btn-signal-set" onclick="setSignalAlert('VOLTAS')">
+            <span>🔔</span> Set Alert
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">ICICIBANK</span>
+            <span class="stock-sub">ICICI Bank Limited</span>
+          </div>
+          <button class="btn-signal-set" onclick="setSignalAlert('ICICIBANK')">
+            <span>🔔</span> Set Alert
+          </button>
+        </div>
+
+        <div class="signal-stock-item">
+          <div class="stock-info">
+            <span class="stock-sym">BRITANNIA</span>
+            <span class="stock-sub">Britannia Industries</span>
+          </div>
+          <button class="btn-signal-set" onclick="setSignalAlert('BRITANNIA')">
+            <span>🔔</span> Set Alert
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Quick SEBI Regulatory Trust Box -->
+    <div class="portal-panel-card trust-mini-card">
+      <div class="trust-mini-header">
+        <span class="trust-icon">🛡️</span>
+        <div>
+          <h4>SEBI Reg. 25 Compliant</h4>
+          <p>Every call is immutably audited for 5 years.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- CENTER COLUMN: MARKET INDICES & RESEARCH SIGNALS -->
+  <!-- ======================================================== -->
+  <section class="portal-center-col">
+    
+    <!-- Top Market Indices Ticker Cards -->
+    <div class="market-indices-strip">
+      {% for idx in market_indices %}
+      <div class="market-index-pill {% if idx.is_positive %}idx-up{% else %}idx-down{% endif %}">
+        <span class="idx-name">{{ idx.name }}</span>
+        <span class="idx-val">{{ idx.value }}</span>
+        <span class="idx-change">
+          {% if idx.is_positive %}▲{% else %}▼{% endif %} {{ idx.change }} ({{ idx.pct }})
+        </span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Today's Research Signals Panel (Matching StockYaari Screenshot 1) -->
+    <div class="portal-panel-card main-signals-card">
+      <div class="signals-header-row">
+        <div>
+          <h2 class="section-heading">Today's Market Momentum & Research Calls</h2>
+          <p class="section-subheading">Data-driven actionable setups vetted by forensic balance sheet analysis.</p>
+        </div>
+        <div class="signal-filter-pills">
+          <button class="filter-pill active">🟢 Green Signal</button>
+          <button class="filter-pill">🔴 Red Signal</button>
+        </div>
+      </div>
+
+      <!-- Signals Table / List -->
+      <div class="signals-table-wrapper">
+        <table class="signals-table">
+          <thead>
+            <tr>
+              <th>Stock / Asset</th>
+              <th>Action</th>
+              <th>Reference Price</th>
+              <th>Estimated Upside</th>
+              <th>Action Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <!-- Sample High Conviction Row 1 (Always Visible) -->
+            <tr class="signal-row">
+              <td>
+                <div class="stock-cell">
+                  <span class="stock-ticker-bold">SHREECEM</span>
+                  <span class="stock-company-sub">Shree Cement Limited</span>
+                </div>
+              </td>
+              <td><span class="badge-action-buy">BUY</span></td>
+              <td class="price-cell">₹24,930.00</td>
+              <td class="profit-cell">+9.45% Max Upside</td>
+              <td>
+                {% if is_premium %}
+                <a href="{% url 'portal:recommendations' %}" class="btn-table-view">View Trade Setup</a>
+                {% else %}
+                <a href="{% url 'portal:upgrade' %}" class="btn-table-locked">🔒 Unlock Trade</a>
+                {% endif %}
+              </td>
+            </tr>
+
+            <!-- Sample High Conviction Row 2 (Always Visible) -->
+            <tr class="signal-row">
+              <td>
+                <div class="stock-cell">
+                  <span class="stock-ticker-bold">ELGIEQUIP</span>
+                  <span class="stock-company-sub">Elgi Equipments Limited</span>
+                </div>
+              </td>
+              <td><span class="badge-action-buy">ACCUMULATE</span></td>
+              <td class="price-cell">₹642.50</td>
+              <td class="profit-cell">+14.20% Max Upside</td>
+              <td>
+                {% if is_premium %}
+                <a href="{% url 'portal:recommendations' %}" class="btn-table-view">View Trade Setup</a>
+                {% else %}
+                <a href="{% url 'portal:upgrade' %}" class="btn-table-locked">🔒 Unlock Trade</a>
+                {% endif %}
+              </td>
+            </tr>
+
+            <!-- Teaser Rows: If Free, blurred with unlock gate (Screenshot 1 & 2 pattern) -->
+            {% if not is_premium %}
+            <tr class="signal-row row-blurred">
+              <td>
+                <div class="stock-cell">
+                  <span class="stock-ticker-bold">●●●●●●●●</span>
+                  <span class="stock-company-sub">Banking Sector Leader</span>
+                </div>
+              </td>
+              <td><span class="badge-action-buy">BUY</span></td>
+              <td class="price-cell">₹●●●.●●</td>
+              <td class="profit-cell">+18.50% Max Upside</td>
+              <td><a href="{% url 'portal:upgrade' %}" class="btn-table-locked">🔒 Premium Only</a></td>
+            </tr>
+            <tr class="signal-row row-blurred">
+              <td>
+                <div class="stock-cell">
+                  <span class="stock-ticker-bold">●●●●●●●●</span>
+                  <span class="stock-company-sub">Defence Breakout Setup</span>
+                </div>
+              </td>
+              <td><span class="badge-action-buy">BUY</span></td>
+              <td class="price-cell">₹●,●●●.●●</td>
+              <td class="profit-cell">+22.10% Max Upside</td>
+              <td><a href="{% url 'portal:upgrade' %}" class="btn-table-locked">🔒 Premium Only</a></td>
+            </tr>
+            {% else %}
+            <!-- Unlocked rows for paying subscribers -->
+            <tr class="signal-row">
+              <td>
+                <div class="stock-cell">
+                  <span class="stock-ticker-bold">TATASTEEL</span>
+                  <span class="stock-company-sub">Tata Steel Limited</span>
+                </div>
+              </td>
+              <td><span class="badge-action-buy">BUY</span></td>
+              <td class="price-cell">₹148.20</td>
+              <td class="profit-cell">+11.60% Max Upside</td>
+              <td><a href="{% url 'portal:recommendations' %}" class="btn-table-view">View Trade Setup</a></td>
+            </tr>
+            {% endif %}
+
+          </tbody>
+        </table>
+
+        {% if not is_premium %}
+        <!-- Paywall Teaser Banner at bottom of table -->
+        <div class="paywall-table-overlay">
+          <div class="paywall-overlay-content">
+            <span class="paywall-icon">⭐</span>
+            <h3>Unlock 15+ Active High-Conviction Research Calls</h3>
+            <p>Get exact entry zones, strict stop-losses, multiple targets, and real-time trailing SL updates.</p>
+            <a href="{% url 'portal:upgrade' %}" class="btn-gold-large">
+              🔒 Unlock Full Access — Instant Activation
+            </a>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- Live Recommendations Quick View -->
+    <div class="portal-panel-card">
+      <div class="panel-header">
+        <h3 class="panel-title">Active High-Conviction Setups</h3>
+        <a href="{% url 'portal:recommendations' %}" class="panel-view-all">View All ➔</a>
+      </div>
+
+      <div class="rec-cards-grid">
+        {% for rec in open_recommendations %}
+        <div class="rec-mini-card">
+          <div class="rec-card-top">
+            <span class="rec-ticker">{{ rec.ticker }}</span>
+            <span class="rec-action-badge">{{ rec.action }}</span>
+          </div>
+          <div class="rec-card-sector">{{ rec.sector }} &bull; {{ rec.get_horizon_display }}</div>
+          <div class="rec-card-metrics">
+            <div>
+              <span class="metric-label">Target:</span>
+              <span class="metric-val text-green">₹{{ rec.target_price }}</span>
+            </div>
+            <div>
+              <span class="metric-label">Stop-Loss:</span>
+              <span class="metric-val text-red">₹{{ rec.stop_loss }}</span>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="rec-empty-notice">
+          No live open recommendations at this instant. New institutional calls are published during market hours.
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- RIGHT COLUMN: UPGRADE PLANS & MARKET HIGHLIGHTS -->
+  <!-- ======================================================== -->
+  <aside class="portal-right-col">
+    
+    <!-- Premium Upgrade Card (StockYaari Screenshot 1 Pattern) -->
+    <div class="portal-panel-card plan-promo-card">
+      <div class="plan-promo-badge">INSTITUTIONAL GRADE &bull; 85% OFF</div>
+      <h3 class="plan-promo-title">Premium Research Calls Plan</h3>
+      <p class="plan-promo-sub">One plan. Complete institutional access.</p>
+      
+      <div class="plan-pricing-block">
+        <span class="original-price"><del>INR 16,999 / year</del></span>
+        <div class="live-price-row">
+          <span class="currency">INR</span>
+          <span class="amount">2,499</span>
+          <span class="duration">/ year</span>
+        </div>
+        <span class="price-monthly-breakdown">Only ₹208 / month &bull; Save ₹14,500</span>
+      </div>
+
+      <ul class="plan-perks-list">
+        <li>✓ All Swing & Breakout Recommendations</li>
+        <li>✓ Exact Entry Ranges, Targets & Stop-Losses</li>
+        <li>✓ Real-Time WhatsApp & Telegram Alerts</li>
+        <li>✓ Confidential Client Research PDF Vault</li>
+        <li>✓ SEBI Regulation 25 Audited Performance</li>
+      </ul>
+
+      <a href="{% url 'portal:upgrade' %}" class="btn-get-plan">
+        Get the Plan ➔
+      </a>
+    </div>
+
+    <!-- Live Market Real Opportunities Card (StockYaari Screenshot 1 Pattern) -->
+    <div class="portal-panel-card promo-atrium-card">
+      <div class="promo-atrium-inner">
+        <span class="promo-pill">LIVE MARKET</span>
+        <h4>Real Opportunities Backed by Research</h4>
+        <p>Forensic balance sheet verification and high-probability breakout timing.</p>
+        <a href="{% url 'portal:recommendations' %}" class="btn-outline-gold-sm">Explore Setups</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<script>
+function setSignalAlert(ticker) {
+  alert("Alert trigger activated for " + ticker + "! You will receive in-portal updates when momentum signals fire.");
+}
+</script>
+{% endblock %}

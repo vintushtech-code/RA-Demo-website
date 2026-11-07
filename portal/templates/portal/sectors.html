@@ -1,0 +1,124 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-sectors-layout">
+
+  <div class="sectors-main-col">
+    <div class="portal-panel-card">
+      <div class="panel-header">
+        <div>
+          <h2 class="section-heading">Sector Explorer & Momentum Trends</h2>
+          <p class="section-subheading">Track sector rotation, capital flows, and constituent performance across Indian industries.</p>
+        </div>
+      </div>
+
+      <!-- Sector 2-Column Grid (StockYaari Screenshot 5 Pattern) -->
+      <div class="sectors-grid-container">
+        
+        <div class="sector-card-row">
+          <span class="sector-name">All Sectors</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Agro & Fertilizers</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Agrochemicals</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Apparel & Textiles</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Auto & Ancillaries</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Banking & Financials</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Batteries & Green Energy</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Beverages & Breweries</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row active-sector-highlight">
+          <span class="sector-name">Cement & Materials</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Chemicals</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Commodities</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Construction & Real Estate</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Defence & Aerospace</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+        <div class="sector-card-row">
+          <span class="sector-name">Diversified Conglomerates</span>
+          <a href="{% url 'portal:recommendations' %}" class="btn-sector-arrow">➔</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column Promo (StockYaari Screenshot 5 Pattern) -->
+  <aside class="sectors-sidebar-col">
+    <div class="portal-panel-card plan-promo-card">
+      <div class="plan-promo-badge">INSTITUTIONAL ACCESS</div>
+      <h3 class="plan-promo-title">Sector Rotation Advisory</h3>
+      <p class="plan-promo-sub">Identify which sectors institutional money is moving into before retail catches on.</p>
+      
+      <div class="plan-pricing-block">
+        <span class="original-price"><del>INR 16,999 / year</del></span>
+        <div class="live-price-row">
+          <span class="currency">INR</span>
+          <span class="amount">2,499</span>
+          <span class="duration">/ year</span>
+        </div>
+      </div>
+
+      <a href="{% url 'portal:upgrade' %}" class="btn-get-plan">
+        Unlock All Sectors ➔
+      </a>
+    </div>
+
+    <div class="portal-panel-card promo-atrium-card">
+      <div class="promo-atrium-inner">
+        <span class="promo-pill">TOP SECTOR</span>
+        <h4>Cement & Defence Momentum</h4>
+        <p>Multiple high-probability setups identified with strict risk-to-reward parameters.</p>
+      </div>
+    </div>
+  </aside>
+
+</div>
+{% endblock %}

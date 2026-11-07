@@ -302,15 +302,24 @@
               <a href="{% url 'login:book_consultation' %}" class="dropdown-item"
                 style="color: var(--color-gold, #C5A059); font-weight: 700;">📊 Research Orientation Call</a>
 
-              {% if user.is_authenticated and user.is_staff %}
+              {% if user.is_authenticated %}
               <div class="dropdown-divider"></div>
-              <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #60A5FA; font-weight: 700;">🛡️
-                Executive Portal</a>
+              <a href="{% url 'portal:dashboard' %}" class="dropdown-item" style="color: var(--color-gold, #D4AF37); font-weight: 700;">
+                💼 Client Research Portal
+              </a>
+              {% if user.is_staff %}
+              <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #60A5FA; font-weight: 700;">🛡️ Executive Admin</a>
+              {% endif %}
+              <div class="dropdown-divider"></div>
               <form action="{% url 'login:logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
                 <button type="submit" class="dropdown-item btn-logout"
-                  style="width: 100%; text-align: left; background: none; border: none; font: inherit; cursor: pointer; color: var(--color-error, #d9534f);">Logout</button>
+                  style="width: 100%; text-align: left; background: none; border: none; font: inherit; cursor: pointer; color: var(--color-error, #d9534f);">Sign Out</button>
               </form>
+              {% else %}
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'login:login' %}" class="dropdown-item" style="font-weight: 700; color: var(--color-primary, #0A0D14);">🔐 Client Portal Login</a>
+              <a href="{% url 'login:signup' %}" class="dropdown-item">✨ Create Free Account</a>
               {% endif %}
             </div>
 

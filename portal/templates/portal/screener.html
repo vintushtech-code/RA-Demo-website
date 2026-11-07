@@ -1,0 +1,86 @@
+{% extends 'portal/base.html' %}
+{% load static %}
+
+{% block portal_content %}
+<div class="portal-panel-card">
+  <div class="panel-header">
+    <div>
+      <h2 class="section-heading">Institutional Equity Screener</h2>
+      <p class="section-subheading">Forensic accounting ratios, Altman Z-Score filters, and breakout volume scans.</p>
+    </div>
+  </div>
+
+  <div class="screener-filters-bar" style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0;">
+    <select class="screener-select" style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-primary);">
+      <option>Market Cap: Large & Mid Cap</option>
+      <option>NIFTY 50</option>
+      <option>NIFTY 500</option>
+    </select>
+    <select class="screener-select" style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-primary);">
+      <option>Sector: All Sectors</option>
+      <option>Banking & Financials</option>
+      <option>IT & Software</option>
+      <option>Cement & Building</option>
+    </select>
+    <select class="screener-select" style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-primary);">
+      <option>Setup: 200 EMA Breakout</option>
+      <option>52-Week High Momentum</option>
+      <option>High ROE & Low Debt</option>
+    </select>
+  </div>
+
+  <div class="screener-table-wrapper">
+    <table class="signals-table">
+      <thead>
+        <tr>
+          <th>Stock Symbol</th>
+          <th>Sector</th>
+          <th>CMP (₹)</th>
+          <th>P/E Ratio</th>
+          <th>ROE (%)</th>
+          <th>Debt / Equity</th>
+          <th>Kalphora Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="stock-ticker-bold">SHREECEM</span></td>
+          <td>Cement</td>
+          <td>₹24,930.00</td>
+          <td>38.2</td>
+          <td>14.8%</td>
+          <td>0.12</td>
+          <td><span class="badge-action-buy">BUY SETUP</span></td>
+        </tr>
+        <tr>
+          <td><span class="stock-ticker-bold">ELGIEQUIP</span></td>
+          <td>Industrial Capital Goods</td>
+          <td>₹642.50</td>
+          <td>42.1</td>
+          <td>19.4%</td>
+          <td>0.08</td>
+          <td><span class="badge-action-buy">ACCUMULATE</span></td>
+        </tr>
+        <tr>
+          <td><span class="stock-ticker-bold">HDFCBANK</span></td>
+          <td>Private Banking</td>
+          <td>₹1,745.20</td>
+          <td>18.4</td>
+          <td>16.5%</td>
+          <td>—</td>
+          <td><span class="status-pill personal">WATCHLIST</span></td>
+        </tr>
+        <tr>
+          <td><span class="stock-ticker-bold">TATASTEEL</span></td>
+          <td>Metals & Mining</td>
+          <td>₹148.20</td>
+          <td>14.1</td>
+          <td>11.2%</td>
+          <td>0.54</td>
+          <td><span class="badge-action-buy">ACCUMULATE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

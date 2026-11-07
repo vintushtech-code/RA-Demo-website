@@ -150,6 +150,9 @@ INSTALLED_APPS = [
     'navfooter',
     'theme_config',
     'login',
+    'portal',
+    'billing',
+    'research_vault',
 ]
 
 MIDDLEWARE = [
@@ -252,9 +255,22 @@ ADMIN_SECRET_PATH = os.environ.get('ADMIN_SECRET_PATH', 'x7K9mQp2LrT4').strip('/
 
 # Custom User Model & Authentication Redirects
 AUTH_USER_MODEL = 'login.CustomUser'
-LOGIN_URL = f'/{ADMIN_SECRET_PATH}/login/'
-LOGIN_REDIRECT_URL = f'/{ADMIN_SECRET_PATH}/'
+LOGIN_URL = 'login:login'
+LOGIN_REDIRECT_URL = 'portal:dashboard'
 LOGOUT_REDIRECT_URL = 'login:home'
+
+# ================================================================
+# SECURE PRIVATE VAULT STORAGE (Non-Public Research Documents)
+# ================================================================
+PRIVATE_STORAGE_ROOT = BASE_DIR / 'private_vault'
+RESEARCH_DOCUMENTS_DIR = PRIVATE_STORAGE_ROOT / 'research_documents'
+
+# ================================================================
+# PAYMENT GATEWAY (Razorpay / Mock Test Mode)
+# ================================================================
+RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', 'rzp_test_kalphora_mock_key')
+RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', 'rzp_test_kalphora_mock_secret')
+RAZORPAY_CURRENCY = 'INR'
 
 # ================================================================
 # EMAIL DISPATCH CONFIGURATION (Adaptive Gmail & GoDaddy SMTP Engine)
