@@ -115,14 +115,141 @@
 
 </div>
 
+<!-- Official Razorpay Checkout Script (TEST MODE) -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
-function initiateCheckout(planCode, amount) {
-  // Prototype simulation for Razorpay checkout integration
-  const confirmed = confirm("Proceeding to checkout for " + planCode + " (₹" + amount + ").\n\nClick OK to simulate instant Razorpay payment activation for testing.");
-  if (confirmed) {
-    alert("Payment verified! Your account will be upgraded to Premium.");
-    window.location.href = "{% url 'portal:dashboard' %}";
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
   }
+  return cookieValue;
+}
+
+function initiateCheckout(planCode, amount) {
+  const btn = window.event ? window.event.target : null;
+  const originalText = btn ? btn.innerText : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerText = 'Creating Secure Order...';
+  }
+
+  // 1. Call server-side order creation
+  fetch("{% url 'billing:create_order' %}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken")
+    },
+    body: JSON.stringify({ plan_code: planCode })
+  })
+  .then(res => res.json())
+  .then(response => {
+    if (response.status !== 'success') {
+      alert("Order initialization error: " + (response.message || "Failed to create order."));
+      if (btn) { btn.disabled = false; btn.innerText = originalText; }
+      return;
+    }
+
+    const orderData = response.data;
+
+    // 2. Configure official Razorpay Checkout options
+    var options = {
+      "key": orderData.key_id,
+      "amount": orderData.amount_paise,
+      "currency": orderData.currency,
+      "name": "Kalphora Equity",
+      "description": orderData.plan_name + " (TEST MODE)",
+      "order_id": orderData.order_id,
+      "prefill": {
+        "name": orderData.user_name,
+        "email": orderData.user_email
+      },
+      "theme": {
+        "color": "#D4AF37"
+      },
+      "handler": function (paymentResponse) {
+        // 3. Server-side signature verification
+        if (btn) btn.innerText = 'Verifying Signature...';
+
+        fetch("{% url 'billing:verify_payment' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+          },
+          body: JSON.stringify({
+            razorpay_order_id: paymentResponse.razorpay_order_id,
+            razorpay_payment_id: paymentResponse.razorpay_payment_id,
+            razorpay_signature: paymentResponse.razorpay_signature
+          })
+        })
+        .then(res => res.json())
+        .then(verifyData => {
+          if (verifyData.status === 'success') {
+            alert("Payment Verified! Your " + orderData.plan_name + " subscription is now active.");
+            window.location.href = verifyData.redirect_url || "{% url 'portal:dashboard' %}";
+          } else {
+            alert("Payment Verification Failed: " + (verifyData.message || "Cryptographic signature rejected."));
+            if (btn) { btn.disabled = false; btn.innerText = originalText; }
+          }
+        })
+        .catch(err => {
+          alert("Network error during payment verification.");
+          if (btn) { btn.disabled = false; btn.innerText = originalText; }
+        });
+      },
+      "modal": {
+        "ondismiss": function() {
+          fetch("{% url 'billing:payment_failed' %}", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken")
+            },
+            body: JSON.stringify({
+              order_id: orderData.order_id,
+              error_code: "USER_DISMISSED",
+              error_description: "Checkout modal dismissed by user."
+            })
+          });
+          if (btn) { btn.disabled = false; btn.innerText = originalText; }
+        }
+      }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.on('payment.failed', function (failResp) {
+      fetch("{% url 'billing:payment_failed' %}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+          order_id: orderData.order_id,
+          error_code: failResp.error ? failResp.error.code : "FAILED",
+          error_description: failResp.error ? failResp.error.description : "Payment failed"
+        })
+      });
+      alert("Payment Failed: " + (failResp.error ? failResp.error.description : "Transaction declined."));
+      if (btn) { btn.disabled = false; btn.innerText = originalText; }
+    });
+
+    rzp.open();
+  })
+  .catch(err => {
+    alert("Connection error initializing payment gateway.");
+    if (btn) { btn.disabled = false; btn.innerText = originalText; }
+  });
 }
 </script>
 {% endblock %}

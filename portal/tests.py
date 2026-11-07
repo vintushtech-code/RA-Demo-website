@@ -27,6 +27,8 @@ class PortalSecuritySessionTests(TestCase):
     and absolute removal of remember-me functionality.
     """
     def setUp(self):
+        from django.core.cache import cache
+        cache.clear()
         self.client = Client()
         self.user = User.objects.create_user(
             username='client_test',
@@ -201,6 +203,8 @@ class AdminSeparationAndBrandingTests(TestCase):
     ensuring zero admin link discoverability in client-facing templates.
     """
     def setUp(self):
+        from django.core.cache import cache
+        cache.clear()
         self.client = Client()
 
     def test_client_login_page_branding(self):

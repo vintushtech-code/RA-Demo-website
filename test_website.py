@@ -57,6 +57,8 @@ ADMIN_EMAIL = "example@gmail.com"
 )
 class WebsitePagesAndUiTests(TestCase):
     def setUp(self):
+        from django.core.cache import cache
+        cache.clear()
         self.client = Client()
 
     def test_all_public_and_legal_pages_render(self):
