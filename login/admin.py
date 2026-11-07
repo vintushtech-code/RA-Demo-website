@@ -14,11 +14,11 @@ import datetime
 from django.utils import timezone
 
 # ==============================================================================
-# EXECUTIVE PORTAL BRANDING & HEADERS (KP RegTech & VintushTech)
+# EXECUTIVE PORTAL BRANDING & HEADERS
 # ==============================================================================
-admin.site.site_header = "GuardianTree FP Executive Suite • Powered by KPRegTech & VintushTech"
-admin.site.site_title = "GuardianTree FP Admin Portal"
-admin.site.index_title = "Commercial Wealth & Client Operations Dashboard"
+admin.site.site_header = "Kalphora Equity — Research Operations Suite"
+admin.site.site_title = "Kalphora Equity Admin"
+admin.site.index_title = "Operations & Institutional Governance"
 
 
 

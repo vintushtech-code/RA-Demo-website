@@ -38,65 +38,133 @@
                         <img src="{% static 'logo.png' %}" alt="Kalphora Equity" class="admin-sidebar-logo-img">
                     </div>
                     <div class="admin-sidebar-brand-text">
-                        <h2 class="admin-sidebar-title">GuardianTree <span>FD</span></h2>
-                        <span class="admin-sidebar-subtitle">Executive Suite</span>
+                        <h2 class="admin-sidebar-title">Kalphora <span>Equity</span></h2>
+                        <span class="admin-sidebar-subtitle">SEBI Research Operations</span>
                     </div>
                     <!-- Close button inside drawer for mobile -->
                     <button type="button" class="admin-sidebar-close-btn" onclick="toggleAdminSidebar()"
                         aria-label="Close navigation">✕</button>
                 </div>
 
-                <!-- MENU ITEMS CORRESPONDING EXACTLY TO ACTIVE MODELS -->
+                <!-- MENU ITEMS ORGANIZED BY 5 OPERATIONAL TIERS -->
                 <div class="admin-sidebar-nav">
-                    <div class="admin-sidebar-section-title">Operations &amp; Models</div>
+                    <div class="admin-sidebar-section-title">1. Operations (Primary)</div>
 
                     <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/"
                         class="admin-sidebar-link {% if request.path == '/'|add:admin_secret_path|add:'/' or request.resolver_match.url_name == 'index' %}active{% endif %}">
                         <div class="admin-sidebar-link-left">
                             <span class="admin-sidebar-link-icon">⊞</span>
-                            <span>Dashboard</span>
+                            <span>Operations Dashboard</span>
                         </div>
-                    </a>
-
-                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/consultationbooking/"
-                        class="admin-sidebar-link {% if 'consultationbooking' in request.path %}active{% endif %}">
-                        <div class="admin-sidebar-link-left">
-                            <span class="admin-sidebar-link-icon">📅</span>
-                            <span>Consultations</span>
-                        </div>
-                        {% if kpi_pending_consultations %}
-                        <span class="admin-sidebar-badge">{{ kpi_pending_consultations }}</span>
-                        {% endif %}
-                    </a>
-
-                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/contactform/contactsubmission/"
-                        class="admin-sidebar-link {% if 'contactsubmission' in request.path %}active{% endif %}">
-                        <div class="admin-sidebar-link-left">
-                            <span class="admin-sidebar-link-icon">✉️</span>
-                            <span>Client Inquiries</span>
-                        </div>
-                        {% if kpi_total_inquiries %}
-                        <span class="admin-sidebar-badge">{{ kpi_total_inquiries }}</span>
-                        {% endif %}
                     </a>
 
                     <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/customuser/"
                         class="admin-sidebar-link {% if 'customuser' in request.path %}active{% endif %}">
                         <div class="admin-sidebar-link-left">
                             <span class="admin-sidebar-link-icon">👥</span>
-                            <span>Users &amp; Staff</span>
+                            <span>Clients &amp; Accounts</span>
                         </div>
                     </a>
 
-                    <!-- Advisory Team (Commented out: Meet Our Professional Team section disabled)
-                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/teammember/"
-                        class="admin-sidebar-link {% if 'teammember' in request.path %}active{% endif %}">
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/clientportalaccessoverride/"
+                        class="admin-sidebar-link {% if 'clientportalaccessoverride' in request.path %}active{% endif %}">
                         <div class="admin-sidebar-link-left">
-                            <span class="admin-sidebar-link-icon">👔</span>
-                            <span>Advisory Team</span>
+                            <span class="admin-sidebar-link-icon">🛡️</span>
+                            <span>Client Access Overrides</span>
                         </div>
                     </a>
-                    -->
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/billing/usersubscription/"
+                        class="admin-sidebar-link {% if 'usersubscription' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">⭐</span>
+                            <span>Active Subscriptions</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/billing/subscriptionplan/"
+                        class="admin-sidebar-link {% if 'subscriptionplan' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">💳</span>
+                            <span>Subscription Plans</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/billing/paymenttransaction/"
+                        class="admin-sidebar-link {% if 'paymenttransaction' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📑</span>
+                            <span>Billing &amp; Transactions</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/stockrecommendation/"
+                        class="admin-sidebar-link {% if 'stockrecommendation' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📊</span>
+                            <span>Research Calls</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/recommendationupdate/"
+                        class="admin-sidebar-link {% if 'recommendationupdate' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📈</span>
+                            <span>Intra-Trade Updates</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/portalsectionconfig/"
+                        class="admin-sidebar-link {% if 'portalsectionconfig' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">⚙️</span>
+                            <span>Portal Tabs &amp; Sections</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/portalannouncement/"
+                        class="admin-sidebar-link {% if 'portalannouncement' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📢</span>
+                            <span>Portal Announcements</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/portalwidgetconfig/"
+                        class="admin-sidebar-link {% if 'portalwidgetconfig' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">🗂️</span>
+                            <span>Dashboard Widgets</span>
+                        </div>
+                    </a>
+
+                    <div class="admin-sidebar-section-title">2. Models &amp; Audit</div>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/sebicomplianceauditlog/"
+                        class="admin-sidebar-link {% if 'sebicomplianceauditlog' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📜</span>
+                            <span>SEBI Reg. 25 Audit Logs</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/portal/clientwatchlist/"
+                        class="admin-sidebar-link {% if 'clientwatchlist' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📌</span>
+                            <span>Client Watchlists</span>
+                        </div>
+                    </a>
+
+                    <div class="admin-sidebar-section-title">3. Website Management</div>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/contactform/contactsubmission/"
+                        class="admin-sidebar-link {% if 'contactsubmission' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">✉️</span>
+                            <span>Contact Inquiries</span>
+                        </div>
+                    </a>
 
                     <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/testimonial/"
                         class="admin-sidebar-link {% if 'testimonial' in request.path %}active{% endif %}">
@@ -114,15 +182,41 @@
                         </div>
                     </a>
 
-                    <div class="admin-sidebar-section-title">System &amp; SaaS Governance</div>
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/marketresource/"
+                        class="admin-sidebar-link {% if 'marketresource' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">📚</span>
+                            <span>Market Resources</span>
+                        </div>
+                    </a>
 
-                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/#vault-section"
+                    <div class="admin-sidebar-section-title">4. Security &amp; Administration</div>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/securityauditlog/"
+                        class="admin-sidebar-link {% if 'securityauditlog' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">🔐</span>
+                            <span>Security Audit Trail</span>
+                        </div>
+                    </a>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/auth/group/"
+                        class="admin-sidebar-link {% if 'auth/group' in request.path %}active{% endif %}">
+                        <div class="admin-sidebar-link-left">
+                            <span class="admin-sidebar-link-icon">🔑</span>
+                            <span>Permission Roles &amp; Groups</span>
+                        </div>
+                    </a>
+
+                    <div class="admin-sidebar-section-title">5. Backup &amp; Recovery</div>
+
+                    <a href="/{{ admin_secret_path|default:'x7K9mQp2LrT4' }}/login/adminbackuplog/"
                         class="admin-sidebar-link {% if 'adminbackuplog' in request.path %}active{% endif %}">
                         <div class="admin-sidebar-link-left">
                             <span class="admin-sidebar-link-icon">💾</span>
                             <span>Data Vault Backups</span>
                         </div>
-                        <span class="admin-sidebar-badge">Auto</span>
+                        <span class="admin-sidebar-badge">Verified</span>
                     </a>
 
                 </div>

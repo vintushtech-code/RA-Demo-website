@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
+
 class ContactformConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'contactform'
-    verbose_name = 'Contact Form'
+    verbose_name = '3. Website Management — Inquiries'

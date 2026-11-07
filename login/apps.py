@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class LoginConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'login'
-    verbose_name = 'Standalone Authentication & User Management'
+    verbose_name = 'Platform Governance & Security'
 
     def ready(self):
         """

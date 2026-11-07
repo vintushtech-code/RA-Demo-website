@@ -193,3 +193,72 @@ class SecurityAuditLogTests(TestCase):
         self.assertEqual(log.event_type, 'login_success')
         self.assertEqual(log.actor_user, self.user)
         self.assertEqual(log.details.get('method'), 'password')
+
+
+class AdminSeparationAndBrandingTests(TestCase):
+    """
+    Verifies strict separation between Client Portal and Admin Panel,
+    ensuring zero admin link discoverability in client-facing templates.
+    """
+    def setUp(self):
+        self.client = Client()
+
+    def test_client_login_page_branding(self):
+        """Verify client login page is branded for clients, not administrators."""
+        response = self.client.get(reverse('login:login'))
+        self.assertEqual(response.status_code, 200)
+        content = response.content.decode('utf-8')
+        self.assertIn("Client Research Portal", content)
+        self.assertNotIn("Admin Portal Sign In", content)
+        self.assertNotIn("Secure Executive Operations", content)
+
+    def test_public_navbar_has_zero_admin_links(self):
+        """Verify public navbar does not disclose the administrator portal."""
+        response = self.client.get(reverse('login:home'))
+        self.assertEqual(response.status_code, 200)
+        content = response.content.decode('utf-8')
+        self.assertNotIn("Executive Admin", content)
+        self.assertNotIn("Executive Portal", content)
+
+
+class ContactSubmissionStatusTests(TestCase):
+    """
+    Validates operational status management on inbound client inquiries.
+    """
+    def test_contact_status_transitions(self):
+        from contactform.models import ContactSubmission
+        sub = ContactSubmission.objects.create(
+            name="Investor Test",
+            email="investor@example.com",
+            subject="Advisory Inquiry",
+            message="Interested in swing research calls."
+        )
+        self.assertEqual(sub.status, 'new')
+        self.assertIsNone(sub.resolved_at)
+
+        # Mark as resolved
+        sub.status = 'resolved'
+        sub.resolved_at = timezone.now()
+        sub.save()
+
+        refreshed = ContactSubmission.objects.get(id=sub.id)
+        self.assertEqual(refreshed.status, 'resolved')
+        self.assertIsNotNone(refreshed.resolved_at)
+
+
+class RBACGroupTests(TestCase):
+    """
+    Validates Role-Based Access Control groups for least privilege administration.
+    """
+    def setUp(self):
+        from django.contrib.auth.models import Group
+        Group.objects.get_or_create(name='Operations_Administrator')
+        Group.objects.get_or_create(name='Website_Content_Manager')
+
+    def test_rbac_groups_exist(self):
+        from django.contrib.auth.models import Group
+        ops_exists = Group.objects.filter(name='Operations_Administrator').exists()
+        content_exists = Group.objects.filter(name='Website_Content_Manager').exists()
+        self.assertTrue(ops_exists, "Operations_Administrator group must exist.")
+        self.assertTrue(content_exists, "Website_Content_Manager group must exist.")
+

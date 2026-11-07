@@ -307,9 +307,6 @@
               <a href="{% url 'portal:dashboard' %}" class="dropdown-item" style="color: var(--color-gold, #D4AF37); font-weight: 700;">
                 💼 Client Research Portal
               </a>
-              {% if user.is_staff %}
-              <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #60A5FA; font-weight: 700;">🛡️ Executive Admin</a>
-              {% endif %}
               <div class="dropdown-divider"></div>
               <form action="{% url 'login:logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
@@ -415,10 +412,10 @@
         <span class="mobile-nav-icon">📅</span> Research Orientation
       </a>
 
-      {% if user.is_authenticated and user.is_staff %}
+      {% if user.is_authenticated %}
       <div class="mobile-nav-divider"></div>
-      <a href="{% url 'admin:index' %}" class="mobile-nav-link" onclick="closeMobileDrawer()">
-        <span class="mobile-nav-icon">🛡️</span> Executive Portal
+      <a href="{% url 'portal:dashboard' %}" class="mobile-nav-link" onclick="closeMobileDrawer()">
+        <span class="mobile-nav-icon">💼</span> Client Research Portal
       </a>
       <form action="{% url 'login:logout' %}" method="post">
         {% csrf_token %}
