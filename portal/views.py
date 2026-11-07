@@ -351,14 +351,21 @@ class SecureDocDownloadView(SecureDocStreamView):
         return response
 
 
-class UpgradePlanView(PortalSectionAccessMixin, TemplateView):
+class UpgradePlanView(LoginRequiredMixin, TemplateView):
     """
     Membership upgrade checkout & pricing options.
+    Always accessible to all authenticated clients.
     """
     template_name = 'portal/upgrade.html'
-    section_key = 'upgrade'
+    login_url = 'login:login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['nav_tabs'] = AccessControlService.get_navigation_tabs_for_user(user, current_key='upgrade')
+        context['active_announcements'] = AccessControlService.get_active_announcements_for_user(user)
+        context['sidebar_widgets'] = AccessControlService.get_active_widgets_for_user(user, widget_type='sidebar_card')
+        context['active_tab'] = 'upgrade'
+        context['is_premium'] = getattr(user, 'is_premium_active', False)
         context['plans'] = SubscriptionPlan.objects.filter(is_active=True).order_by('display_order')
         return context

@@ -36,11 +36,15 @@ class AccessControlService:
         if user and (getattr(user, 'is_staff', False) or getattr(user, 'is_superuser', False)):
             return True, "ADMIN"
 
+        # Membership checkout and upgrade is open to all clients
+        if section_key in ('upgrade', 'pricing'):
+            return True, "UPGRADE"
+
         # 2. Lookup section configuration
         try:
             section = PortalSectionConfig.objects.get(section_key=section_key)
         except PortalSectionConfig.DoesNotExist:
-            return False, "Section does not exist"
+            return False, "This section is not currently available."
 
         if not section.is_enabled_globally:
             return False, "This section is currently disabled by administrator."
