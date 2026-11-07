@@ -1051,6 +1051,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 
 
+@method_decorator(rate_limit(key_type='ip', limit=10, period=60), name='dispatch')
 class ConsultationView(View):
     """
     Dedicated Private Wealth Management Consultation Booking Page (consultation.html).
